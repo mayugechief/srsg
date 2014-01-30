@@ -1,0 +1,8 @@
+<dl class="see">
+  <dt><%= @model.lang :wiki %></dt>
+  <dd>
+    <% if @item.send(:wiki).present? %>
+    <code><%= @item.send :wiki %></code>
+    <% end %>
+  </dd>
+</dl>

@@ -1,0 +1,18 @@
+<dl class="see">
+  <dt><%= @model.lang :name %></dt>
+  <dd><%= f.text_field :name %></dd>
+  
+  <dt><%= @model.lang :email %></dt>
+  <dd><%= f.email_field :email %></dd>
+  
+  <dt><%= @model.lang :password %></dt>
+  <dd><%= f.text_field :password %></dd>
+  
+  <dt><%= @model.lang :groups %></dt>
+  <dd>
+    <%= hidden_field_tag "item[group_ids][]" %>
+    <% SS::Group.all.each do |item| %>
+    <label><%= check_box_tag "item[group_ids][]", item._id, @item.group_ids.include?(item._id) %><%= item.name %></label>
+    <% end %>
+  </dd>
+</dl>

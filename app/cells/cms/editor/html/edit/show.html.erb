@@ -1,0 +1,8 @@
+<dl class="see">
+  <dt><%= @model.lang :html %></dt>
+  <dd>
+    <% if @item.send(:html).present? %>
+    <code><%= @item.send :html %></code>
+    <% end %>
+  </dd>
+</dl>

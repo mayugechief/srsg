@@ -1,0 +1,16 @@
+<dl class="see">
+  <dt><%= @model.lang :name %></dt>
+  <dd><%= f.text_field :name %></dd>
+  
+  <dt><%= @model.lang :filename %></dt>
+  <dd><%= f.text_field :filename %></dd>
+  
+  <dt><%= @model.lang :keywords %></dt>
+  <dd><%= f.text_field :keywords %></dd>
+  
+  <dt><%= @model.lang :description %></dt>
+  <dd><%= f.text_area :description %></dd>
+  
+  <dt><%= @model.lang :layout_id %></dt>
+  <dd><%= f.select :layout_id, Cms::Layout.all.map {|m| [m.name, m._id] }, :include_blank => "" %></dd>
+</dl>

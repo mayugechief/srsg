@@ -1,0 +1,8 @@
+<% Cms::Editor.plugins.each_with_index do |item, idx| %>
+  <% disp = (idx == 0) ? "display: block;" : "display: none;" %>
+  <% disp = "display: block; margin-bottom: 10px;" if params[:show] == "all" %>
+  
+  <div id="plugin<%= item.object_id %>" class="plugin" style="<%#= disp %>">
+    <%= render_cell "#{item.cell}/edit", :show, :@item => @item, :@model => @model %>
+  </div>
+<% end %>

@@ -1,0 +1,171 @@
+@import "init";
+
+$page-max-width: 1200px;
+$font-base: Tahoma, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", Verdana, "MS PGothic", "ＭＳ　Ｐゴシック", sans-serif;
+$font-head: "Century Gothic", Futura, Meiryo, "メイリオ", Verdana, "MS PGothic", "ＭＳ　Ｐゴシック", sans-serif;
+
+html {
+  height: 100%;
+  font-size: 81.2%;
+  font-family: Meiryo, sans-serif;
+  line-height: 1.4;
+}
+body {
+  margin: 0px;
+  background-color: #eee;
+  color: #333;
+  font-family: $font-base;
+}
+h1, h2, h3, h4, h5 {
+  margin: 0px;
+  font-size: 100%;
+}
+#head {
+  padding: 0px 15px;
+  background-color: #fff;
+  .wrap {
+    margin: 0px auto;
+    max-width: $page-max-width;
+  }
+  h1 {
+    padding: 10px 10px;
+    a {
+      color: #444;
+      font-size: 200%;
+      font-family: $font-head;
+      text-decoration: none;
+    }
+  }
+  nav {
+    float: right;
+    margin-top: -40px;
+  }
+}
+#navi {
+  @include clear;
+  margin: 0px 0px 20px;
+  padding: 0px 15px;
+  background-color: #ddd;
+  .wrap {
+    @include clear;
+    max-width: $page-max-width;
+    margin: 0px auto;
+    padding: 10px 0px;
+  }
+  a {
+    float: left;
+    display: block;
+    min-width: 80px;
+    margin: 0px 10px 0px 0px;
+    padding: 0px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #eee;
+    color: #333;
+    line-height: 2.5;
+    text-align: center;
+    text-decoration: none;
+    &:hover {
+      background-color: #fff;
+    }
+  }
+}
+#wrap {
+  @include clear;
+  max-width: $page-max-width;
+  margin: 0px auto;
+  padding: 0px 15px;
+}
+#menu {
+  position: relative;
+  z-index: 1;
+  float: left;
+  width: 200px;
+}
+#menu, #side {
+  nav {
+    margin: 0px 0px 20px;
+    line-height: 2.5;
+    header {
+      background-color: #ddd;
+      padding: 0px 10px;
+    }
+    a {
+      display: block;
+      padding: 0px 10px;
+      border-top: 1px solid #eee;
+      background-color: #fff;
+    }
+    a:hover { background-color: #eee; }
+  }
+}
+#main {
+  .wrap {
+    padding: 20px;
+    background-color: #fff;
+    > header {
+      margin: -20px -20px 20px;
+      padding: 0px 10px;
+      background-color: #ddd;
+      line-height: 2.5;
+    }
+  }
+}
+#menu + #main {
+  float: left;
+  width: 100%; 
+  margin: 0px 0px 0px -200px;
+  .wrap {
+    margin: 0px 215px;
+  }
+}
+#side {
+  float: right;
+  width: 200px;
+  margin: 0px 0px 0px -200px;
+}
+#foot {
+  @include clear;
+  margin: 20px 0px 0px;
+  padding: 0px 15px;
+  .wrap {
+    margin: 0px auto;
+    max-width: $page-max-width;
+    padding: 20px 0px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+  }
+  a {
+    margin: 0px 10px;
+  }
+}
+
+// -------------------------------------------------------------------------------------------------
+
+@media only screen and (max-width: 800px) {
+  body {
+  }
+  #wrap, #menu, #side {
+    clear: both;
+    float: none;
+    width: auto;
+    margin: 0px 5px 10px;
+    padding: 0px;
+    nav {
+      margin: 0px 0px 10px;
+    }
+  }
+  #wrap #main { 
+    clear: both;
+    float: none;
+    margin: 0px 0px 10px;
+    padding: 0px;
+    .wrap {
+      margin: 0px 5px;
+      padding: 10px;
+      > header {
+        margin: -10px -10px 10px;
+      }
+    }
+  }
+}

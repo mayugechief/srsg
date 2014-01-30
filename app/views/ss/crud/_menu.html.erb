@@ -1,0 +1,16 @@
+<nav class="flow-menu">
+  <header>
+    <h1>Action</h1>
+  </header>
+  <% if params[:action] =~ /index/ %>
+    <%= link_to "新規作成", action: :new %>
+  <% elsif params[:action] =~ /new|create/ %>
+    <%= link_to '一覧へ戻る', action: :index %>
+  <% elsif params[:action] =~ /edit|update/ %>
+    <%= link_to '詳細へ戻る', action: :show, id: @item %>
+  <% else %>
+    <%= link_to '編集する', action: :edit, id: @item %>
+    <%= link_to '削除する', { action: :show, id: @item }, method: :delete, data: { confirm: '削除してよろしいですか？' } %></td>
+    <%= link_to '一覧へ戻る', action: :index %>
+  <% end %>
+</nav>

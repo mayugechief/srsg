@@ -1,0 +1,4 @@
+<dl class="see">
+  <dt><%= @model.lang :categories %></dt>
+  <dd><%= @item.send(:categories).pluck(:name).join(", ") %></dd>
+</dl>

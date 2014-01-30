@@ -1,0 +1,33 @@
+<table class="index">
+  <thead>
+    <tr>
+      <th style="width: 20px;"><input type="checkbox" /></th>
+      <th><%= @model.lang :name %></th>
+      <th><%= @model.lang :filename %></th>
+      <th><%= @model.lang :updated %></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td>
+        <input type="checkbox" name="ids[]" value="<%= item.id %>" />
+        <nav class="row-menu">
+          <% if item.type == "root" %>
+          <%= link_to "コンテンツ管理", "/.#{@cur_site.host}/#{item.route.downcase.dasherize}#{item.id}" %>
+          <% end %>
+          <%= link_to "詳細を見る", action: :show, id: item %>
+        </nav>
+      </td>
+      <td>
+        <%= link_to item.send(:name), action: :show, id: item %>
+        <%= "☆" if item.type == "root" %>
+      </td>
+      <td><%= link_to item.filename, item.full_url, target: "_blank" %></td>
+      <td><%= item.updated.strftime("%Y/%m/%d") %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  
+</table>

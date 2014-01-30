@@ -1,0 +1,7 @@
+<header>
+  <h1><%= @cur_page.name %></h1>
+</header>
+
+<% Cms::Editor.plugins.each_with_index do |item, idx| %>
+  <%= render_cell "#{item.cell}/view", :index, :@item => @cur_page %>
+<% end %>

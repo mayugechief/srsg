@@ -1,0 +1,11 @@
+<header>
+  <h1><%= @cur_node.name %></h1>
+</header>
+
+<% @items.each do |item| %>
+<article>
+  <header>
+    <h1><%= link_to item.name, item.url %></h1>
+  </header>
+</article>
+<% end %>

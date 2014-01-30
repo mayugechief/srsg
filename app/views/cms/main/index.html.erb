@@ -1,0 +1,13 @@
+<table class="index">
+  <tr>
+    <th>コンテンツ</th>
+    <th><%= link_to "公開画面", "#{@cur_site.full_url}", :target => "_blank" %></th>
+  </tr>
+  
+  <% Cms::Content.site_is(@cur_site).sort(filename: 1).each do |item| %>
+  <tr>
+    <td><%= link_to item.name, "/.#{@cur_site.host}/#{item.route.downcase.dasherize}#{item.id}" %></td>
+    <td><%= link_to item.full_url, item.full_url, :target => "_blank" %></td>
+  </tr>
+  <% end %>
+</table>

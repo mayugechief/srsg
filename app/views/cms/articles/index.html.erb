@@ -1,0 +1,25 @@
+<table class="index">
+  <thead>
+    <tr>
+      <th><%= @model.lang(:name) %></th>
+      <th><%= @model.lang(:filename) %></th>
+      <th><%= @model.lang(:updated) %></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td>
+        <%= link_to item.name, article_main_path(item) %>
+        <nav class="row-menu">
+          <%= link_to "コンテンツ管理", article_main_path(item) %>
+        </nav>
+      </td>
+      <td><%= link_to item.filename, item.full_url, target: "_blank" %></td>
+      <td><%= item.updated.strftime("%Y/%m/%d") %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  
+</table>

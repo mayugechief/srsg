@@ -1,0 +1,18 @@
+<header>
+  <h1><%= params[:controller] %></h1>
+</header>
+
+<%= form_for :item, url: { action: :create }, html: { multipart: true } do |f| %>
+  <%= error_messages_for :item %>
+  
+  <dl class="see">
+    <dt><%= @model.lang :file %></dt>
+    <dd><%= f.file_field :files, multiple: :multiple %> <%= f.submit '保存' %></dd>
+  </dl>
+<% end %>
+
+<ul>
+  <% @items.each do |item| %>
+  <li><%= item %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,21 @@
+<%= render file: "ss/crud/_menu" %>
+
+<% if params[:action] =~ /index/ %>
+
+<nav class="page-menu">
+  <header>
+    <h1>Tools</h1>
+  </header>
+  <%= link_to :import, "#" %>
+</nav>
+
+<% elsif params[:action] =~ /show/ %>
+
+<nav class="page-menu">
+  <header>
+    <h1>Tools</h1>
+  </header>
+  <%= link_to :export, "#" %>
+</nav>
+
+<% end %>

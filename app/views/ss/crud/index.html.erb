@@ -1,0 +1,37 @@
+<table class="index">
+  <thead>
+    <tr>
+      <th style="width: 20px;"><input type="checkbox" /></th>
+      <% @model.fields.select {|k, v| k =~ /^(name|filename)/ }.keys.each do |key| %>
+      <th><%= @model.lang(key) %></th>
+      <% end %>
+      <th><%= @model.lang(:updated) %></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @items.each do |item| %>
+    <tr>
+      <td>
+        <input type="checkbox" name="ids[]" value="<%= item.id %>" />
+        <nav class="row-menu">
+          <%= link_to "詳細を見る", action: :show, id: item %>
+        </nav>
+      </td>
+      <% @model.fields.select {|k, v| k =~ /^(name|filename)/ }.keys.each_with_index do |key, idx| %>
+        <% if idx == 0 %>
+        <td><%= link_to item.send(key), action: :show, id: item %></td>
+        <% elsif item.send(key).instance_of?(DateTime) %>
+        <td><%= item.send(key).strftime("%Y/%-m/%-d %-H:%M") %></td>
+        <% elsif key == "filename" %>
+        <td><%= link_to item.send(key), item.full_url, target: "_blank" %></td>
+        <% else %>
+        <td><%= item.send(key) %></td>
+        <% end %>
+      <% end %>
+      <td><%= item.updated.strftime("%Y/%m/%d") %></td>
+    </tr>
+    <% end %>
+  </tbody>
+  
+</table>

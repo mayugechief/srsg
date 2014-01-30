@@ -1,0 +1,16 @@
+<dl class="see">
+  <dt>Category</dt>
+  <dd>
+    <%= hidden_field_tag "item[category_ids][]" %>
+    <% Category::Node.where(filename: /^[^\/]+$/).each do |item| %>
+    <div style="margin: 0px 0px 10px; padding: 5px; border: 1px solid #ccc;">
+      <label><%= check_box_tag "item[category_ids][]", item._id, @item.category_ids.include?(item._id) %><%= item.name %></label>
+    </div>
+    <div style="margin: 10px 20px 20px;">
+      <% item.where.each do |c| %>
+        <label><%= check_box_tag "item[category_ids][]", c._id, @item.category_ids.include?(c._id) %><%= c.name %></label>
+      <% end %>
+    </div>
+    <% end %>
+  </dd>
+</dl>
