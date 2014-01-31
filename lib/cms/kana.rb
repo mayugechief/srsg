@@ -20,7 +20,7 @@ module Cms::Kana
       end
       
       def mpad(str)
-        str.gsub(/[ -~]/, " ").gsub(/[^ -~]/, "   ")
+        str.gsub(/[^ -~]/, "   ")
       end
       
     public

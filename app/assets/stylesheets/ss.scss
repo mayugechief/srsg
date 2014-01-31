@@ -88,7 +88,7 @@ code {
   padding: 0px 8px;
   border-left: 5px solid #ddd;
   font-family: $font-base;
-  white-space: pre;
+  //white-space: pre;
 }
 
 // -----------------------------------------------------------------------------
@@ -137,7 +137,7 @@ code {
   }
 }
 #wrap {
-  @included clear;
+  @include clear;
   overflow: hidden;
   min-height: 400px;
   padding: 0px 15px 5px;
@@ -382,5 +382,91 @@ footer.send {
   input:hover, button:hover {
     border-color: #f70;
     color: #000;
+  }
+}
+
+// -----------------------------------------------------------------------------
+// smart phone
+
+@media only screen and (max-width: 800px) {
+  #head {
+    h1 {
+      a {
+        width: auto;
+        padding: 0px 20px;
+      }
+    }
+    nav + nav {
+      a {
+        min-width: 0px;
+      }
+    }
+  }
+  #crumbs {
+    margin-left: 0px;
+  }
+  #wrap {
+    min-height: none;
+    padding: 0px 10px;
+  }
+  #navi {
+    float: left;
+    width: auto;
+    margin: 0px;
+  }
+  #menu {
+    float: left;
+    width: auto;
+    margin: 0px;
+  }
+  nav.main-menu, nav.flow-menu, nav.page-menu {
+    float: left;
+    margin: 0px 0px 2px;
+    border: none;
+    header {
+      float: left;
+    }
+    h1, a {
+      float: left;
+      min-width: 52px;
+      margin: 0px 1px 2px 0px;
+      padding: 5px 5px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    a:after {
+      content: "";
+    }
+  }
+  #main {
+    @include clear;
+  }
+  #navi ~ #main {
+    float: left;
+    width: auto;
+    margin: 0px 0px 20px;
+    .wrap {
+      margin: 10px 0px 0px;
+    }
+  }
+  #menu ~ #main {
+    float: left;
+    width: auto;
+    margin: 0px 0px 20px;
+    .wrap {
+      margin: 10px 0px 0px;
+    }
+  }
+  dl.see {
+    > dt {
+      float: none;
+      width: auto;
+    }
+    > dd {
+      float: none;
+      margin-left: 0px;
+      padding-top: 0px;
+      border-top: 0px;
+    }
   }
 }

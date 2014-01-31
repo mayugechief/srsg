@@ -4,6 +4,9 @@ $page-max-width: 1200px;
 $font-base: Tahoma, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Meiryo, "メイリオ", Verdana, "MS PGothic", "ＭＳ　Ｐゴシック", sans-serif;
 $font-head: "Century Gothic", Futura, Meiryo, "メイリオ", Verdana, "MS PGothic", "ＭＳ　Ｐゴシック", sans-serif;
 
+// -----------------------------------------------------------------------------
+// element
+
 html {
   height: 100%;
   font-size: 81.2%;
@@ -20,6 +23,19 @@ h1, h2, h3, h4, h5 {
   margin: 0px;
   font-size: 100%;
 }
+rp, rt {
+  color: #080;
+  font-size: 90%;
+  font-weight: normal;
+}
+rp {
+  margin: 0px 1px;
+  color: #888;
+}
+
+// -----------------------------------------------------------------------------
+// layout
+
 #head {
   padding: 0px 15px;
   background-color: #fff;
@@ -38,7 +54,7 @@ h1, h2, h3, h4, h5 {
   }
   nav {
     float: right;
-    margin-top: -40px;
+    margin-top: -38px;
   }
 }
 #navi {

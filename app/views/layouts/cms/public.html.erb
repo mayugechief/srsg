@@ -17,14 +17,14 @@
   <h1><%= link_to @cur_site.name, @cur_site.url %></h1>
 </header>
 
-<%= link_to "Layout", @cur_layout.url if @cur_layout %>
-
 <article>
 <div id="page" data-layout="<%= @cur_layout.json_url if @cur_layout %>">
 <script> $(function(){ SS.load(); }); </script>
 <%= yield %>
 </div>
 </article>
+
+<%= link_to "Layout", @cur_layout.url if @cur_layout %>
 
 </body>
 </html>
