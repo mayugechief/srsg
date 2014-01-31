@@ -1,0 +1,7 @@
+# Ignore
+
+/.*
+/config/*.yml
+/log/*.log
+/tmp
+/public/sites
