@@ -57,11 +57,13 @@ class Cms::PublicController < ApplicationController
       file = @file.sub(/\.css$/, ".scss")
       return render :nothing => true, :status => 404 unless Storage.exists?(file)
       
-      dirs = [File.dirname(file)]
+      #dirs = [File.dirname(file)]
       
-      sass = Sass::Engine.new Storage.read(file), syntax: :scss, load_paths: dirs, cache: false,
+      sass = Sass::Engine.new Storage.read(file), filename: file, syntax: :scss, cache: false,
+        load_paths: Compass.configuration.sass_load_paths,
         debug_info: Srsg::Application.config.sass.debug_info
       
+      #sass.for_file file
       response.headers['Content-Type'] ||= 'text/css; charset=utf-8'
       render inline: sass.render
     end
