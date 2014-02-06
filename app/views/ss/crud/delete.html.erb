@@ -1,0 +1,13 @@
+<dl class="see">
+  <dt><%= @model.lang :name %></dt>
+  <dd><%= @item.name %></dd>
+</dl>
+
+<%= form_for :item, url: { action: :show }, html: { method: :delete, multipart: true } do |f| %>
+<%= error_messages_for :item %>
+
+<footer class="send">
+  <%= f.submit '削除', class: :delete %>
+  <%= f.button "キャンセル", onclick: "location.href='#{url_for(action: :show)}'; return false;" %>
+</footer>
+<% end %>

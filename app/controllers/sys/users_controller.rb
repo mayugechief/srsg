@@ -6,6 +6,10 @@ class Sys::UsersController < ApplicationController
   
   model SS::User
   
+  crumb ->{ [:users, sys_users_path] }
+  
+  navi_view "sys/main/navi"
+  
   public
     def index
       @items = @model.all

@@ -6,9 +6,10 @@ class Category::NodesController < ApplicationController
   
   model Category::Node
   
-  crumb ->{ [:contents, cms_contents_path] }
   crumb ->{ [@cur_node.name, category_main_path] }
   crumb ->{ [:categories, category_nodes_path] }
+  
+  navi_view "category/main/navi"
   
   private
     def set_params

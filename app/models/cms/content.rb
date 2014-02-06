@@ -2,7 +2,7 @@
 class Cms::Content
   include Cms::Node::Base
   
-  default_scope where type: "root"
+  default_scope where type: "main"
   
   @@modules = []
   

@@ -1,9 +1,9 @@
 # coding: utf-8
-class Sys::MainController < ApplicationController
+class Sys::TestController < ApplicationController
   include SS::BaseFilter
   include Sys::BaseFilter
   
-  navi_view "sys/main/navi"
+  crumb ->{ [:http_test, sys_test_path] }
   
   def index
     #

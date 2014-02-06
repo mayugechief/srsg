@@ -1,14 +1,14 @@
 # coding: utf-8
-class Category::Node::Root
+class Article::Node::Main
   
   class ViewCell < Cell::Rails
     include Cms::PublicFilter
     
     def index
       @items = Cms::Page.site_is(@cur_site)
-        .where(:category_ids => @cur_node._id)
+        .where(filename: /^#{@cur_node.filename}\//)
+        .where(deleted: nil)
         .sort(_id: -1)
-      
       render
     end
   end

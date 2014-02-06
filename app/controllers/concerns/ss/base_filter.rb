@@ -1,18 +1,11 @@
 # coding: utf-8
 module SS::BaseFilter
   extend ActiveSupport::Concern
+  include SS::LayoutFilter
   
   included do
-    cattr_accessor(:crumbs) { [] }
     before_action :logged_in?
     layout 'ss/base'
-  end
-  
-  module ClassMethods
-    
-    def crumb(proc)
-      self.crumbs << proc 
-    end
   end
   
   private

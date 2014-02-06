@@ -1,0 +1,24 @@
+<style>
+.my-label {
+  padding: 5px 10px;
+  background-color: #ddd;
+}
+</style>
+
+<div style="float: left; width: 120px; margin-right: 20px;">
+  <button onclick="SS_Debug.test()" style="width: 100%; min-height: 3em;">Run HTTP</button>
+  
+  <div class="my-label" style="margin-top: 20px;">Active</div>
+  <input type="text" id="wait" value="0" style="width: 100%; text-align: right;" />
+</div>
+
+<div style="float: left; width: 400px; margin-right: 20px;">
+  <div class="my-label">Try URL</div>
+  <textarea id="log" style="height: 30em; color: #040"></textarea>
+</div>
+<div style="float: left; width: 400px;">
+  <div class="my-label">Error</div>
+  <textarea id="err" style="height: 30em; color: #e00;"></textarea>
+</div>
+
+<script>//SS_Debug.test();</script>

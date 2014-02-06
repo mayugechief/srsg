@@ -60,11 +60,14 @@ mecab
 database utility
 ================
 
+# create index
+rake db:create_indexes
+
 # add user
 rake db:user:create data='{ name: "user", email: "user@example.jp", password: "pass" }'
 
 # add site
-rake db:site:create data='{ name: "Your Site", host: "www", domain: "localhost:3000" }'
+rake db:site:create data='{ name: "Your Site", host: "www", domains: "localhost:3000" }'
 
 # add sample
 rake db:seed name=demo site=www

@@ -6,6 +6,10 @@ class Sys::SitesController < ApplicationController
   
   model SS::Site
   
+  crumb ->{ [:sites, sys_sites_path] }
+  
+  navi_view "sys/main/navi"
+  
   public
     def index
       @items = @model.all

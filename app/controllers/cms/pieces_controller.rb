@@ -8,6 +8,8 @@ class Cms::PiecesController < ApplicationController
   
   crumb ->{ [:pieces, cms_pieces_path] }
   
+  navi_view "cms/main/navi"
+  
   private
     def set_params
       super.merge site_id: @cur_site._id, cur_node: false

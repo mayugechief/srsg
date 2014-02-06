@@ -6,6 +6,10 @@ class Sys::GroupsController < ApplicationController
   
   model SS::Group
   
+  crumb ->{ [:groups, sys_groups_path] }
+  
+  navi_view "sys/main/navi"
+  
   public
     def index
       @items = @model.all.sort(name: 1)

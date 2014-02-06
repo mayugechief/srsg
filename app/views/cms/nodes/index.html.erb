@@ -14,7 +14,7 @@
       <td>
         <input type="checkbox" name="ids[]" value="<%= item.id %>" />
         <nav class="row-menu">
-          <% if item.type == "root" %>
+          <% if item.type == "main" %>
           <%= link_to "コンテンツ管理", "/.#{@cur_site.host}/#{item.route.downcase.dasherize}#{item.id}" %>
           <% end %>
           <%= link_to "詳細を見る", action: :show, id: item %>
@@ -22,7 +22,7 @@
       </td>
       <td>
         <%= link_to item.send(:name), action: :show, id: item %>
-        <%= "☆" if item.type == "root" %>
+        <%= "☆" if item.type == "main" %>
       </td>
       <td><%= link_to item.filename, item.full_url, target: "_blank" %></td>
       <td><%= item.updated.strftime("%Y/%m/%d") %></td>

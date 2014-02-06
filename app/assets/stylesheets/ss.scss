@@ -62,17 +62,19 @@ select {
   border: 1px solid #ccc;
 }
 input[type=text], input[type=password], input[type=date], input[type=datetime], input[type=url], input[type=email] {
-  min-width: 80%;
-  height: 1.8em;
+  width: 80%;
+  height: 2.5em;
   padding: 3px 5px;
   border: 1px solid #ccc;
+  @include box-sizing(border-box);
 }
 textarea {
-  min-width: 95%;
+  width: 100%;
   height: 6em;
   padding: 5px 5px;
   border: 1px solid #ccc;
   line-height: 1.4;
+  @include box-sizing(border-box);
 }
 textarea.code {
   height: 20em;
@@ -157,7 +159,7 @@ code {
   float: left;
   width: 180px;
 }
-#navi ~ #main {
+#navi + #main {
   float: right;
   width: 100%;
   margin: 0px 0px 0px -100%;
@@ -165,7 +167,7 @@ code {
     margin: 0px 0px 0px 195px;
   }
 }
-#menu ~ #main {
+#menu + #main {
   float: right;
   width: 100%;
   margin: 0px 0px 0px -100%;
@@ -415,9 +417,29 @@ footer.send {
     margin: 0px;
   }
   #menu {
-    float: left;
+    @include clear;
+    clear: both;
+    //float: left;
     width: auto;
     margin: 0px;
+    margin-bottom: -32767px;
+    padding-bottom: 32767px;
+  }
+  #navi + #main {
+    float: left;
+    width: 100%;
+    margin: 10px 0px 20px;
+    .wrap {
+      margin: 0px;
+    }
+  }
+  #menu + #main {
+    float: left;
+    width: 100%;
+    margin: 10px 0px 20px;
+    .wrap {
+      margin: 0px;
+    }
   }
   nav.main-menu, nav.flow-menu, nav.page-menu {
     float: left;
@@ -436,25 +458,6 @@ footer.send {
     }
     a:after {
       content: "";
-    }
-  }
-  #main {
-    @include clear;
-  }
-  #navi ~ #main {
-    float: left;
-    width: auto;
-    margin: 0px 0px 20px;
-    .wrap {
-      margin: 10px 0px 0px;
-    }
-  }
-  #menu ~ #main {
-    float: left;
-    width: auto;
-    margin: 0px 0px 20px;
-    .wrap {
-      margin: 10px 0px 0px;
     }
   }
   dl.see {

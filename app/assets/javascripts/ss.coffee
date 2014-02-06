@@ -48,3 +48,36 @@ class @SS_Form
         return "このページから移動しますか？"
     $("input[type=submit]").click ->
       $(window).off "beforeunload"
+
+class @SS_Debug
+  @test: ()->
+    SS_Debug._test location.href
+  
+  @_test: (url)->
+    return if url.match(/^#/)
+    return if url.match(/\/logout$/)
+    if url.match(/^https?:/)
+      return unless url.match(new RegExp(location.host))
+      url = url.replace(/^https?:\/\/.*?\//, "/")
+    else if url.match(/^[^\/]/)
+      return
+    
+    view = $("#log")
+    path = url.replace(/\d+/g, "123")
+    return true if view.val().match(new RegExp("^" + path + "$", "m"))
+    view.append(path + "\n")
+    view.scrollTop view[0].scrollHeight - view.height()
+    $("#wait").val parseInt($("#wait").val()) + 1
+    
+    $.ajax {
+      type: "GET", url: url, dataType: "html", cache: false
+      success: (data, status, xhr)->
+        $("#wait").val parseInt($("#wait").val()) - 1
+        $(data).find("a").each ->
+          SS_Debug._test $(this).attr("href")
+      error: (xhr, status, error)->
+        $("#wait").val parseInt($("#wait").val()) - 1
+        view = $("#err")
+        view.append(" [" + xhr.status + "] " + url + "\n")
+        view.scrollTop view[0].scrollHeight - view.height()
+    }

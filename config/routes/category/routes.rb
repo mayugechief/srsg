@@ -7,13 +7,20 @@ Srsg::Application.routes.draw do
     plugin "categories" 
   end
   
+  concern :deletion do
+    get :delete, on: :member
+  end
+  
   content "category" do
     get "/" => "main#index", as: :main
-    resources :nodes
+    resources :nodes, concerns: :deletion
+    resources :pieces, concerns: :deletion
+    resources :layouts, concerns: :deletion
+    resources :configs, concerns: :deletion
   end
   
   node "category" do
-    get "root/(index.:format)" => "public#index", cell: "node/root"
+    get "main/(index.:format)" => "public#index", cell: "node/main"
   end
   
 end

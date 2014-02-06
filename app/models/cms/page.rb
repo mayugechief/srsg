@@ -15,6 +15,8 @@ class Cms::Page
       field :filename, type: String
       field :depth, type: Integer, metadata: { form: :none }
       
+      index({ site_id: 1, filename: 1 }, { unique: true })
+      
       validates :name, presence: true, length: { maximum: 80 }
       validates :filename, length: { maximum: 80 }
       

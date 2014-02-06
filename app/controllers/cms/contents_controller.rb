@@ -5,6 +5,9 @@ class Cms::ContentsController < ApplicationController
   
   crumb ->{ [:contents, cms_contents_path] }
   
+  navi_view "cms/main/navi"
+  menu_view false
+  
   public
     def index
       @model = Cms::Content

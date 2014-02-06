@@ -4,6 +4,6 @@ class Article::Node
   
   default_scope where route: "article"
   
-  scope :root, where(type: "root")
+  scope :main, where(type: "main")
   scope :item, where(type: "item")
 end

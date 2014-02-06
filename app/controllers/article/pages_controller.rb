@@ -6,9 +6,11 @@ class Article::PagesController < ApplicationController
   
   model Cms::Page
   
-  crumb ->{ [:articles, cms_articles_path] }
   crumb ->{ [@cur_node.name, article_main_path] }
   crumb ->{ [:pages, article_pages_path] }
+  
+  navi_view "article/main/navi"
+  menu_view "cms/pages/menu"
   
   private
     def set_params

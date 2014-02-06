@@ -6,9 +6,10 @@ class Article::LayoutsController < ApplicationController
   
   model Cms::Layout
   
-  crumb ->{ [:articles, cms_articles_path] }
   crumb ->{ [@cur_node.name, article_main_path] }
   crumb ->{ [:layouts, article_layouts_path] }
+  
+  navi_view "article/main/navi"
   
   private
     def set_params

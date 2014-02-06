@@ -15,7 +15,7 @@ class SS::Site
   seqid :id
   field :name, type: String
   field :host, type: String
-  field :domain, type: String
+  field :domains, type: SS::Fields::Words
   
   belongs_to :group, class_name: "SS::Group"
   has_many :pages, class_name: "Cms::Page", dependent: :destroy
@@ -23,8 +23,15 @@ class SS::Site
   has_many :pieces, class_name: "Cms::Piece", dependent: :destroy
   has_many :layouts, class_name: "Cms::Layout", dependent: :destroy
   
+  index({ host: 1 }, { unique: true })
+  index({ domains: 1 }, { unique: true })
+  
   validates :name, presence: true, length: { maximum: 40 }
   validates :host, presence: true, length: { minimum: 3, maximum: 16 }
+  
+  def domain
+    domains[0]
+  end
   
   def path
     "#{self.class.root}/" + host.split(//).join("/") + "/_"

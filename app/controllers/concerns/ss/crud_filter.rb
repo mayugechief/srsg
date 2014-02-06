@@ -5,7 +5,9 @@ module SS::CrudFilter
   included do
     cattr_accessor :model_class
     before_action :set_model
-    before_action :set_item, only: [:show, :edit, :update, :destroy]
+    before_action :set_item, only: [:show, :edit, :update, :delete, :destroy]
+    
+    menu_view "ss/crud/menu"
   end
   
   module ClassMethods
@@ -45,6 +47,10 @@ module SS::CrudFilter
     end
     
     def edit
+      render_crud
+    end
+    
+    def delete
       render_crud
     end
     

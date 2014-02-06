@@ -75,15 +75,15 @@ def save_node(data)
   item.update data
 end
 
-save_node route: :uploader, type: :root, filename: "css", name: "CSS"
-save_node route: :uploader, type: :root, filename: "img", name: "画像"
-save_node route: :article , type: :root, filename: "docs", name: "記事"
-save_node route: :category, type: :root, filename: "kurashi", name: "暮らし"
+save_node route: :uploader, type: :main, filename: "css", name: "CSS"
+save_node route: :uploader, type: :main, filename: "img", name: "画像"
+save_node route: :article , type: :main, filename: "docs", name: "記事"
+save_node route: :category, type: :main, filename: "kurashi", name: "暮らし"
 save_node route: :category, type: :item, filename: "kurashi/kosodate", name: "子育て"
 save_node route: :category, type: :item, filename: "kurashi/fukushi", name: "福祉"
 save_node route: :category, type: :item, filename: "kurashi/fukushi/jido", name: "児童福祉"
 save_node route: :category, type: :item, filename: "kurashi/fukushi/shogai", name: "障がい者福祉"
-save_node route: :category, type: :root, filename: "lifeevent", name: "ライフイベント"
+save_node route: :category, type: :main, filename: "lifeevent", name: "ライフイベント"
 save_node route: :category, type: :item, filename: "lifeevent/kekkon", name: "結婚"
 save_node route: :category, type: :item, filename: "lifeevent/shussan", name:"出産"
 

@@ -8,10 +8,12 @@ class Cms::NodesController < ApplicationController
   
   crumb ->{ [:nodes, cms_nodes_path] }
   
+  navi_view "cms/main/navi"
+  
   private
     def set_params
       data = super.merge site_id: @cur_site._id
-      data[:type] ||= "root" if data[:route].present?
+      data[:type] ||= "main" if data[:route].present?
       data
     end
     

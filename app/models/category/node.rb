@@ -4,7 +4,7 @@ class Category::Node
   
   default_scope where route: "category"
   
-  scope :root, where(type: "root")
+  scope :main, where(type: "main")
   scope :item, where(type: "item")
   
   Cms::Page.embeds_ids :categories, class_name: "Category::Node"

@@ -7,12 +7,7 @@ class ActionDispatch::Routing::Mapper
   
   def content(ns, &block)
     name = ns.gsub("/", "_")
-    namespace(name, path: ".:host/#{ns}:cid", module: ns, cid: /\w+/) do
-      yield
-      resources :pieces
-      resources :layouts
-      resources :configs
-    end
+    namespace(name, path: ".:host/#{ns}:cid", module: ns, cid: /\w+/) { yield }
     Cms::Content.add_module ns
   end
   
@@ -43,27 +38,32 @@ Srsg::Application.routes.draw do
   #  cell "config/category"
   #end
   
+  concern :deletion do
+    get :delete, :on => :member
+  end
+  
   namespace "sns", path: ".mypage" do
-    get   "/"      => "mypage#index" , as: :mypage
-    get   "logout" => "mypage#logout", as: :logout
-    match "login"  => "mypage#login" , as: :login, via: [:get, :post]
+    get   "/"      => "mypage#index", as: :mypage
+    get   "logout" => "login#logout", as: :logout
+    match "login"  => "login#login", as: :login, via: [:get, :post]
   end
   
   namespace "sys", path: ".sys" do
     get "/" => "main#index", as: :main
-    resources :users
-    resources :groups
-    resources :sites
+    get "test" => "test#index", as: :test
+    resources :users, concerns: :deletion
+    resources :groups, concerns: :deletion
+    resources :sites, concerns: :deletion
   end
   
   namespace "cms", path: ".:host/cms" do
     get "/" => "main#index", as: :main
     resources :articles
     resources :contents
-    resources :pages
-    resources :nodes
-    resources :pieces
-    resources :layouts
+    resources :pages, concerns: :deletion
+    resources :nodes, concerns: :deletion
+    resources :pieces, concerns: :deletion
+    resources :layouts, concerns: :deletion
   end
   
   # ----------------------------------------------------------------------------

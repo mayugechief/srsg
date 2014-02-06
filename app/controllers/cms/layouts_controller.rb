@@ -8,6 +8,8 @@ class Cms::LayoutsController < ApplicationController
   
   crumb ->{ [:layouts, cms_layouts_path] }
   
+  navi_view "cms/main/navi"
+  
   private
     def set_params
       super.merge site_id: @cur_site._id, cur_node: false

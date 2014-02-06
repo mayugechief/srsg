@@ -20,6 +20,8 @@ class Cms::Node
       field :route, type: String
       field :type, type: String, metadata: { form: :none }
       
+      index({ site_id: 1, filename: 1 }, { unique: true })
+      
       validates :name, presence: true, length: { maximum: 80 }
       validates :filename, presence: true, length: { maximum: 2000 }
       validates :route, presence: true
