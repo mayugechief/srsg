@@ -51,6 +51,8 @@ class @SS_Form
 
 class @SS_Debug
   @test: ()->
+    $("#log").val("")
+    $("#err").val("")
     SS_Debug._test location.href
   
   @_test: (url)->
@@ -65,7 +67,7 @@ class @SS_Debug
     view = $("#log")
     path = url.replace(/\d+/g, "123")
     return true if view.val().match(new RegExp("^" + path + "$", "m"))
-    view.append(path + "\n")
+    view.val view.val() + path + "\n"
     view.scrollTop view[0].scrollHeight - view.height()
     $("#wait").val parseInt($("#wait").val()) + 1
     
@@ -78,6 +80,6 @@ class @SS_Debug
       error: (xhr, status, error)->
         $("#wait").val parseInt($("#wait").val()) - 1
         view = $("#err")
-        view.append(" [" + xhr.status + "] " + url + "\n")
+        view.val view.val() + " [" + xhr.status + "] " + url + "\n"
         view.scrollTop view[0].scrollHeight - view.height()
     }

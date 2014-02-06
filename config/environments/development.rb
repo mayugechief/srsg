@@ -24,6 +24,7 @@ Srsg::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   #config.assets.compress = false
+  config.sass.debug_info = true
   
   logger = Logger.new("#{Rails.root}/log/development.log")
   logger.level = Logger::WARN

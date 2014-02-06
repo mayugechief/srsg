@@ -58,7 +58,9 @@ class Cms::PublicController < ApplicationController
       return render :nothing => true, :status => 404 unless Storage.exists?(file)
       
       dirs = [File.dirname(file)]
-      sass = Sass::Engine.new Storage.read(file), syntax: :scss, load_paths: dirs, cache: false
+      
+      sass = Sass::Engine.new Storage.read(file), syntax: :scss, load_paths: dirs, cache: false,
+        debug_info: Srsg::Application.config.sass.debug_info
       
       response.headers['Content-Type'] ||= 'text/css; charset=utf-8'
       render inline: sass.render
