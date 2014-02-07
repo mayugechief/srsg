@@ -33,5 +33,6 @@
     </tr>
     <% end %>
   </tbody>
-  
 </table>
+
+<%= paginate @items if @items.is_a?(Mongoid::Criteria)%>

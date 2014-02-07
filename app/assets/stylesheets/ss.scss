@@ -274,6 +274,34 @@ nav.flow-menu a:after {
     border: 1px solid #e00;
   }
 }
+.pagination {
+  margin: 10px 0px;
+  span a, .current, .gap { 
+    display: inline-block;
+    min-width: 20px;
+    margin: 0px 0px 0px -5px;
+    padding: 6px 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-align: center;
+  }
+  span:first-child a {
+    margin-left: 0px;
+  }
+  .first a, .last a {
+    min-width: 20px;
+  }
+  .prev a, .next a  {
+    min-width: 50px;
+  }
+  .current {
+    background-color: #eee;
+  }
+  a:hover {
+    background-color: #f8f8f8;
+    text-decoration: none;
+  }
+}
 
 table.index {
   table-layout:fixed;

@@ -60,9 +60,10 @@ class @SS
       $(id).html('<a class="off" href="' + url + '">ふりがなをはずす</a>')
     else
       url = url.replace(/\/$/, "/index.html").replace(/\.html$/, ".kana.html")
-      $(id).html('<a class="on" href="' + url + '" onclick="return SS.kana2(this)">ふりがなをつける</a>')
+      msg = "ふりがなをつける"
+      $(id).html('<a class="on" href="' + url + '" onclick="return SS.view_kana(this)">' + msg + '</a>')
   
-  @kana2: (url) ->
+  @view_kana: (url) ->
     $.ajax {
       type: "GET", url: url, dataType: "html" #, cache: false
       success: (data)->

@@ -50,8 +50,9 @@ gem "cells"
 gem "dynamic_form"
 gem "zipruby"
 gem "jquery-turbolinks"
-gem "redcarpet" #MIT
-gem "compass-rails" #MIT
+gem "redcarpet"
+gem "compass-rails"
+gem "kaminari"
 
 group :development, :test do
 #  gem "spring"

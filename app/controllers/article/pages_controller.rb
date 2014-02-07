@@ -21,7 +21,8 @@ class Article::PagesController < ApplicationController
     def index
       @items = @model.site_is(@cur_site)
         .where(filename: /^#{@cur_node.filename}\//)
-        .sort(updated: -1)
+        .desc(:updated)
+        .page(params[:page])
       
       render_crud
     end

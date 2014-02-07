@@ -56,8 +56,12 @@ Srsg::Application.routes.draw do
     resources :sites, concerns: :deletion
   end
   
-  namespace "cms", path: ".:host/cms" do
+  namespace "cms", path: ".:host" do
     get "/" => "main#index", as: :main
+  end
+  
+  namespace "cms", path: ".:host/cms" do
+    get "/" => "main#index"
     resources :articles
     resources :contents
     resources :pages, concerns: :deletion

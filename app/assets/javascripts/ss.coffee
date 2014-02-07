@@ -53,9 +53,10 @@ class @SS_Debug
   @test: ()->
     $("#log").val("")
     $("#err").val("")
-    SS_Debug._test location.href
+    $("#queue").val("0")
+    SS_Debug.test_url location.href
   
-  @_test: (url)->
+  @test_url: (url)->
     return if url.match(/^#/)
     return if url.match(/\/logout$/)
     if url.match(/^https?:/)
@@ -69,16 +70,18 @@ class @SS_Debug
     return true if view.val().match(new RegExp("^" + path + "$", "m"))
     view.val view.val() + path + "\n"
     view.scrollTop view[0].scrollHeight - view.height()
-    $("#wait").val parseInt($("#wait").val()) + 1
+    
+    queue = $("#queue")
+    queue.val parseInt(queue.val()) + 1
     
     $.ajax {
       type: "GET", url: url, dataType: "html", cache: false
       success: (data, status, xhr)->
-        $("#wait").val parseInt($("#wait").val()) - 1
+        queue.val parseInt(queue.val()) - 1
         $(data).find("a").each ->
-          SS_Debug._test $(this).attr("href")
+          SS_Debug.test_url $(this).attr("href")
       error: (xhr, status, error)->
-        $("#wait").val parseInt($("#wait").val()) - 1
+        queue.val parseInt(queue.val()) - 1
         view = $("#err")
         view.val view.val() + " [" + xhr.status + "] " + url + "\n"
         view.scrollTop view[0].scrollHeight - view.height()
