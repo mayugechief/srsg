@@ -34,7 +34,7 @@ class Cms::PublicController < ApplicationController
     end
     
     def set_site
-      @cur_site ||= SS::Site.find_by domain: request.env["HTTP_HOST"] rescue nil
+      @cur_site ||= SS::Site.find_by domains: request.env["HTTP_HOST"] rescue nil
       render :nothing => true, :status => 404 if !@cur_site
     end
     
