@@ -13,7 +13,7 @@ class Cms::PublicController < ApplicationController
   before_action :render_layout
   after_action :render_mobile
   
-  layout 'cms/public'
+  layout "cms/public"
     
   public
     def index
@@ -21,8 +21,8 @@ class Cms::PublicController < ApplicationController
       render_node if response.body.blank?
       
       respond_to do |format|
-        format.html { response.headers['Content-Type'] ||= "text/html; charset=utf-8" }
-        format.json { response.headers['Content-Type'] ||= "application/json; charset=utf-8" }
+        format.html { response.headers["Content-Type"] ||= "text/html; charset=utf-8" }
+        format.json { response.headers["Content-Type"] ||= "application/json; charset=utf-8" }
       end
       
       render :nothing => true, :status => 404 if response.body.blank?
@@ -68,7 +68,8 @@ class Cms::PublicController < ApplicationController
         cache_location: "#{Rails.root}/tmp/cache/assets/#{Rails.env}/sass",
         debug_info: opts.debug_info
       
-      response.headers['Content-Type'] ||= 'text/css; charset=utf-8'
+      response.headers["Content-Type"] ||= "text/css; charset=utf-8"
+      response.headers["Expires"] = 3.days.from_now.httpdate
       render inline: sass.render
     end
     
