@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+#
+# bin/start -e production
+#
+
+`thin -d #{ARGV.join(" ")} start`
+
+#`ps aux | grep "thin [s]erver"`

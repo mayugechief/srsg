@@ -25,7 +25,7 @@ srsg
 
   git clone https://github.com/tany/srsg.git /var/www/srsg
   cd /var/www/srsg
-  cp config/original/* config/
+  cp config/sample/* config/
   bundle install
   thin start -d
 

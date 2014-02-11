@@ -1,4 +1,4 @@
-PROJECT MOVED TO https://github.com/Ovea/cors
+//PROJECT MOVED TO https://github.com/Ovea/cors
 
 /**
  * https://gist.github.com/1114981

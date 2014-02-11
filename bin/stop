@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+
+Dir.glob("#{File.dirname(__dir__)}/tmp/pids/*.pid") do |file|
+  pid = File.read(file)
+  if `ps aux | grep "thin [s]erver" | grep #{pid}`.strip != ""
+    puts "stop #{pid} thin server"
+    `kill -9 #{pid}`
+    #pkill -KILL -f "thin server"
+  end
+  FileUtils.rm_rf file
+end

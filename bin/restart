@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+Dir.glob("#{File.dirname(__dir__)}/tmp/pids/*.pid") do |file|
+  pid = File.read(file)
+  if `ps aux | grep "thin [s]erver" | grep #{pid}`.strip != ""
+    puts "restart #{pid} thin server"
+    `kill -HUP #{pid}`
+  end
+end
