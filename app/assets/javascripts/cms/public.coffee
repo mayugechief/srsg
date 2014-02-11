@@ -26,13 +26,14 @@ class @SS
       success: (data)->
         $("body").hide();
         $("body").html data.body.replace("</ yield />", SS.page)
-        $("body").fadeIn(100);
         
         if data.href != SS.href
           $("head link").add("head script").remove() if SS.href
           $("head").append data.head
-          $("head").append '<link rel="stylesheet" href="/assets/cms/public.css" />' #TODO:
+          #$("head").append '<link rel="stylesheet" href="/assets/cms/public.css" />' #TODO:
         SS.href = data.href
+        
+        $("body").fadeIn(100);
         
         ## test
         #css  = "position: absolute; top: 0; left: 0; width: 100%; height: 100%;"

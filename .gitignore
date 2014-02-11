@@ -1,6 +1,8 @@
 # Ignore
 
-/.*
+/.bundle
+/.project
+
 /config/*.yml
 /log/*.log
 /tmp

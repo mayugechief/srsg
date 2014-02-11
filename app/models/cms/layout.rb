@@ -22,17 +22,15 @@ class Cms::Layout
   public
     def render_html
       html = self.html.to_s.gsub(/<\/ piece ".+?" \/>/).each do |m|
-        name = m.sub(/<\/ piece "(.+)?" \/>/, '\\1')
-        path = name
-        path << ".piece.html" unless path.index(".")
-        path = "/" + (filename.index("/") ? File.dirname(filename) + "/" : "") + path if path[0] != '/'
-        
-        piece = Cms::Piece.where(site_id: site_id, filename: path.sub(/^\//, "")).first
+        path  = filename.index("/") ? File.dirname(filename) + "/" : ""
+        path << m.sub(/<\/ piece "(.+)?" \/>/, '\\1') + ".piece.html"
+        path  = path.sub(/^\//, "")
+        piece = Cms::Piece.where(site_id: site_id, filename: path).first
         
         if piece && piece.route.present?
-          pid = "piece-#{name.object_id}"
-          %Q|<div id="#{pid}"><a href="#{path}">#{piece.name}</a></div>| +
-            %Q|<script>SS.piece("##{pid}", "#{path.sub(".html", ".json")}");</script>|
+          eid = "piece-#{path.object_id}"
+          scr = %Q|<script>SS.piece("##{eid}", "#{path.sub('.html', '.json')}");</script>|
+          htm = %Q|<div id="#{eid}"><a href="#{path}">#{piece.name}</a></div>#{scr}|
         elsif piece
           piece.html
         else
@@ -53,7 +51,7 @@ class Cms::Layout
   private
     def validate_filename
       return true if filename.blank?
-      self.filename = filename.downcase if filename =~ /[A-Z]/
+      self.filename  = filename.downcase if filename =~ /[A-Z]/
       self.filename << ".layout.html" unless filename.index(".")
       errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.layout\.html$/
     end
@@ -61,15 +59,10 @@ class Cms::Layout
     def set_piece_paths
       return true if html.blank?
       
-      paths = []
-      html.gsub(/<\/ piece ".+?" \/>/).each do |m|
-        name = m.sub(/<\/ piece "(.+)?" \/>/, '\\1')
-        code = "</ piece \"#{name.sub(/\.piece\.html$/, '')}\" />"
-        path = name
-        path << ".piece.html" unless path.index(".")
-        path = "/" + (filename.index("/") ? File.dirname(filename) + "/" : "") + path if path[0] != '/'
-        paths << path
-        code
+      paths = html.scan(/<\/ piece ".+?" \/>/).map do |m|
+        path  = filename.index("/") ? File.dirname(filename) + "/" : ""
+        path << m.sub(/<\/ piece "(.+)?" \/>/, '\\1') + ".piece.html"
+        path  = path.sub(/^\//, "")
       end
       self.piece_paths = paths.uniq
     end

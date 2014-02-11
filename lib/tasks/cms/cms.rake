@@ -6,7 +6,7 @@ namespace :cms do
       puts "Publish layouts ..."
       Cms::Layout.all.each do |item|
         puts "  #{item.path}"
-        Storage.write item.path, item.render_json
+        Storage.write item.json_path, item.render_json
       end
       puts "Completed."
     end

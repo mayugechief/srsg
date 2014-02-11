@@ -275,18 +275,21 @@ nav.flow-menu a:after {
   }
 }
 .pagination {
+  @include clear;
   margin: 10px 0px;
   span a, .current, .gap { 
-    display: inline-block;
+    //display: inline-block;
+    float: left;
     min-width: 20px;
-    margin: 0px 0px 0px -5px;
+    margin: 0px 0px 0px -1px;
     padding: 6px 4px;
     border: 1px solid #ccc;
     background-color: #fff;
     text-align: center;
   }
-  span:first-child a {
+  span:first-child {
     margin-left: 0px;
+    a { margin-left: 0px; }
   }
   .first a, .last a {
     min-width: 20px;

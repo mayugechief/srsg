@@ -19,7 +19,14 @@ class Cms::NodesController < ApplicationController
     
   public
     def index
-      @items = @model.site_is(@cur_site).sort(filename: 1)
+      if params[:node_id]
+        @node = Cms::Node.find(params[:node_id])
+        cond = { filename: /^#{@node.filename}\//, depth: @node.depth + 1 }
+      else
+        cond = { depth: 1 }
+      end
+      
+      @items = @model.site_is(@cur_site).where(cond).sort(filename: 1)
       render_crud
     end
 end

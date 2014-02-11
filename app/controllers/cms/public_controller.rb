@@ -59,11 +59,14 @@ class Cms::PublicController < ApplicationController
       
       #dirs = [File.dirname(file)]
       
-      sass = Sass::Engine.new Storage.read(file), filename: file, syntax: :scss, cache: false,
-        load_paths: Compass.configuration.sass_load_paths,
-        debug_info: Srsg::Application.config.sass.debug_info
+      opts = Srsg::Application.config.sass
+      sass = Sass::Engine.new Storage.read(file), filename: file,
+        syntax: :scss,
+        cache: opts.cache,
+        load_paths: opts.load_paths[1..-1],
+        cache_location: "#{Rails.root}/tmp/cache/assets/#{Rails.env}/sass",
+        debug_info: opts.debug_info
       
-      #sass.for_file file
       response.headers['Content-Type'] ||= 'text/css; charset=utf-8'
       render inline: sass.render
     end

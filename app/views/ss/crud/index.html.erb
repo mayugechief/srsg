@@ -35,4 +35,4 @@
   </tbody>
 </table>
 
-<%= paginate @items if @items.is_a?(Mongoid::Criteria) rescue nil %>
+<%= paginate @items if @items.try(:current_page) %>

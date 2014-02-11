@@ -65,7 +65,7 @@ Srsg::Application.routes.draw do
     resources :articles
     resources :contents
     resources :pages, concerns: :deletion
-    resources :nodes, concerns: :deletion
+    resources :nodes, concerns: :deletion, path: "nodes(:node_id)"
     resources :pieces, concerns: :deletion
     resources :layouts, concerns: :deletion
   end
