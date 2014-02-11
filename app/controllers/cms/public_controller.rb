@@ -48,6 +48,7 @@ class Cms::PublicController < ApplicationController
     end
     
     def x_sendfile
+      response.headers["Expires"] = 3.days.from_now.httpdate if @file =~ /\.(css|js|gif|jpg|png)$/
       send_file @file, disposition: :inline, x_sendfile: true if Storage.exists? @file
     end
     
