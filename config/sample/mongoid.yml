@@ -77,6 +77,6 @@ test:
 production:
   sessions:
     default:
-      database: srsg_
+      database: srsg
       hosts:
         - localhost:27017

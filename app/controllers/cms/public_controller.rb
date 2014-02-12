@@ -5,10 +5,10 @@ class Cms::PublicController < ApplicationController
   before_action :set_site
   before_action :set_path
   before_action :redirect_slash, if: ->{ request.env["REQUEST_PATH"] =~ /\/[^\.]+[^\/]$/ }
+  before_action :compile_scss
   before_action :x_sendfile
   before_action :check_mobile
   before_action :check_kana
-  before_action :render_scss
   before_action :render_piece
   before_action :render_layout
   after_action :render_mobile
@@ -47,30 +47,25 @@ class Cms::PublicController < ApplicationController
       redirect_to "#{request.env["REQUEST_PATH"]}/"
     end
     
-    def x_sendfile
-      response.headers["Expires"] = 3.days.from_now.httpdate if @file =~ /\.(css|js|gif|jpg|png)$/
-      send_file @file, disposition: :inline, x_sendfile: true if Storage.exists? @file
-    end
-    
-    def  render_scss
+    def compile_scss
       return if @path !~ /\.css$/
+      return unless Storage.exists? @scss = @file.sub(/\.css$/, ".scss")
       
-      file = @file.sub(/\.css$/, ".scss")
-      return render :nothing => true, :status => 404 unless Storage.exists?(file)
-      
-      #dirs = [File.dirname(file)]
+      css_mtime = Storage.exists?(@file) ? Storage.stat(@file).mtime : 0
+      return if Storage.stat(@scss).mtime.to_i <= css_mtime.to_i
       
       opts = Srsg::Application.config.sass
-      sass = Sass::Engine.new Storage.read(file), filename: file,
-        syntax: :scss,
-        cache: opts.cache,
+      sass = Sass::Engine.new Storage.read(@scss), filename: @scss, syntax: :scss, cache: false,
         load_paths: opts.load_paths[1..-1],
-        cache_location: "#{Rails.root}/tmp/cache/assets/#{Rails.env}/sass",
         debug_info: opts.debug_info
       
-      response.headers["Content-Type"] ||= "text/css; charset=utf-8"
-      response.headers["Expires"] = 3.days.from_now.httpdate
-      render inline: sass.render
+      Storage.write @file, sass.render
+    end
+    
+    def x_sendfile
+      return unless Storage.exists? @file
+      response.headers["Expires"] = 3.days.from_now.httpdate if @file =~ /\.(css|js|gif|jpg|png)$/
+      send_file @file, disposition: :inline, x_sendfile: true
     end
     
     def recognize_path(path)

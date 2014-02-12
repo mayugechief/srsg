@@ -33,5 +33,9 @@ module Storage::Adapter::LocalFile
       FileUtils.mkdir_p ::File.dirname(path)
       ::File.binwrite path, data
     end
+    
+    def stat(path)
+      ::File.stat(path)
+    end
   end
 end
