@@ -55,7 +55,7 @@ class Cms::PublicController < ApplicationController
       css_mtime = Storage.exists?(@file) ? Storage.stat(@file).mtime : 0
       return if Storage.stat(@scss).mtime.to_i <= css_mtime.to_i
       
-      opts = Srsg::Application.config.sass
+      opts = SS::Application.config.sass
       sass = Sass::Engine.new Storage.read(@scss), filename: @scss, syntax: :scss, cache: false,
         load_paths: opts.load_paths[1..-1],
         debug_info: opts.debug_info
@@ -65,7 +65,7 @@ class Cms::PublicController < ApplicationController
     
     def x_sendfile
       return unless Storage.exists? @file
-      response.headers["Expires"] = 3.days.from_now.httpdate if @file =~ /\.(js|gif|jpg|png)$/
+      response.headers["Expires"] = 3.days.from_now.httpdate if @file =~ /\.(css|js|gif|jpg|png)$/
       send_file @file, disposition: :inline, x_sendfile: true
     end
     

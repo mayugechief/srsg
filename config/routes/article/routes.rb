@@ -1,5 +1,5 @@
 # coding: utf-8
-Srsg::Application.routes.draw do
+SS::Application.routes.draw do
   
   concern :deletion do
     get :delete, on: :member

@@ -7,6 +7,7 @@ class @SS
   @head = ""
   @page = ""
   @href = ""
+  @kana_flag = '<div id="kana-view" style="margin:0;padding:0;display:inline"></div>'
   @site_name = null
   @page_name = null
   
@@ -21,22 +22,22 @@ class @SS
     
     SS.head = $("head").html()
     SS.page = $("#page").html()
-    SS.page = SS.page + '<div id="kana-view"></div>' if is_kana
     
     $("body").html ""
     
     url = url.replace(/\.json$/, ".kana.json") if is_kana
     $.ajax {
-      type: "GET", url: url, dataType: "json" #, cache: false
+      type: "GET", url: url, dataType: "json", cache: false
       success: (data)->
         $("body").hide()
-        $("body").html data.body.replace("</ yield />", SS.page)
+        $("body").append SS.kana_flag if is_kana
+        $("body").append data.body.replace("</ yield />", SS.page)
         $("#ss-site-name").html SS.site_name
         $("#ss-page-name").html SS.page_name
         
         if data.href != SS.href
           $("head link").add("head script").remove() if SS.href
-          $("head").append data.head
+          $("head").append data.head.replace(/(href="[^"]+)/g, '$1?_=' + $.now())
           #$("head").append '<link rel="stylesheet" href="/assets/cms/public.css" />' #TODO:
         SS.href = data.href
         
@@ -63,14 +64,13 @@ class @SS
       $(id).html('<a class="off" href="' + url + '">ふりがなをはずす</a>')
     else
       url = url.replace(/\/$/, "/index.html").replace(/\.html$/, ".kana.html")
-      msg = "ふりがなをつける"
-      $(id).html('<a class="on" href="' + url + '" onclick="return SS.view_kana(this)">' + msg + '</a>')
+      evh = 'onclick="return SS.view_kana(this)"'
+      $(id).html('<a class="on" href="' + url + '" ' + evh + '>ふりがなをつける</a>')
   
   @view_kana: (url) ->
     $.ajax {
       type: "GET", url: url, dataType: "html" #, cache: false
       success: (data)->
-        kana = '<div id="kana-view"></div>'
-        $("body").html data.replace(/[\s\S]*<body.*?>([\s\S]*)<\/body>[\s\S]*/, "$1") + kana
+        $("body").html data.replace(/[\s\S]*<body.*?>([\s\S]*)<\/body>[\s\S]*/, "$1") + SS.kana_flag
     }
     return false

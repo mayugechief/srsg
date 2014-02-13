@@ -12,5 +12,5 @@
   <dd><%= f.text_area :description %></dd>
   
   <dt><%= @model.lang :layout_id %></dt>
-  <dd><%= f.select :layout_id, Cms::Layout.all.map {|m| [m.name, m._id] }, :include_blank => "" %></dd>
+  <dd><%= f.select :layout_id, Cms::Layout.site_is(@cur_site).map {|m| [m.name, m._id] }, :include_blank => "" %></dd>
 </dl>

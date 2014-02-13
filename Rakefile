@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Srsg::Application.load_tasks
+SS::Application.load_tasks

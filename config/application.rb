@@ -8,7 +8,7 @@ require "sprockets/railtie"
 
 Bundler.require(:default, Rails.env)
 
-module Srsg
+module SS
   
   class Application < Rails::Application
     I18n.enforce_available_locales = true

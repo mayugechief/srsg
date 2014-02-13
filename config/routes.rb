@@ -24,7 +24,7 @@ class ActionDispatch::Routing::Mapper
   end
 end
 
-Srsg::Application.routes.draw do
+SS::Application.routes.draw do
   
   editor "cms" do
     plugin "basic"

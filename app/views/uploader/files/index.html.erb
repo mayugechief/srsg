@@ -13,6 +13,6 @@
 
 <ul>
   <% @items.each do |item| %>
-  <li><%= item %></li>
+  <li><%= link_to item, "#{@cur_node.url}#{item}", target: "_blank" %></li>
   <% end %>
 </ul>
