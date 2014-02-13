@@ -55,7 +55,7 @@ Srsg::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets.
-  config.assets.precompile += %w( *.css *.scss *.js *.coffee )
+  config.assets.precompile += %w( *.css *.js )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # config.action_mailer.raise_delivery_errors = false

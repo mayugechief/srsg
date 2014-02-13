@@ -13,7 +13,7 @@ class Cms::PublicController < ApplicationController
   before_action :render_layout
   after_action :render_mobile
   
-  layout "cms/public"
+  layout "cms/page"
     
   public
     def index
@@ -49,6 +49,7 @@ class Cms::PublicController < ApplicationController
     
     def compile_scss
       return if @path !~ /\.css$/
+      return if @path =~ /(^|\/)_[^\/]*$/
       return unless Storage.exists? @scss = @file.sub(/\.css$/, ".scss")
       
       css_mtime = Storage.exists?(@file) ? Storage.stat(@file).mtime : 0
@@ -93,13 +94,13 @@ class Cms::PublicController < ApplicationController
       
       respond_to do |format|
         format.html do
-          html = "<!doctype html><html><body>#{html}</body></html>"
-          render inline: body
+          @cur_page = page
+          render inline: body, layout: "cms/piece"
         end
         format.json do
-          body.gsub!(/^<header>.*?<\/header>/m, "")
-          body.gsub!(/^<nav>.*?<\/nav>/m, "")
-          body.gsub!(/^<footer>.*?<\/footer>/m, "")
+          #body.gsub!(/^<header>.*?<\/header>/m, "")
+          #body.gsub!(/^<nav>.*?<\/nav>/m, "")
+          #body.gsub!(/^<footer>.*?<\/footer>/m, "")
           render json: body.to_json
         end
       end
@@ -115,7 +116,7 @@ class Cms::PublicController < ApplicationController
       body = render_kana(page.render_html)
       
       respond_to do |format|
-        format.html { render inline: body }
+        format.html { render inline: "<!doctype html>\n#{body}" }
         format.json { render json: page.render_json(body) }
       end
     end

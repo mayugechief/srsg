@@ -1,15 +1,20 @@
 //= require jquery
 //= require jquery_ujs
-//= require jquery.turbolinks
-//= require turbolinks
+#//= #require jquery.turbolinks
+#//= #require turbolinks
 
 class @SS
   @head = ""
   @page = ""
   @href = ""
+  @site_name = null
+  @page_name = null
   
   @load: ->
-    SS.layout(layout) if layout = $("#page").attr("data-layout")
+    if layout = $("#page").attr("data-layout")
+      SS.site_name = $("#ss-site-name").html()
+      SS.page_name = $("#ss-page-name").html()
+      SS.layout(layout)
     
   @layout: (url) ->
     is_kana = SS.is_kana()
@@ -24,8 +29,10 @@ class @SS
     $.ajax {
       type: "GET", url: url, dataType: "json" #, cache: false
       success: (data)->
-        $("body").hide();
+        $("body").hide()
         $("body").html data.body.replace("</ yield />", SS.page)
+        $("#ss-site-name").html SS.site_name
+        $("#ss-page-name").html SS.page_name
         
         if data.href != SS.href
           $("head link").add("head script").remove() if SS.href
@@ -33,13 +40,7 @@ class @SS
           #$("head").append '<link rel="stylesheet" href="/assets/cms/public.css" />' #TODO:
         SS.href = data.href
         
-        $("body").fadeIn(100);
-        
-        ## test
-        #css  = "position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-        #css += "padding: 20px; background-color:rgba(220, 220, 220, 0.85);"
-        #css += "color: #fff; font-size: 50px; font-familt: 'Century Gothic';"
-        #$("body").append '<div id="ss-loading" style="' + css + '">Loading ... </div>'
+        $("body").fadeIn(100)
       error: (req, status, error)->
         $("body").html SS.head + SS.page
     }
