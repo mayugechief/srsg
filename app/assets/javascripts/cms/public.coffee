@@ -38,9 +38,10 @@ class @SS
         if data.href != SS.href
           $("head link").add("head script").remove() if SS.href
           $("head").append data.head.replace(/(href="[^"]+)/g, '$1?_=' + $.now())
-          $("head").append '<script src="/javascripts/cms/public_end.js"></script>'
         SS.href = data.href
         
+        $("head script[id=ss-show]").remove()
+        $("head").append '<script id="ss-show" src="/javascripts/cms/public_end.js"></script>'
         #$("body").fadeIn(100)
       error: (req, status, error)->
         $("body").html SS.head + SS.page
