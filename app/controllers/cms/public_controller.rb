@@ -65,7 +65,7 @@ class Cms::PublicController < ApplicationController
     
     def x_sendfile
       return unless Storage.exists? @file
-      response.headers["Expires"] = 3.days.from_now.httpdate if @file =~ /\.(css|js|gif|jpg|png)$/
+      response.headers["Expires"] = 3.days.from_now.httpdate if @file =~ /\.(js|gif|jpg|png)$/
       send_file @file, disposition: :inline, x_sendfile: true
     end
     
