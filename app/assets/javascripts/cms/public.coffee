@@ -38,10 +38,10 @@ class @SS
         if data.href != SS.href
           $("head link").add("head script").remove() if SS.href
           $("head").append data.head.replace(/(href="[^"]+)/g, '$1?_=' + $.now())
-          #$("head").append '<link rel="stylesheet" href="/assets/cms/public.css" />' #TODO:
+          $("head").append '<script src="/javascripts/cms/public_end.js"></script>'
         SS.href = data.href
         
-        $("body").fadeIn(100)
+        #$("body").fadeIn(100)
       error: (req, status, error)->
         $("body").html SS.head + SS.page
     }
