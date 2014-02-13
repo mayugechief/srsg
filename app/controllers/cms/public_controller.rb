@@ -57,6 +57,7 @@ class Cms::PublicController < ApplicationController
       
       opts = SS::Application.config.sass
       sass = Sass::Engine.new Storage.read(@scss), filename: @scss, syntax: :scss, cache: false,
+        style: :compressed,
         load_paths: opts.load_paths[1..-1],
         debug_info: opts.debug_info
       
