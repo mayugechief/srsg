@@ -17,7 +17,7 @@ SS::Application.configure do
   config.assets.compile = false
   config.assets.digest = true
   config.assets.version = '1.0'
-  config.sass.debug_info = true
+  config.sass.debug_info = true # sites' sass
   
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
