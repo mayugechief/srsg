@@ -11,7 +11,6 @@ SS::Application.configure do
 
   # Asset pipeline.
   config.serve_static_assets = true
-  config.static_cache_control = "public, max-age=3600"
   config.assets.compress = true
   config.assets.js_compressor = :uglifier
   config.assets.css_compressor = :sass
@@ -28,7 +27,7 @@ SS::Application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  config.log_level = :warn
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
