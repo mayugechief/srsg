@@ -1,35 +1,23 @@
 SS::Application.configure do
 
-  # Code is not reloaded between requests.
+  # Code loading.
   config.cache_classes = true
-
-  # Eager load code on boot.
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
-
-  # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # config.action_dispatch.rack_cache = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this).
+  # Asset pipeline.
   config.serve_static_assets = true
-
-  # Compress JavaScripts and CSS.
-  config.assets.js_compressor  = :uglifier
+  config.static_cache_control = "public, max-age=3600"
+  config.assets.compress = true
+  config.assets.js_compressor = :uglifier
   config.assets.css_compressor = :sass
-
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-
-  # Generate digests for assets URLs.
   config.assets.digest = true
-
-  # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
-
-  # Sass debug info.
   config.sass.debug_info = true
   
   # Specifies the header that your server uses for sending files.

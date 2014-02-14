@@ -53,6 +53,7 @@ gem "jquery-turbolinks"
 gem "redcarpet"
 gem "compass-rails"
 gem "kaminari"
+#gem "non-stupid-digest-assets"
 
 group :development, :test do
 #  gem "spring"

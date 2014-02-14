@@ -1,9 +1,7 @@
 SS::Application.configure do
 
-  # Code is not reloaded between requests.
+  # Code loading.
   config.cache_classes = true
-
-  # Eager load code on boot.
   config.eager_load = false
 
   # Configure static asset server for tests with Cache-Control for performance.

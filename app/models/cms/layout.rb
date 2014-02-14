@@ -14,10 +14,14 @@ class Cms::Layout
   
   field :html, type: String, metadata: { form: :code }
   field :piece_paths, type: SS::Fields::Words, metadata: { form: :none }
+  field :css_paths, type: SS::Fields::Words, metadata: { form: :none }
+  field :js_paths, type: SS::Fields::Words, metadata: { form: :none }
   
   validates :filename, presence: true
   
   before_save :set_piece_paths
+  before_save :set_css_paths
+  before_save :set_js_paths
   
   public
     def render_html
@@ -41,6 +45,18 @@ class Cms::Layout
     
     def render_json(html = render_html)
       head = (html =~ /<head>/) ? html.sub(/^.*?<head>(.*?)<\/head>.*/im, "\\1") : ""
+      head.scan(/<link [^>]*href="([^"]*\.css)" [^>]*\/>/).uniq.each do |m|
+        if (path = m[0]) =~ /^\/\//
+          head.gsub!(/"#{path}"/, "\"#{path}?_=$now\"") if path !~ /\?/
+        else
+          file = "#{site.path}#{path}"
+          scss = file.sub(/\.css$/, ".scss")
+          data = Storage.exists?(scss) ? Storage.read(scss) : Storage.read(file) rescue ""
+          head.gsub!(/"#{path}"/, "\"#{path}?_=#{Digest::MD5.hexdigest(data)}\"")
+        end
+      end
+      dump SS::Application.config.static_cache_control
+      
       body = (html =~ /<body/) ? html.sub(/^.*?(<body.*<\/body>).*/im, "\\1") : ""
       href = head.scan(/ (?:src|href)="(.*?)"/).map {|m| m[0]}.uniq.sort.join(",") rescue nil
       href = Digest::MD5.hexdigest href
@@ -65,5 +81,13 @@ class Cms::Layout
         path  = path.sub(/^\//, "")
       end
       self.piece_paths = paths.uniq
+    end
+    
+    def  set_css_paths
+      self.css_paths = html.scan(/<link [^>]*href="([^"]*\.css)" [^>]*\/>/).map {|m| m[0] }.uniq
+    end
+    
+    def  set_js_paths
+      self.js_paths = html.scan(/<script [^>]*src="([^"]*\.js)"[^>]*>/).map {|m| m[0] }.uniq
     end
 end
