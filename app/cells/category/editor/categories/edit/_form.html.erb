@@ -7,7 +7,7 @@
       <label><%= check_box_tag "item[category_ids][]", item._id, @item.category_ids.include?(item._id) %><%= item.name %></label>
     </div>
     <div style="margin: 10px 20px 20px;">
-      <% item.where.each do |c| %>
+      <% item.nodes.each do |c| %>
         <label><%= check_box_tag "item[category_ids][]", c._id, @item.category_ids.include?(c._id) %><%= c.name %></label>
       <% end %>
     </div>

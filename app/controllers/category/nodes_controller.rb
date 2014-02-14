@@ -18,8 +18,7 @@ class Category::NodesController < ApplicationController
     
   public
     def index
-      @items = @model
-        .site_is(@cur_site)
+      @items = @model.site_is(@cur_site)
         .where(filename: /^#{@cur_node.filename}\//)
         .sort(filename: 1)
       

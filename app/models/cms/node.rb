@@ -30,7 +30,7 @@ class Cms::Node
       validate :validate_filename
       
       before_save :set_depth, if: -> { filename.present? }
-      after_destroy :destroy_pages
+      after_destroy :destroy_children
     end
     
     public
@@ -46,24 +46,24 @@ class Cms::Node
         "#{site.full_url}#{filename}/"
       end
       
-      def where(cond = {})
-        self.class.where({ filename: /^#{filename}\// }.merge(cond))
-      end
-      
       def children
         where depth: depth + 1
       end
       
+      def nodes
+        self.class.where(site_id: site_id, filename: /^#{filename}\//)
+      end
+      
       def pages
-        Cms::Page.where(filename: /^#{filename}/)
+        Cms::Page.where(site_id: site_id, filename: /^#{filename}\//)
       end
       
       def pieces
-        Cms::Piece.where(filename: /^#{filename}/)
+        Cms::Piece.where(site_id: site_id, filename: /^#{filename}\//)
       end
       
       def layouts
-        Cms::Layout.where(filename: /^#{filename}/)
+        Cms::Layout.where(site_id: site_id, filename: /^#{filename}\//)
       end
       
     private
@@ -79,8 +79,8 @@ class Cms::Node
         self.depth = filename.scan(/[^\/]+/).size
       end
       
-      def destroy_pages
-        where.destroy
+      def destroy_children
+        nodes.destroy
         pages.destroy
         pieces.destroy
         layouts.destroy

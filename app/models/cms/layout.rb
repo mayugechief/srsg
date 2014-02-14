@@ -46,12 +46,13 @@ class Cms::Layout
     def render_json(html = render_html)
       head = (html =~ /<head>/) ? html.sub(/^.*?<head>(.*?)<\/head>.*/im, "\\1") : ""
       head.scan(/<link [^>]*href="([^"]*\.css)" [^>]*\/>/).uniq.each do |m|
-        if (path = m[0]) =~ /^\/\//
+        if (path = m[0]).index("//")
           head.gsub!(/"#{path}"/, "\"#{path}?_=$now\"") if path !~ /\?/
         else
-          file = "#{site.path}#{path}"
-          scss = file.sub(/\.css$/, ".scss")
-          data = Storage.exists?(scss) ? Storage.read(scss) : Storage.read(file) rescue ""
+          file  = "#{site.path}#{path}"
+          data  = Storage.exists?(file) ? Storage.read(file) : "" rescue ""
+          scss  = file.sub(/\.css$/, ".scss")
+          data << Storage.read(scss) if Storage.exists?(scss) rescue ""
           head.gsub!(/"#{path}"/, "\"#{path}?_=#{Digest::MD5.hexdigest(data)}\"")
         end
       end

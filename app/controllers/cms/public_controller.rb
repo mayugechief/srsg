@@ -1,6 +1,8 @@
 # coding: utf-8
 class Cms::PublicController < ApplicationController
   
+  rescue_from StandardError, with: :rescue_action
+  
   #before_action :dev_site, if: -> { Rails.env.to_s == "development" }
   before_action :set_site
   before_action :set_path
@@ -14,7 +16,7 @@ class Cms::PublicController < ApplicationController
   after_action :render_mobile
   
   layout "cms/page"
-    
+  
   public
     def index
       render_page
@@ -25,7 +27,7 @@ class Cms::PublicController < ApplicationController
         format.json { response.headers["Content-Type"] ||= "application/json; charset=utf-8" }
       end
       
-      render :nothing => true, :status => 404 if response.body.blank?
+      raise "404" if response.body.blank?
     end
   
   private
@@ -35,7 +37,7 @@ class Cms::PublicController < ApplicationController
     
     def set_site
       @cur_site ||= SS::Site.find_by domains: request.env["HTTP_HOST"] rescue nil
-      render :nothing => true, :status => 404 if !@cur_site
+      raise "404" if !@cur_site
     end
     
     def set_path
@@ -57,7 +59,7 @@ class Cms::PublicController < ApplicationController
       
       opts = SS::Application.config.sass
       sass = Sass::Engine.new Storage.read(@scss), filename: @scss, syntax: :scss, cache: false,
-        style: :compressed,
+        style: opts[:style],
         load_paths: opts.load_paths[1..-1],
         debug_info: opts.debug_info
       
@@ -81,11 +83,11 @@ class Cms::PublicController < ApplicationController
       
       path = @path.sub(/\.json$/, ".html")
       page = Cms::Piece.find_by(site_id: @cur_site, filename: path) rescue nil
-      return render :nothing => true, :status => 404 unless page
+      raise "404" unless page
       
       if page.route.present?
         cell = recognize_path "/.#{@cur_site.host}/piece/#{page.route}.#{@path.sub(/.*\./, '')}"
-        return render :nothing => true, :status => 404 unless cell
+        raise "404" unless cell
         params.merge! cur_site: @cur_site, cur_page: page
         body = render_cell "#{page.route.sub('/', '/piece/')}/view", cell[:action]
       else
@@ -113,7 +115,7 @@ class Cms::PublicController < ApplicationController
       
       path = @path.sub(/\.json$/, ".html")
       page = Cms::Layout.find_by(site_id: @cur_site, filename: path) rescue nil
-      return render :nothing => true, :status => 404 unless page
+      raise "404" unless page
       
       body = render_kana(page.render_html)
       
@@ -203,5 +205,25 @@ class Cms::PublicController < ApplicationController
     def render_kana(body)
       return body if request.env["REQUEST_PATH"] !~ /\/[\w\-]+(\.\w+)?\.kana\.(html|json)/
       body = Cms::Kana.kana_html(body).strip
+    end
+    
+    def rescue_action(e = nil)
+      return render_error(e, status: 404) if e.to_s == "404"
+      return render_error(e, status: 404) if e.is_a? Mongoid::Errors::DocumentNotFound
+      return render_error(e, status: 404) if e.is_a? ActionController::RoutingError
+      raise e
+    end
+    
+    def render_error(e, opts = {})
+      raise e if SS::Application.config.consider_all_requests_local
+      status = opts[:status].presence || 500
+      files  = []
+      files << "#{@cur_site.path}/#{status}.html" if @cur_site
+      files << "#{@cur_site.path}/500.html" if @cur_site
+      files << "#{Rails.root}/public/#{status}.html"
+      files << "#{Rails.root}/public/500.html"
+      files.each do |f|
+        render(status: status, file: f, layout: false) and return if Storage.exists?(f)
+      end
     end
 end

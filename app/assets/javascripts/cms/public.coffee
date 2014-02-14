@@ -19,7 +19,6 @@ class @SS
     
   @layout: (url) ->
     is_kana = SS.is_kana()
-    
     SS.head = $("head").html()
     SS.page = $("#page").html()
     
@@ -42,7 +41,7 @@ class @SS
         
         $("body").fadeIn(100)
       error: (req, status, error)->
-        $("body").html SS.head + SS.page
+        $("body").html SS.page
     }
   
   @piece: (id, url) ->
@@ -54,10 +53,10 @@ class @SS
     }
   
   @is_kana: ->
-    $("#kana-view").length || location.href.match(/\.kana\.(html|json)$/)
+    $("#kana-view").length || location.pathname.match(/\.kana\.(html|json)$/)
     
   @kana: (id) ->
-    url = location.href
+    url = location.pathname
     if SS.is_kana() || url.match(/\.kana\.html$/)
       url = url.replace(/\.kana\.html$/, ".html")
       $(id).html('<a class="off" href="' + url + '">ふりがなをはずす</a>')
