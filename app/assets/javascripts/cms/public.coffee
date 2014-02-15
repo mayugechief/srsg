@@ -39,6 +39,8 @@ class @SS
         if data.href != SS.href
           $("head link").add("head script").remove() if SS.href
           $("head").append data.head.replace(/\$now/g, $.now())
+          if !$("head meta[name=viewport]").length
+            $("head").append '<meta name="viewport" content="' + SS.viewPort + '" />'
         SS.href = data.href
         
         $("body").fadeIn(100)
@@ -83,8 +85,6 @@ class @SS
         sp = $("#sp-view")
         sp.html('<a href="" onclick="SS.switchSpView()">' + sp.html() + '</a>').show()
       else
-        if !$("head meta[name=viewport]").length
-          $("head").append '<meta name="viewport" content="' + SS.viewPort + '" />'
         pc = $("#pc-view")
         pc.html('<a href="" onclick="SS.switchPcView()">' + pc.html() + '</a>').show()
       
