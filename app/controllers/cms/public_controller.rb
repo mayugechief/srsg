@@ -3,7 +3,7 @@ class Cms::PublicController < ApplicationController
   
   rescue_from StandardError, with: :rescue_action
   
-  #before_action :dev_site, if: -> { Rails.env.to_s == "development" }
+  before_action :dev_site, if: -> { Rails.env.to_s == "development" }
   before_action :set_site
   before_action :set_path
   before_action :redirect_slash, if: ->{ request.env["REQUEST_PATH"] =~ /\/[^\.]+[^\/]$/ }
@@ -32,7 +32,8 @@ class Cms::PublicController < ApplicationController
   
   private
     def dev_site
-      @cur_site ||= SS::Site.first if request.env["HTTP_HOST"] =~ /^[\d\.:]+$/
+      @cur_site ||= SS::Site.find_by domains: request.env["HTTP_HOST"] rescue nil
+      @cur_site ||= SS::Site.first
     end
     
     def set_site

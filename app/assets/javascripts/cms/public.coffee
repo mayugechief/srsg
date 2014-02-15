@@ -8,9 +8,9 @@ class @SS
   @head = ""
   @page = ""
   @href = ""
-  @kanaFlag = '<div id="kana-view" style="margin:0;padding:0;display:inline"></div>'
   @siteName = null
   @pageName = null
+  @kanaFlag = '<div id="kana-view" style="margin:0;padding:0;display:inline"></div>'
   @viewPort = 'width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=2.0'
   
   @load: ->
@@ -39,7 +39,6 @@ class @SS
         if data.href != SS.href
           $("head link").add("head script").remove() if SS.href
           $("head").append data.head.replace(/\$now/g, $.now())
-
         SS.href = data.href
         
         $("body").fadeIn(100)
@@ -82,12 +81,12 @@ class @SS
         $("head meta[name=viewport]").remove
         $("head").append '<meta name="viewport" content="width=1024" />'
         sp = $("#sp-view")
-        sp.html('<a href="#" onclick="SS.switchSpView()">' + sp.html() + '</a>').show()
+        sp.html('<a href="" onclick="SS.switchSpView()">' + sp.html() + '</a>').show()
       else
         if !$("head meta[name=viewport]").length
           $("head").append '<meta name="viewport" content="' + SS.viewPort + '" />'
         pc = $("#pc-view")
-        pc.html('<a href="#" onclick="SS.switchPcView()">' + pc.html() + '</a>').show()
+        pc.html('<a href="" onclick="SS.switchPcView()">' + pc.html() + '</a>').show()
       
   @switchPcView: ->
     $.cookie("switchView", "pc", { expires: 7, path: '/' })
