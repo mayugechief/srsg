@@ -41,6 +41,12 @@ class Cms::Layout
           "<!-- #{path} -->"
         end
       end
+      if html !~ /<meta [^>]*name="viewport"/
+        meta  = '<meta name="viewport" content="width=device-width,initial-scale=1.0,'
+        meta << 'user-scalable=yes,minimum-scale=1.0,maximum-scale=2.0" />'
+        #html  = html.gsub(/<\/head>/, "#{meta}</head>")
+      end
+      html
     end
     
     def render_json(html = render_html)

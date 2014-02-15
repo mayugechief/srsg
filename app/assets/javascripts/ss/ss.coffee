@@ -26,7 +26,7 @@ class @SS_ListUI
         if !$(e.target).is('a') && !$(e.target).is("input")
           tbody.find("input[type=checkbox]").attr("checked", false)
           tbody.find("tr").removeClass("checked")
-          tr.find(".row-menu").css("left", e.pageX + 5).css("top", e.pageY).show()
+          tr.find(".row-menu").css("left", e.pageX + 4).css("top", e.pageY).show()
           tr.find("input[type=checkbox]").trigger("click")
       tr.mouseleave ->
         tr.find(".row-menu").hide()

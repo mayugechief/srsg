@@ -155,11 +155,30 @@ rp {
     margin: 0px 10px;
   }
 }
+#view-swtich {
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  text-align: center;
+  a {
+    color: #888;
+  }
+}
 
 // -------------------------------------------------------------------------------------------------
 
 @media only screen and (max-width: 800px) {
   body {
+    //background-color: red;
+  }
+  #navi {
+    a {
+      min-width: initial;
+      min-width: auto;
+      margin: 0px 5px 0px 0px;
+      padding: 0px 5px;
+    }
   }
   #wrap, #menu, #side {
     clear: both;

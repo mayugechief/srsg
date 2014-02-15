@@ -211,7 +211,7 @@ nav.main-menu, nav.flow-menu, nav.page-menu {
     &:after {
       float: right;
       color: #bbb;
-      content: ">";
+      //content: ">";
     }
     &:hover {
       background-color: #f8f8f8;
@@ -235,6 +235,7 @@ nav.flow-menu a:after {
   margin: -5px 15px 10px;
   padding: 0px 0px 2px;
   color: #999;
+  font-size: 120%;
   a {
     margin: 0px 12px;
     color: #444;

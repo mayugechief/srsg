@@ -57,18 +57,29 @@ class Cms::PublicController < ApplicationController
       css_mtime = Storage.exists?(@file) ? Storage.stat(@file).mtime : 0
       return if Storage.stat(@scss).mtime.to_i <= css_mtime.to_i
       
-      opts = SS::Application.config.sass
-      sass = Sass::Engine.new Storage.read(@scss), filename: @scss, syntax: :scss, cache: false,
-        style: (opts.debug_info ? :expanded : :compressed),
-        load_paths: opts.load_paths[1..-1],
-        debug_info: opts.debug_info
+      css = ""
+      begin
+        opts = SS::Application.config.sass
+        sass = Sass::Engine.new Storage.read(@scss), filename: @scss, syntax: :scss, cache: false,
+          style: (opts.debug_info ? :expanded : :compressed),
+          load_paths: opts.load_paths[1..-1],
+          debug_info: opts.debug_info
+        css = sass.render
+      rescue Sass::SyntaxError => e
+        msg = e.backtrace[0].sub(/.*?\/_\//, "")
+        msg = "[#{msg}]\\A #{e}".gsub('"', '\\"')
+        css = "body:before { position: absolute; top: 8px; right: 8px; display: block;"
+        css << " padding: 4px 8px; border: 1px solid #b88; background-color: #fff;"
+        css << " color: #822; font-size: 85%; font-family: tahoma, sans-serif; line-height: 1.6;"
+        css << " white-space: pre; z-index: 9; content: \"#{msg}\"; }"
+      end
       
-      Storage.write @file, sass.render
+      Storage.write @file, css
     end
     
     def x_sendfile
       return unless Storage.exists? @file
-      response.headers["Expires"] = 3.days.from_now.httpdate if @file =~ /\.(css|js|gif|jpg|png)$/
+      response.headers["Expires"] = 1.days.from_now.httpdate if @file =~ /\.(css|js|gif|jpg|png)$/
       response.headers["Last-Modified"] = CGI::rfc1123_date(Storage.stat(@file).mtime)
       send_file @file, disposition: :inline, x_sendfile: true
     end
