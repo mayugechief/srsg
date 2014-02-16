@@ -425,6 +425,19 @@ footer.send {
   }
 }
 
+a.icon-node {
+  padding-left: 20px;
+  background-image: image-url("icon-node.png");
+  background-repeat: no-repeat;
+  background-position: 0px 50%;
+}
+a.icon-page {
+  padding-left: 18px;
+  background-image: image-url("icon-page.png");
+  background-repeat: no-repeat;
+  background-position: 0px 50%;
+}
+
 // -----------------------------------------------------------------------------
 // smart phone
 

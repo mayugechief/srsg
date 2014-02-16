@@ -1,0 +1,13 @@
+<%
+
+def current?(name)
+  @mod.to_s == name.to_s ? "current" : ""
+end
+
+%><nav class="page-menu">
+  <h1>Module</h1>
+  <%= link_to :all, cms_contents_path, class: current?("") %>
+  <%= link_to :article, cms_contents_path(mod: :article), class: current?(:article) %>
+  <%= link_to :category, cms_contents_path(mod: :category), class: current?(:category) %>
+  <%= link_to :uploader, cms_contents_path(mod: :uploader), class: current?(:uploader) %>
+</nav>

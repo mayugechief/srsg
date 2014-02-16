@@ -2,7 +2,7 @@
   <dt>Category</dt>
   <dd>
     <%= hidden_field_tag "item[category_ids][]" %>
-    <% Category::Node.site_is(@cur_site).where(filename: /^[^\/]+$/).each do |item| %>
+    <% Category::Node.site_is(@cur_site).where(depth: 1).each do |item| %>
     <div style="margin: 0px 0px 10px; padding: 5px; border: 1px solid #ccc;">
       <label><%= check_box_tag "item[category_ids][]", item._id, @item.category_ids.include?(item._id) %><%= item.name %></label>
     </div>

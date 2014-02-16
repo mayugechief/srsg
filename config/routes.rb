@@ -61,8 +61,7 @@ SS::Application.routes.draw do
   
   namespace "cms", path: ".:host/cms" do
     get "/" => "main#index"
-    resources :articles
-    resources :contents
+    resources :contents, path: "contents/(:mod)"
     resources :nodes, concerns: :deletion
     resources :pages, concerns: :deletion
     resources :layouts, concerns: :deletion

@@ -9,7 +9,7 @@
   <dd><%= f.select :route, Cms::Node.routes, :include_blank => "Node" %></dd>
   
   <dt><%= @model.lang :shortcut %></dt>
-  <dd><%= f.select :shortcut, [["表示する", "1"]], :include_blank => "表示しない" %></dd>
+  <dd><%= f.select :shortcut, [["表示する", "1"],["表示しない",""]] %></dd>
   
   <dt><%= @model.lang :layout_id %></dt>
   <dd><%= f.select :layout_id, Cms::Layout.site_is(@cur_site).map {|c| [c.name, c.id]}, :include_blank => "" %></dd>

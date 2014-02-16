@@ -3,7 +3,6 @@ class Cms::ContentsController < ApplicationController
   include Cms::BaseFilter
   
   navi_view "cms/main/navi"
-  menu_view false
   
   private
     def set_crumbs
@@ -14,7 +13,12 @@ class Cms::ContentsController < ApplicationController
     def index
       @model = Cms::Node
       
+      @mod = params[:mod]
+      cond = {}
+      cond[:route] = /^#{@mod}\// if @mod.present?
+      
       @items = Cms::Node.site_is(@cur_site).
+        where(cond).
         where(shortcut: 1).
         sort(filename: 1)
     end
