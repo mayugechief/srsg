@@ -75,21 +75,21 @@ def save_node(data)
   item.update data
 end
 
-save_node route: :uploader, type: :main, filename: "css", name: "CSS"
-save_node route: :uploader, type: :main, filename: "img", name: "画像"
-save_node route: :article , type: :main, filename: "docs", name: "記事"
-save_node route: :category, type: :main, filename: "kurashi", name: "暮らし"
-save_node route: :category, type: :item, filename: "kurashi/kosodate", name: "子育て"
-save_node route: :category, type: :item, filename: "kurashi/fukushi", name: "福祉"
-save_node route: :category, type: :item, filename: "kurashi/fukushi/jido", name: "児童福祉"
-save_node route: :category, type: :item, filename: "kurashi/fukushi/shogai", name: "障がい者福祉"
-save_node route: :category, type: :main, filename: "lifeevent", name: "ライフイベント"
-save_node route: :category, type: :item, filename: "lifeevent/kekkon", name: "結婚"
-save_node route: :category, type: :item, filename: "lifeevent/shussan", name:"出産"
+save_node route: "uploader/files", filename: "css", name: "CSS"
+save_node route: "uploader/files", filename: "img", name: "画像"
+save_node route: "article/pages" , filename: "docs", name: "記事", shortcut: 1
+save_node route: "category/nodes", filename: "kurashi", name: "暮らし", shortcut: 1
+save_node route: "category/pages", filename: "kurashi/kosodate", name: "子育て"
+save_node route: "category/nodes", filename: "kurashi/fukushi", name: "福祉"
+save_node route: "category/pages", filename: "kurashi/fukushi/jido", name: "児童福祉"
+save_node route: "category/pages", filename: "kurashi/fukushi/shogai", name: "障がい者福祉"
+save_node route: "category/nodes", filename: "lifeevent", name: "ライフイベント", shortcut: 1
+save_node route: "category/pages", filename: "lifeevent/kekkon", name: "結婚"
+save_node route: "category/pages", filename: "lifeevent/shussan", name:"出産"
 
 ## layout
-Cms::Node.where(site_id: @site._id, route: :article).update_all(layout_id: layouts["page"].id)
-Cms::Node.where(site_id: @site._id, route: :category).update_all(layout_id: layouts["page"].id)
+Cms::Node.where(site_id: @site._id, route: /^article\//).update_all(layout_id: layouts["page"].id)
+Cms::Node.where(site_id: @site._id, route: /^category\//).update_all(layout_id: layouts["page"].id)
 
 ## -------------------------------------
 puts "pages:"

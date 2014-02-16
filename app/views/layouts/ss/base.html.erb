@@ -35,9 +35,12 @@
   </div>
 <!-- /#head --></header>
 
-<% if (crumbs = controller.class.crumbs).size > 0 %>
+<% if @crumbs.size > 0 %>
 <nav id="crumbs">
-  <%== crumbs.map {|c| instance_exec(&c)}.map {|n, u| link_to n.to_s.humanize, u }.join("/") %>
+  <% @crumbs.each_with_index do |item, idx| %>
+    <% if idx > 0 %><span>/</span><% end %>
+    <span><%= link_to *item %></span>
+  <% end %>
 </nav>
 <% end %>
 

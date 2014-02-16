@@ -1,8 +1,7 @@
 <nav class="main-menu">
   <h1>My Sites</h1>
   <% SS::Site.all.each do |item| %>
-  <%#= link_to item.name, "/.#{item.host}" %>
-  <%= link_to item.name, cms_articles_path(item.host) %>
+  <%= link_to item.name, "/.#{item.host}" %>
   <% end %>
 </nav>
 

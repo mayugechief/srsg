@@ -1,13 +1,9 @@
 # coding: utf-8
 class Article::PagesController < ApplicationController
-  include SS::BaseFilter
-  include SS::CrudFilter
   include Cms::BaseFilter
+  include Cms::CrudFilter
   
   model Cms::Page
-  
-  crumb ->{ [@cur_node.name, article_main_path] }
-  crumb ->{ [:pages, article_pages_path] }
   
   navi_view "article/main/navi"
   menu_view "cms/pages/menu"
@@ -19,10 +15,10 @@ class Article::PagesController < ApplicationController
     
   public
     def index
-      @items = @model.site_is(@cur_site)
-        .where(filename: /^#{@cur_node.filename}\//)
-        .desc(:updated)
-        .page(params[:page])
+      @items = @model.site_is(@cur_site).
+        where(filename: /^#{@cur_node.filename}\//).
+        desc(:updated).
+        page(params[:page])
       
       render_crud
     end

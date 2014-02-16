@@ -1,5 +1,5 @@
 # coding: utf-8
-class Cms::Editor::Page
+class Cms::Page::Page
   
   class ViewCell < Cell::Rails
     include Cms::PublicFilter

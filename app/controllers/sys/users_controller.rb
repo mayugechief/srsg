@@ -1,14 +1,16 @@
 # coding: utf-8
 class Sys::UsersController < ApplicationController
-  include SS::BaseFilter
-  include SS::CrudFilter
   include Sys::BaseFilter
+  include Sys::CrudFilter
   
   model SS::User
   
-  crumb ->{ [:users, sys_users_path] }
-  
   navi_view "sys/main/navi"
+  
+  private
+    def set_crumbs
+      @crumbs << [:users, sys_users_path]
+    end
   
   public
     def index

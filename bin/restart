@@ -1,9 +1,15 @@
 #!/usr/bin/env ruby
 
-Dir.glob("#{File.dirname(__dir__)}/tmp/pids/*.pid") do |file|
-  pid = File.read(file)
-  if `ps aux | grep "thin [s]erver" | grep #{pid}`.strip != ""
-    puts "restart #{pid} thin server"
-    `kill -HUP #{pid}`
+files = Dir.glob("#{File.dirname(__dir__)}/tmp/pids/*.pid")
+
+if files.size == 0
+  puts "Thin server is not running."
+else
+  files.each do |file|
+    pid = File.read(file)
+    puts "Restart Thin server. [PID=#{pid}]"
+    `kill -HUP #{pid}` if `ps aux | grep "thin [s]erver" | grep #{pid}`.strip != ""
   end
 end
+
+puts "\n" + ("-"*80) + "\n" + `ps aux | grep "[t]hin server\\|[P]ID"`.strip + "\n" + ("-"*80)

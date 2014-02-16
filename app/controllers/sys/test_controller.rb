@@ -1,11 +1,14 @@
 # coding: utf-8
 class Sys::TestController < ApplicationController
-  include SS::BaseFilter
   include Sys::BaseFilter
   
-  crumb ->{ [:http_test, sys_test_path] }
+  private
+    def set_crumbs
+      @crumbs << [:http_test, sys_test_path]
+    end
   
-  def index
-    #
-  end
+  public
+    def index
+      #
+    end
 end

@@ -8,7 +8,6 @@ class ActionDispatch::Routing::Mapper
   def content(ns, &block)
     name = ns.gsub("/", "_")
     namespace(name, path: ".:host/#{ns}:cid", module: ns, cid: /\w+/) { yield }
-    Cms::Content.add_module ns
   end
   
   def node(ns, &block)
@@ -29,8 +28,8 @@ SS::Application.routes.draw do
   editor "cms" do
     plugin "basic"
     plugin "html"
-    plugin "wiki"
     plugin "tiny"
+    plugin "wiki"
   end
   
   #config "cms" do
@@ -64,10 +63,11 @@ SS::Application.routes.draw do
     get "/" => "main#index"
     resources :articles
     resources :contents
+    resources :nodes, concerns: :deletion
     resources :pages, concerns: :deletion
-    resources :nodes, concerns: :deletion, path: "nodes(:node_id)"
-    resources :pieces, concerns: :deletion
     resources :layouts, concerns: :deletion
+    resources :pieces, concerns: :deletion
+    resources :roles, concerns: :deletion
   end
   
   # ----------------------------------------------------------------------------

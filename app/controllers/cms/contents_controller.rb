@@ -1,19 +1,21 @@
 # coding: utf-8
 class Cms::ContentsController < ApplicationController
-  include SS::BaseFilter
   include Cms::BaseFilter
-  
-  crumb ->{ [:contents, cms_contents_path] }
   
   navi_view "cms/main/navi"
   menu_view false
   
+  private
+    def set_crumbs
+      @crumbs << [:contents, cms_contents_path]
+    end
+    
   public
     def index
-      @model = Cms::Content
+      @model = Cms::Node
       
-      @items = Cms::Content.site_is(@cur_site)
-        .ne(route: :article)
-        .sort(filename: 1)
+      @items = Cms::Node.site_is(@cur_site).
+        where(shortcut: 1).
+        sort(filename: 1)
     end
 end

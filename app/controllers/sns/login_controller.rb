@@ -1,6 +1,5 @@
 # coding: utf-8
 class Sns::LoginController < ApplicationController
-  include SS::BaseFilter
   include Sns::BaseFilter
   
   skip_filter :logged_in?, only: [:login, :logout]

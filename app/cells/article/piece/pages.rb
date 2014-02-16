@@ -7,10 +7,10 @@ class Article::Piece::Pages
     def index
       @cur_node = @cur_page.node
       
-      @items = Cms::Page.site_is(@cur_site)
-        .where(filename: /^#{@cur_node.filename}\//)
-        .where(deleted: nil)
-        .sort(_id: -1)
+      @items = Cms::Page.site_is(@cur_site).
+        where(filename: /^#{@cur_node.filename}\//).
+        where(deleted: nil).
+        sort(_id: -1)
       
       render
     end

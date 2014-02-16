@@ -1,10 +1,6 @@
-<nav class="main-menu">
-  <h1><%= @cur_node.name %></h1>
+<nav class="sub-menu">
+  <h1>Category</h1>
   <%= link_to :categories, category_nodes_path %>
-  <%= link_to :pages, "#" %>
-  <%= link_to :pieces, "#" %>
-  <%= link_to :layouts, "#" %>
-  <%= link_to :files, "#" %>
-  <%= link_to :roles, "#" %>
-  <%= link_to :config, "#" %>
 </nav>
+
+<%= render partial: "node/main/modules" %>

@@ -24,7 +24,7 @@
         <% elsif item.send(key).instance_of?(DateTime) %>
         <td><%= item.send(key).strftime("%Y/%-m/%-d %-H:%M") %></td>
         <% elsif key == "filename" %>
-        <td><%= link_to item.send(key), item.full_url, target: "_blank" %></td>
+        <td><%= File.basename item.send(key) %></td>
         <% else %>
         <td><%= item.send(key) %></td>
         <% end %>

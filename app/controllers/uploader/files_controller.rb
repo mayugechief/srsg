@@ -1,13 +1,11 @@
 # coding: utf-8
 class Uploader::FilesController < ApplicationController
-  include SS::BaseFilter
-  include SS::CrudFilter
   include Cms::BaseFilter
+  include Cms::CrudFilter
   
   model Uploader::File
   
-  crumb ->{ [:contents, cms_contents_path] }
-  crumb ->{ [@cur_node.name, uploader_main_path] }
+  navi_view "uploader/main/navi"
   
   public
     def index

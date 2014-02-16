@@ -87,7 +87,7 @@ class Cms::PublicController < ApplicationController
     
     def recognize_path(path)
       rec = Rails.application.routes.recognize_path(path, method: request.method) rescue {}
-      rec[:cell] ? { controller: rec[:cell], action: rec[:action] } : nil
+      rec[:cell] ? { controller: rec[:cell], action: "index" } : nil
     end
     
     def render_piece
@@ -142,7 +142,7 @@ class Cms::PublicController < ApplicationController
       return unless page
       
       params.merge! cur_site: @cur_site, cur_page: page
-      body = render_cell "cms/editor/page/view", "index"
+      body = render_cell "cms/page/page/view", "index"
       
       body = render_kana body
       
@@ -162,13 +162,14 @@ class Cms::PublicController < ApplicationController
       
       node = Cms::Node.where(site_id: @cur_site.id, :filename.in => dirs).sort(depth: -1).first
       return unless node
+      return if node.route.blank?
       
       rest = @path.sub(/^#{node.filename}/, "")
-      cell = recognize_path "/.#{@cur_site.host}/node/#{node.route}/#{node.type}#{rest}"
+      cell = recognize_path "/.#{@cur_site.host}/node/#{node.route}/#{rest}"
       return unless cell
       
       params.merge! cur_site: @cur_site, cur_node: node
-      body = render_cell "#{node.route}/node/#{node.type}/view", cell[:action]
+      body = render_cell "#{node.route.sub('/', '/node/')}/view", cell[:action]
       
       body = render_kana body
       
@@ -229,13 +230,13 @@ class Cms::PublicController < ApplicationController
     def render_error(e, opts = {})
       raise e if SS::Application.config.consider_all_requests_local
       status = opts[:status].presence || 500
-      files  = []
-      files << "#{@cur_site.path}/#{status}.html" if @cur_site
-      files << "#{@cur_site.path}/500.html" if @cur_site
-      files << "#{Rails.root}/public/#{status}.html"
-      files << "#{Rails.root}/public/500.html"
-      files.each do |f|
-        render(status: status, file: f, layout: false) and return if Storage.exists?(f)
+      
+      dir = "#{Rails.root}/public"
+      dir = "#{@cur_site.path}" if @cur_site
+      
+      ["#{status}.html", "500.html"].each do |name|
+        file = "#{dir}/#{name}"
+        render(status: status, file: file, layout: false) and return if Storage.exists?(file)
       end
     end
 end

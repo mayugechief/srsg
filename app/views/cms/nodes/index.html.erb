@@ -14,15 +14,12 @@
       <td>
         <input type="checkbox" name="ids[]" value="<%= item.id %>" />
         <nav class="row-menu">
-          <% if item.type == "main" %>
-          <%= link_to "コンテンツ管理", "/.#{@cur_site.host}/#{item.route.downcase.dasherize}#{item.id}" %>
-          <% end %>
-          <%= link_to "開く", cms_nodes_path(:node_id => item.id) %>
+          <%= link_to "コンテンツ管理", "/.#{@cur_site.host}/#{item.route.sub(/\/.*/, '')}#{item.id}" if item.route.present? %>
           <%= link_to "詳細を見る", action: :show, id: item %>
         </nav>
       </td>
-      <td><%= link_to item.send(:name), cms_nodes_path(:node_id => item.id) %></td>
-      <td><%= link_to item.filename, item.full_url, target: "_blank" %></td>
+      <td><%= link_to item.name, (@cur_node ? {action: :index, cid: item } : node_nodes_path(item)) %></td>
+      <td><%= File.basename item.filename %></td>
       <td><%= item.updated.strftime("%Y/%m/%d") %></td>
     </tr>
     <% end %>

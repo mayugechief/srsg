@@ -1,0 +1,11 @@
+<nav class="sub-menu">
+  <h1>Node</h1>
+  <%= link_to :nodes, node_nodes_path %>
+  <%= link_to :pages, node_pages_path %>
+  <%= link_to :layouts, node_layouts_path %>
+  <%= link_to :pieces, node_pieces_path %>
+  <%= link_to :roles, node_roles_path %>
+  <%= link_to :config, node_config_path %>
+</nav>
+
+<%= render partial: "node/main/modules" %>

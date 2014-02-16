@@ -11,9 +11,10 @@
     <% @items.each do |item| %>
     <tr>
       <td>
-        <%= link_to item.name, "/.#{@cur_site.host}/#{item.route.downcase.dasherize}#{item.id}" %>
+        <%= link_to item.name, "/.#{@cur_site.host}/#{item.route.sub(/\/.*/, '')}#{item.id}" %>
         <nav class="row-menu">
-          <%= link_to "コンテンツ管理", "/.#{@cur_site.host}/#{item.route.downcase.dasherize}#{item.id}" %>
+          <%= link_to "コンテンツ管理", "/.#{@cur_site.host}/#{item.route.sub(/\/.*/, '')}#{item.id}" %>
+          <%= link_to "詳細を見る", node_config_path(cid: item) %>
         </nav>
       </td>
       <td><%= link_to item.filename, item.full_url, target: "_blank" %></td>

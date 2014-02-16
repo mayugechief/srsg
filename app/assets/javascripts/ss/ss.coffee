@@ -4,11 +4,10 @@
 //= require turbolinks
 
 $ ->
-  $("#crumbs a").each ->
-    crumb = $(this)
-    $("#navi a").each ->
-      menu = $(this)
-      menu.addClass("current") if crumb.attr("href") == menu.attr("href")
+  path = location.pathname + "/"
+  $("#navi .main-menu a, #navi .sub-menu a").each ->
+    menu = $(this)
+    menu.addClass("current") if path.indexOf(menu.attr("href")) != -1
   
   SS_ListUI.render("table.index")
   SS_Editor.tabs(".plugin-tab")

@@ -2,10 +2,7 @@
 class Category::Node
   include Cms::Node::Base
   
-  default_scope where route: "category"
-  
-  scope :main, where(type: "main")
-  scope :item, where(type: "item")
+  default_scope where route: /^category\//
   
   Cms::Page.embeds_ids :categories, class_name: "Category::Node"
 end

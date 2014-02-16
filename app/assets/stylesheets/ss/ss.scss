@@ -193,7 +193,7 @@ code {
 // -----------------------------------------------------------------------------
 // outline - detail
 
-nav.main-menu, nav.flow-menu, nav.page-menu {
+nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu {
   margin: 0px 0px 20px;
   border: 1px solid #ccc;
   h1 {
@@ -232,13 +232,22 @@ nav.flow-menu a:after {
 // common
 
 #crumbs {
-  margin: -5px 15px 10px;
+  margin: -8px 15px 10px;
   padding: 0px 0px 2px;
   color: #999;
-  font-size: 120%;
+  //font-size: 120%;
+  span {
+    margin: 0px 0px;
+  }
   a {
-    margin: 0px 12px;
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
     color: #444;
+    &:hover {
+      background-color: #ddd;
+      text-decoration: none;
+    }
   }
 }
 #notice {
@@ -342,18 +351,15 @@ table.index {
     position: absolute;
     min-width: 150px;
     border: 1px solid #ccc;
-    border-left: 3px solid #bbb;
-    box-shadow: 0px 1px 2px #ccc;
+    border-radius: 4px;
+    box-shadow: 2px 2px 10px #ccc;
     background-color: #fff;
     a {
       display: block;
-      padding: 5px 10px;;
+      padding: 8px 12px;;
       border-top: 1px solid #ddd;
       &:first-child {
         border-width: 0px;
-      }
-      &:hover {
-        //background-color: #eee;
       }
     }
   }
@@ -473,7 +479,7 @@ footer.send {
       margin: 0px;
     }
   }
-  nav.main-menu, nav.flow-menu, nav.page-menu {
+  nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu {
     float: left;
     margin: 0px 0px 2px;
     border: none;

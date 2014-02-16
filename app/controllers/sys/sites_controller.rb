@@ -1,14 +1,16 @@
 # coding: utf-8
 class Sys::SitesController < ApplicationController
-  include SS::BaseFilter
-  include SS::CrudFilter
   include Sys::BaseFilter
+  include Sys::CrudFilter
   
   model SS::Site
   
-  crumb ->{ [:sites, sys_sites_path] }
-  
   navi_view "sys/main/navi"
+  
+  private
+    def set_crumbs
+      @crumbs << [:sites, sys_sites_path]
+    end
   
   public
     def index

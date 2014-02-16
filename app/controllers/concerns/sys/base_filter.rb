@@ -3,6 +3,13 @@ module Sys::BaseFilter
   extend ActiveSupport::Concern
   
   included do
-    crumb ->{ [:sys, sys_main_path] }
+    include SS::BaseFilter
+    before_action { @crumbs <<  [:sys, sys_main_path] }
+    before_action :set_crumbs
   end
+  
+  private
+    def set_crumbs
+      #
+    end
 end

@@ -44,7 +44,7 @@ module SS::Document
     end
     
     def lang(name)
-      name.to_s.gsub(/^_/, "").humanize
+      name.to_s.gsub(/^_/, "").titleize
     end
   end
   

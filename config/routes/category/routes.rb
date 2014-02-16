@@ -3,6 +3,9 @@ SS::Application.routes.draw do
   
   Category::Node
   
+  Cms::Node.route "category/nodes"
+  Cms::Node.route "category/pages"
+  
   editor "category" do
     plugin "categories" 
   end
@@ -14,13 +17,11 @@ SS::Application.routes.draw do
   content "category" do
     get "/" => "main#index", as: :main
     resources :nodes, concerns: :deletion
-    resources :pieces, concerns: :deletion
-    resources :layouts, concerns: :deletion
-    resources :configs, concerns: :deletion
   end
   
   node "category" do
-    get "main/(index.:format)" => "public#index", cell: "node/main"
+    get "nodes/(index.:format)" => "public#index", cell: "node/nodes"
+    get "pages/(index.:format)" => "public#index", cell: "node/pages"
   end
   
 end

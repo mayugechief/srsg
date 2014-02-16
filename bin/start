@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
 
-#
+# Command:
 # bin/start -e production
-#
 
 `thin -d #{ARGV.join(" ")} start`
 
-#`ps aux | grep "thin [s]erver"`
+puts "\n" + ("-"*80) + "\n" + `ps aux | grep "[t]hin server\\|[P]ID"`.strip + "\n" + ("-"*80)

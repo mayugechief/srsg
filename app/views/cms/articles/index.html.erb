@@ -11,9 +11,10 @@
     <% @items.each do |item| %>
     <tr>
       <td>
-        <%= link_to item.name, article_main_path(item) %>
+        <%= link_to item.name, article_pages_path(item) %>
         <nav class="row-menu">
-          <%= link_to "コンテンツ管理", article_main_path(item) %>
+          <%= link_to "コンテンツ管理", article_pages_path(item) %>
+          <%= link_to "詳細を見る", node_config_path(cid: item) %>
         </nav>
       </td>
       <td><%= link_to item.filename, item.full_url, target: "_blank" %></td>
@@ -21,5 +22,4 @@
     </tr>
     <% end %>
   </tbody>
-  
 </table>

@@ -8,7 +8,7 @@ class Uploader::File
   
     public
       def lang(name)
-        name.to_s.gsub(/^_/, "").humanize
+        name.to_s.gsub(/^_/, "").titleize
       end
   end
 end
