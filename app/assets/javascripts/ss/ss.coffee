@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.cookie
 //= require jquery.turbolinks
 //= require turbolinks
 
@@ -11,6 +12,26 @@ $ ->
   
   SS_ListUI.render("table.index")
   SS_Editor.tabs(".plugin-tab")
+
+class @SS
+  @switchView: ->
+    if navigator.userAgent.match(/(Android|iPad|iPhone)/)
+      if $.cookie("switchView") == "pc"
+        $("head meta[name=viewport]").remove
+        $("head").append '<meta name="viewport" content="width=1024" />'
+        sp = $("#sp-view")
+        sp.html('<a href="" onclick="SS.switchSpView()">' + sp.text() + '</a>').show()
+      else
+        pc = $("#pc-view")
+        pc.html('<a href="" onclick="SS.switchPcView()">' + pc.text() + '</a>').show()
+      
+  @switchPcView: ->
+    $.cookie("switchView", "pc", { expires: 7, path: '/' })
+    location.reload()
+    
+  @switchSpView: ->
+    $.removeCookie("switchView", { expires: 7, path: '/' })
+    location.reload()
 
 class @SS_ListUI
   @render: (list)->

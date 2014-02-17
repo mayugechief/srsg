@@ -1,14 +1,6 @@
-<table>
-  <tr>
-    <td>Site:</td>
-    <td><%= @cur_site.name %></td>
-  </tr>
-  <tr>
-    <td>Host:</td>
-    <td><%= @cur_site.host %></td>
-  </tr>
-  <tr>
-    <td>URL:</td>
-    <td><%= link_to @cur_site.full_url, "#{@cur_site.full_url}", :target => "_blank" %></td>
-  </tr>
-</table>
+<header>
+  <h1>[<%= @cur_site.host %>] <%= @cur_site.name %></h1>
+</header>
+<div>
+  <%= link_to @cur_site.full_url, "#{@cur_site.full_url}", :target => "_blank" %>
+</div>

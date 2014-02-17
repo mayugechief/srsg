@@ -83,10 +83,10 @@ class @SS
         $("head meta[name=viewport]").remove
         $("head").append '<meta name="viewport" content="width=1024" />'
         sp = $("#sp-view")
-        sp.html('<a href="" onclick="SS.switchSpView()">' + sp.html() + '</a>').show()
+        sp.html('<a href="" onclick="SS.switchSpView()">' + sp.text() + '</a>').show()
       else
         pc = $("#pc-view")
-        pc.html('<a href="" onclick="SS.switchPcView()">' + pc.html() + '</a>').show()
+        pc.html('<a href="" onclick="SS.switchPcView()">' + pc.text() + '</a>').show()
       
   @switchPcView: ->
     $.cookie("switchView", "pc", { expires: 7, path: '/' })
