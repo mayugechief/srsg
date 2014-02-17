@@ -1,6 +1,11 @@
-<nav class="sub-menu">
-  <h1>Article</h1>
-  <%= link_to :articles, article_pages_path %>
-</nav>
-
 <%= render partial: "cms/main/modules" %>
+
+<nav class="sub-menu">
+  <header><h1>Article</h1></header>
+  <div>
+    <%= link_to :articles, article_pages_path %>
+    <%= link_to "#Category", "#" %>
+    <%= link_to "#Import", "#" %>
+    <%= link_to "#Publish", "#" %>
+  </div>
+</nav>

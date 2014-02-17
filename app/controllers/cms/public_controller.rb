@@ -163,6 +163,7 @@ class Cms::PublicController < ApplicationController
       node = Cms::Node.where(site_id: @cur_site.id, :filename.in => dirs).sort(depth: -1).first
       return unless node
       return if node.route.blank?
+      return if node.route =~ /\/none$/
       
       rest = @path.sub(/^#{node.filename}/, "")
       cell = recognize_path "/.#{@cur_site.host}/node/#{node.route}/#{rest}"

@@ -1,10 +1,6 @@
 # coding: utf-8
 class ActionDispatch::Routing::Mapper
   
-  def editor(ns, &block)
-    Cms::Editor.namespace(ns, &block)
-  end
-  
   def content(ns, &block)
     name = ns.gsub("/", "_")
     namespace(name, path: ".:host/#{ns}:cid", module: ns, cid: /\w+/) { yield }
@@ -25,17 +21,12 @@ end
 
 SS::Application.routes.draw do
   
-  editor "cms" do
-    plugin "basic"
-    plugin "html"
-    plugin "tiny"
-    plugin "wiki"
-  end
+  Cms::Node.route "node/none"
   
-  #config "cms" do
-  #  model Cms::Category
-  #  cell "config/category"
-  #end
+  Cms::Page.addon "cms/basic"
+  Cms::Page.addon "cms/html"
+  Cms::Page.addon "cms/tiny"
+  Cms::Page.addon "cms/wiki"
   
   concern :deletion do
     get :delete, :on => :member

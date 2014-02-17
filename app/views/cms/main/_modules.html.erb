@@ -1,7 +1,8 @@
 <nav class="main-menu">
-  <h1>Modules</h1>
-  <%= link_to :node, node_main_path %>
-  <%= link_to :article, article_main_path %>
-  <%= link_to :category, category_main_path %>
-  <%= link_to :uploader, uploader_main_path %>
+  <header><h1>Modules</h1></header>
+  <div>
+    <% Cms::Node.modules.each do |name, key| %>
+      <%= link_to name, send("#{key}_main_path") %>
+    <% end %>
+  </div>
 </nav>

@@ -1,25 +1,25 @@
 <table class="index">
   <thead>
     <tr>
-      <th style="width: 20px;"><input type="checkbox" /></th>
+      <th class="checkbox"><input type="checkbox" /></th>
       <th><%= @model.lang :name %></th>
-      <th><%= @model.lang :filename %></th>
-      <th><%= @model.lang :updated %></th>
+      <th class="filename"><%= @model.lang :filename %></th>
+      <th class="datetime"><%= @model.lang :updated %></th>
     </tr>
   </thead>
   
   <tbody>
     <% @items.each do |item| %>
     <tr>
-      <td>
+      <td class="checkbox">
         <input type="checkbox" name="ids[]" value="<%= item.id %>" />
         <nav class="row-menu">
           <%= link_to "詳細を見る", action: :show, id: item %>
         </nav>
       </td>
       <td><%= link_to item.name, { action: :show, id: item }, class: "icon-page" %></td>
-      <td><%= File.basename item.filename %></td>
-      <td><%= item.updated.strftime("%Y/%m/%d") %></td>
+      <td class="filename"><%= File.basename item.filename %></td>
+      <td class="datetime"><%= item.updated.strftime("%Y/%m/%d %H:%M") %></td>
     </tr>
     <% end %>
   </tbody>

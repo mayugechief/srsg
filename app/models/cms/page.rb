@@ -99,8 +99,14 @@ class Cms::Page
   #embeds_many :html, class_name: "Cms::String"
   
   before_save :set_filename
-      
-  public
+  
+  class << self
+    
+    public
+      def addon(cell, opts = {})
+        Cms::Editor.addon cell, opts
+      end
+  end
   
   private
     def set_filename

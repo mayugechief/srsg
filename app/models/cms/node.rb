@@ -25,7 +25,7 @@ class Cms::Node
       
       validates :name, presence: true, length: { maximum: 80 }
       validates :filename, presence: true, length: { maximum: 2000 }
-      #validates :route, presence: true
+      validates :route, presence: true
       #validates :type, presence: true
       
       validate :validate_node
@@ -127,11 +127,16 @@ class Cms::Node
   class << self
     
     def route(path)
-      @@routes << [path.titleize.sub("/", " : "), path]
+      @@routes << [path.titleize, path]
     end
     
     def routes
       @@routes
+    end
+    
+    def modules
+      keys = @@routes.map {|m| m[1].sub(/\/.*/, "") }.uniq
+      keys.map {|m| [m.titleize, m] }
     end
   end
 end

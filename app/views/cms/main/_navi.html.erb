@@ -1,13 +1,17 @@
 <nav class="main-menu">
-  <h1>Shortcut</h1>
-  <%= link_to :contents, cms_contents_path %>
+  <header><h1>Shortcut</h1></header>
+  <div>
+    <%= link_to :contents, cms_contents_path %>
+  </div>
 </nav>
 
 <nav class="main-menu">
-  <h1>Node</h1>
-  <%= link_to :nodes, cms_nodes_path %>
-  <%= link_to :pages, cms_pages_path %>
-  <%= link_to :layouts, cms_layouts_path %>
-  <%= link_to :pieces, cms_pieces_path %>
-  <%= link_to :roles, cms_roles_path %>
+  <header><h1>Node</h1></header>
+  <div>
+    <%= link_to :nodes, cms_nodes_path %>
+    <%= link_to :pages, cms_pages_path %>
+    <%= link_to :layouts, cms_layouts_path %>
+    <%= link_to :pieces, cms_pieces_path %>
+    <%= link_to :roles, cms_roles_path %>
+  </div>
 </nav>

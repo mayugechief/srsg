@@ -1,11 +1,11 @@
 <nav class="act-menu">
-  <header>
-    <h1>Action</h1>
-  </header>
-  <% if params[:action] =~ /edit|update|delete/ %>
-    <%= link_to '詳細へ戻る', action: :show, id: @item %>
-  <% else %>
-    <%= link_to '編集する', action: :edit, id: @item %>
-    <%= link_to '削除する', action: :delete, id: @item %>
-  <% end %>
+  <header><h1>Action</h1></header>
+  <div>
+    <% if params[:action] =~ /edit|update|delete/ %>
+      <%= link_to '詳細へ戻る', action: :show, id: @item %>
+    <% else %>
+      <%= link_to '編集する', action: :edit, id: @item %>
+      <%= link_to '削除する', action: :delete, id: @item %>
+    <% end %>
+  </div>
 </nav>

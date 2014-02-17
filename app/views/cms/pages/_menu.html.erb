@@ -6,21 +6,25 @@
 
 <nav class="page-menu plugins">
   <header><h1>Fields</h1></header>
-  <% Cms::Editor.single_plugins.each_with_index do |item, idx| %>
-    <% cur = (idx == 0) ? " current" : "" %>
-    <%= link_to item.name, "#",  class: "plugin-tab #{cur}",
-      "data-id" => "#plugin#{item.object_id}", "data-src" => item.cell %>
-  <% end %>
+  <div>
+    <% Cms::Editor.plugins.each_with_index do |item, idx| %>
+      <% cur = (idx == 0) ? " current" : "" %>
+      <%= link_to item.name, "#",  class: "plugin-tab #{cur}",
+        "data-id" => "#plugin#{item.object_id}", "data-src" => item.cell %>
+    <% end %>
+  </div>
 </nav>
 
 <nav class="page-menu">
-  <header><h1>(Incubator)</h1></header>
-  <%= link_to "Files", "#" %>
-  <%= link_to "Editional Rights", "#" %>
-  <%= link_to "Publish Date", "#" %>
-  <%= link_to "Event", "#" %>
-  <%= link_to "Inquiries", "#" %>
-  <%= link_to "Google Maps", "#" %>
+  <header><h1>Incubator</h1></header>
+  <div>
+    <%= link_to "Files", "#" %>
+    <%= link_to "Roles", "#" %>
+    <%= link_to "Date", "#" %>
+    <%= link_to "Event", "#" %>
+    <%= link_to "Inquiry", "#" %>
+    <%= link_to "Maps", "#" %>
+  </div>
 </nav>
 
 <div style="margin: 0px 0px 20px; text-align: center;">

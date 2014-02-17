@@ -3,19 +3,19 @@
 <% if params[:action] =~ /index/ %>
 
 <nav class="page-menu">
-  <header>
-    <h1>Tools</h1>
-  </header>
-  <%= link_to :import, "#" %>
+  <header><h1>Tools</h1></header>
+  <div>
+    <%= link_to :import, "#" %>
+  </div>
 </nav>
 
 <% elsif params[:action] =~ /show/ %>
 
 <nav class="page-menu">
-  <header>
-    <h1>Tools</h1>
-  </header>
-  <%= link_to :export, "#" %>
+  <header><h1>Tools</h1></header>
+  <div>
+    <%= link_to :export, "#" %>
+  </div>
 </nav>
 
 <% end %>
