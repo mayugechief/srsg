@@ -3,6 +3,8 @@ SS::Application.routes.draw do
   
   Cms::Node.route "article/pages"
   
+  Cms::Piece.route "article/pages"
+  
   concern :deletion do
     get :delete, on: :member
   end

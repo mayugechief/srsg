@@ -18,7 +18,6 @@ class Cms::Node
       field :filename, type: String
       field :depth, type: Integer, metadata: { form: :none }
       field :route, type: String
-      #field :type, type: String, metadata: { form: :none }
       field :shortcut, type: Integer
       
       index({ site_id: 1, filename: 1 }, { unique: true })
@@ -26,7 +25,6 @@ class Cms::Node
       validates :name, presence: true, length: { maximum: 80 }
       validates :filename, uniqueness: { scope: :site_id }, presence: true, length: { maximum: 2000 }
       validates :route, presence: true
-      #validates :type, presence: true
       
       validate :validate_node
       validate :validate_filename
@@ -122,9 +120,9 @@ class Cms::Node
   
   include Base
   
-  @@routes = []
-  
   class << self
+    
+    @@routes = []
     
     def route(path)
       @@routes << [path.titleize, path]

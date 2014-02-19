@@ -625,7 +625,7 @@ a.icon-piece {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #ccc;
     background-color: #eee;
-    padding: 2px 5px;
+    padding: 4px 5px;
     font-size: 90%;
     header {
       float: left;
@@ -644,6 +644,10 @@ a.icon-piece {
       border-radius: 2px;
       color: #000;
       line-height: 2.4;
+      &[class ^= "icon"] {
+        padding-left: 26px;
+        background-position: 10px center;
+      }
       &.current {
         box-shadow: 1px 1px 1px #ccc;
         background-color: #678;

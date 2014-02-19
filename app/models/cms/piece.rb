@@ -16,4 +16,22 @@ class Cms::Piece
       self.filename << ".piece.html" unless filename.index(".")
       errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.piece\.html$/
     end
+  
+  class << self
+    
+    @@routes = []
+    
+    def route(path)
+      @@routes << [path.titleize, path]
+    end
+    
+    def routes
+      @@routes
+    end
+    
+    def modules
+      keys = @@routes.map {|m| m[1].sub(/\/.*/, "") }.uniq
+      keys.map {|m| [m.titleize, m] }
+    end
+  end
 end
