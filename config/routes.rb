@@ -48,6 +48,7 @@ SS::Application.routes.draw do
   
   namespace "cms", path: ".:host" do
     get "/" => "main#index", as: :main
+    #get "/" => "contents#index", as: :main
   end
   
   namespace "cms", path: ".:host/cms" do

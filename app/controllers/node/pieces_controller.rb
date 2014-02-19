@@ -14,16 +14,6 @@ class Node::PiecesController < ApplicationController
   
   public
     def index
-      @items = @model.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
-        where(depth: @cur_node.depth + 1).
-        sort(name: 1)
-      
-      render_crud
+      redirect_to node_layouts_path
     end
-    
-    #def new
-    #  @item = @model.new filename: "#{@cur_node.filename}/"
-    #  render_crud
-    #end
 end

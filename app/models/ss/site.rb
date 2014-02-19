@@ -27,7 +27,7 @@ class SS::Site
   index({ domains: 1 }, { unique: true })
   
   validates :name, presence: true, length: { maximum: 40 }
-  validates :host, presence: true, length: { minimum: 3, maximum: 16 }
+  validates :host, uniqueness: true, presence: true, length: { minimum: 3, maximum: 16 }
   
   def domain
     domains[0]

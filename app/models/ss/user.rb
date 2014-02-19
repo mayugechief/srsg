@@ -12,7 +12,7 @@ class SS::User
   index({ email: 1 }, { unique: true })
   
   validates :name, presence: true, length: { maximum: 40 }
-  validates :email, presence: true, email: true, length: { maximum: 80 }
+  validates :email, uniqueness: true, presence: true, email: true, length: { maximum: 80 }
   validates :password, presence: true
   
   before_save :encrypt_password

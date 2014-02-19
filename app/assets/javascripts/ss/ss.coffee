@@ -10,6 +10,17 @@ $ ->
     menu = $(this)
     menu.addClass("current") if path.indexOf(menu.attr("href")) != -1
   
+  if $(window).width() >= 800
+    $("#mod-menu a").not(".current").hide()
+    $("#mod-menu a.current").prependTo("#mod-menu div")
+    $("#mod-menu a.current").click ->
+      $("#mod-menu a").not(".current").slideToggle("fast")
+      #$(this).toggleClass("opened", "closed")
+      return false
+  
+  $("a[href^=http]").each ->
+    $(this).addClass("external")
+  
   SS_ListUI.render("table.index")
   SS_Editor.tabs(".plugin-tab")
 

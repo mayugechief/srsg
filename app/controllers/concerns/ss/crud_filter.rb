@@ -83,7 +83,7 @@ module SS::CrudFilter
     def base_create
       respond_to do |format|
         if @item.save
-          format.html { redirect_to({ action: :show, id: @item}, notice: "Created.") }
+          format.html { redirect_to({ action: :show, id: @item }, notice: "Created.") }
           format.json { render action: 'show', status: :created, location: @item }
         else
           format.html { render_crud :new }
@@ -95,7 +95,7 @@ module SS::CrudFilter
     def base_update
       respond_to do |format|
         if @item.update
-          format.html { redirect_to({ action: :show, id: @item }, notice: "Updated.") }
+          format.html { redirect_to({ action: :show }, notice: "Updated.") }
           format.json { head :no_content }
         else
           format.html { render_crud :edit }

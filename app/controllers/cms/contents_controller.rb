@@ -5,9 +5,9 @@ class Cms::ContentsController < ApplicationController
   navi_view "cms/main/navi"
   
   private
-    def set_crumbs
-      @crumbs << [:contents, cms_contents_path]
-    end
+    #def set_crumbs
+    #  @crumbs << [:contents, action: :index]
+    #end
     
   public
     def index

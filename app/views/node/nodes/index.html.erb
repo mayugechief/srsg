@@ -1,1 +1,72 @@
-<%= render template: "cms/nodes/index" %>
+<table class="index">
+  <thead>
+    <tr>
+      <th class="checkbox"><input type="checkbox" /></th>
+      <th><%= @model.lang :name %></th>
+      <th class="filename"><%= @model.lang :filename %></th>
+      <th class="datetime"><%= @model.lang :updated %></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <% if @cur_node.parent %>
+      <td class="checkbox">
+        <nav class="row-menu">
+          <%= link_to :parent_node, cid: @cur_node.parent %>
+        </nav>
+      </td>
+      <td><%= link_to "..", { cid: @cur_node.parent }, class: "icon-node" %></td>
+      <td class="filename"><%= File.basename @cur_node.parent.filename %></td>
+      <% else %>
+      <td class="checkbox">
+        <nav class="row-menu">
+          <%= link_to :parent_node, cms_nodes_path %>
+        </nav>
+      </td>
+      <td><%= link_to "..", cms_nodes_path, class: "icon-node" %></td>
+      <td class="filename">/</td>
+      <% end %>
+      <td class="datetime"></td>
+    </tr>
+    
+    <tr>
+      <td class="checkbox">
+        <nav class="row-menu">
+          <%= link_to "詳細を見る", controller: :selves, action: :show %>
+        </nav>
+      </td>
+      <td><%= link_to ".", { controller: :selves, action: :show }, class: "icon-node" %></td>
+      <td class="filename"><%= File.basename @cur_node.filename %></td>
+      <td class="datetime"><%= @cur_node.updated.strftime("%Y/%m/%d %H:%M") %></td>
+    </tr>
+    
+    <% @items.each do |item| %>
+    <tr>
+      <td class="checkbox">
+        <input type="checkbox" name="ids[]" value="<%= item.id %>" />
+        <nav class="row-menu">
+          <%= link_to "詳細を見る", action: :show, id: item %>
+        </nav>
+      </td>
+      <td><%= link_to item.name, { cid: item }, class: "icon-node" %></td>
+      <td class="filename"><%= File.basename item.filename %></td>
+      <td class="datetime"><%= item.updated.strftime("%Y/%m/%d %H:%M") %></td>
+    </tr>
+    <% end %>
+    
+    <% (@pages || []).each do |item| %>
+    <tr>
+      <td class="checkbox">
+        <input type="checkbox" name="ids[]" value="<%= item.id %>" />
+        <nav class="row-menu">
+          <%= link_to "詳細を見る", node_page_path(id: item) %>
+        </nav>
+      </td>
+      <td><%= link_to item.name, node_page_path(id: item), class: "icon-page" %></td>
+      <td class="filename"><%= File.basename item.filename %></td>
+      <td class="datetime"><%= item.updated.strftime("%Y/%m/%d %H:%M") %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

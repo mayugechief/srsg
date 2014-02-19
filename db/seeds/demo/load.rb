@@ -104,7 +104,11 @@ end
 
 save_page filename: "index.html", name: "トップページ", layout_id: layouts["top"].id
 
+## -------------------------------------
+puts "articles:"
+
 1.step(9) do |i|
   save_page filename: "docs/#{i}.html", name: "サンプル記事#{i}", html: "<p>本文です。</p>",
-    layout_id: layouts["page"].id, category_ids: Category::Node.pluck(:_id).sample(4)
+    route: "article/pages", layout_id: layouts["page"].id,
+    category_ids: Category::Node.pluck(:_id).sample(4)
 end

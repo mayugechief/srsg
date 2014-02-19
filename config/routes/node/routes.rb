@@ -7,12 +7,12 @@ SS::Application.routes.draw do
   
   content "node" do
     get "/" => "main#index", as: :main
+    resource :self, concerns: :deletion, path: "nodes/self"
     resources :nodes, concerns: :deletion
     resources :pages, concerns: :deletion
     resources :layouts, concerns: :deletion
     resources :pieces, concerns: :deletion
     resources :roles, concerns: :deletion
-    resource :config, concerns: :deletion
   end
   
 end

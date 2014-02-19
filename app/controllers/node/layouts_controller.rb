@@ -17,7 +17,14 @@ class Node::LayoutsController < ApplicationController
       @items = @model.site_is(@cur_site).
         where(filename: /^#{@cur_node.filename}\//).
         where(depth: @cur_node.depth + 1).
-        sort(name: 1)
+        sort(filename: 1).
+        limit(100)
+      
+      @pieces = Cms::Piece.site_is(@cur_site).
+        where(filename: /^#{@cur_node.filename}\//).
+        where(depth: @cur_node.depth + 1).
+        sort(filename: 1).
+        limit(200)
       
       render_crud
     end

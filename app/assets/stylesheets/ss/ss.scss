@@ -44,7 +44,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #e5b;
+  color: #f0a;
   text-decoration: underline;
 }
 table {
@@ -263,12 +263,17 @@ code {
       border-top: 1px solid #ddd;
       background-color: #fff;
       color: #444;
+      &[class ^= "icon"] {
+        padding-left: 30px;
+        background-position: 10px center;
+      }
       &:after {
-        float: right;
-        color: #bbb;
+        //float: right;
+        //color: #bbb;
       }
       &:hover {
         background-color: #f8f8f8;
+        //color: #f0a;
         text-decoration: none;
       }
       &.current {
@@ -276,8 +281,28 @@ code {
       }
     }
   }
+  nav.sub-menu xxx {
+    margin-top: -10px;
+    header {
+      height: 0px;
+      padding: 0px;
+      h1 { display: none; }
+    }
+    div a:first-child {
+      border: none;
+    }
+  }
+  #mod-menu a.current {
+    &:after {
+      float: right;
+      margin: -2px -2px 0px 0px;
+      color: #bbb;
+      content: "▼";
+    }
+    &:hover:after { color: #888; }
+  }
   nav.flow-menu a:after {
-    content: "";
+    //content: "";
   }
   
   // -------------------------------------------------------------------
@@ -349,8 +374,10 @@ code {
   top: 0px;
   left: 0px;
   width: 100%;
+  padding: 5px 10px;
+  box-shadow: 0px 1px 2px #888;
   background-color: #48f;
-  background-color:rgba(40, 120, 255, 0.85);
+  background-color:rgba(88, 88, 88, 0.8);
   color: #fff;
   line-height: 2.4;
   text-align: center;
@@ -476,11 +503,26 @@ footer.send {
   background-position: 0px center;
   @content;
 }
+a.external:after {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 4px;
+  background-image: image-url("icon-link-external.png");
+  background-repeat: no-repeat;
+  content: "";
+}
 a.icon-node {
   @include list-icon { background-image: image-url("icon-node.png"); }
 }
 a.icon-page {
   @include list-icon { background-image: image-url("icon-page.png"); }
+}
+a.icon-layout {
+  @include list-icon { background-image: image-url("icon-layout.png"); }
+}
+a.icon-piece {
+  @include list-icon { background-image: image-url("icon-piece.png"); }
 }
 
 // -----------------------------------------------------------------------------
@@ -609,6 +651,9 @@ a.icon-page {
         text-decoration: none;
       }
     }
+  }
+  #mod-menu a {
+    display: block !important;
   }
   
   // -------------------------------------------------------------------

@@ -9,7 +9,7 @@ class Cms::NodesController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:nodes, cms_nodes_path]
+      @crumbs << [:nodes, action: :index]
     end
     
     def set_params
@@ -20,7 +20,8 @@ class Cms::NodesController < ApplicationController
     def index
       @items = @model.site_is(@cur_site).
         where(depth: 1).
-        sort(filename: 1)
+        sort(filename: 1).
+        limit(200)
       
       render_crud
     end

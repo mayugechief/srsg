@@ -9,7 +9,7 @@ class Cms::PiecesController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:pieces, cms_pieces_path]
+      @crumbs << [:pieces, action: :index]
     end
     
     def set_params
@@ -20,7 +20,7 @@ class Cms::PiecesController < ApplicationController
     def index
       @items = @model.site_is(@cur_site).
         where(depth: 1).
-        sort(name: 1)
+        sort(filename: 1)
       
       render_crud
     end

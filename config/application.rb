@@ -20,7 +20,9 @@ module SS
     config.autoload_paths << "#{config.root}/lib"
     config.autoload_paths << "#{config.root}/app/validators"
     
-    Dir.glob("#{config.root}/config/routes/*/*.rb") {|f| config.paths["config/routes.rb"] << f }
+    Dir.glob("#{config.root}/config/routes/*/*.rb").sort.each do |f|
+      config.paths["config/routes.rb"] << f
+    end
     config.paths["config/routes.rb"] << "#{config.root}/config/routes_end.rb"
   end
 end

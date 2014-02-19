@@ -19,7 +19,7 @@ module ApplicationHelper
   end
   
   def link_to(*args)
-    args[0] = args[0].to_s.titleize if args[0].class == Symbol
+    args[0] = args[0].to_s.humanize if args[0].class == Symbol
     super *args
   end
 end

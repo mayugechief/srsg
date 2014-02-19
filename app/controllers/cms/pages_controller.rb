@@ -9,7 +9,7 @@ class Cms::PagesController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:pages, cms_pages_path]
+      @crumbs << [:pages, action: :index]
     end
     
     def set_params
@@ -20,7 +20,9 @@ class Cms::PagesController < ApplicationController
     def index
       @items = @model.site_is(@cur_site).
         where(depth: 1).
-        sort(updated: -1)
+        where(route: "cms/pages").
+        sort(updated: -1).
+        limit(200)
       
       render_crud
     end

@@ -3,6 +3,7 @@ class Cms::PublicController < ApplicationController
   
   rescue_from StandardError, with: :rescue_action
   
+  before_action :deny_requesta
   before_action :dev_site, if: -> { Rails.env.to_s == "development" }
   before_action :set_site
   before_action :set_path
@@ -31,6 +32,10 @@ class Cms::PublicController < ApplicationController
     end
   
   private
+    def deny_requesta
+      raise "404" if request.env["REQUEST_PATH"].to_s =~ /^\/sites\/.\//
+    end
+    
     def dev_site
       @cur_site ||= SS::Site.find_by domains: request.env["HTTP_HOST"] rescue nil
       @cur_site ||= SS::Site.first

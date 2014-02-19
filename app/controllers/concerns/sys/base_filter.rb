@@ -4,7 +4,7 @@ module Sys::BaseFilter
   
   included do
     include SS::BaseFilter
-    before_action { @crumbs <<  [:sys, sys_main_path] }
+    before_action { @crumbs <<  [:system, sys_main_path] }
     before_action :set_crumbs
   end
   

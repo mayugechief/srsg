@@ -6,6 +6,6 @@ class Cms::MainController < ApplicationController
   
   public
     def index
-      #
+      redirect_to cms_contents_path
     end
 end

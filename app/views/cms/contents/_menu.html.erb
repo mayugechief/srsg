@@ -7,7 +7,7 @@ end
 %><nav class="page-menu">
   <header><h1>Module</h1></header>
   <div>
-    <%= link_to :all_contents, cms_contents_path, class: current?("") %>
+    <%= link_to :all, cms_contents_path, class: current?("") %>
     <% Cms::Node.modules.each do |name, key| %>
       <%= link_to name, cms_contents_path(mod: key), class: current?(key) %>
     <% end %>

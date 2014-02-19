@@ -18,12 +18,7 @@ module Cms::BaseFilter
     def set_node
       return unless params[:cid]
       @cur_node = Cms::Node.site_is(@cur_site).find params[:cid]
-      
-      @crumbs << [:contents, cms_contents_path]
-      @cur_node.parents.each do |node|
-        #@crumbs << [node.name, "/.#{@cur_site.host}/#{node.route.sub(/\/.*/, '')}#{node.id}"]
-        @crumbs << [node.name, node_nodes_path(node)]
-      end
+      @cur_node.parents.each {|node| @crumbs << [node.name, node_nodes_path(node)] }
       @crumbs << [@cur_node.name, node_nodes_path(@cur_node)]
     end
     

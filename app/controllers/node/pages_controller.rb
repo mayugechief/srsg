@@ -15,12 +15,6 @@ class Node::PagesController < ApplicationController
     
   public
     def index
-      @items = @model.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
-        where(depth: @cur_node.depth + 1).
-        desc(:updated).
-        page(params[:page])
-      
-      render_crud
+      redirect_to node_nodes_path
     end
 end

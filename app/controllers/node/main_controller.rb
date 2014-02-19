@@ -4,6 +4,6 @@ class Node::MainController < ApplicationController
   
   public
     def index
-      redirect_to node_nodes_path
+      redirect_to node_pages_path
     end
 end

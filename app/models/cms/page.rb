@@ -18,7 +18,7 @@ class Cms::Page
       index({ site_id: 1, filename: 1 }, { unique: true })
       
       validates :name, presence: true, length: { maximum: 80 }
-      validates :filename, length: { maximum: 80 }
+      validates :filename, uniqueness: { scope: :site_id }, length: { maximum: 80 }
       
       validate :validate_node, if: -> { filename.present? }
       validate :validate_filename
@@ -90,6 +90,7 @@ class Cms::Page
   
   store_in collection: "cms_pages"
   
+  field :route, type: String, default: -> { "cms/pages" }
   field :keywords, type: SS::Fields::Words
   field :description, type: String, metadata: { form: :text }
   field :html, type: String, metadata: { form: :text }

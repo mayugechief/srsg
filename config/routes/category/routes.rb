@@ -14,6 +14,7 @@ SS::Application.routes.draw do
   
   content "category" do
     get "/" => "main#index", as: :main
+    resource :self, concerns: :deletion, path: "nodes/self"
     resources :nodes, concerns: :deletion
   end
   

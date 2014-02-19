@@ -10,13 +10,14 @@ class Article::PagesController < ApplicationController
   
   private
     def set_params
-      super.merge site_id: @cur_site._id, cur_node: @cur_node
+      super.merge site_id: @cur_site._id, cur_node: @cur_node, route: "article/pages"
     end
     
   public
     def index
       @items = @model.site_is(@cur_site).
         where(filename: /^#{@cur_node.filename}\//).
+        where(route: "article/pages").
         desc(:updated).
         page(params[:page])
       

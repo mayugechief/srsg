@@ -2,7 +2,8 @@
   <header><h1>Action</h1></header>
   <div>
     <% if params[:action] =~ /index/ %>
-      <%= link_to :new, action: :new %>
+      <%= link_to :new_node, { controller: :nodes, action: :new }, class: "icon-node" %>
+      <%= link_to :new_page, { controller: :pages, action: :new }, class: "icon-page" %>
     <% elsif params[:action] =~ /new|create/ %>
       <%= link_to :back_to_index, action: :index %>
     <% elsif params[:action] =~ /edit|update|delete/ %>

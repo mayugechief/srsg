@@ -1,6 +1,2 @@
-<header>
-  <h1>[<%= @cur_site.host %>] <%= @cur_site.name %></h1>
-</header>
-<div>
-  <%= link_to @cur_site.full_url, "#{@cur_site.full_url}", :target => "_blank" %>
-</div>
+<h1><%= @cur_site.name %></h1>
+<p><%= link_to @cur_site.full_url, "#{@cur_site.full_url}", :target => "_blank" %></p>
