@@ -105,8 +105,7 @@ module Cms::PartFilter
       end
       
       def destroy
-        parent = @item.parent
-        url = parent ? { controller: :nodes, cid: parent } : cms_nodes_path
+        url = @cur_node ? { controller: :parts, cid: @cur_node } : cms_parts_path
         render_destroy @item.destroy, location: url
       end
   end
