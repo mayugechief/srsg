@@ -1,5 +1,7 @@
 # coding: utf-8
 class Node::PagesController < ApplicationController
+  before_action :redirect_index, only: :index
+  
   include Cms::BaseFilter
   include Cms::CrudFilter
   
@@ -13,8 +15,7 @@ class Node::PagesController < ApplicationController
       super.merge site_id: @cur_site._id, cur_node: @cur_node
     end
     
-  public
-    def index
+    def redirect_index
       redirect_to node_nodes_path
     end
 end

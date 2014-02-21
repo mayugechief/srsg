@@ -1,8 +1,0 @@
-<nav class="main-menu" id="mod-menu">
-  <header><h1>Module</h1></header>
-  <div>
-    <% Cms::Node.modules.each do |name, key| %>
-      <%= link_to name, send("#{key}_main_path") %>
-    <% end %>
-  </div>
-</nav>

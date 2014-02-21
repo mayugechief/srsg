@@ -3,7 +3,7 @@
   <div>
     <% if params[:action] =~ /index/ %>
       <%= link_to :new_layout, new_node_layout_path, class: "icon-layout" %>
-      <%= link_to :new_piece, new_node_piece_path, class: "icon-piece" %>
+      <%= link_to :new_part, new_node_part_path, class: "icon-part" %>
     <% elsif params[:action] =~ /new|create/ %>
       <%= link_to :back_to_index, action: :index %>
     <% elsif params[:action] =~ /edit|update|delete/ %>

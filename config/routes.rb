@@ -12,16 +12,17 @@ class ActionDispatch::Routing::Mapper
     namespace(name, as: "node_#{name}", path: path, module: "cms") { yield }
   end
   
-  def piece(ns, &block)
+  def part(ns, &block)
     name = ns.gsub("/", "_")
-    path = ".:host/piece/#{ns}"
-    namespace(name, as: "piece_#{name}", path: path, module: "cms") { yield }
+    path = ".:host/part/#{ns}"
+    namespace(name, as: "part_#{name}", path: path, module: "cms") { yield }
   end
 end
 
 SS::Application.routes.draw do
   
   Cms::Node.route "node/none"
+  Cms::Part.route "cms/frees"
   
   Cms::Page.addon "cms/basic"
   Cms::Page.addon "cms/html"
@@ -56,8 +57,8 @@ SS::Application.routes.draw do
     resources :contents, path: "contents/(:mod)"
     resources :nodes, concerns: :deletion
     resources :pages, concerns: :deletion
+    resources :parts, concerns: :deletion
     resources :layouts, concerns: :deletion
-    resources :pieces, concerns: :deletion
     resources :roles, concerns: :deletion
   end
   

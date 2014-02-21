@@ -3,7 +3,7 @@
   <% disp = "display: block; margin-bottom: 10px;" if params[:show] == "all" %>
   
   <div id="plugin<%= item.object_id %>" class="plugin" style="<%= disp %>">
-    <%= render_cell "#{item.cell}/edit", :update, f: f,
-      :@cur_site => @cur_site, :@item => @item, :@model => @model %>
+    <%= render_cell "#{item.cell}/edit", :update,
+      f: f, :@cur_site => @cur_site, :@item => @item, :@model => @model %>
   </div>
 <% end %>

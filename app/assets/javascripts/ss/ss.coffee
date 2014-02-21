@@ -8,16 +8,17 @@ $ ->
   path = location.pathname + "/"
   $("#navi .main-menu a, #navi .sub-menu a").each ->
     menu = $(this)
-    menu.addClass("current") if path.indexOf(menu.attr("href")) != -1
+    menu.addClass("current") if path.indexOf(menu.attr("href")) == 0
   
   if $(window).width() >= 800
-    $("#mod-menu a").not(".current").hide()
-    $("#mod-menu a.current").prependTo("#mod-menu div")
-    $("#mod-menu a.current").click ->
-      $("#mod-menu a").not(".current").slideToggle("fast")
-      #$(this).toggleClass("opened", "closed")
-      return false
-  
+    menu = $(".pulldown-menu")
+    link = menu.find("a")
+    menu.each ->
+      link.not(".current").hide()
+      link.filter(".current").prependTo(menu).click ->
+        link.not(".current").slideToggle("fast")
+        return false
+        
   $("a[href^=http]").each ->
     $(this).addClass("external")
   

@@ -23,7 +23,7 @@ module SS::CrudFilter
     end
     
     def set_item
-      @item = @model.find(params[:id])
+      @item = @model.find params[:id]
     end
     
     def set_params(keys = [])
@@ -55,18 +55,17 @@ module SS::CrudFilter
     end
     
     def create
-      @item = @model.new(set_params)
-      base_create
+      @item = @model.new set_params
+      render_create @item.save
     end
     
     def update
       @item.attributes = set_params
-      base_update
+      render_update @item.update
     end
     
     def destroy
-      @item.destroy
-      base_destroy
+      render_destroy @item.destroy
     end
     
   private
@@ -80,34 +79,51 @@ module SS::CrudFilter
       end
     end
     
-    def base_create
-      respond_to do |format|
-        if @item.save
-          format.html { redirect_to({ action: :show, id: @item }, notice: "Created.") }
+    def render_create(result, opts = {})
+      location = opts[:location].presence || { action: :show, id: @item }
+      
+      if result
+        respond_to do |format|
+          format.html { redirect_to location, notice: "Created." }
           format.json { render action: 'show', status: :created, location: @item }
-        else
+        end
+      else
+        respond_to do |format|
           format.html { render_crud :new }
           format.json { render json: @item.errors, status: :unprocessable_entity }
         end
       end
     end
     
-    def base_update
-      respond_to do |format|
-        if @item.update
-          format.html { redirect_to({ action: :show }, notice: "Updated.") }
+    def render_update(result, opts = {})
+      location = opts[:location].presence || { action: :show }
+      
+      if result
+        respond_to do |format|
+          format.html { redirect_to location, notice: "Updated." }
           format.json { head :no_content }
-        else
+        end
+      else
+        respond_to do |format|
           format.html { render_crud :edit }
           format.json { render json: @item.errors, status: :unprocessable_entity }
         end
       end
     end
     
-    def base_destroy
-      respond_to do |format|
-        format.html { redirect_to({ action: :index }, notice: "Destroyed.") }
-        format.json { head :no_content }
+    def render_destroy(result, opts = {})
+      location = opts[:location].presence || { action: :index }
+      
+      if result
+        respond_to do |format|
+          format.html { redirect_to location, notice: "Destroyed." }
+          format.json { head :no_content }
+        end
+      else
+        respond_to do |format|
+          format.html { render_crud :delete }
+          format.json { render json: @item.errors, status: :unprocessable_entity }
+        end
       end
     end
 end

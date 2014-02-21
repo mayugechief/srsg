@@ -1,6 +1,8 @@
 srsg install
 ============
 
+CentOS 6.5/64bit
+
 mongodb
 
   vi /etc/yum.repos.d/CentOS-Base.repo

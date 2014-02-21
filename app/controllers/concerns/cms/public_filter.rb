@@ -1,16 +1,15 @@
 # coding: utf-8
-module Cms::PublicFilter # for cell
+module Cms::PublicFilter
+  
   extend ActiveSupport::Concern
   
   included do
     helper ApplicationHelper
-    before_action :set_site
+    before_action :inherit_vars
   end
   
   private
-    def set_site
-      @cur_site = params[:cur_site]
-      @cur_page = params[:cur_page]
-      @cur_node = params[:cur_node]
+    def inherit_vars
+      params[:vars].each {|key, val| instance_variable_set "@#{key}", val }
     end
 end

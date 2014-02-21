@@ -12,10 +12,10 @@ namespace :cms do
     end
   end
   
-  # namespace :piece do
+  # namespace :part do
     # task :publish => :environment  do
       # puts "Publish layouts ..."
-      # Cms::Piece.all.each do |item|
+      # Cms::Part.all.each do |item|
         # puts "  #{item.path}"
         # Storage.write item.path, item.render_html
       # end

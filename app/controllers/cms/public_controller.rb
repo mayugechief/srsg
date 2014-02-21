@@ -12,7 +12,7 @@ class Cms::PublicController < ApplicationController
   before_action :x_sendfile
   before_action :check_mobile
   before_action :check_kana
-  before_action :render_piece
+  before_action :render_part
   before_action :render_layout
   after_action :render_mobile
   
@@ -95,18 +95,18 @@ class Cms::PublicController < ApplicationController
       rec[:cell] ? { controller: rec[:cell], action: "index" } : nil
     end
     
-    def render_piece
-      return if @path !~ /\.piece\.(html|json)$/
+    def render_part
+      return if @path !~ /\.part\.(html|json)$/
       
       path = @path.sub(/\.json$/, ".html")
-      page = Cms::Piece.find_by(site_id: @cur_site, filename: path) rescue nil
+      page = Cms::Part.find_by(site_id: @cur_site, filename: path) rescue nil
       raise "404" unless page
       
-      if page.route.present?
-        cell = recognize_path "/.#{@cur_site.host}/piece/#{page.route}.#{@path.sub(/.*\./, '')}"
+      if page.route.present? && page.route != "cms/frees"
+        cell = recognize_path "/.#{@cur_site.host}/part/#{page.route}.#{@path.sub(/.*\./, '')}"
         raise "404" unless cell
-        params.merge! cur_site: @cur_site, cur_page: page
-        body = render_cell "#{page.route.sub('/', '/piece/')}/view", cell[:action]
+        params.merge! vars: { cur_site: @cur_site, cur_page: page }
+        body = render_cell "#{page.route.sub('/', '/part/')}/view", cell[:action]
       else
         body = page.html
       end
@@ -116,7 +116,7 @@ class Cms::PublicController < ApplicationController
       respond_to do |format|
         format.html do
           @cur_page = page
-          render inline: body, layout: "cms/piece"
+          render inline: body, layout: "cms/part"
         end
         format.json do
           #body.gsub!(/^<header>.*?<\/header>/m, "")
@@ -146,7 +146,7 @@ class Cms::PublicController < ApplicationController
       page = Cms::Page.find_by(site_id: @cur_site, filename: @path) rescue nil 
       return unless page
       
-      params.merge! cur_site: @cur_site, cur_page: page
+      params.merge! vars: { cur_site: @cur_site, cur_page: page }
       body = render_cell "cms/page/page/view", "index"
       
       body = render_kana body
@@ -174,7 +174,7 @@ class Cms::PublicController < ApplicationController
       cell = recognize_path "/.#{@cur_site.host}/node/#{node.route}/#{rest}"
       return unless cell
       
-      params.merge! cur_site: @cur_site, cur_node: node
+      params.merge! vars: { cur_site: @cur_site, cur_node: node }
       body = render_cell "#{node.route.sub('/', '/node/')}/view", cell[:action]
       
       body = render_kana body
@@ -244,5 +244,6 @@ class Cms::PublicController < ApplicationController
         file = "#{dir}/#{name}"
         render(status: status, file: file, layout: false) and return if Storage.exists?(file)
       end
+      render status: status, nothing: true
     end
 end

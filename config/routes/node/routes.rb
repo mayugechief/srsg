@@ -10,8 +10,8 @@ SS::Application.routes.draw do
     resource :self, concerns: :deletion, path: "nodes/self"
     resources :nodes, concerns: :deletion
     resources :pages, concerns: :deletion
+    resources :parts, concerns: :deletion
     resources :layouts, concerns: :deletion
-    resources :pieces, concerns: :deletion
     resources :roles, concerns: :deletion
   end
   

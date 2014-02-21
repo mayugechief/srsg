@@ -23,15 +23,15 @@
     </tr>
     <% end %>
     
-    <% @pieces.each do |item| %>
+    <% @parts.each do |item| %>
     <tr>
       <td class="checkbox">
         <input type="checkbox" name="ids[]" value="<%= item.id %>" />
         <nav class="row-menu">
-          <%= link_to "詳細を見る", node_piece_path(id: item) %>
+          <%= link_to "詳細を見る", node_part_path(id: item) %>
         </nav>
       </td>
-      <td><%= link_to item.name, node_piece_path(id: item), class: "icon-piece" %></td>
+      <td><%= link_to item.name, node_part_path(id: item), class: "icon-part" %></td>
       <td class="filename"><%= File.basename item.filename %></td>
       <td class="datetime"><%= item.updated.strftime("%Y/%m/%d %H:%M") %></td>
     </tr>

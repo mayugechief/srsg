@@ -1,6 +1,12 @@
 # coding: utf-8
 class Category::Node::Nodes
   
+  class ConfigCell < Cell::Rails
+    include Cms::NodeFilter::Config
+    
+    model Category::Node::Node
+  end
+  
   class ViewCell < Cell::Rails
     include Cms::PublicFilter
     

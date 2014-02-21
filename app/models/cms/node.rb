@@ -54,10 +54,10 @@ class Cms::Node
       end
       
       def parent
-        return @parent if @parent
-        return nil if depth == 1
+        return @parent unless @parent.nil?
+        return @parent = false if depth == 1 || !filename.to_s.index("/")
         
-        dirs = []
+        dirs  = []
         names = File.dirname(filename).split('/')
         names.each {|name| dirs << (dirs.size == 0 ? name : "#{dirs.last}/#{name}") }
         
@@ -76,8 +76,8 @@ class Cms::Node
         Cms::Page.where(site_id: site_id, filename: /^#{filename}\//)
       end
       
-      def pieces
-        Cms::Piece.where(site_id: site_id, filename: /^#{filename}\//)
+      def parts
+        Cms::Part.where(site_id: site_id, filename: /^#{filename}\//)
       end
       
       def layouts
@@ -113,7 +113,7 @@ class Cms::Node
       def destroy_children
         nodes.destroy
         pages.destroy
-        pieces.destroy
+        parts.destroy
         layouts.destroy
       end
   end

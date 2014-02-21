@@ -20,7 +20,7 @@ class SS::Site
   belongs_to :group, class_name: "SS::Group"
   has_many :pages, class_name: "Cms::Page", dependent: :destroy
   has_many :nodes, class_name: "Cms::Node", dependent: :destroy
-  has_many :pieces, class_name: "Cms::Piece", dependent: :destroy
+  has_many :parts, class_name: "Cms::Part", dependent: :destroy
   has_many :layouts, class_name: "Cms::Layout", dependent: :destroy
   
   index({ host: 1 }, { unique: true })

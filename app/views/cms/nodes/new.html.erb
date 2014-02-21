@@ -1,0 +1,17 @@
+<%= form_for :item, url: { action: :create }, html: { multipart: true } do |f| %>
+<%= error_messages_for :item %>
+
+<% if ::File.exists?("#{Rails.root}/app/views/#{params[:controller]}/_form.html.erb") %>
+<%= render partial: 'form', locals: { f: f } %>
+<% else %>
+<%= render partial: "ss/crud/form", locals: { f: f } %>
+<% end %>
+
+<% if @item.route %>
+<footer class="send">
+  <%= f.submit '保存', class: :save %>
+  <%= f.button "キャンセル", onclick: "location.href='#{url_for(action: :index)}'; return false;" %>
+</footer>
+<% end %>
+
+<% end %>

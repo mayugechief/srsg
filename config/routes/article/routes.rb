@@ -2,8 +2,7 @@
 SS::Application.routes.draw do
   
   Cms::Node.route "article/pages"
-  
-  Cms::Piece.route "article/pages"
+  Cms::Part.route "article/pages"
   
   concern :deletion do
     get :delete, on: :member
@@ -18,8 +17,8 @@ SS::Application.routes.draw do
     get "pages/(index.:format)" => "public#index", cell: "node/pages"
   end
   
-  piece "article" do
-    get "pages" => "public#index", cell: "piece/pages"
+  part "article" do
+    get "pages" => "public#index", cell: "part/pages"
   end
   
 end

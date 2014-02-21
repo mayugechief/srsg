@@ -6,7 +6,7 @@ SS::Application.routes.draw do
   Cms::Node.route "category/nodes"
   Cms::Node.route "category/pages"
   
-  Cms::Page.addon "category/categories"
+  Cms::Page.addon "category/nodes"
   
   concern :deletion do
     get :delete, on: :member

@@ -46,23 +46,23 @@ array   = Cms::Layout.where(site_id: @site._id).map {|m| [m.filename.sub(/\..*/,
 layouts = Hash[*array.flatten]
 
 ## -------------------------------------
-puts "pieces:"
+puts "parts:"
 
-def save_piece(data)
+def save_part(data)
   puts "  #{data[:name]}"
   cond = { site_id: @site._id, filename: data[:filename] }
-  html = File.read("pieces/" + data[:filename]) rescue nil
+  html = File.read("parts/" + data[:filename]) rescue nil
   
-  item = Cms::Piece.find_or_create_by cond
+  item = Cms::Part.find_or_create_by cond
   item.update data.merge html: html
 end
 
-save_piece filename: "head.piece.html", name: "ヘッダー"
-save_piece filename: "navi.piece.html", name: "ナビ"
-save_piece filename: "menu.piece.html", name: "メニュー"
-save_piece filename: "side.piece.html", name: "サイド"
-save_piece filename: "foot.piece.html", name: "フッター"
-save_piece filename: "docs/recent.piece.html", name: "新着情報", route: "article/pages"
+save_part route: "cms/frees"    , filename: "head.part.html", name: "ヘッダー"
+save_part route: "cms/frees"    , filename: "navi.part.html", name: "ナビ"
+save_part route: "cms/frees"    , filename: "menu.part.html", name: "メニュー"
+save_part route: "cms/frees"    , filename: "side.part.html", name: "サイド"
+save_part route: "cms/frees"    , filename: "foot.part.html", name: "フッター"
+save_part route: "article/pages", filename: "docs/recent.part.html", name: "新着情報"
 
 ## -------------------------------------
 puts "nodes:"

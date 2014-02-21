@@ -2,6 +2,7 @@
 class Node::NodesController < ApplicationController
   include Cms::BaseFilter
   include Cms::CrudFilter
+  include Cms::NodeFilter::Base
   
   model Cms::Node
   

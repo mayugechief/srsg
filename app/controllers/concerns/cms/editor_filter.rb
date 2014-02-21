@@ -8,20 +8,22 @@ module Cms::EditorFilter
       helper ApplicationHelper
     end
     
-    def show(opts)
-      render locals: opts
-    end
-    
-    def update(opts)
-      render partial: "form", locals: opts
-    end
+    public
+      def show(opts)
+        render locals: opts
+      end
+      
+      def update(opts)
+        render partial: "form", locals: opts
+      end
   end
   
   module View
     extend ActiveSupport::Concern
     
-    def index(opts)
-      render locals: opts
-    end
+    public
+      def index(opts)
+        render locals: opts
+      end
   end
 end

@@ -1,0 +1,29 @@
+<%
+
+url = params[:action] =~ /new|create/ ? url_for(action: :new) : url_for(action: :edit)
+
+%>
+<% if !@cell %>  
+
+<dl class="see">
+  <dt><%= @model.lang :route %></dt>
+  <dd><%= f.select :route, Cms::Part.routes, { include_blank: "" },
+    onchange: "location.href='#{url}?item[route]='+$(this).val()" %></dd>
+</dl>
+
+<% else %>
+
+<dl class="see">
+  <dt><%= @model.lang :route %></dt>
+  <dd><%= f.select :route, Cms::Part.routes, {},
+    onchange: "location.href='#{url}?item[route]='+$(this).val()" %></dd>
+  
+  <dt><%= @model.lang :name %></dt>
+  <dd><%= f.text_field :name %></dd>
+  
+  <dt><%= @model.lang :filename %></dt>
+  <dd><%= f.text_field :filename %></dd>
+</dl>
+<%= render file: "app/cells/#{@cell}/_form", locals: { f: f } %>
+
+<% end %>

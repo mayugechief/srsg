@@ -2,6 +2,7 @@
 class Node::SelvesController < ApplicationController
   include Cms::BaseFilter
   include Cms::CrudFilter
+  include Cms::NodeFilter::Base
   
   model Cms::Node
   
@@ -12,15 +13,7 @@ class Node::SelvesController < ApplicationController
       @item = @cur_node
     end
     
-  public
-    def destroy
-      parent = @cur_node.parent
-      url = parent ? { controller: :nodes, cid: parent } : cms_nodes_path
-      
-      @item.destroy
-      respond_to do |format|
-        format.html { redirect_to url, notice: "Destroyed." }
-        format.json { head :no_content }
-      end
+    def set_params
+      super.merge site_id: @cur_site._id, cur_node: @cur_node.parent
     end
 end

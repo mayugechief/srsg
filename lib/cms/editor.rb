@@ -9,7 +9,9 @@ module Cms::Editor
     
     public
       def addon(cell, opts = {})
-        plugins << Plugin.new(cell.sub('/', '/editor/'), opts)
+        name = cell.titleize
+        path = cell.sub('/', '/editor/')
+        plugins << Plugin.new(name, path, opts)
       end
   end
   
@@ -18,9 +20,9 @@ module Cms::Editor
     attr_accessor :name, :cell, :opts
     
     private
-      def initialize(cell, opts = {})
+      def initialize(name, cell, opts = {})
+        self.name = name
         self.cell = cell
-        self.name = cell.titleize.sub(/.*\//, "")
         self.opts = opts || {}
       end
   end

@@ -13,32 +13,21 @@
       <% if @cur_node.parent %>
       <td class="checkbox">
         <nav class="row-menu">
-          <%= link_to :parent_node, cid: @cur_node.parent %>
+          <%= link_to :parent_directory, cid: @cur_node.parent %>
         </nav>
       </td>
-      <td><%= link_to "..", { cid: @cur_node.parent }, class: "icon-node" %></td>
+      <td><%= link_to :parent_directory, { cid: @cur_node.parent }, class: "icon-node" %></td>
       <td class="filename"><%= File.basename @cur_node.parent.filename %></td>
       <% else %>
       <td class="checkbox">
         <nav class="row-menu">
-          <%= link_to :parent_node, cms_nodes_path %>
+          <%= link_to :parent_directory, cms_nodes_path %>
         </nav>
       </td>
-      <td><%= link_to "..", cms_nodes_path, class: "icon-node" %></td>
-      <td class="filename">/</td>
+      <td><%= link_to :parent_directory, cms_nodes_path, class: "icon-node" %></td>
+      <td class="filename"></td>
       <% end %>
       <td class="datetime"></td>
-    </tr>
-    
-    <tr>
-      <td class="checkbox">
-        <nav class="row-menu">
-          <%= link_to "詳細を見る", controller: :selves, action: :show %>
-        </nav>
-      </td>
-      <td><%= link_to ".", { controller: :selves, action: :show }, class: "icon-node" %></td>
-      <td class="filename"><%= File.basename @cur_node.filename %></td>
-      <td class="datetime"><%= @cur_node.updated.strftime("%Y/%m/%d %H:%M") %></td>
     </tr>
     
     <% @items.each do |item| %>

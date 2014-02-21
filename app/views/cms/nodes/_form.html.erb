@@ -1,16 +1,34 @@
+<%
+
+url = params[:action] =~ /new|create/ ? url_for(action: :new) : url_for(action: :edit)
+
+%><% if !@cell %>  
+
 <dl class="see">
+  <dt><%= @model.lang :route %></dt>
+  <dd><%= f.select :route, Cms::Node.routes, { include_blank: "" },
+    onchange: "location.href='#{url}?item[route]='+$(this).val()" %></dd>
+</dl>
+
+<% else %>
+
+<dl class="see">
+  <dt><%= @model.lang :route %></dt>
+  <dd><%= f.select :route, Cms::Node.routes, {},
+    onchange: "location.href='#{url}?item[route]='+$(this).val()" %></dd>
+  
   <dt><%= @model.lang :name %></dt>
   <dd><%= f.text_field :name %></dd>
   
   <dt><%= @model.lang :filename %></dt>
   <dd><%= f.text_field :filename %></dd>
   
-  <dt><%= @model.lang :route %></dt>
-  <dd><%= f.select :route, Cms::Node.routes %></dd>
+  <dt><%= @model.lang :layout_id %></dt>
+  <dd><%= f.select :layout_id, @cur_site.layouts.map {|c| [c.name, c.id]}, :include_blank => "" %></dd>
   
   <dt><%= @model.lang :shortcut %></dt>
   <dd><%= f.select :shortcut, [["表示する", "1"],["表示しない",""]], include_blank: "" %></dd>
-  
-  <dt><%= @model.lang :layout_id %></dt>
-  <dd><%= f.select :layout_id, Cms::Layout.site_is(@cur_site).map {|c| [c.name, c.id]}, :include_blank => "" %></dd>
 </dl>
+<%= render file: "app/cells/#{@cell}/_form", locals: { f: f } %>
+
+<% end %>
