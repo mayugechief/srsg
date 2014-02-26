@@ -1,8 +1,7 @@
 # coding: utf-8
 class Cms::PartsController < ApplicationController
   include Cms::BaseFilter
-  include Cms::CrudFilter
-  include Cms::PartFilter::Base
+  include Cms::PartFilter
   
   model Cms::Part
   
@@ -13,8 +12,12 @@ class Cms::PartsController < ApplicationController
       @crumbs << [:parts, action: :index]
     end
     
-    def set_params
-      super.merge site_id: @cur_site._id, cur_node: false
+    def fix_params
+      { site_id: @cur_site._id, cur_node: false }
+    end
+    
+    def pre_params
+      { route: "cms/frees" }
     end
     
   public
@@ -22,7 +25,5 @@ class Cms::PartsController < ApplicationController
       @items = @model.site_is(@cur_site).
         where(depth: 1).
         sort(filename: 1)
-      
-      render_crud
     end
 end

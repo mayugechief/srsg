@@ -5,7 +5,7 @@ class Sns::LoginController < ApplicationController
   skip_filter :logged_in?, only: [:login, :logout]
   
   private
-    def set_params
+    def get_params
       params.require(:item).permit(:email, :password, :ref)
     end
     
@@ -16,7 +16,7 @@ class Sns::LoginController < ApplicationController
       @item.password = params[:password]
       return if !request.post?
         
-      @item.attributes = set_params
+      @item.attributes = get_params
       user = SS::User.where(email: @item.email, password: SS::Crypt.crypt(@item.password)).first
       return if !user
       

@@ -1,4 +1,4 @@
-<% Cms::Editor.plugins.each_with_index do |item, idx| %>
+<% Cms::Editor.addons.each_with_index do |item, idx| %>
   <% disp = (idx == 0) ? "display: block;" : "display: none;" %>
   <% disp = "display: block; margin-bottom: 10px;" if params[:show] == "all" %>
   

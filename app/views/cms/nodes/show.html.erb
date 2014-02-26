@@ -1,18 +1,1 @@
-<dl class="see">
-  <dt><%= @model.lang :route %></dt>
-  <dd><%= @item.send :route %></dd>
-  
-  <dt><%= @model.lang :name %></dt>
-  <dd><%= @item.send :name %></dd>
-  
-  <dt><%= @model.lang :filename %></dt>
-  <dd><%= @item.send :filename %></dd>
-  
-  <dt><%= @model.lang :layout_id %></dt>
-  <dd><%= tryb { @item.layout.name }%></dd>
-  
-  <dt><%= @model.lang :shortcut %></dt>
-  <dd><%= @item.send :shortcut %></dd>
-</dl>
-
-<%= render file: "app/cells/#{@cell}/_show" if @cell %>
+<%= @resp %>

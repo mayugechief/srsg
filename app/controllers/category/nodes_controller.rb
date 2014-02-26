@@ -1,28 +1,33 @@
 # coding: utf-8
 class Category::NodesController < ApplicationController
   include Cms::BaseFilter
-  include Cms::CrudFilter
+  include Cms::NodeFilter
   
   model Category::Node
   
+  prepend_view_path "app/views/node/nodes"
   navi_view "category/main/navi"
   
   private
-    def set_params
-      super.merge site_id: @cur_site._id, cur_node: @cur_node
+    def set_item
+      super
+      raise "404" if @item.id == @cur_node.id
+    end
+    
+    def fix_params
+      { site_id: @cur_site._id, cur_node: @cur_node }
+    end
+    
+    def pre_params
+      { route: "category/nodes" }
     end
     
   public
     def index
       @items = @model.site_is(@cur_site).
         where(filename: /^#{@cur_node.filename}\//).
-        sort(filename: 1)
-      
-      render_crud
-    end
-    
-    def new
-      @item = @model.new route: "category/nodes"
-      render_crud
+        order_by(filename: 1).
+        page(params[:page]).
+        per(50)
     end
 end

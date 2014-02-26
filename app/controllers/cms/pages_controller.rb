@@ -12,8 +12,8 @@ class Cms::PagesController < ApplicationController
       @crumbs << [:pages, action: :index]
     end
     
-    def set_params
-      super.merge site_id: @cur_site._id, cur_node: false
+    def fix_params
+      { site_id: @cur_site._id, cur_node: false }
     end
     
   public
@@ -23,7 +23,5 @@ class Cms::PagesController < ApplicationController
         where(route: "cms/pages").
         sort(updated: -1).
         limit(200)
-      
-      render_crud
     end
 end

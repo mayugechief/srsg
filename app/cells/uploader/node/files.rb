@@ -1,8 +1,8 @@
 # coding: utf-8
 class Uploader::Node::Files
   
-  class ConfigCell < Cell::Rails
-    include Cms::NodeFilter::Config
+  class EditCell < Cell::Rails
+    include Cms::NodeFilter::EditCell
     
     model ::Cms::Node
   end

@@ -4,6 +4,7 @@
       <th class="checkbox"><input type="checkbox" /></th>
       <th><%= @model.lang :name %></th>
       <th class="filename"><%= @model.lang :filename %></th>
+      <th class="route"><%= @model.lang :route %></th>
       <th class="datetime"><%= @model.lang :updated %></th>
     </tr>
   </thead>
@@ -19,6 +20,7 @@
       </td>
       <td><%= link_to item.name, { action: :show, id: item }, class: "icon-page" %></td>
       <td class="filename"><%= File.basename item.filename %></td>
+      <td class="route"><%= item.route %></td>
       <td class="datetime"><%= item.updated.strftime("%Y/%m/%d %H:%M") %></td>
     </tr>
     <% end %>

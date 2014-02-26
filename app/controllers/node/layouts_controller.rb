@@ -8,8 +8,8 @@ class Node::LayoutsController < ApplicationController
   navi_view "node/main/navi"
   
   private
-    def set_params
-      super.merge site_id: @cur_site._id, cur_node: @cur_node
+    def fix_params
+      { site_id: @cur_site._id, cur_node: @cur_node }
     end
   
   public
@@ -25,7 +25,5 @@ class Node::LayoutsController < ApplicationController
         where(depth: @cur_node.depth + 1).
         sort(filename: 1).
         limit(200)
-      
-      render_crud
     end
 end

@@ -14,7 +14,7 @@ class Sys::GroupsController < ApplicationController
   
   public
     def index
-      @items = @model.all.sort(name: 1)
-      render_crud
+      @items = @model.all.
+        order_by(name: 1)
     end
 end

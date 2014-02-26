@@ -1,18 +1,20 @@
 # coding: utf-8
 class Node::PagesController < ApplicationController
-  before_action :redirect_index, only: :index
-  
   include Cms::BaseFilter
   include Cms::CrudFilter
   
   model Cms::Page
   
+  prepend_view_path "app/views/cms/pages"
   navi_view "node/main/navi"
   menu_view "cms/pages/menu"
   
+  prepend_before_action :redirect_index, only: :index
+  
   private
-    def set_params
-      super.merge site_id: @cur_site._id, cur_node: @cur_node
+    def fix_params
+      #dump view_paths.to_a
+      { site_id: @cur_site._id, cur_node: @cur_node }
     end
     
     def redirect_index

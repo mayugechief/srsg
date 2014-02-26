@@ -1,0 +1,26 @@
+<%
+
+#fields = {} #local-variable
+
+%><dl class="see">
+  <dt><%= @model.lang :route %></dt>
+  <dd><%= @item.send :route %></dd>
+  
+  <dt><%= @model.lang :name %></dt>
+  <dd><%= @item.send :name %></dd>
+  
+  <% if fields[:filename] != -1 %>
+  <dt><%= @model.lang :filename %></dt>
+  <dd><%= @item.send :filename %></dd>
+  <% end %>
+  
+  <% if fields[:layout_id] != -1 %>
+  <dt><%= @model.lang :layout_id %></dt>
+  <dd><%= tryb { @item.layout.name }%></dd>
+  <% end %>
+  
+  <% if fields[:shortcut] != -1 %>
+  <dt><%= @model.lang :shortcut %></dt>
+  <dd><%= @item.send :shortcut %></dd>
+  <% end %>
+</dl>

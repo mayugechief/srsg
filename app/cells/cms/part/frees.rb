@@ -1,14 +1,14 @@
 # coding: utf-8
 class Cms::Part::Frees
   
-  class ConfigCell < Cell::Rails
-    include Cms::NodeFilter::Config
+  class EditCell < Cell::Rails
+    include Cms::PartFilter::EditCell
     
     model Cms::Part
   end
   
   class ViewCell < Cell::Rails
-    include Cms::PublicFilter
+    include Cms::PartFilter::ViewCell
     
     def index
       @cur_node = @cur_page.node

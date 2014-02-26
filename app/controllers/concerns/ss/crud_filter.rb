@@ -4,64 +4,88 @@ module SS::CrudFilter
   
   included do
     cattr_accessor :model_class
+    before_action :prepend_current_view_path
+    before_action :append_view_paths
     before_action :set_model
     before_action :set_item, only: [:show, :edit, :update, :delete, :destroy]
-    
-    menu_view "ss/crud/menu"
   end
   
   module ClassMethods
     
-    def model(cls)
-      self.model_class = cls if cls
-    end
+    private
+      def model(cls)
+        self.model_class = cls if cls
+      end
   end
   
   private
+    def prepend_current_view_path
+      prepend_view_path "app/views/#{params[:controller]}"
+    end
+    
+    def append_view_paths
+      append_view_path "app/views/ss/crud"
+    end
+    
+    def render(*args)
+      args.size == 0 ? super(file: params[:action]) : super
+    end
+    
     def set_model
       @model = self.class.model_class
     end
     
     def set_item
       @item = @model.find params[:id]
+      @item.attributes = fix_params
     end
     
-    def set_params(keys = [])
-      keys = [keys] if keys.class != Array
-      permitted = params.require(:item).permit(@model.permitted_fields + keys)
+    def fix_params
+      {}
+    end
+    
+    def pre_params
+      {}
+    end
+    
+    def permit_fields
+      @model.permitted_fields
+    end
+    
+    def get_params
+      #keys = [keys] if keys.class != Array
+      params.require(:item).permit(permit_fields).merge(fix_params)
     end
     
   public
     def index
-      @items = @model.all.sort(_id: -1)
-      render_crud
+      @items = @model.all.sort(_id: -1).limit(100)
     end
     
     def show
-      render_crud
+      render
     end
     
     def new
-      @item = @model.new
-      render_crud
-    end
-    
-    def edit
-      render_crud
-    end
-    
-    def delete
-      render_crud
+      @item = @model.new pre_params.merge(fix_params)
     end
     
     def create
-      @item = @model.new set_params
+      @item = @model.new get_params
       render_create @item.save
     end
     
+    def edit
+      render
+    end
+    
     def update
-      @item.attributes = set_params
+      @item.attributes = get_params
       render_update @item.update
+    end
+    
+    def delete
+      render
     end
     
     def destroy
@@ -69,16 +93,6 @@ module SS::CrudFilter
     end
     
   private
-    def render_crud(action = params[:action])
-      #@head = "#{params[:controller]}/head" if ::File.exists?("#{Rails.root}/app/views/#{params[:controller]}/_head.html.erb")
-      
-      if ::File.exists?("#{Rails.root}/app/views/#{params[:controller]}/#{action}.html.erb")
-        render "#{Rails.root}/app/views/#{params[:controller]}/#{action}.html.erb"
-      else
-        render "#{Rails.root}/app/views/ss/crud/#{action}"
-      end
-    end
-    
     def render_create(result, opts = {})
       location = opts[:location].presence || { action: :show, id: @item }
       
@@ -89,7 +103,7 @@ module SS::CrudFilter
         end
       else
         respond_to do |format|
-          format.html { render_crud :new }
+          format.html { render file: :new }
           format.json { render json: @item.errors, status: :unprocessable_entity }
         end
       end
@@ -105,7 +119,7 @@ module SS::CrudFilter
         end
       else
         respond_to do |format|
-          format.html { render_crud :edit }
+          format.html { render file: :edit }
           format.json { render json: @item.errors, status: :unprocessable_entity }
         end
       end
@@ -121,7 +135,7 @@ module SS::CrudFilter
         end
       else
         respond_to do |format|
-          format.html { render_crud :delete }
+          format.html { render file: :delete }
           format.json { render json: @item.errors, status: :unprocessable_entity }
         end
       end

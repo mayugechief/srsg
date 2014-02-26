@@ -1,9 +1,6 @@
 # coding: utf-8
 SS::Application.routes.draw do
   
-  Cms::Node.route "article/pages"
-  Cms::Part.route "article/pages"
-  
   concern :deletion do
     get :delete, on: :member
   end
@@ -14,10 +11,12 @@ SS::Application.routes.draw do
   end
   
   node "article" do
+    addon :pages
     get "pages/(index.:format)" => "public#index", cell: "node/pages"
   end
   
   part "article" do
+    addon :pages
     get "pages" => "public#index", cell: "part/pages"
   end
   

@@ -1,21 +1,24 @@
 # coding: utf-8
 class Node::NodesController < ApplicationController
   include Cms::BaseFilter
-  include Cms::CrudFilter
-  include Cms::NodeFilter::Base
+  include Cms::NodeFilter
   
   model Cms::Node
   
   navi_view "node/main/navi"
   
   private
-    def set_params
-      super.merge site_id: @cur_site._id, cur_node: @cur_node
-    end
-    
     def set_item
       super
       raise "404" if @item.id == @cur_node.id
+    end
+    
+    def fix_params
+      { site_id: @cur_site._id, cur_node: @cur_node }
+    end
+    
+    def pre_params
+      { route: "node/nodes" }
     end
     
   public
@@ -32,7 +35,5 @@ class Node::NodesController < ApplicationController
         where(route: "cms/pages").
         sort(filename: 1).
         limit(200)
-      
-      render_crud
     end
 end

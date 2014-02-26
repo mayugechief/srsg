@@ -319,7 +319,10 @@ code {
       width: 20px;
     }
     th.filename {
-      width: 30%;
+      width: 20%;
+    }
+    th.route {
+      width: 20%;
     }
     th.datetime {
       width: 10em;
@@ -508,6 +511,9 @@ a.external:after {
 a.icon-node {
   @include list-icon { background-image: image-url("icon-node.png"); }
 }
+a.icon-node-up {
+  @include list-icon { background-image: image-url("icon-node-up.png"); }
+}
 a.icon-page {
   @include list-icon { background-image: image-url("icon-page.png"); }
 }
@@ -517,8 +523,8 @@ a.icon-layout {
 a.icon-part {
   @include list-icon { background-image: image-url("icon-part.png"); }
 }
-a.icon-config {
-  @include list-icon { background-image: image-url("icon-config.png"); }
+a.icon-conf {
+  @include list-icon { background-image: image-url("icon-conf.png"); }
 }
 
 // -----------------------------------------------------------------------------

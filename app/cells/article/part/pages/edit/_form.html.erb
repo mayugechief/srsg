@@ -1,0 +1,6 @@
+<%= render file: "app/views/cms/parts/_form", locals: { f: f, fields: {} } %>
+
+<dl class="see">
+  <dt><%= @model.lang :limit %></dt>
+  <dd><%= f.number_field :limit %></dd>
+</dl>

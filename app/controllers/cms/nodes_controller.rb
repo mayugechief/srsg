@@ -1,8 +1,7 @@
 # coding: utf-8
 class Cms::NodesController < ApplicationController
   include Cms::BaseFilter
-  include Cms::CrudFilter
-  include Cms::NodeFilter::Base
+  include Cms::NodeFilter
   
   model Cms::Node
   
@@ -13,8 +12,12 @@ class Cms::NodesController < ApplicationController
       @crumbs << [:nodes, action: :index]
     end
     
-    def set_params
-      super.merge site_id: @cur_site._id, cur_node: false
+    def fix_params
+      { site_id: @cur_site._id, cur_node: false }
+    end
+    
+    def pre_params
+      { route: "node/nodes" }
     end
     
   public
@@ -23,7 +26,5 @@ class Cms::NodesController < ApplicationController
         where(depth: 1).
         sort(filename: 1).
         limit(200)
-      
-      render_crud
     end
 end

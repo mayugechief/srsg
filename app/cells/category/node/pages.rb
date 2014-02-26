@@ -1,19 +1,21 @@
 # coding: utf-8
 class Category::Node::Pages
   
-  class ConfigCell < Cell::Rails
-    include Cms::NodeFilter::Config
+  class EditCell < Cell::Rails
+    include Cms::NodeFilter::EditCell
     
     model Category::Node::Page
   end
   
   class ViewCell < Cell::Rails
-    include Cms::PublicFilter
+    include Cms::NodeFilter::ViewCell
     
     def index
       @items = Cms::Page.site_is(@cur_site).
         where(category_ids: @cur_node.id).
-        sort(_id: -1)
+        order_by(_id: -1).
+        page(params[:page]).
+        per(20)
       
       render
     end

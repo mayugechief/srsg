@@ -1,6 +1,6 @@
 # coding: utf-8
 class Category::MainController < ApplicationController
-  include Cms::BaseFilter
+  #include Cms::BaseFilter
   
   public
     def index

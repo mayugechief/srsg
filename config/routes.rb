@@ -7,28 +7,51 @@ class ActionDispatch::Routing::Mapper
   end
   
   def node(ns, &block)
+    alias :addon :node_addon
+    @ns  = ns
     name = ns.gsub("/", "_")
     path = ".:host/node/#{ns}"
     namespace(name, as: "node_#{name}", path: path, module: "cms") { yield }
   end
   
   def part(ns, &block)
+    alias :addon :part_addon
+    @ns  = ns
     name = ns.gsub("/", "_")
     path = ".:host/part/#{ns}"
     namespace(name, as: "part_#{name}", path: path, module: "cms") { yield }
   end
+  
+  def page(ns, &block)
+    alias :addon :page_addon
+    @ns  = ns
+    yield
+  end
+  
+  def editor(ns, &block)
+    alias :addon :editor_addon
+    @ns = ns
+    yield
+  end
+  
+  def node_addon(name)
+    Cms::Node.addon @ns, name
+  end
+  
+  def part_addon(name)
+    Cms::Part.addon @ns, name
+  end
+  
+  def page_addon(name)
+    #Cms::Part.addon @ns, name
+  end
+  
+  def editor_addon(name)
+    Cms::Editor.addon @ns, name
+  end
 end
 
 SS::Application.routes.draw do
-  
-  Cms::Node.route "node/none"
-  Cms::Part.route "cms/frees"
-  
-  Cms::Page.addon "cms/basic"
-  Cms::Page.addon "cms/html"
-  Cms::Page.addon "cms/tiny"
-  Cms::Page.addon "cms/wiki"
-  
   concern :deletion do
     get :delete, :on => :member
   end
@@ -60,6 +83,22 @@ SS::Application.routes.draw do
     resources :parts, concerns: :deletion
     resources :layouts, concerns: :deletion
     resources :roles, concerns: :deletion
+  end
+  
+  part "cms" do
+    addon :frees
+  end
+  
+  editor "cms" do
+    addon :basic
+    addon :html
+    addon :tiny
+    addon :wiki
+  end
+  
+  node "node" do
+    addon :nodes
+    addon :pages
   end
   
   # ----------------------------------------------------------------------------

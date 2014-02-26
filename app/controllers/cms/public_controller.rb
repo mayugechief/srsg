@@ -92,7 +92,7 @@ class Cms::PublicController < ApplicationController
     
     def recognize_path(path)
       rec = Rails.application.routes.recognize_path(path, method: request.method) rescue {}
-      rec[:cell] ? { controller: rec[:cell], action: "index" } : nil
+      rec[:cell] ? { controller: rec[:cell], action: rec[:action] } : nil
     end
     
     def render_part

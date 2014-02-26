@@ -27,19 +27,15 @@ class Cms::Part
   
   class << self
     
-    @@routes = []
+    @@adons = []
     
-    def route(path)
-      @@routes << [path.titleize, path]
+    def addon(mod, name)
+      path = "#{mod}/#{name}"
+      @@adons << [path.titleize, path]
     end
     
-    def routes
-      @@routes
-    end
-    
-    def modules
-      keys = @@routes.map {|m| m[1].sub(/\/.*/, "") }.uniq
-      keys.map {|m| [m.titleize, m] }
+    def addons
+      @@adons
     end
   end
 end

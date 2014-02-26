@@ -26,8 +26,8 @@ class Cms::Node
       validates :filename, uniqueness: { scope: :site_id }, presence: true, length: { maximum: 2000 }
       validates :route, presence: true
       
-      validate :validate_node
-      validate :validate_filename
+      validate :validate_node, if: -> { filename.present? }
+      validate :validate_filename, if: -> { filename.present? }
       
       before_save :set_depth, if: -> { filename.present? }
       after_destroy :destroy_children
@@ -122,18 +122,19 @@ class Cms::Node
   
   class << self
     
-    @@routes = []
+    @@addons = []
     
-    def route(path)
-      @@routes << [path.titleize, path]
+    def addon(mod, name)
+      path = "#{mod}/#{name}"
+      @@addons << [path.titleize, path]
     end
     
-    def routes
-      @@routes
+    def addons
+      @@addons
     end
     
     def modules
-      keys = @@routes.map {|m| m[1].sub(/\/.*/, "") }.uniq
+      keys = @@addons.map {|m| m[1].sub(/\/.*/, "") }.uniq
       keys.map {|m| [m.titleize, m] }
     end
   end

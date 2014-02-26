@@ -14,7 +14,7 @@ class Sys::SitesController < ApplicationController
   
   public
     def index
-      @items = @model.all
-      render_crud
+      @items = @model.all.
+        order_by(_id: -1)
     end
 end

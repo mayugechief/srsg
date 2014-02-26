@@ -3,19 +3,20 @@ module Cms::Editor
   
   class << self
     
-    cattr_accessor(:plugins) { [] }
+    cattr_accessor(:addons) { [] }
     #@@single_plugins
     #@@multiple_plugins
     
     public
-      def addon(cell, opts = {})
+      def addon(mod, name, opts = {})
+        cell = "#{mod}/#{name}"
         name = cell.titleize
         path = cell.sub('/', '/editor/')
-        plugins << Plugin.new(name, path, opts)
+        addons << Addon.new(name, path, opts)
       end
   end
   
-  class Plugin
+  class Addon
     
     attr_accessor :name, :cell, :opts
     

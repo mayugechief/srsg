@@ -1,113 +1,188 @@
 # coding: utf-8
 module Cms::NodeFilter
+  extend ActiveSupport::Concern
   
-  module Config
-    extend ActiveSupport::Concern
-    
-    included do
-      helper ApplicationHelper
-      cattr_accessor :model_class
-      before_action :inherit_vars
-      before_action :set_model
-      before_action :set_item
-    end
-    
-    module ClassMethods
-      
-      def model(cls)
-        self.model_class = cls if cls
-      end
-    end
-    
-    private
-      def inherit_vars
-        params[:vars].each {|key, val| instance_variable_set "@#{key}", val }
-      end
-    
-      def set_model
-        @model = self.class.model_class
-      end
-      
-      def set_item
-        cur_node = @item.cur_node
-        route    = @item.route
-        
-        @item = @item.new_record? ? @model.new(@item.attributes) : @model.find(@item.id)
-        @item.attributes = { cur_node: cur_node, route: route }
-      end
-      
-      def set_params(keys = [])
-        keys = [keys] if keys.class != Array
-        permitted = params.require(:item).permit(@model.permitted_fields + keys)
-        permitted = permitted.merge site_id: @cur_site.id
-      end
-      
-    public
-      def new; @item end
-      def show; @item end
-      def edit; @item end
-      def delete; @item end
-      def destroy; @item end
-      
-      def create
-        @item.attributes = set_params
-        @item
-      end
-      
-      def update
-        @item.attributes = set_params
-        @item
-      end
+  included do
+    include Cms::CrudFilter
+    include Base
   end
   
   module Base
     extend ActiveSupport::Concern
     
     private
-      def render_node_cell
-        if params[:item] && params[:item][:route].present?
-          @item.route = params[:item][:route]
+      def append_view_paths
+        append_view_path ["app/views/cms/nodes", "app/views/ss/crud"]
+      end
+      
+      def render_route
+        @item.route = params[:route] if params[:route].present?
+        
+        params.merge! vars: { cur_site: @cur_site, cur_node: @cur_node, base: @item }
+        params.merge! fix_params: fix_params
+        
+        cell = "#{@item.route.sub('/', '/node/')}/edit"
+        resp = render_cell cell, params[:action]
+        
+        if resp.is_a?(String)
+          @resp = resp
+        else
+          @item = resp
         end
-        if @item.route.present?
-          params.merge! vars: { cur_site: @cur_site, cur_node: @cur_node, item: @item }
-          @cell = "#{@item.route.sub('/', '/node/')}/config"
-          @item = render_cell @cell, params[:action]
+      end
+      
+      def redirect_url
+        if params[:action] == "destroy"
+          return cms_nodes_path unless @item.parent
+          diff = @item.route.split("/")[0] != @item.parent.route.split("/")[0]
+          return node_nodes_path(cid: @item.parent) if diff
+          { controller: params[:controller].split("/")[0].pluralize, cid: @item.parent }
+        else
+          diff = @item.route.split("/")[0] != params[:controller].split("/")[0]
+          diff ? { action: :show } : nil
         end
       end
       
     public
-      def new
-        @item = @model.new
-        render_node_cell
-        render_crud
-      end
-      
       def show
-        render_node_cell
-        render_crud
+        render_route
       end
       
-      def edit
-        render_node_cell
-        render_crud
+      def new
+        @item = @model.new pre_params.merge(fix_params)
+        render_route
       end
       
       def create
-        @item = @model.new set_params
-        render_node_cell
-        render_create @item.save
+        @item = @model.new get_params
+        render_route
+        render_create @resp.blank?, location: redirect_url
+      end
+      
+      def edit
+        render_route
       end
       
       def update
-        @item.attributes = set_params
-        render_node_cell
-        render_update @item.update
+        @item.attributes = get_params
+        render_route
+        render_update @resp.blank?, location: redirect_url
+      end
+      
+      def delete
+        render_route
       end
       
       def destroy
-        parent = @item.parent
-        url = parent ? { controller: :nodes, cid: parent } : cms_nodes_path
-        render_destroy @item.destroy, location: url
+        render_route
+        render_destroy @resp.blank?, location: redirect_url
+      end
+  end
+  
+  module EditCell
+    extend ActiveSupport::Concern
+    
+    included do
+      include SS::CrudFilter
+      include Base
+    end
+    
+    module Base
+      extend ActiveSupport::Concern
+      
+      included do
+        helper ApplicationHelper
+        cattr_accessor :model_class
+        before_action :inherit_vars
+        before_action :set_model
+        before_action :set_item
+      end
+      
+      module ClassMethods
+        
+        def model(cls)
+          self.model_class = cls if cls
+        end
+      end
+      
+      private
+        def prepend_current_view_path
+          prepend_view_path "app/cells/#{controller_path}"
+        end
+        
+        def append_view_paths
+          append_view_path "app/views/ss/crud"
+        end
+        
+        def inherit_vars
+          params[:vars].each {|key, val| instance_variable_set "@#{key}", val }
+        end
+        
+        def set_model
+          @model = self.class.model_class
+        end
+        
+        def set_item
+          @item = @base.new_record? ? @model.new(pre_params) : @model.unscoped.find(@base.id)
+          @item.attributes = { route: @base.route }.merge(fix_params)
+        end
+        
+        def fix_params
+          { site_id: @cur_site.id, cur_node: @cur_node }.merge(params[:fix_params])
+        end
+        
+        def pre_params
+          {}
+        end
+        
+        def get_params
+          params.require(:item).permit(@model.permitted_fields).merge(fix_params)
+        end
+        
+      public
+        def show
+          render
+        end
+        
+        def new
+          render
+        end
+        
+        def create
+          @item.attributes = get_params
+          @item.save ? @item : render(file: :new)
+        end
+        
+        def edit
+          render
+        end
+        
+        def update
+          @item.attributes = get_params
+          @item.update ? @item : render(file: :edit)
+        end
+        
+        def delete
+          render
+        end
+        
+        def destroy
+          @item.destroy ? @item : render(file: :delete)
+        end
+    end
+  end
+  
+  module ViewCell
+    extend ActiveSupport::Concern
+    
+    included do
+      helper ApplicationHelper
+      before_action :inherit_vars
+    end
+    
+    private
+      def inherit_vars
+        params[:vars].each {|key, val| instance_variable_set "@#{key}", val }
       end
   end
 end

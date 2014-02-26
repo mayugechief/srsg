@@ -5,7 +5,7 @@
 <nav class="page-menu plugins">
   <header><h1>Fields</h1></header>
   <div>
-    <% Cms::Editor.plugins.each_with_index do |item, idx| %>
+    <% Cms::Editor.addons.each_with_index do |item, idx| %>
       <% cur = (idx == 0) ? " current" : "" %>
       <%= link_to item.name, "#",  class: "plugin-tab #{cur}",
         "data-id" => "#plugin#{item.object_id}", "data-src" => item.cell %>
