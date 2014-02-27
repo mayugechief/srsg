@@ -1,0 +1,123 @@
+#!/usr/bin/env ruby
+
+# Command:
+#   egg install mod-name -v 1.0
+#   egg uninstall mod-name
+#   egg pack mod-name -v 1.0
+
+require "fileutils"
+require 'zipruby'
+
+class Frypan
+  
+  private
+    def root
+      "#{File.dirname(__dir__)}"
+    end
+    
+    def zip_dir
+      "#{root}/vendor/eggs"
+    end
+    
+    def mod_dirs
+      [
+        "app/assets/images",
+        "app/assets/javascripts",
+        "app/assets/stylesheets",
+        "app/cells",
+        "app/controllers",
+        "app/controllers/concerns",
+        "app/helpers",
+        "app/mailers",
+        "app/models",
+        "app/models/concerns",
+        "app/views",
+        "app/views/layouts",
+        "config/initializers",
+        "config/locales",
+        "config/routes",
+        "db",
+        "doc",
+        "lib",
+        "lib/tasks/",
+      ]
+    end
+    
+    def mod
+      ARGV[1].gsub("-", "_")
+    end
+    
+    def ver
+      ARGV.each_with_index {|arg, i| return ARGV[i+1] if arg == "-v" && ARGV[i+1] }
+      "0.0.0"
+    end
+    
+    def zip
+      "#{zip_dir}/#{ARGV[1]}-#{ver}.zip"
+    end
+    
+  public
+    def install
+      puts "Installing #{mod} (#{ver})"
+      puts ""
+      
+      Dir.chdir(root)
+      mod_dirs.each do |dir|
+        return puts "    Module exists: #{dir}/#{mod}" if File.exists?("#{dir}/#{mod}")
+      end
+      
+      Zip::Archive.open(zip) do |ar|
+        entry_names = ar.map do |f|
+          if f.directory?
+            puts "    create  #{f.name.sub(/\/$/, '')}"
+            FileUtils.mkdir_p(f.name) if !File.exists?(f.name)
+            next
+          end
+          File.binwrite(f.name, f.read)
+          puts "    create  #{f.name}"
+        end
+      end
+    end
+    
+    def uninstall
+      puts "Uninstalling #{mod}"
+      puts ""
+      
+      Dir.chdir(root)
+      mod_dirs.each do |dir|
+        Dir.glob("#{dir}/#{mod}{/,/**/*,.*}").each do |f|
+          puts "    delete  #{f.sub(/\/$/, '')}"
+          FileUtils.rm_r(f) if File.exists?(f)
+        end
+      end
+    end
+    
+    def pack
+      puts "Packing #{mod} (#{ver})"
+      puts ""
+      
+      Dir.chdir(root)
+      Zip::Archive.open("#{zip}.tmp", Zip::CREATE) do |ar|
+        mod_dirs.each do |dir|
+          ar.add_dir "#{dir}/#{mod}" if File.exists? "#{dir}/#{mod}"
+          Dir.glob("#{dir}/#{mod}{/**/*,.*}") do |f|
+            if File.directory?(f)
+              puts "     fetch  #{f}"
+              ar.add_dir(f)
+              next
+            end
+            puts "     fetch  #{f}"
+            ar.add_file(f, f)
+          end
+        end
+      end
+      
+      return puts "    No such module: #{mod}" if !File.exists?("#{zip}.tmp")
+      
+      puts "\n    create  #{zip}"
+      FileUtils.mv "#{zip}.tmp", zip
+    end
+end
+
+Frypan.new.send ARGV[0]
+puts ""

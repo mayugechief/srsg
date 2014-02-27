@@ -79,13 +79,13 @@ rake db:seed name=demo site=www
 module utility
 ==============
 
-# make package
-rake ss:mod:make name=mod-name v=1.0.0 #=> vendor/modules/mod-name-1.0.0.zip
-
 # install
-rake ss:mod:install name=mod-name v=1.0.0
+bin/egg install sample-egg -v 1.0.0
 
 # uninstall
-rake ss:mod:uninstall name=mod-name
+bin/egg uninstall sample-egg
+
+# pack
+bin/egg pack sample-egg -v 1.0.0
 
 ----------------------------------------------------------------------------------------------------
