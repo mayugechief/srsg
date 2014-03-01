@@ -23,4 +23,9 @@ SS::Application.routes.draw do
   part "category" do
     addon :nodes
   end
+  
+  editor "category" do
+    addon :nodes
+  end
+  
 end

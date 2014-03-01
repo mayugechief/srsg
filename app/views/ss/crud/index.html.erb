@@ -3,9 +3,9 @@
     <tr>
       <th style="width: 20px;"><input type="checkbox" /></th>
       <% @model.fields.select {|k, v| k =~ /^(name|filename)/ }.keys.each do |key| %>
-      <th><%= @model.lang(key) %></th>
+      <th><%= @model.lang key %></th>
       <% end %>
-      <th class="datetime"><%= @model.lang(:updated) %></th>
+      <th class="datetime"><%= @model.lang :updated %></th>
     </tr>
   </thead>
   

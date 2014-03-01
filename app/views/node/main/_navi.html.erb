@@ -1,7 +1,7 @@
 <%= render partial: "node/main/modules" %>
 
 <nav class="sub-menu">
-  <header><h1>Node</h1></header>
+  <header><h1><%= lang :node, scope: [:modules, :contents] %></h1></header>
   <div>
     <%= link_to :nodes, node_nodes_path %>
     <%= link_to :design, node_layouts_path %>

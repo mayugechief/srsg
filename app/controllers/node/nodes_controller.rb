@@ -23,17 +23,13 @@ class Node::NodesController < ApplicationController
     
   public
     def index
-      @items = @model.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
-        where(depth: @cur_node.depth + 1).
-        sort(filename: 1).
-        limit(100)
+      @items = @model.site(@cur_site).node(@cur_node).
+        order_by(filename: 1).
+        page(params[:page]).per(100)
         
-      @pages = Cms::Page.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
-        where(depth: @cur_node.depth + 1).
+      @pages = Cms::Page.site(@cur_site).node(@cur_node).
         where(route: "cms/pages").
-        sort(filename: 1).
-        limit(200)
+        order_by(filename: 1).
+        page(params[:page]).per(100)
     end
 end

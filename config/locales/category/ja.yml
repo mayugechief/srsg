@@ -1,0 +1,13 @@
+ja:
+  views:
+    links:
+      category_nodes: "フォルダ"
+
+  modules:
+    contents:
+      category: "カテゴリー"
+    nodes:
+      category/node: "カテゴリー一覧"
+      category/page: "カテゴリー/ページ一覧"
+    parts:
+      category/node: "カテゴリー一覧"

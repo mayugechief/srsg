@@ -1,0 +1,10 @@
+ja:
+  modules:
+    contents:
+      node: "フォルダ"
+    nodes:
+      node/node: "フォルダ一覧"
+      node/page: "ページ一覧"
+    parts:
+      node/node: "フォルダ一覧"
+      node/page: "ページ一覧"

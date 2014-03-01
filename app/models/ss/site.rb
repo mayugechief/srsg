@@ -6,7 +6,7 @@ class SS::Site
     
     included do
       belongs_to :site, class_name: "SS::Site"
-      scope :site_is, ->(doc) { where(site_id: doc._id) }
+      scope :site, ->(site) { where(site_id: site._id) }
     end
   end
   

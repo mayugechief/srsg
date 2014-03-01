@@ -13,10 +13,10 @@ class Category::Part::Nodes
     def index
       @cur_node = @cur_page.node
       
-      @items = Category::Node.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
+      @items = Category::Node.site(@cur_site).node(@cur_node).my_route.
         where(deleted: nil).
-        sort(_id: -1)
+        order_by(_id: -1).
+        page(params[:page]).per(20)
       
       render
     end

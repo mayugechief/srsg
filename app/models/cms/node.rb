@@ -33,6 +33,13 @@ class Cms::Node
       after_destroy :destroy_children
     end
     
+    module ClassMethods
+      
+      def node(node)
+        where filename: /^#{node.filename}\//, depth: node.depth + 1
+      end
+    end
+    
     public
       def path
         "#{site.path}/#{filename}"
@@ -116,6 +123,13 @@ class Cms::Node
         parts.destroy
         layouts.destroy
       end
+    
+    class << self
+      
+      def model_name
+        ActiveModel::Name.new(self)
+      end
+    end
   end
   
   include Base
@@ -126,7 +140,8 @@ class Cms::Node
     
     def addon(mod, name)
       path = "#{mod}/#{name}"
-      @@addons << [path.titleize, path]
+      name = I18n.translate path.singularize, scope: [:modules, :nodes], default: path.titleize
+      @@addons << [name, path]
     end
     
     def addons
@@ -135,7 +150,10 @@ class Cms::Node
     
     def modules
       keys = @@addons.map {|m| m[1].sub(/\/.*/, "") }.uniq
-      keys.map {|m| [m.titleize, m] }
+      keys.map do |key|
+        name = I18n.translate key, scope: [:modules, :contents], default: key.to_s.titleize
+        [name, key]
+      end
     end
   end
 end

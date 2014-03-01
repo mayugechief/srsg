@@ -1,13 +1,13 @@
 <nav class="main-menu">
-  <header><h1>Site Link</h1></header>
+  <header><h1><%= lang :site_menu %></h1></header>
   <div>
     <%= link_to :view_site, "#{@cur_site.full_url}", :target => "_blank" %>
-    <%= link_to "#Preview site", "#" %>
+    <%= link_to :preview_site, "#" %>
   </div>
 </nav>
 
 <nav class="main-menu">
-  <header><h1>Global Menu</h1></header>
+  <header><h1><%= lang :root_menu %></h1></header>
   <div>
     <%= link_to :contents, cms_contents_path %>
     <%= link_to :nodes, cms_nodes_path %>

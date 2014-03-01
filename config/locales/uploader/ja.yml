@@ -1,0 +1,9 @@
+ja:
+  general:
+    uploader_files: "ファイル"
+
+  modules:
+    contents:
+      uploader: "アップローダー"
+    nodes:
+      uploader/file: "アップローダー"

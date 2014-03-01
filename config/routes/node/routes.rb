@@ -21,4 +21,11 @@ SS::Application.routes.draw do
     resources :roles, concerns: :deletion
   end
   
+  node "node" do
+    addon :nodes
+    addon :pages
+    get "nodes/(index.:format)" => "public#index", cell: "node/nodes"
+    get "pages/(index.:format)" => "public#index", cell: "node/pages"
+  end
+  
 end

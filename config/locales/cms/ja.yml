@@ -1,0 +1,42 @@
+ja:
+  general:
+    # functions
+    contents: "コンテンツ"
+    design: "デザイン"
+    nodes: "フォルダ"
+    pages: "ページ"
+    layouts: "レイアウト"
+    parts: "パーツ"
+    # attributes
+    layout_id: "レイアウト"
+    shortcut: "ショートカット"
+
+  views:
+    links:
+      new_node: "新規フォルダ"
+      new_page: "新規ページ"
+      new_layout: "新規レイアウト"
+      new_part: "新規パーツ"
+
+  modules:
+    contents:
+      cms: "CMS"
+    parts:
+      cms/free: "HTML記述"
+
+  mongoid:
+    models:
+      cms/node: "フォルダ"
+      cms/page: "ページ"
+    attributes:
+      cms/node/base:
+        name: "タイトル"
+        filename: "フォルダ名"
+        route: "フォルダ属性"
+      cms/page/base:
+        name: "タイトル"
+        route: "ページ属性"
+      cms/layout:
+        name: "レイアウト名"
+      cms/part:
+        name: "パーツ名"

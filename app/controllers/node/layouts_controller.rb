@@ -14,16 +14,12 @@ class Node::LayoutsController < ApplicationController
   
   public
     def index
-      @items = @model.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
-        where(depth: @cur_node.depth + 1).
-        sort(filename: 1).
-        limit(100)
+      @items = @model.site(@cur_site).node(@cur_node).
+        order_by(filename: 1).
+        page(params[:page]).per(20)
       
-      @parts = Cms::Part.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
-        where(depth: @cur_node.depth + 1).
-        sort(filename: 1).
-        limit(200)
+      @parts = Cms::Part.site(@cur_site).node(@cur_node).
+        order_by(filename: 1).
+        page(params[:page]).per(100)
     end
 end

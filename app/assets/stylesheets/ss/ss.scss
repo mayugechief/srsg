@@ -19,9 +19,9 @@ html {
 }
 body {
   margin: 0px;
-  background-color: #f7f7f7;
-  //@include lgrad("top, #f8f8f8, #f4f4f4");
-  //background-attachment: fixed !important;;
+  background-color: #eee;
+  @include lgrad(top, #e7e7e7, #f7f7f7);
+  background-attachment: fixed !important;;
   color: #444;
   font-size: 81.2%;
   font-family: $font-base;
@@ -76,6 +76,9 @@ input[type=text], input[type=password], input[type=date], input[type=datetime], 
   border: 1px solid #ccc;
   @include box-sizing(border-box);
 }
+input[type=number] {
+  width: 12em;
+}
 textarea {
   width: 100%;
   height: 6em;
@@ -128,64 +131,103 @@ code {
   }
   #head {
     @include clear;
-    overflow: hidden;
+    //overflow: hidden;
     margin: 0px 0px 20px;
-    border-bottom: 1px solid #ccc;
-    background-color: #eee;
-    line-height: 2.4;
-    a {
-      float: left;
-      color: #444;
-      text-align: center;
-      &:hover {
-        background-color: #ddd;
-        text-decoration: none;
-      }
-    }
+    background-color: #fff;
     h1 {
       float: left;
       a {
-        width: 200px;
-        border-right: 1px solid #ccc;
+        float: left;
+        width: 160px;
+        //border-right: 1px solid #ddd;
+        background-image: url(/assets/logo.png);
+        background-repeat: no-repeat;
+        background-position: 20px 10px;
+        text-indent: -9999px;
+        line-height: 40px;
       }
     }
     nav {
-      float: left;
-      a {
-        padding: 0px 20px;
-        border-right: 1px solid #ccc;
-      }
-    }
-    nav + nav {
       float: right;
       a {
+        float: left;
         min-width: 100px;
-        border-right: 0px;
-        border-left: 1px solid #ccc;
+        margin: 9px 10px 0px 0px;
+        padding: 2px 10px;
+        border-left: 1px solid #ddd;
+        text-align: center;
+        color: #888;
+        &:hover { color: #f0e; }
       }
     }
   }
   #crumbs {
     @include clear;
-    margin: -20px 0px 20px;
-    padding: 0px 15px 0px;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #ccc;
-    background-color: #eee;
-    line-height: 2.4;
+    margin: -20px 0px 15px;
+    line-height: 30px;
     span {
       float: left;
       margin: 0px 0px;
-      color: #bbb;
+      color: #555;
     }
+    span.separator { display: none; }
+    $color1: #888;
+    $color2: #aaa;
+    $color3: #777;
     a {
       display: block;
+      position: relative;
       float: left;
-      padding: 0px 8px;
+      margin: 0px 23px 0px 0px;
+      padding: 0px 17px 0px 4px;
+      background-color: $color1;
       color: #444;
-      &:hover {
-        //background-color: #ddd;
-        //text-decoration: none;
+      color: #fff;
+      &:before, &:after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        width: 0px;
+        height: 0px;
+        border: 0 solid $color1;
+        border-width: 15px 10px;
+      }
+      &:before {
+        left: -20px;
+        border-left-color: transparent;
+      }
+      &:after {
+        left: 100%;
+        border-color: transparent;
+        border-left-color: $color1;
+      }
+    }
+    span {
+      &:last-child {
+        a {
+          background-color: $color2;
+          color: #fff;
+          &:before { border-color: $color2; border-left-color: transparent; }
+          &:after { border-left-color: $color2; }
+          //padding-right:15px; &:after { border:none; }
+        }
+      }
+      &:first-child {
+        a {
+          background-color: $color1;
+          &:after { border-left-color: $color1; }
+          padding-left: 20px;
+          &:before { border:none; }
+        }
+      }
+      a:hover{
+        background-color: $color3;
+        text-decoration: none;
+        &:before{
+          border-color: $color3;
+          border-left-color: transparent;
+         }
+        &:after{ border-left-color: $color3; }
       }
     }
   }
@@ -250,34 +292,30 @@ code {
   
   nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu {
     margin: 0px 0px 20px;
-    border: 1px solid #ccc;
     header {
       display: block;
       padding: 5px 10px;
-      background-color: #ddd;
+      background-color: #bbb;
       color: #444;
     }
     a {
       display: block;
       padding: 5px 10px;
-      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
       background-color: #fff;
       color: #444;
       &[class ^= "icon"] {
         padding-left: 30px;
         background-position: 10px center;
       }
-      &:after {
-        //float: right;
-        //color: #bbb;
-      }
       &:hover {
-        background-color: #f8f8f8;
-        //color: #f0a;
+        background-color: #ddd;
         text-decoration: none;
       }
       &.current {
-        background-color: #eee;
+        background-color: #888;
+        color: #fff;
+        &:hover { background-color: #777; }
       }
     }
   }
@@ -288,7 +326,7 @@ code {
       color: #bbb;
       content: "▼";
     }
-    &:hover:after { color: #888; }
+    &:hover:after { color: #eee; }
   }
   
   // -------------------------------------------------------------------
@@ -297,26 +335,30 @@ code {
   table.index {
     table-layout:fixed;
     width: 100%;
-    border: 1px solid #ccc;
-    tr {
-      border-top: 1px solid #ccc;
-      background-color: #fff;
-    }
-    tr:hover {
-      background-color: #f8f8f8;
-    }
-    tr.checked {
-      background-color: #eee;
-    }
+    //border: 1px solid #ccc;
     th, td {
       padding: 5px 10px;
     }
-    th {
-      border-left: 1px solid #ccc;
-      background-color: #ddd;
+    thead {
+      tr {
+        background-color: #bbb;
+      }
     }
-    th.checkbox {
-      width: 20px;
+    tbody {
+      tr {
+        border-bottom: 1px solid #ddd;
+        background-color: #fff;
+        &:hover { background-color: #eee; }
+      }
+      tr.checked {
+        background-color: #ebebeb;
+        &:hover { background-color: #ddd; }
+      }
+    }
+    th.checkbox, td.checkbox {
+      width: 35px;
+      padding: 0px;
+      text-align: center;
     }
     th.filename {
       width: 20%;
@@ -359,13 +401,22 @@ code {
 // -----------------------------------------------------------------------------
 // common
 
+.dev-view {
+  position: absolute;
+  right: 10px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  background-color: #033;
+  color: #fff;
+  font-size: 90%;
+}
 #notice {
   display: table;
   position: absolute;
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 60px;
+  height: 55px;
   padding: 2px 10px;
   box-shadow: 0px 1px 2px #888;
   background-color: #48f;
@@ -379,20 +430,18 @@ code {
   }
 }
 #errorExplanation {
-  display: table;
-  min-width: 60%;
   margin: 0px 0px 20px;
-  padding: 10px;
-  border: 2px solid #eaa;
-  border-radius: 4px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #fbc;
   background-color: #fff;
-  color: #e00;
   h2 {
-    margin: -10px -10px 15px;
+    margin: -10px -20px 15px;
     padding: 5px 10px;
-    border-radius: 4px 4px 0px 0px;
-    background-color: #fdd;
-    font-weight: bold;
+    background-color: #e78;
+    color: #fff;
+  }
+  p, ul {
+    color: #844;
   }
 }
 .field_with_errors {
@@ -404,14 +453,13 @@ code {
 .pagination {
   @include clear;
   margin: 10px 0px;
-  span a, .current, .gap { 
-    //display: inline-block;
+  span a, .current, .gap {
     float: left;
     min-width: 20px;
-    margin: 0px 0px 0px -1px;
+    margin: 0px 2px 0px 0px;
     padding: 6px 4px;
-    border: 1px solid #ccc;
     background-color: #fff;
+    color: #444;
     text-align: center;
   }
   span:first-child {
@@ -425,10 +473,11 @@ code {
     min-width: 50px;
   }
   .current {
-    background-color: #eee;
+    background-color: #777;
+    color: #fff;
   }
   a:hover {
-    background-color: #f8f8f8;
+    background-color: #ddd;
     text-decoration: none;
   }
 }
@@ -472,24 +521,24 @@ footer.send {
     height: 2.5em;
     margin: 0px 5px;
     padding: 0.3em 10px;
-    border: 1px solid #aaa;
+    border: 1px solid #ccc;
     @include border-radius(4px);
-    @include box-shadow(1px 1px 2px #ccc);
-    background-color: #eee;
-    @include lgrad(top, #f4f4f4, #ddd);
-    text-shadow: 1px 1px 1px #fff;
+    background-color: #ccc;
     color: #555;
-    cursor: pointer;
+    //cursor: pointer;
+    &:hover {
+      @include box-shadow(0px 0px 3px #aaa);
+      color: #000;
+    }
   }
   input.save, button.save {
     min-width: 120px;
     padding: 0.3em 20px;
-    background-color: #fd9;
-    @include lgrad(top, #feb, #fc8);
-  }
-  input:hover, button:hover {
-    border-color: #f70;
-    color: #000;
+    border: 1px solid #fc8;
+    background-color: #fc8;
+    &:hover {
+      @include box-shadow(0px 0px 3px #fb6);
+    }
   }
 }
 

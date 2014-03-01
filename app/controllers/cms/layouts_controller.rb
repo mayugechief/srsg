@@ -18,8 +18,9 @@ class Cms::LayoutsController < ApplicationController
     
   public
     def index
-      @items = @model.site_is(@cur_site).
+      @items = @model.site(@cur_site).
         where(depth: 1).
-        sort(filename: 1)
+        order_by(filename: 1).
+        page(params[:page]).per(100)
     end
 end

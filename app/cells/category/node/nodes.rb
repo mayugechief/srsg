@@ -11,11 +11,9 @@ class Category::Node::Nodes
     include Cms::NodeFilter::ViewCell
     
     def index
-      @items = Category::Node.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
+      @items = Category::Node.site(@cur_site).node(@cur_node).my_route.
         order_by(filename: 1).
-        page(params[:page]).
-        per(20)
+        page(params[:page]).per(20)
       
       render
     end

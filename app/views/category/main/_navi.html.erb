@@ -1,8 +1,8 @@
 <%= render partial: "node/main/modules" %>
 
 <nav class="sub-menu">
-  <header><h1>Category</h1></header>
+  <header><h1><%= lang :category, scope: [:modules, :contents] %></h1></header>
   <div>
-    <%= link_to :categories, category_nodes_path %>
+    <%= link_to :category_nodes, category_nodes_path %>
   </div>
 </nav>

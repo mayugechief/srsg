@@ -24,10 +24,8 @@ class Category::NodesController < ApplicationController
     
   public
     def index
-      @items = @model.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
+      @items = @model.site(@cur_site).node(@cur_node).my_route.
         order_by(filename: 1).
-        page(params[:page]).
-        per(50)
+        page(params[:page]).per(50)
     end
 end

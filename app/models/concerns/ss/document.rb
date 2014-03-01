@@ -11,6 +11,15 @@ module SS::Document
   
   module ClassMethods
     
+    def lang(*args)
+      human_attribute_name *args
+    end
+    
+    def human_attribute_name(attribute, options = {})
+      options[:default] ||= :"general.#{attribute}"
+      super attribute, options
+    end
+    
     def seqid(name = :id, opts = {})
       include SS::Extensions::Sequence unless include? SS::Extensions::Sequence
       sequence_field name
@@ -35,16 +44,9 @@ module SS::Document
     end
     
     def permitted_fields #TODO:
-      keys = []
-      fields.each do |key, field|
-        keys << key
-        keys << { key => [] } if field.type < Array
-      end
+      keys = fields.keys
+      fields.each {|k, f| keys << { k => [] } if f.type < Array }
       keys
-    end
-    
-    def lang(name)
-      name.to_s.gsub(/^_/, "").titleize
     end
   end
   

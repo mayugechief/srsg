@@ -17,9 +17,10 @@ class Cms::ContentsController < ApplicationController
       cond = {}
       cond[:route] = /^#{@mod}\// if @mod.present?
       
-      @items = Cms::Node.site_is(@cur_site).
+      @items = Cms::Node.site(@cur_site).
         where(cond).
         where(shortcut: 1).
-        sort(filename: 1)
+        order_by(filename: 1).
+        page(params[:page]).per(100)
     end
 end

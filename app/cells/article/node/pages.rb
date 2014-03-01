@@ -11,10 +11,10 @@ class Article::Node::Pages
     include Cms::NodeFilter::ViewCell
     
     def index
-      @items = Cms::Page.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
+      @items = Article::Page.site(@cur_site).node(@cur_node).my_route.
         where(deleted: nil).
-        sort(_id: -1)
+        order_by(_id: -1).
+        page(params[:page]).per(10)
         
       render
     end

@@ -3,7 +3,7 @@ class Cms::Part
   
   module Base
     extend ActiveSupport::Concern
-    include Cms::Page::Base
+    include Cms::Page::Feature
     
     included do
       store_in collection: "cms_parts"
@@ -31,7 +31,8 @@ class Cms::Part
     
     def addon(mod, name)
       path = "#{mod}/#{name}"
-      @@adons << [path.titleize, path]
+      name = I18n.translate path.singularize, scope: [:modules, :parts], default: path.titleize
+      @@adons << [name, path]
     end
     
     def addons

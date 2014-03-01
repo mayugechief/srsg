@@ -20,13 +20,7 @@ SS::Application.configure do
   config.sass.debug_info = true
   
   # Logger
-  logger = Logger.new("#{Rails.root}/log/development.log")
-  logger.level = Logger::WARN
-  # logger.level = Logger::DEBUG
-  
-  config.logger = logger
+  config.logger = Logger.new("#{Rails.root}/log/development.log")
   config.log_level = :warn
   # config.log_level = :debug
-  
-  # Moped.logger = logger.dup
 end

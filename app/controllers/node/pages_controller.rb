@@ -13,7 +13,6 @@ class Node::PagesController < ApplicationController
   
   private
     def fix_params
-      #dump view_paths.to_a
       { site_id: @cur_site._id, cur_node: @cur_node }
     end
     

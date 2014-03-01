@@ -11,11 +11,10 @@ class Category::Node::Pages
     include Cms::NodeFilter::ViewCell
     
     def index
-      @items = Cms::Page.site_is(@cur_site).
+      @items = Cms::Page.site(@cur_site).
         where(category_ids: @cur_node.id).
         order_by(_id: -1).
-        page(params[:page]).
-        per(20)
+        page(params[:page]).per(20)
       
       render
     end

@@ -1,8 +1,8 @@
 <table class="index">
   <thead>
     <tr>
-      <th><%= @model.lang(:name) %></th>
-      <th class="filename"><%= @model.lang(:filename) %></th>
+      <th><%= @model.lang :name %></th>
+      <th class="filename"><%= @model.lang :filename %></th>
       <th class="route"><%= @model.lang :route %></th>
     </tr>
   </thead>
@@ -25,3 +25,5 @@
   </tbody>
   
 </table>
+
+<%= paginate @items if @items.try(:current_page) %>

@@ -3,7 +3,7 @@
   <% next if key =~ /^(id|site_id)$/ %>
   <% next if key =~ /^_|created|updated/ %>
   <% next if @item.send(key).blank? %>
-  <dt><%= @model.lang(key) %></dt>
+  <dt><%= @model.lang key %></dt>
   <dd>
     <% if field.instance_of?(Mongoid::Fields::ForeignKey) %>
       <% if field.metadata[:relation] == Mongoid::Relations::Referenced::ManyToMany %>

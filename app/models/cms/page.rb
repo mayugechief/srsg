@@ -1,7 +1,7 @@
 # coding: utf-8
 class Cms::Page
   
-  module Base
+  module Feature
     extend ActiveSupport::Concern
     include SS::Document
     include SS::Site::Ref
@@ -24,6 +24,13 @@ class Cms::Page
       validate :validate_filename
       
       before_save :set_depth, if: -> { filename.present? }
+    end
+    
+    module ClassMethods
+      
+      def node(node)
+        where filename: /^#{node.filename}\//, depth: node.depth + 1
+      end
     end
     
     public
@@ -83,36 +90,54 @@ class Cms::Page
       def set_depth
         self.depth = filename.scan(/[^\/]+/).size
       end
+    
+    class << self
+      
+      def model_name
+        ActiveModel::Name.new(self)
+      end
+      
+    end
+  end
+  
+  module Base
+    extend ActiveSupport::Concern
+    include Cms::Page::Feature
+    include Cms::Layout::Ref
+    
+    included do
+      store_in collection: "cms_pages"
+      
+      field :route, type: String, default: -> { "cms/pages" }
+      field :keywords, type: SS::Fields::Words
+      field :description, type: String, metadata: { form: :text }
+      field :html, type: String, metadata: { form: :text }
+      field :wiki, type: String, metadata: { form: :text }
+      field :tiny, type: String, metadata: { form: :text }
+      
+      #embeds_many :html, class_name: "Cms::String"
+      
+      before_save :set_filename
+    end
+    
+    class << self
+      
+      public
+        def addon(cell, opts = {})
+          Cms::Editor.addon cell, opts
+        end
+    end
+    
+    private
+      def set_filename
+        if filename.blank?
+          self.filename = @cur_node ? "#{@cur_node.filename}/#{id}.html" : "#{id}.html"
+        end
+      end
   end
   
   include Base
-  include Cms::Layout::Ref
   
-  store_in collection: "cms_pages"
+  #scope :my_route, -> { where route: "cms/pages" }
   
-  field :route, type: String, default: -> { "cms/pages" }
-  field :keywords, type: SS::Fields::Words
-  field :description, type: String, metadata: { form: :text }
-  field :html, type: String, metadata: { form: :text }
-  field :wiki, type: String, metadata: { form: :text }
-  field :tiny, type: String, metadata: { form: :text }
-  
-  #embeds_many :html, class_name: "Cms::String"
-  
-  before_save :set_filename
-  
-  class << self
-    
-    public
-      def addon(cell, opts = {})
-        Cms::Editor.addon cell, opts
-      end
-  end
-  
-  private
-    def set_filename
-      if filename.blank?
-        self.filename = @cur_node ? "#{@cur_node.filename}/#{id}.html" : "#{id}.html"
-      end
-    end
 end

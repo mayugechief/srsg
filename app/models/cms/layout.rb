@@ -10,7 +10,7 @@ class Cms::Layout
     end
   end
   
-  include Cms::Page::Base
+  include Cms::Page::Feature
   
   field :html, type: String, metadata: { form: :code }
   field :part_paths, type: SS::Fields::Words, metadata: { form: :none }

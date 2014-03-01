@@ -3,7 +3,7 @@ class Article::PagesController < ApplicationController
   include Cms::BaseFilter
   include Cms::CrudFilter
   
-  model Cms::Page
+  model Article::Page
   
   append_view_path "app/views/cms/pages"
   navi_view "article/main/navi"
@@ -16,10 +16,8 @@ class Article::PagesController < ApplicationController
     
   public
     def index
-      @items = @model.site_is(@cur_site).
-        where(filename: /^#{@cur_node.filename}\//).
-        where(route: "article/pages").
+      @items = @model.site(@cur_site).node(@cur_node).my_route.
         order_by(updated: -1).
-        page(params[:page])
+        page(params[:page]).per(50)
     end
 end

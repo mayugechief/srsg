@@ -1,0 +1,16 @@
+ja:
+  views:
+    links:
+      article_pages: "ページ"
+
+  modules:
+    contents:
+      article: "記事"
+    nodes:
+      article/page: "記事一覧"
+    parts:
+      article/page: "記事一覧"
+    
+    attributes:
+      article/node/page:
+        #<<: *cms_node

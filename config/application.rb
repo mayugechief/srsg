@@ -11,19 +11,29 @@ Bundler.require(:default, Rails.env)
 module SS
   
   class Application < Rails::Application
-    I18n.enforce_available_locales = true
-    
-    config.time_zone = 'Tokyo'
-    config.i18n.default_locale = :ja
-    # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    
     config.autoload_paths << "#{config.root}/lib"
     config.autoload_paths << "#{config.root}/app/validators"
     
-    Dir.glob("#{config.root}/config/routes/*/*.rb").sort.each do |f|
-      config.paths["config/routes.rb"] << f
+    I18n.enforce_available_locales = true
+    config.time_zone = 'Tokyo'
+    config.i18n.default_locale = :ja
+    
+    [:ss, :sys, :cms].each do |name|
+      config.i18n.load_path += Dir["#{config.root}/config/locales/#{name}/*.{rb,yml}"]
     end
-    config.paths["config/routes.rb"] << "#{config.root}/config/routes_end.rb"
+    Dir["#{config.root}/config/locales/*/*.{rb,yml}"].each do |file|
+      config.i18n.load_path << file unless config.i18n.load_path.index(file)
+    end
+    
+    [:sys, :cms, :node].each do |name|
+      config.paths["config/routes.rb"] << "#{config.root}/config/routes/#{name}/routes.rb"
+    end
+    Dir["#{config.root}/config/routes/*/routes.rb"].sort.each do |file|
+      config.paths["config/routes.rb"] << file
+    end
+    Dir["#{config.root}/config/routes/*/routes_end.rb"].sort.each do |file|
+      config.paths["config/routes.rb"] << file
+    end
   end
 end
 

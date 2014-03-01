@@ -1,8 +1,8 @@
 <%= render partial: "node/main/modules" %>
 
 <nav class="sub-menu">
-  <header><h1>Uploader</h1></header>
+  <header><h1><%= lang :uploader, scope: [:modules, :contents] %></h1></header>
   <div>
-    <%= link_to :files, uploader_files_path %>
+    <%= link_to :uploader_files, uploader_files_path %>
   </div>
 </nav>
