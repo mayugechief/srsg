@@ -140,7 +140,7 @@ code {
         float: left;
         width: 160px;
         //border-right: 1px solid #ddd;
-        background-image: url(/assets/logo.png);
+        background-image: asset-url("/assets/logo.png");
         background-repeat: no-repeat;
         background-position: 20px 10px;
         text-indent: -9999px;
