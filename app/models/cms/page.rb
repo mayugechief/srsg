@@ -90,14 +90,6 @@ class Cms::Page
       def set_depth
         self.depth = filename.scan(/[^\/]+/).size
       end
-    
-    class << self
-      
-      def model_name
-        ActiveModel::Name.new(self)
-      end
-      
-    end
   end
   
   module Base
@@ -134,6 +126,13 @@ class Cms::Page
           self.filename = @cur_node ? "#{@cur_node.filename}/#{id}.html" : "#{id}.html"
         end
       end
+    
+    class << self
+      
+      def model_name
+        ActiveModel::Name.new(self)
+      end
+    end
   end
   
   include Base
