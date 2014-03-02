@@ -26,8 +26,8 @@ class Cms::Node
       validates :filename, uniqueness: { scope: :site_id }, presence: true, length: { maximum: 2000 }
       validates :route, presence: true
       
+      validate :validate_filename
       validate :validate_node, if: -> { filename.present? }
-      validate :validate_filename, if: -> { filename.present? }
       
       before_save :set_depth, if: -> { filename.present? }
       after_destroy :destroy_children
@@ -92,25 +92,27 @@ class Cms::Node
       end
       
     private
+      def validate_filename
+        return if errors[:filename].present?
+        return errors.add :filename, :blank if filename.blank?
+        
+        self.filename = filename.downcase if filename =~ /[A-Z]/
+        self.filename = filename.sub(/\/$/, "")
+        errors.add :filename, :invalid if filename !~ /^[\w\-\/]+$/
+      end
+      
       def validate_node
-        if @cur_node
+        return if errors[:filename].present?
+        
+        if @cur_node #TODO:
           if filename.index("/")
             errors.add :filename, :invalid if File.dirname(filename) != @cur_node.filename
           else
             self.filename = "#{@cur_node.filename}/#{filename}"
           end
-        elsif @cur_node == false #TODO:
+        elsif @cur_node == false
           errors.add :filename, :invalid if filename.index("/")
         end
-      end
-      
-      def validate_filename
-        return true if errors[:filename].size > 0
-        errors.add :filename, :invalid if filename !~ /^[\w\-\/]+$/
-      end
-      
-      def set_filename
-        self.filename = filename.downcase if filename =~ /[A-Z]/
       end
       
       def set_depth
@@ -126,7 +128,7 @@ class Cms::Node
     
     class << self
       
-      def model_name
+      def model_name #TODO:
         ActiveModel::Name.new(self)
       end
     end

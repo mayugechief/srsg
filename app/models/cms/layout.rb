@@ -66,8 +66,10 @@ class Cms::Layout
     
   private
     def validate_filename
-      return true if filename.blank?
-      self.filename  = filename.downcase if filename =~ /[A-Z]/
+      return if errors[:filename].present?
+      return errors.add :filename, :blank if filename.blank?
+      
+      self.filename = filename.downcase if filename =~ /[A-Z]/
       self.filename << ".layout.html" unless filename.index(".")
       errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.layout\.html$/
     end

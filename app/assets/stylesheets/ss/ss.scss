@@ -20,8 +20,8 @@ html {
 body {
   margin: 0px;
   background-color: #eee;
-  @include lgrad(top, #e7e7e7, #f7f7f7);
-  background-attachment: fixed !important;;
+  @include lgrad(top, #e7e7e7, #fff);
+  background-attachment: fixed !important;
   color: #444;
   font-size: 81.2%;
   font-family: $font-base;
@@ -140,7 +140,7 @@ code {
         float: left;
         width: 160px;
         //border-right: 1px solid #ddd;
-        background-image: asset-url("logo.png");
+        background-image: image-url("ss/logo.png");
         background-repeat: no-repeat;
         background-position: 20px 10px;
         text-indent: -9999px;
@@ -553,27 +553,27 @@ a.external:after {
   width: 10px;
   height: 10px;
   margin-left: 4px;
-  background-image: image-url("icon-link-external.png");
+  background-image: image-url("ss/icon-link-external.png");
   background-repeat: no-repeat;
   content: "";
 }
 a.icon-node {
-  @include list-icon { background-image: image-url("icon-node.png"); }
+  @include list-icon { background-image: image-url("ss/icon-node.png"); }
 }
 a.icon-node-up {
-  @include list-icon { background-image: image-url("icon-node-up.png"); }
+  @include list-icon { background-image: image-url("ss/icon-node-up.png"); }
 }
 a.icon-page {
-  @include list-icon { background-image: image-url("icon-page.png"); }
+  @include list-icon { background-image: image-url("ss/icon-page.png"); }
 }
 a.icon-layout {
-  @include list-icon { background-image: image-url("icon-layout.png"); }
+  @include list-icon { background-image: image-url("ss/icon-layout.png"); }
 }
 a.icon-part {
-  @include list-icon { background-image: image-url("icon-part.png"); }
+  @include list-icon { background-image: image-url("ss/icon-part.png"); }
 }
 a.icon-conf {
-  @include list-icon { background-image: image-url("icon-conf.png"); }
+  @include list-icon { background-image: image-url("ss/icon-conf.png"); }
 }
 
 // -----------------------------------------------------------------------------

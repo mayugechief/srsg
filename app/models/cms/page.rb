@@ -20,8 +20,8 @@ class Cms::Page
       validates :name, presence: true, length: { maximum: 80 }
       validates :filename, uniqueness: { scope: :site_id }, length: { maximum: 80 }
       
-      validate :validate_node, if: -> { filename.present? }
       validate :validate_filename
+      validate :validate_node, if: -> { filename.present? }
       
       before_save :set_depth, if: -> { filename.present? }
     end
@@ -66,25 +66,27 @@ class Cms::Page
       end
       
     private
+      def validate_filename
+        return if errors[:filename].present?
+        return errors.add :filename, :blank if filename.blank?
+        
+        self.filename = filename.downcase if filename =~ /[A-Z]/
+        self.filename << ".html" if filename =~ /(^|\/)[\w\-]+$/
+        errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.html$/
+      end
+      
       def validate_node
-        if @cur_node
+        return if errors[:filename].present?
+        
+        if @cur_node #TODO:
           if filename.index("/")
             errors.add :filename, :invalid if File.dirname(filename) != @cur_node.filename
           else
             self.filename = "#{@cur_node.filename}/#{filename}"
           end
-        elsif @cur_node == false #TODO:
+        elsif @cur_node == false
           errors.add :filename, :invalid if filename.index("/")
         end
-      end
-      
-      def validate_filename
-        return true if filename.blank?
-        return true if errors[:filename].size > 0
-        
-        self.filename = filename.downcase if filename =~ /[A-Z]/
-        self.filename << ".html" unless filename.index(".")
-        errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.html$/
       end
       
       def set_depth
@@ -108,30 +110,18 @@ class Cms::Page
       field :tiny, type: String, metadata: { form: :text }
       
       #embeds_many :html, class_name: "Cms::String"
-      
-      before_save :set_filename
     end
     
     class << self
       
       public
+        def model_name #TODO:
+          ActiveModel::Name.new(self)
+        end
+        
         def addon(cell, opts = {})
           Cms::Editor.addon cell, opts
         end
-    end
-    
-    private
-      def set_filename
-        if filename.blank?
-          self.filename = @cur_node ? "#{@cur_node.filename}/#{id}.html" : "#{id}.html"
-        end
-      end
-    
-    class << self
-      
-      def model_name
-        ActiveModel::Name.new(self)
-      end
     end
   end
   

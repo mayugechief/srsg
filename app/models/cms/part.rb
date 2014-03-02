@@ -16,7 +16,9 @@ class Cms::Part
     
     private
       def validate_filename
-        return true if filename.blank?
+        return if errors[:filename].present?
+        return errors.add :filename, :blank if filename.blank?
+        
         self.filename = filename.downcase if filename =~ /[A-Z]/
         self.filename << ".part.html" unless filename.index(".")
         errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.part\.html$/
