@@ -115,7 +115,7 @@ class Cms::Page
     class << self
       
       public
-        def model_name #TODO:
+        def model_name
           ActiveModel::Name.new(self)
         end
         

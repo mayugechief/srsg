@@ -1,15 +1,11 @@
 ja:
   general:
-    # functions
     contents: "コンテンツ"
     design: "デザイン"
     nodes: "フォルダ"
     pages: "ページ"
     layouts: "レイアウト"
     parts: "パーツ"
-    # attributes
-    layout_id: "レイアウト"
-    shortcut: "ショートカット"
 
   views:
     links:

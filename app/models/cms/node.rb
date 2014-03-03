@@ -128,7 +128,7 @@ class Cms::Node
     
     class << self
       
-      def model_name #TODO:
+      def model_name
         ActiveModel::Name.new(self)
       end
     end

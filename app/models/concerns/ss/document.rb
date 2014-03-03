@@ -15,11 +15,6 @@ module SS::Document
       human_attribute_name *args
     end
     
-    def human_attribute_name(attribute, options = {})
-      options[:default] ||= :"general.#{attribute}"
-      super attribute, options
-    end
-    
     def seqid(name = :id, opts = {})
       include SS::Extensions::Sequence unless include? SS::Extensions::Sequence
       sequence_field name
@@ -55,4 +50,11 @@ module SS::Document
       return true if !changed?
       self.updated = Time.now
     end
+    
+  class << self
+    
+    def model_name
+      ActiveModel::Name.new(self)
+    end
+  end
 end

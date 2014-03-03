@@ -19,9 +19,9 @@ html {
 }
 body {
   margin: 0px;
-  background-color: #eee;
-  @include lgrad(top, #e7e7e7, #fff);
-  background-attachment: fixed !important;
+  background-color: #dddedf;
+  //@include lgrad(top, #cdcecf, #edeeef);
+  //background-attachment: fixed !important;
   color: #444;
   font-size: 81.2%;
   font-family: $font-base;
@@ -271,7 +271,7 @@ code {
   #main {
     .wrap {
       //padding: 10px;
-      //border: 1px solid #ddd;
+      //@include border-radius(2px);
       //background-color: #fff;
     }
   }
@@ -292,30 +292,34 @@ code {
   
   nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu {
     margin: 0px 0px 20px;
+    background-color: #fff;
     header {
       display: block;
       padding: 5px 10px;
-      background-color: #bbb;
-      color: #444;
+      background-color: #888;
+      background-color: #789;
+      color: #fff;
     }
     a {
       display: block;
       padding: 5px 10px;
-      border-bottom: 1px solid #ddd;
-      background-color: #fff;
+      border-bottom: 1px solid #eee;
       color: #444;
       &[class ^= "icon"] {
         padding-left: 30px;
         background-position: 10px center;
       }
       &:hover {
-        background-color: #ddd;
+        background-color: #eee;
         text-decoration: none;
       }
       &.current {
-        background-color: #888;
+        border-color: #bcd;
+        background-color: #abc;
         color: #fff;
-        &:hover { background-color: #777; }
+        &:hover {
+          background-color: #9ab;
+        }
       }
     }
   }
@@ -323,10 +327,10 @@ code {
     &:after {
       float: right;
       margin: -2px -2px 0px 0px;
-      color: #bbb;
+      color: #999;
       content: "▼";
     }
-    &:hover:after { color: #eee; }
+    &:hover:after { color: #777; }
   }
   
   // -------------------------------------------------------------------
@@ -335,7 +339,6 @@ code {
   table.index {
     table-layout:fixed;
     width: 100%;
-    //border: 1px solid #ccc;
     th, td {
       padding: 5px 10px;
     }
@@ -346,13 +349,18 @@ code {
     }
     tbody {
       tr {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #eee;
         background-color: #fff;
-        &:hover { background-color: #eee; }
+        &:hover {
+          background-color: #eee;
+        }
       }
       tr.checked {
-        background-color: #ebebeb;
-        &:hover { background-color: #ddd; }
+        border-color: #eee;
+        background-color: #ddd;
+        &:hover {
+          background-color: #ccc;
+        }
       }
     }
     th.checkbox, td.checkbox {
@@ -382,7 +390,7 @@ code {
       display: none;
       position: absolute;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      @include border-radius(2px);
       box-shadow: 2px 2px 10px #ccc;
       background-color: #fff;
       a {
@@ -404,9 +412,9 @@ code {
 .dev-view {
   position: absolute;
   right: 10px;
-  padding: 2px 4px;
+  padding: 2px 5px;
   border-radius: 2px;
-  background-color: #033;
+  background-color: #556;
   color: #fff;
   font-size: 90%;
 }
@@ -492,14 +500,14 @@ dl.see {
     min-height: 1.0em;
     margin: 0px 0px -1px 0px;
     padding: 15px 10px;
-    border-top: 1px solid #ddd;
+    //border-top: 1px solid #ddd;
     color: #b64;
   }
   > dd {
     min-height: 1.41em;
     margin: 0px 0px -1px 140px;
     padding: 15px 10px;
-    border-top: 1px solid #ddd;
+    //border-top: 1px solid #ddd;
   }
   > dt.wide {
     float: none;
@@ -523,21 +531,21 @@ footer.send {
     padding: 0.3em 10px;
     border: 1px solid #ccc;
     @include border-radius(4px);
-    background-color: #ccc;
-    color: #555;
+    background-color: #bbb;
+    color: #666;
     //cursor: pointer;
     &:hover {
-      @include box-shadow(0px 0px 3px #aaa);
-      color: #000;
+      background-color: #888;
+      color: #fff;
     }
   }
   input.save, button.save {
     min-width: 120px;
     padding: 0.3em 20px;
-    border: 1px solid #fc8;
-    background-color: #fc8;
+    border: 1px solid #fb7;
+    background-color: #fb7;
     &:hover {
-      @include box-shadow(0px 0px 3px #fb6);
+      background-color: #f82;
     }
   }
 }

@@ -1,8 +1,6 @@
 ja:
   general:
-    # common
     all: "すべて"
-    # functions
     login: "ログイン"
     logout: "ログアウト"
     config: "設定"
@@ -10,11 +8,6 @@ ja:
     system: "システム"
     sites: "サイト"
     users: "ユーザー"
-    # attributes
-    created: "作成日時"
-    updated: "更新日時"
-    filename: "ファイル名"
-    limit: "表示件数"
 
   views:
     links:
@@ -30,6 +23,14 @@ ja:
       ss/site: "サイト"
       ss/user: "ユーザー"
     attributes:
+      ss/document:
+        created: "作成日時"
+        updated: "更新日時"
+        filename: "ファイル名"
+        order: "並び順"
+        limit: "表示件数"
+        layout_id: "レイアウト"
+        shortcut: "ショートカット"
       ss/site:
         name: "サイト名"
         host: "ホスト名"
