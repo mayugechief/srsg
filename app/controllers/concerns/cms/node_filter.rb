@@ -131,7 +131,7 @@ module Cms::NodeFilter
         { controller: params[:controller].split("/")[0].pluralize, cid: @item.parent }
       else
         diff = @item.route.split("/")[0] != params[:controller].split("/")[0]
-        diff ? { action: :show } : nil
+        diff ? { action: :show, id: @item } : nil
       end
     end
     

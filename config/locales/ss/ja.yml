@@ -1,15 +1,14 @@
 ja:
-  general:
-    all: "すべて"
-    login: "ログイン"
-    logout: "ログアウト"
-    config: "設定"
-    modules: "モジュール"
-    system: "システム"
-    sites: "サイト"
-    users: "ユーザー"
-
   views:
+    general:
+      all: "すべて"
+      login: "ログイン"
+      logout: "ログアウト"
+      config: "設定"
+      modules: "モジュール"
+      system: "システム"
+      sites: "サイト"
+      users: "ユーザー"
     links:
       new: "新規作成"
       edit: "編集する"

@@ -40,7 +40,7 @@ module SS::Document
     
     def permitted_fields #TODO:
       keys = fields.keys
-      fields.each {|k, f| keys << { k => [] } if f.type < Array }
+      fields.each {|k, f| keys << { k => [] } if f.type <= Array }
       keys
     end
   end

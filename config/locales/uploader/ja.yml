@@ -1,6 +1,7 @@
 ja:
-  general:
-    uploader_files: "ファイル"
+  views:
+    general:
+      uploader_files: "ファイル"
 
   modules:
     contents:

@@ -18,7 +18,8 @@ SS::Application.routes.draw do
     #dump({ base: base, path: ".:host/node:cid/config/#{name}", controller: path })
   end
   
-  get "*public_path" => "cms/public#index", public_path: /[^\.].*/
+  match "*public_path" => "cms/public#index", public_path: /[^\.].*/,
+    via: [:get, :post, :put, :patch, :destroy]
   
   root "cms/public#index"
   

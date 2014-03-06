@@ -19,7 +19,7 @@ module ApplicationHelper
   end
   
   def lang(name, opts = {})
-    scope = opts[:scope] || [:general]
+    scope = opts[:scope] || [:views, :general]
     hn = I18n.translate name, scope: scope, default: "unk"
     (hn == "unk") ? name.to_s.humanize : hn
   end

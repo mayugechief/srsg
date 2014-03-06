@@ -19,7 +19,7 @@ html {
 }
 body {
   margin: 0px;
-  background-color: #dddedf;
+  background-color: #ddd;
   //@include lgrad(top, #cdcecf, #edeeef);
   //background-attachment: fixed !important;
   color: #444;
@@ -270,8 +270,9 @@ code {
   }
   #main {
     .wrap {
-      //padding: 10px;
+      //padding: 3px;
       //@include border-radius(2px);
+      //@include box-shadow(1px 1px 3px #bbb);
       //background-color: #fff;
     }
   }
@@ -292,12 +293,12 @@ code {
   
   nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu {
     margin: 0px 0px 20px;
+    //@include box-shadow(0px 0px 2px #bbb);
     background-color: #fff;
     header {
       display: block;
       padding: 5px 10px;
-      background-color: #888;
-      background-color: #789;
+      background-color: #678;
       color: #fff;
     }
     a {
@@ -314,11 +315,12 @@ code {
         text-decoration: none;
       }
       &.current {
-        border-color: #bcd;
-        background-color: #abc;
+        border-color: #4bc;
+        background-color: #4bc;
         color: #fff;
         &:hover {
-          background-color: #9ab;
+          border-color: #3ab;
+          background-color: #3ab;
         }
       }
     }
@@ -327,10 +329,10 @@ code {
     &:after {
       float: right;
       margin: -2px -2px 0px 0px;
-      color: #999;
+      color: #fff;
       content: "▼";
     }
-    &:hover:after { color: #777; }
+    &:hover:after { color: #fff; }
   }
   
   // -------------------------------------------------------------------
@@ -500,14 +502,15 @@ dl.see {
     min-height: 1.0em;
     margin: 0px 0px -1px 0px;
     padding: 15px 10px;
-    //border-top: 1px solid #ddd;
-    color: #b64;
+    //border-top: 1px solid #eee;
+    color: #b38;
+    font-weight: bold;
   }
   > dd {
     min-height: 1.41em;
     margin: 0px 0px -1px 140px;
     padding: 15px 10px;
-    //border-top: 1px solid #ddd;
+    //border-top: 1px solid #eee;
   }
   > dt.wide {
     float: none;
@@ -525,14 +528,14 @@ footer.send {
   padding: 20px 0px;
   text-align: center;
   input, button {
-    min-width: 100px;
-    height: 2.5em;
+    min-width: 120px;
     margin: 0px 5px;
-    padding: 0.3em 10px;
-    border: 1px solid #ccc;
+    padding: 10px 10px;
+    border-style: none;
     @include border-radius(4px);
-    background-color: #bbb;
-    color: #666;
+    @include box-shadow(0px 1px 1px #bbb);
+    background-color: #777;
+    color: #fff;
     //cursor: pointer;
     &:hover {
       background-color: #888;
@@ -540,12 +543,9 @@ footer.send {
     }
   }
   input.save, button.save {
-    min-width: 120px;
-    padding: 0.3em 20px;
-    border: 1px solid #fb7;
-    background-color: #fb7;
+    background-color: #b58;
     &:hover {
-      background-color: #f82;
+      background-color: #c69;
     }
   }
 }

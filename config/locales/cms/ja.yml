@@ -1,13 +1,12 @@
 ja:
-  general:
-    contents: "コンテンツ"
-    design: "デザイン"
-    nodes: "フォルダ"
-    pages: "ページ"
-    layouts: "レイアウト"
-    parts: "パーツ"
-
   views:
+    general:
+      contents: "コンテンツ"
+      design: "デザイン"
+      nodes: "フォルダ"
+      pages: "ページ"
+      layouts: "レイアウト"
+      parts: "パーツ"
     links:
       new_node: "新規フォルダ"
       new_page: "新規ページ"
