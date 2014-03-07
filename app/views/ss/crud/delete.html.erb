@@ -1,10 +1,9 @@
-<dl class="see">
-  <dt><%= @model.lang :name %></dt>
-  <dd><%= @item.name %></dd>
-</dl>
-
 <%= form_for :item, url: { action: :show }, html: { method: :delete, multipart: true } do |f| %>
 <%= error_messages_for :item %>
+
+<div class="addon-view" id="addon-basic">
+<%= render file: "_delete" %>
+</div>
 
 <footer class="send">
   <%= f.submit '削除', class: :delete %>
