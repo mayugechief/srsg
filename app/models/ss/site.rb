@@ -15,7 +15,7 @@ class SS::Site
   seqid :id
   field :name, type: String
   field :host, type: String
-  field :domains, type: SS::Fields::Words
+  field :domains, type: SS::Extensions::Words
   
   belongs_to :group, class_name: "SS::Group"
   has_many :pages, class_name: "Cms::Page", dependent: :destroy

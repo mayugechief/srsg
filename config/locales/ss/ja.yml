@@ -9,6 +9,7 @@ ja:
       system: "システム"
       sites: "サイト"
       users: "ユーザー"
+      basic_info: "基本情報"
     links:
       new: "新規作成"
       edit: "編集する"

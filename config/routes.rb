@@ -7,6 +7,7 @@ class ActionDispatch::Routing::Mapper
   end
   
   def node(ns, &block)
+    alias :plugin :node_plugin
     alias :addon :node_addon
     @ns  = ns
     name = ns.gsub("/", "_")
@@ -15,6 +16,7 @@ class ActionDispatch::Routing::Mapper
   end
   
   def part(ns, &block)
+    alias :plugin :part_plugin
     alias :addon :part_addon
     @ns  = ns
     name = ns.gsub("/", "_")
@@ -28,10 +30,12 @@ class ActionDispatch::Routing::Mapper
     yield
   end
   
-  def editor(ns, &block)
-    alias :addon :editor_addon
-    @ns = ns
-    yield
+  def node_plugin(name)
+    Cms::Node.plugin @ns, name
+  end
+  
+  def part_plugin(name)
+    Cms::Part.plugin @ns, name
   end
   
   def node_addon(name)
@@ -43,11 +47,9 @@ class ActionDispatch::Routing::Mapper
   end
   
   def page_addon(name)
-    #Cms::Page.addon @ns, name
-  end
-  
-  def editor_addon(name)
-    Cms::Editor.addon @ns, name
+    klass = "#{@ns}/addon/#{name}".camelize
+    Cms::Page.include klass.constantize
+    Article::Page.include klass.constantize #TODO:
   end
 end
 

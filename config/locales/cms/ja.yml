@@ -18,20 +18,30 @@ ja:
       cms: "CMS"
     parts:
       cms/free: "HTML記述"
+    addons:
+      cms/html: "本文 - HTML"
+      cms/tiny: "本文 - TinyMCE"
+      cms/wiki: "本文 - WIKI"
 
   mongoid:
     models:
       cms/node: "フォルダ"
       cms/page: "ページ"
     attributes:
-      cms/node/base:
+      cms/node/model:
         name: "タイトル"
         filename: "フォルダ名"
         route: "フォルダ属性"
-      cms/page/base:
+      cms/page/model:
         name: "タイトル"
         route: "ページ属性"
+      cms/part/model:
+        name: "パーツ名"
+        route: "パーツ属性"
       cms/layout:
         name: "レイアウト名"
-      cms/part:
-        name: "パーツ名"
+        html: "HTML"
+      cms/page:
+        html: "HTML"
+        tiny: "TinyMCE"
+        wiki: "WIKI"

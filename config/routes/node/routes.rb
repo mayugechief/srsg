@@ -22,8 +22,8 @@ SS::Application.routes.draw do
   end
   
   node "node" do
-    addon :nodes
-    addon :pages
+    plugin :nodes
+    plugin :pages
     get "nodes/(index.:format)" => "public#index", cell: "node/nodes"
     get "pages/(index.:format)" => "public#index", cell: "node/pages"
   end

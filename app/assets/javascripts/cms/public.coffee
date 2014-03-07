@@ -43,7 +43,7 @@ class @SS
             $("head").append '<meta name="viewport" content="' + SS.viewPort + '" />'
         SS.href = data.href
         
-        $("body").fadeIn(100)
+        $("body").fadeIn(50)
       error: (req, status, error) ->
         $("body").html SS.page
     }

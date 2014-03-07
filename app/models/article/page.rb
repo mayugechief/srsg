@@ -1,6 +1,6 @@
 # coding: utf-8
 class Article::Page
-  include Cms::Page::Base
+  include Cms::Page::Model
   
   scope :my_route, -> { where route: "article/pages" }
   

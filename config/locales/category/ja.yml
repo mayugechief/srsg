@@ -11,3 +11,11 @@ ja:
       category/page: "カテゴリー/ページ一覧"
     parts:
       category/node: "カテゴリー一覧"
+    addons:
+      category/categories: "カテゴリー"
+
+  mongoid:
+    attributes:
+      cms/page:
+        category_ids: "カテゴリー" #?
+        categories: "カテゴリー" #?

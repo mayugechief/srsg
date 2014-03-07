@@ -7,7 +7,6 @@ class Node::PagesController < ApplicationController
   
   prepend_view_path "app/views/cms/pages"
   navi_view "node/main/navi"
-  menu_view "cms/pages/menu"
   
   prepend_before_action :redirect_index, only: :index
   

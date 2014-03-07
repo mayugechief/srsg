@@ -5,6 +5,7 @@ class Cms::Page
     extend ActiveSupport::Concern
     include SS::Document
     include SS::Site::Ref
+    include Acl::Addon::GroupOwner
     
     included do
       attr_accessor :cur_node # for UI
@@ -20,8 +21,8 @@ class Cms::Page
       validates :name, presence: true, length: { maximum: 80 }
       validates :filename, uniqueness: { scope: :site_id }, length: { maximum: 80 }
       
+      before_validation :validate_node, if: -> { filename.present? }
       validate :validate_filename
-      validate :validate_node, if: -> { filename.present? }
       
       before_save :set_depth, if: -> { filename.present? }
     end
@@ -66,15 +67,6 @@ class Cms::Page
       end
       
     private
-      def validate_filename
-        return if errors[:filename].present?
-        return errors.add :filename, :blank if filename.blank?
-        
-        self.filename = filename.downcase if filename =~ /[A-Z]/
-        self.filename << ".html" if filename =~ /(^|\/)[\w\-]+$/
-        errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.html$/
-      end
-      
       def validate_node
         return if errors[:filename].present?
         
@@ -89,13 +81,23 @@ class Cms::Page
         end
       end
       
+      def validate_filename
+        return if errors[:filename].present?
+        return errors.add :filename, :blank if filename.blank?
+        
+        self.filename = filename.downcase if filename =~ /[A-Z]/
+        self.filename << ".html" if filename =~ /(^|\/)[\w\-]+$/
+        errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.html$/
+      end
+      
       def set_depth
         self.depth = filename.scan(/[^\/]+/).size
       end
   end
   
-  module Base
+  module Model
     extend ActiveSupport::Concern
+    extend SS::Translation
     include Cms::Page::Feature
     include Cms::Layout::Ref
     
@@ -103,7 +105,7 @@ class Cms::Page
       store_in collection: "cms_pages"
       
       field :route, type: String, default: -> { "cms/pages" }
-      field :keywords, type: SS::Fields::Words
+      field :keywords, type: SS::Extensions::Words
       field :description, type: String, metadata: { form: :text }
       field :html, type: String, metadata: { form: :text }
       field :wiki, type: String, metadata: { form: :text }
@@ -111,21 +113,9 @@ class Cms::Page
       
       #embeds_many :html, class_name: "Cms::String"
     end
-    
-    class << self
-      
-      public
-        def model_name
-          ActiveModel::Name.new(self)
-        end
-        
-        def addon(cell, opts = {})
-          Cms::Editor.addon cell, opts
-        end
-    end
   end
   
-  include Base
+  include Model
   
   #scope :my_route, -> { where route: "cms/pages" }
   

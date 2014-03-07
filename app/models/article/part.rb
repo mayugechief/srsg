@@ -2,7 +2,7 @@
 module Article::Part
   
   class Page
-    include Cms::Part::Base
+    include Cms::Part::Model
     
     field :limit, type: Integer, default: 20
   end

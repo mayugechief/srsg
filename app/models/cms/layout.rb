@@ -10,12 +10,13 @@ class Cms::Layout
     end
   end
   
+  extend SS::Translation
   include Cms::Page::Feature
   
   field :html, type: String, metadata: { form: :code }
-  field :part_paths, type: SS::Fields::Words, metadata: { form: :none }
-  field :css_paths, type: SS::Fields::Words, metadata: { form: :none }
-  field :js_paths, type: SS::Fields::Words, metadata: { form: :none }
+  field :part_paths, type: SS::Extensions::Words, metadata: { form: :none }
+  field :css_paths, type: SS::Extensions::Words, metadata: { form: :none }
+  field :js_paths, type: SS::Extensions::Words, metadata: { form: :none }
   
   validates :filename, presence: true
   

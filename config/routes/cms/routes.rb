@@ -21,11 +21,10 @@ SS::Application.routes.draw do
   end
   
   part "cms" do
-    addon :frees
+    plugin :frees
   end
   
-  editor "cms" do
-    addon :basic
+  page "cms" do
     addon :html
     addon :tiny
     addon :wiki

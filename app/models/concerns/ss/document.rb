@@ -1,6 +1,7 @@
 # coding: utf-8
 module SS::Document
   extend ActiveSupport::Concern
+  extend SS::Translation
   include Mongoid::Document
   
   included do
@@ -34,7 +35,7 @@ module SS::Document
     
     def embeds_ids(name, opts = {})
       store = opts[:store_as] || "#{name.to_s.singularize}_ids"
-      field store, type: SS::Fields::ObjectIds, default: []
+      field store, type: SS::Extensions::ObjectIds, default: []
       define_method(name) { opts[:class_name].constantize.where :_id.in => send(store) }
     end
     
@@ -43,6 +44,15 @@ module SS::Document
       fields.each {|k, f| keys << { k => [] } if f.type <= Array }
       keys
     end
+    
+    def lookup_addons
+      self.ancestors.select { |x| x.respond_to?(:addon_name) }
+    end
+    
+    def addons
+      return @_addons if @_addons
+      @_addons = lookup_addons.map {|m| m.addon_name }
+    end
   end
   
   private
@@ -50,11 +60,4 @@ module SS::Document
       return true if !changed?
       self.updated = Time.now
     end
-    
-  class << self
-    
-    def model_name
-      ActiveModel::Name.new(self)
-    end
-  end
 end

@@ -22,8 +22,10 @@ $ ->
   $("a[href^=http]").each ->
     $(this).addClass("external")
   
+  #$("input.date").datepicker()
+  
   SS_ListUI.render("table.index")
-  SS_Editor.tabs(".plugin-tab")
+  SS_Addon.tabs(".addon-tab")
 
 class @SS
   @switchView: ->
@@ -63,14 +65,22 @@ class @SS_ListUI
       tr.mouseleave ->
         tr.find(".row-menu").hide()
 
-class @SS_Editor
+class @SS_Addon
   @tabs: (tabs)->
+    $(tabs + "[data-id=#addon-all]").addClass("current");
+    
     $(tabs).click (ev) ->
+      cur = $(this)
       $(tabs).each ->
-        $($(this).attr("data-id")).hide(0)
+        if cur.attr("data-id") == "#addon-all"
+          $($(this).attr("data-id")).fadeIn(150)
+          $(this).removeClass("current");
+        else if cur.attr("data-id") == $(this).attr("data-id")
+          $($(this).attr("data-id")).fadeIn(150)
+        else
+          $($(this).attr("data-id")).hide(0)
         $(this).removeClass("current");
-      $($(this).attr("data-id")).fadeIn(150)
-      $(this).addClass("current");
+      cur.addClass("current");
       ev.preventDefault();
 
 class @SS_Form

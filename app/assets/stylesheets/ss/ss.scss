@@ -233,7 +233,7 @@ code {
   }
   #wrap {
     @include clear;
-    overflow: hidden;
+    //overflow: hidden;
     padding: 0px 15px 5px;
     padding-bottom: 80px;
   }
@@ -291,7 +291,7 @@ code {
   // -------------------------------------------------------------------
   // menu
   
-  nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu {
+  nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu, nav.addon-menu {
     margin: 0px 0px 20px;
     //@include box-shadow(0px 0px 2px #bbb);
     background-color: #fff;
@@ -411,14 +411,20 @@ code {
 // -----------------------------------------------------------------------------
 // common
 
+.addon-view {
+  margin: 0px 0px 10px;
+  padding: 5px 10px;
+  border-left: 20px solid #eee;
+  @include border-radius(2px 0px 0px 2px);
+  @include box-shadow(0px 0px 3px #aaa);
+  background-color: #fff;
+}
 .dev-view {
   position: absolute;
-  right: 10px;
+  right: 5px;
   padding: 2px 5px;
-  border-radius: 2px;
-  background-color: #556;
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
-  font-size: 90%;
 }
 #notice {
   display: table;
@@ -426,11 +432,11 @@ code {
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 55px;
-  padding: 2px 10px;
+  height: 40px;
+  padding: 0px 10px;
   box-shadow: 0px 1px 2px #888;
   background-color: #48f;
-  background-color:rgba(88, 88, 88, 0.8);
+  background-color:rgba(40, 80, 120, 0.8);
   color: #fff;
   line-height: 2.4;
   .wrap {

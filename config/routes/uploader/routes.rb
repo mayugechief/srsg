@@ -7,6 +7,6 @@ SS::Application.routes.draw do
   end
   
   node "uploader" do
-    addon :files
+    plugin :files
   end
 end

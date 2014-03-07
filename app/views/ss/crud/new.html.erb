@@ -1,7 +1,11 @@
 <%= form_for :item, url: { action: :create }, html: { multipart: true } do |f| %>
 <%= error_messages_for :item %>
 
+<div class="addon-view" id="addon-basic">
 <%= render file: '_form', locals: { f: f } %>
+</div>
+
+<%= render file: "_addons_form", locals: { f: f } %>
 
 <footer class="send">
   <%= f.submit '保存', class: :save %>

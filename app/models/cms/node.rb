@@ -1,10 +1,12 @@
 # coding: utf-8
 class Cms::Node
   
-  module Base
+  module Model
     extend ActiveSupport::Concern
+    extend SS::Translation
     include SS::Document
     include SS::Site::Ref
+    include Acl::Addon::GroupOwner
     include Cms::Layout::Ref
     
     included do
@@ -26,8 +28,8 @@ class Cms::Node
       validates :filename, uniqueness: { scope: :site_id }, presence: true, length: { maximum: 2000 }
       validates :route, presence: true
       
+      before_validation :validate_node, if: -> { filename.present? }
       validate :validate_filename
-      validate :validate_node, if: -> { filename.present? }
       
       before_save :set_depth, if: -> { filename.present? }
       after_destroy :destroy_children
@@ -125,33 +127,26 @@ class Cms::Node
         parts.destroy
         layouts.destroy
       end
-    
-    class << self
-      
-      def model_name
-        ActiveModel::Name.new(self)
-      end
-    end
   end
   
-  include Base
+  include Model
   
   class << self
     
-    @@addons = []
+    @@plugins = []
     
-    def addon(mod, name)
+    def plugin(mod, name)
       path = "#{mod}/#{name}"
       name = I18n.translate path.singularize, scope: [:modules, :nodes], default: path.titleize
-      @@addons << [name, path]
+      @@plugins << [name, path]
     end
     
-    def addons
-      @@addons
+    def plugins
+      @@plugins
     end
     
     def modules
-      keys = @@addons.map {|m| m[1].sub(/\/.*/, "") }.uniq
+      keys = @@plugins.map {|m| m[1].sub(/\/.*/, "") }.uniq
       keys.map do |key|
         name = I18n.translate key, scope: [:modules, :contents], default: key.to_s.titleize
         [name, key]

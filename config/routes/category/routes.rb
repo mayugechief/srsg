@@ -14,18 +14,18 @@ SS::Application.routes.draw do
   end
   
   node "category" do
-    addon :nodes
-    addon :pages
+    plugin :nodes
+    plugin :pages
     get "nodes/(index.:format)" => "public#index", cell: "node/nodes"
     get "pages/(index.:format)" => "public#index", cell: "node/pages"
   end
   
   part "category" do
-    addon :nodes
+    plugin :nodes
   end
   
-  editor "category" do
-    addon :nodes
+  page "category" do
+    addon :categories
   end
   
 end

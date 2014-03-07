@@ -1,11 +1,11 @@
 # coding: utf-8
 class Article::Node
-  include Cms::Node::Base
+  include Cms::Node::Model
   
   scope :my_route, -> { where route: /^article\// }
   
   class Page
-    include Cms::Node::Base
+    include Cms::Node::Model
     
     scope :my_route, -> { where route: "article/pages" }
     field :limit, type: Integer, default: 20

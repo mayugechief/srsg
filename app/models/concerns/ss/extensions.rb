@@ -11,18 +11,6 @@ module SS::Extensions
         instance_variable_set(:@_sequenced_fields, fields << name)
         before_save :set_sequence
       end
-      
-#      def find(args)
-#        if args.instance_of?(Fixnum)
-#          return find_by id: args
-#        elsif args.instance_of?(String)
-#          return args =~ /^\d+$/ ? find_by(id: args) : find_by(_id: args)
-#        elsif args.instance_of?(Array)
-#          return [] if args.size == 0
-#          return where(args.first =~ /^\d+$/ ? { :id.in => args } : { :_id.in => args }).to_a
-#        end
-#        super args
-#      end
     end
     
     public
@@ -41,5 +29,71 @@ module SS::Extensions
           write_attribute name, next_sequence(name)
         end
       end
+  end
+  
+  class ObjectIds < Array
+  
+    def mongoize
+      self.to_a
+    end
+    
+    class << self
+      
+      def demongoize(object)
+        self.new(object.to_a)
+      end
+      
+      def mongoize(object)
+        case object
+        when self.class then object.mongoize
+        when String then []
+        when Array
+          ids = object.reject {|m| m.blank? }.uniq.map {|m| m.to_i }
+          #ids = object.reject {|m| m.blank? }.uniq.map {|m| BSON::ObjectId.from_string(m) }
+          self.new(ids).mongoize
+        else object
+        end
+      end
+      
+      def evolve(object)
+        case object
+        when self.class then object.mongoize
+        else object
+        end
+      end
+    end
+  end
+  
+  class Words < Array
+  
+    def to_s
+      join(", ")
+    end
+    
+    def mongoize
+      self.to_a
+    end
+    
+    class << self
+      
+      def demongoize(object)
+        self.new(object.to_a)
+      end
+      
+      def mongoize(object)
+        case object
+        when self.class then object.mongoize
+        when String then self.new(object.gsub(/[, 　、]+/, ",").split(",").uniq).mongoize
+        else object
+        end
+      end
+      
+      def evolve(object)
+        case object
+        when self.class then object.mongoize
+        else object
+        end
+      end
+    end
   end
 end

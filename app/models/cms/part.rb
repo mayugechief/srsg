@@ -1,8 +1,9 @@
 # coding: utf-8
 class Cms::Part
   
-  module Base
+  module Model
     extend ActiveSupport::Concern
+    extend SS::Translation
     include Cms::Page::Feature
     
     included do
@@ -25,20 +26,20 @@ class Cms::Part
       end
   end
   
-  include Base
+  include Model
   
   class << self
     
-    @@adons = []
+    @@plugins = []
     
-    def addon(mod, name)
+    def plugin(mod, name)
       path = "#{mod}/#{name}"
       name = I18n.translate path.singularize, scope: [:modules, :parts], default: path.titleize
-      @@adons << [name, path]
+      @@plugins << [name, path]
     end
     
-    def addons
-      @@adons
+    def plugins
+      @@plugins
     end
   end
 end

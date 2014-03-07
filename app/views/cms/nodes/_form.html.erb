@@ -2,13 +2,13 @@
 
 #fields = {} #local-variable
 url = params[:action] =~ /new|create/ ? url_for(action: :new) : url_for(action: :edit)
-bind  = "$(this).parent().parent().parent().hide();"
+bind  = "$(this).parent().parent().parent().parent().hide();"
 bind << "location.href = '#{url}?route=' + $(this).val();"
 
 %><dl class="see">
   
   <dt><%= @model.lang :route %></dt>
-  <dd><%= f.select :route, Cms::Node.addons, {}, onchange: bind %></dd>
+  <dd><%= f.select :route, Cms::Node.plugins, {}, onchange: bind %></dd>
   
   <dt><%= @model.lang :name %></dt>
   <dd><%= f.text_field :name %></dd>
