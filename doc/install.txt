@@ -21,7 +21,7 @@ ruby
 
   bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
   su -
-  rvm install 2.0.0
+  rvm install 2.1.1
 
 srsg
 
