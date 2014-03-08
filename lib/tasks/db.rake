@@ -1,6 +1,5 @@
 # coding: utf-8
 namespace :db do
-  
   namespace :user do
     task :create => :environment do
       puts "Create user ..."
@@ -16,5 +15,4 @@ namespace :db do
       puts "  " + (item.errors.empty? ? item.name : item.errors.full_messages.join("\n  "))
     end
   end
-  
 end

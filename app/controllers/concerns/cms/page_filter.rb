@@ -1,6 +1,5 @@
 # coding: utf-8
 module Cms::PageFilter
-  
   module ViewCell
     extend ActiveSupport::Concern
     

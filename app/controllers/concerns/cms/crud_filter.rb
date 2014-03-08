@@ -4,7 +4,6 @@ module Cms::CrudFilter
   
   included do
     include SS::CrudFilter
-    
     menu_view "ss/crud/menu"
   end
 end

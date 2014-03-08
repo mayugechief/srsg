@@ -10,7 +10,6 @@
 require "fileutils"
 
 class Thin
-  
   public
     def status
       sleep 0.5

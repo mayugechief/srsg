@@ -9,7 +9,6 @@ require "fileutils"
 require 'zipruby'
 
 class Frypan
-  
   private
     def root
       "#{File.dirname(__dir__)}"

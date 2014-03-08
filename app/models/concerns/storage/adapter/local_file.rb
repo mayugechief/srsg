@@ -3,7 +3,6 @@ module Storage::Adapter::LocalFile
   extend ActiveSupport::Concern
   
   module ClassMethods
-    
     def exists?(path)
       FileTest.exists? path
     end

@@ -1,9 +1,7 @@
 # coding: utf-8
-class Article::Routes::Nodes::Pages
-  
+module Article::Routes::Nodes::Pages
   class EditCell < Cell::Rails
     include Cms::NodeFilter::EditCell
-    
     model Article::Node::Page
   end
   

@@ -1,6 +1,5 @@
 # coding: utf-8
 class Cms::Page
-  
   module Feature
     extend ActiveSupport::Concern
     include SS::Document
@@ -28,7 +27,6 @@ class Cms::Page
     end
     
     module ClassMethods
-      
       def node(node)
         where filename: /^#{node.filename}\//, depth: node.depth + 1
       end

@@ -1,6 +1,5 @@
 # coding: utf-8
 namespace :cms do
-  
   namespace :layout do
     task :publish => :environment  do
       puts "Publish layouts ..."
@@ -22,5 +21,4 @@ namespace :cms do
       # puts "Completed."
     # end
   # end
-  
 end

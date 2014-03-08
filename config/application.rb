@@ -9,7 +9,6 @@ require "sprockets/railtie"
 Bundler.require(:default, Rails.env)
 
 module SS
-  
   class Application < Rails::Application
     config.autoload_paths << "#{config.root}/lib"
     config.autoload_paths << "#{config.root}/app/validators"

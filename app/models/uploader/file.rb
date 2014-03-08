@@ -5,7 +5,6 @@ class Uploader::File
   attr_accessor :filename, :size
   
   class << self
-  
     public
       def lang(name)
         name.to_s.gsub(/^_/, "").titleize

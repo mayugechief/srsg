@@ -1,6 +1,5 @@
 # coding: utf-8
 class Cms::Part
-  
   module Model
     extend ActiveSupport::Concern
     extend SS::Translation
@@ -29,7 +28,6 @@ class Cms::Part
   include Model
   
   class << self
-    
     @@plugins = []
     
     def plugin(mod, name)

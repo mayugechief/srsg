@@ -1,6 +1,5 @@
 # coding: utf-8
-class Category::Routes::Nodes::Nodes
-  
+module Category::Routes::Nodes::Nodes
   class EditCell < Cell::Rails
     include Cms::NodeFilter::EditCell
     

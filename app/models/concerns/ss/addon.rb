@@ -1,8 +1,6 @@
 # coding: utf-8
 module SS::Addon
-  
   module Model
-    
     def included(mod)
       extend ActiveSupport::Concern
       extend SS::Translation
@@ -10,17 +8,13 @@ module SS::Addon
     end
     
     module ClassMethods
-      
       def addon_name
         SS::Addon::Name.new(self)
       end
     end
   end
   
-  include Model
-  
   class Name
-    
     def initialize(name, params = {})
       @class = name
       @name  = name.is_a?(String) ? name : name.to_s.underscore.sub("addon/", "")
@@ -36,7 +30,7 @@ module SS::Addon
     
     def exists?(type = :view)
       begin
-        klass = "#{path}/view_cell".camelize
+        klass = "#{path}/#{type}_cell".camelize
         klass = Module.const_get(klass)
         klass.is_a?(Class)
       rescue

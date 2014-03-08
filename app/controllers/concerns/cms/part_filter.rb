@@ -1,8 +1,6 @@
 # coding: utf-8
 module Cms::PartFilter
-  
   module Controller
-    
     private
       def append_view_paths
         append_view_path ["app/views/cms/parts", "app/views/ss/crud"]

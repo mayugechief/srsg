@@ -1,6 +1,5 @@
 # coding: utf-8
 class Cms::PublicController < ApplicationController
-  
   rescue_from StandardError, with: :rescue_action
   
   before_action :deny_requesta

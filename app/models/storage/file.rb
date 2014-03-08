@@ -7,5 +7,4 @@ class Storage::File
   field :content_type, type: String
   field :created, type: DateTime, default: -> { Time.now }
   field :updated, type: DateTime, default: -> { Time.now }
-  
 end

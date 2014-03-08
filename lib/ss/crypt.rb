@@ -3,9 +3,7 @@ require 'digest/md5'
 require 'openssl'
 require 'base64'
 module SS::Crypt
-  
   class << self
-  
     def crypt(str, salt = "srsg")
       Digest::MD5.hexdigest(Digest::MD5.digest(str) + salt)
     end

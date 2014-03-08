@@ -11,7 +11,6 @@ module SS::LayoutFilter
   end
   
   module ClassMethods
-    
     private
       def stylesheet(path)
         self.stylesheets << path

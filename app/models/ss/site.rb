@@ -1,6 +1,5 @@
 # coding: utf-8
 class SS::Site
-  
   module Ref
     extend ActiveSupport::Concern
     
@@ -46,7 +45,6 @@ class SS::Site
   end
   
   class << self
-    
     def root
       "#{Rails.root}/public/sites"
     end

@@ -1,6 +1,5 @@
 # coding: utf-8
 class Cms::Node
-  
   module Model
     extend ActiveSupport::Concern
     extend SS::Translation
@@ -36,7 +35,6 @@ class Cms::Node
     end
     
     module ClassMethods
-      
       def node(node)
         where filename: /^#{node.filename}\//, depth: node.depth + 1
       end
@@ -132,7 +130,6 @@ class Cms::Node
   include Model
   
   class << self
-    
     @@plugins = []
     
     def plugin(mod, name)

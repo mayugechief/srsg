@@ -1,8 +1,6 @@
 # coding: utf-8
 module SS::Debug
-  
   class << self
-    
     public
       def dump(data, lev = 1)
         s = []

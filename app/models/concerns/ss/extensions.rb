@@ -1,6 +1,5 @@
 # coding: utf-8
 module SS::Extensions
-  
   module Sequence
     extend ActiveSupport::Concern
     
@@ -32,13 +31,11 @@ module SS::Extensions
   end
   
   class ObjectIds < Array
-  
     def mongoize
       self.to_a
     end
     
     class << self
-      
       def demongoize(object)
         self.new(object.to_a)
       end
@@ -65,7 +62,6 @@ module SS::Extensions
   end
   
   class Words < Array
-  
     def to_s
       join(", ")
     end

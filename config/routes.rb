@@ -1,6 +1,5 @@
 # coding: utf-8
 class ActionDispatch::Routing::Mapper
-  
   def content(ns, &block)
     name = ns.gsub("/", "_")
     namespace(name, path: ".:host/#{ns}:cid", module: ns, cid: /\w+/) { yield }

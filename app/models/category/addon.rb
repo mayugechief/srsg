@@ -1,7 +1,6 @@
 # coding: utf-8
 class Category::Addon
-  
   module Categories
-    extend SS::Addon
+    extend SS::Addon::Model
   end
 end

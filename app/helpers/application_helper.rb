@@ -1,6 +1,5 @@
 # coding: utf-8
 module ApplicationHelper
-
   def tryb(&block)
     begin
       block.call

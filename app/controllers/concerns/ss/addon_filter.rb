@@ -1,6 +1,5 @@
 # coding: utf-8
 module SS::AddonFilter
-  
   module EditCell
     extend ActiveSupport::Concern
     

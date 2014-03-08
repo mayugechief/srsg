@@ -11,7 +11,6 @@ module SS::CrudFilter
   end
   
   module ClassMethods
-    
     private
       def model(cls)
         self.model_class = cls if cls

@@ -1,6 +1,5 @@
 # coding: utf-8
 class Cms::Layout
-  
   module Ref
     extend ActiveSupport::Concern
     

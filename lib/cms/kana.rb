@@ -1,10 +1,8 @@
 # coding: utf-8
 module Cms::Kana
-  
   @@mecab = nil
   
   class << self
-    
     private
       def load_binding(name = "MeCab")
         if name == "MeCab"

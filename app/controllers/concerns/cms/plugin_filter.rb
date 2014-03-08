@@ -1,6 +1,5 @@
 # coding: utf-8
 module Cms::PluginFilter
-  
   module File
     extend ActiveSupport::Concern
     

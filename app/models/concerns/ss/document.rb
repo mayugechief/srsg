@@ -11,7 +11,6 @@ module SS::Document
   end
   
   module ClassMethods
-    
     def lang(*args)
       human_attribute_name *args
     end

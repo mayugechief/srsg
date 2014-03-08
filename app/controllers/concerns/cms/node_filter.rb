@@ -1,8 +1,6 @@
 # coding: utf-8
 module Cms::NodeFilter
-  
   module Controller
-    
     private
       def append_view_paths
         append_view_path ["app/views/cms/nodes", "app/views/ss/crud"]
@@ -87,7 +85,6 @@ module Cms::NodeFilter
     end
     
     module ClassMethods
-      
       def model(cls)
         self.model_class = cls if cls
       end
