@@ -1,5 +1,8 @@
 # coding: utf-8
 module Cms::PartFilter
+  extend ActiveSupport::Concern
+  include Cms::CrudFilter
+  
   module Controller
     private
       def append_view_paths
@@ -10,7 +13,7 @@ module Cms::PartFilter
         @item.route = params[:route] if params[:route].present?
         @fix_params = fix_params
         
-        cell = "#{@item.route.sub('/', '/routes/parts/')}/edit"
+        cell = "#{@item.route.sub('/', '/route/part/')}/edit"
         resp = render_cell cell, params[:action]
         
         if resp.is_a?(String)
@@ -60,29 +63,5 @@ module Cms::PartFilter
     end
   end
   
-  extend ActiveSupport::Concern
-  include Cms::CrudFilter
   include Controller
-  
-  module EditCell
-    extend ActiveSupport::Concern
-    include SS::CrudFilter
-    include Cms::NodeFilter::EditCell 
-  end
-  
-  module ViewCell
-    extend ActiveSupport::Concern
-    
-    included do
-      helper ApplicationHelper
-      before_action :inherit_variables
-    end
-    
-    private
-      def inherit_variables
-        controller.instance_variables.select {|m| m =~ /^@[a-z]/ }.each do |name|
-          instance_variable_set name, controller.instance_variable_get(name)
-        end
-      end
-  end
 end

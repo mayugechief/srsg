@@ -3,6 +3,7 @@ module SS::Document
   extend ActiveSupport::Concern
   extend SS::Translation
   include Mongoid::Document
+  include SS::Fields::Sequencer
   
   included do
     field :created, type: DateTime, default: -> { Time.now }
@@ -16,7 +17,6 @@ module SS::Document
     end
     
     def seqid(name = :id, opts = {})
-      include SS::Extensions::Sequence unless include? SS::Extensions::Sequence
       sequence_field name
       
       if name == :id

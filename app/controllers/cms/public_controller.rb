@@ -105,7 +105,7 @@ class Cms::PublicController < ApplicationController
         cell = recognize_path "/.#{@cur_site.host}/part/#{page.route}.#{@path.sub(/.*\./, '')}"
         raise "404" unless cell
         @cur_page = page
-        body = render_cell "#{page.route.sub('/', '/routes/parts/')}/view", cell[:action]
+        body = render_cell "#{page.route.sub('/', '/route/part/')}/view", cell[:action]
       else
         body = page.html
       end
@@ -146,7 +146,7 @@ class Cms::PublicController < ApplicationController
       return unless page
       
       @cur_page = page
-      body = render_cell "cms/routes/pages/pages/view", "index"
+      body = render_cell "cms/route/page/pages/view", "index"
       
       body = render_kana body
       
@@ -174,7 +174,7 @@ class Cms::PublicController < ApplicationController
       return unless cell
       
       @cur_node = node
-      body = render_cell "#{node.route.sub('/', '/routes/nodes/')}/view", cell[:action]
+      body = render_cell "#{node.route.sub('/', '/route/node/')}/view", cell[:action]
       
       body = render_kana body
       

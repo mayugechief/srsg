@@ -241,7 +241,7 @@ code {
     position: relative;
     z-index: 2;
     float: left;
-    width: 180px;
+    width: 170px;
     margin: 0px 15px 20px 0px;
     //margin-bottom: -32768px;
     //padding-bottom: 32768px;
@@ -250,14 +250,14 @@ code {
     position: relative;
     z-index: 2;
     float: left;
-    width: 180px;
+    width: 170px;
   }
   #navi + #main {
     float: right;
     width: 100%;
     margin: 0px 0px 0px -100%;
     .wrap {
-      margin: 0px 0px 0px 195px;
+      margin: 0px 0px 0px 185px;
     }
   }
   #menu + #main {
@@ -265,7 +265,7 @@ code {
     width: 100%;
     margin: 0px 0px 0px -100%;
     .wrap {
-      margin: 0px 0px 0px 390px;
+      margin: 0px 0px 0px 370px;
     }
   }
   #main {
@@ -548,7 +548,7 @@ footer.send {
       color: #fff;
     }
   }
-  input.save, button.save {
+  input.save, button.save, input.delete {
     background-color: #b58;
     &:hover {
       background-color: #c69;
@@ -685,7 +685,7 @@ a.icon-conf {
   // -------------------------------------------------------------------
   // menu
   
-  nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu {
+  nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu, nav.addon-menu {
     @include clear;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #ccc;

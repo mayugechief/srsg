@@ -1,14 +1,5 @@
 # coding: utf-8
 class SS::Site
-  module Ref
-    extend ActiveSupport::Concern
-    
-    included do
-      belongs_to :site, class_name: "SS::Site"
-      scope :site, ->(site) { where(site_id: site._id) }
-    end
-  end
-  
   include SS::Document
   
   seqid :id

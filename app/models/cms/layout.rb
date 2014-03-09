@@ -1,23 +1,11 @@
 # coding: utf-8
 class Cms::Layout
-  module Ref
-    extend ActiveSupport::Concern
-    
-    included do
-      belongs_to :layout, class_name: "Cms::Layout"
-      scope :layout_is, ->(doc) { where(layout_id: doc._id) }
-    end
-  end
-  
-  extend SS::Translation
   include Cms::Page::Feature
   
   field :html, type: String, metadata: { form: :code }
   field :part_paths, type: SS::Extensions::Words, metadata: { form: :none }
   field :css_paths, type: SS::Extensions::Words, metadata: { form: :none }
   field :js_paths, type: SS::Extensions::Words, metadata: { form: :none }
-  
-  validates :filename, presence: true
   
   before_save :set_part_paths
   before_save :set_css_paths

@@ -46,7 +46,7 @@ class ActionDispatch::Routing::Mapper
   end
   
   def page_addon(name)
-    klass = "#{@ns}/addon/#{name}".camelize
+    klass = "#{@ns}/addons/#{name}".camelize
     Cms::Page.include klass.constantize
     Article::Page.include klass.constantize #TODO:
   end
