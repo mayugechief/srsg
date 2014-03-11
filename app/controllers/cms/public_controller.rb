@@ -91,7 +91,9 @@ class Cms::PublicController < ApplicationController
     
     def recognize_path(path)
       rec = Rails.application.routes.recognize_path(path, method: request.method) rescue {}
-      rec[:cell] ? { controller: rec[:cell], action: rec[:action] } : nil
+      return nil unless rec[:cell]
+      params.merge!(rec)
+      { controller: rec[:cell], action: rec[:action] }
     end
     
     def render_part
