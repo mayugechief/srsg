@@ -14,7 +14,11 @@ module Cms::PageFilter
           instance_variable_set name, controller.instance_variable_get(name)
         end
       end
-    
+      
+      def redirect_to(*args)
+        controller.redirect_to(*args)
+      end
+      
     public
       def index
         render

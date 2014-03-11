@@ -149,6 +149,7 @@ class Cms::PublicController < ApplicationController
       
       @cur_page = page
       body = render_cell "cms/route/page/pages/view", "index"
+      return if response.body.present?
       
       body = render_kana body
       
@@ -177,6 +178,7 @@ class Cms::PublicController < ApplicationController
       
       @cur_node = node
       body = render_cell "#{node.route.sub('/', '/route/node/')}/view", cell[:action]
+      return if response.body.present?
       
       body = render_kana body
       
