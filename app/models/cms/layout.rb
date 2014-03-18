@@ -20,9 +20,10 @@ class Cms::Layout
         part  = Cms::Part.where(site_id: site_id, filename: path).first
         
         if part && part.route.present? && part.route != "cms/frees"
-          eid = "part-#{path.object_id}"
-          scr = %Q|<script>SS.piece("##{eid}", "#{path.sub('.html', '.json')}");</script>|
-          htm = %Q|<div id="#{eid}"><a href="#{path}">#{part.name}</a></div>#{scr}|
+          eid  = "part-#{path.object_id}"
+          scr  = %Q[<script>SS.piece("##{eid}", "#{path.sub('.html', '.json')}");</script>]
+          html = %Q[<div id="#{eid}"><a href="#{path}">#{part.name}</a></div>#{scr}]
+          html = "<!-- part #{path} -->#{html}<!-- /part -->"
         elsif part
           part.html
         else

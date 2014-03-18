@@ -1,8 +1,9 @@
 # coding: utf-8
 class Cms::PublicController < ApplicationController
-  rescue_from StandardError, with: :rescue_action
+  include Cms::PublicFilter
   
-  before_action :deny_requesta
+  rescue_from StandardError, with: :rescue_action
+  before_action :deny_request
   before_action :dev_site, if: -> { Rails.env.development? }
   before_action :set_site
   before_action :set_path
@@ -31,7 +32,7 @@ class Cms::PublicController < ApplicationController
     end
   
   private
-    def deny_requesta
+    def deny_request
       raise "404" if request.env["REQUEST_PATH"].to_s =~ /^\/sites\/.\//
     end
     
@@ -96,16 +97,14 @@ class Cms::PublicController < ApplicationController
       { controller: rec[:cell], action: rec[:action] }
     end
     
-    def render_part
-      return if @path !~ /\.part\.(html|json)$/
-      
-      path = @path.sub(/\.json$/, ".html")
+    def route_part(path)
+      path = path.sub(/\.json$/, ".html")
       page = Cms::Part.find_by(site_id: @cur_site, filename: path) rescue nil
-      raise "404" unless page
+      return nil unless page
       
       if page.route.present? && page.route != "cms/frees"
         cell = recognize_path "/.#{@cur_site.host}/part/#{page.route}.#{@path.sub(/.*\./, '')}"
-        raise "404" unless cell
+        nil unless cell
         @cur_page = page
         body = render_cell "#{page.route.sub('/', '/route/part/')}/view", cell[:action]
       else
@@ -113,10 +112,16 @@ class Cms::PublicController < ApplicationController
       end
       
       body = render_kana body
+    end
+    
+    def render_part
+      return if @path !~ /\.part\.(html|json)$/
+      
+      body = route_part(@path)
+      raise "404" unless body
       
       respond_to do |format|
         format.html do
-          @cur_page = page
           render inline: body, layout: "cms/part"
         end
         format.json do
@@ -200,23 +205,7 @@ class Cms::PublicController < ApplicationController
       return if request.env["REQUEST_PATH"] !~ /\/[\w\-]+\.mobile\.html$/
       return if response.status != 200
       
-      body = response.body
-      response.body = nil
-      
-      head = body.match(/<header.*?<\/header>/m)
-      body = body.sub(/.*?<article>.*?<\/script>(.*)<\/div>.*/m, '\\1')
-      
-      body = @cur_layout.render_html.sub!(/<\/ yield \/>/, body) if @cur_layout
-      
-      body.gsub!(/<(\/?)(header|nav|footer)( |>)/, '<\\1div\\3')
-      body.gsub!(/<link[ >].*?\/>/, "")
-      body.gsub!(/<script[ >].*?<\/script>/, "")
-      body.gsub!(/<body/, '<body style="font-size: 80%;"')
-      body.gsub!(/<(h\d)(.*?)>/, '<div\\2 class="\\1">\\1: ')
-      body.gsub!(/<\/(h\d)>/, '</div>')
-      body.gsub!(/( *\n+ *)+/, "\n")
-      
-      response.body = body
+      response.body = convert_mobile response.body
     end
     
     def check_kana
