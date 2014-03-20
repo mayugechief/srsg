@@ -9,17 +9,25 @@
 </ part "navi" />
 
 <div id="wrap">
-  </ part "menu" />
   <article id="main">
     <div class="wrap">
-      <header>
-        <h1>新着記事</h1>
-      </header>
       </ yield />
-      </ part "/docs/recent" />
+      <section class="box" id="topics"><h1>トピックス</h1><div></div></section>
+      <section class="box"><h1>ライフイベント</h1><div></div></section>
+      <div class="split">
+      <section class="box"><h1>市について</h1><div></div></section>
+      <section class="box"><h1>オンラインサービス</h1><div></div></section>
+      </div>
+      <div class="split">
+      <section class="box"><h1>市について</h1><div></div></section>
+      <section class="box"><h1>オンラインサービス</h1><div></div></section>
+      </div>
     </div>
   </article>
-  </ part "side" />
+  <div id="side">
+    </ part "side" />
+    <nav><header><h1>新着記事</h1></header></ part "/docs/recent" /></nav>
+  </div>
 </div>
 
 </ part "foot" />
