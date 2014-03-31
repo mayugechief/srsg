@@ -1,6 +1,8 @@
 # coding: utf-8
 SS::Application.routes.draw do
   
+  Article::Initializer
+  
   concern :deletion do
     get :delete, on: :member
   end
@@ -11,12 +13,10 @@ SS::Application.routes.draw do
   end
   
   node "article" do
-    plugin :pages
     get "pages/(index.:format)" => "public#index", cell: "node/pages"
   end
   
   part "article" do
-    plugin :pages
     get "pages" => "public#index", cell: "part/pages"
   end
   

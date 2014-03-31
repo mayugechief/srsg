@@ -1,6 +1,6 @@
 # coding: utf-8
 module Acl::Addons
   module GroupOwner
-    extend SS::Addon::Concern
+    extend SS::Addon
   end
 end

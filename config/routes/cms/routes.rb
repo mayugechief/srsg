@@ -1,6 +1,8 @@
 # coding: utf-8
 SS::Application.routes.draw do
   
+  Cms::Initializer
+  
   concern :deletion do
     get :delete, :on => :member
   end
@@ -18,16 +20,6 @@ SS::Application.routes.draw do
     resources :parts, concerns: :deletion
     resources :layouts, concerns: :deletion
     resources :roles, concerns: :deletion
-  end
-  
-  part "cms" do
-    plugin :frees
-  end
-  
-  page "cms" do
-    addon :html
-    addon :tiny
-    addon :wiki
   end
   
 end

@@ -7,7 +7,8 @@ class Article::Node
   class Page
     include Cms::Node::Model
     
-    scope :my_route, -> { where route: "article/pages" }
     field :limit, type: Integer, default: 20
+    permit_params :limit
+    scope :my_route, -> { where route: "article/pages" }
   end
 end

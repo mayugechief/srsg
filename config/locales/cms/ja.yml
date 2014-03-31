@@ -22,6 +22,7 @@ ja:
       cms/html: "本文 - HTML"
       cms/tiny: "本文 - TinyMCE"
       cms/wiki: "本文 - WIKI"
+      cms/files: "添付ファイル"
 
   mongoid:
     models:

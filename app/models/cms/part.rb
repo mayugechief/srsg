@@ -8,8 +8,7 @@ class Cms::Part
   class << self
     @@plugins = []
     
-    def plugin(mod, name)
-      path = "#{mod}/#{name}"
+    def plugin(path)
       name = I18n.translate path.singularize, scope: [:modules, :parts], default: path.titleize
       @@plugins << [name, path]
     end

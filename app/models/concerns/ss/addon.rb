@@ -1,5 +1,5 @@
 # coding: utf-8
-module SS::Addon::Concern
+module SS::Addon
   def self.extended(mod)
     mod.extend SS::Translation
   end

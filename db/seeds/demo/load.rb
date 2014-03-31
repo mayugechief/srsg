@@ -24,7 +24,7 @@ puts "files:"
 
 Dir.glob "files/**/*.*" do |file|
   puts "  " + name = file.sub(/^files\//, "")
-  Storage.binwrite "#{@site.path}/#{name}", File.binread(file)
+  Fs.binwrite "#{@site.path}/#{name}", File.binread(file)
 end
 
 ## -------------------------------------

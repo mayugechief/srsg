@@ -11,10 +11,7 @@ module Cms::Page::Model
     field :route, type: String, default: -> { "cms/pages" }
     field :keywords, type: SS::Extensions::Words
     field :description, type: String, metadata: { form: :text }
-    field :html, type: String, metadata: { form: :text }
-    field :wiki, type: String, metadata: { form: :text }
-    field :tiny, type: String, metadata: { form: :text }
     
-    #embeds_many :html, class_name: "Cms::String"
+    permit_params :route, :keywords, :description
   end
 end

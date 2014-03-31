@@ -7,6 +7,8 @@ class SS::Site
   field :host, type: String
   field :domains, type: SS::Extensions::Words
   
+  permit_params :name, :host, domains: []
+  
   belongs_to :group, class_name: "SS::Group"
   has_many :pages, class_name: "Cms::Page", dependent: :destroy
   has_many :nodes, class_name: "Cms::Node", dependent: :destroy

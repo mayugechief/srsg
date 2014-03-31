@@ -1,0 +1,28 @@
+<%
+
+@files = Sns::UserFile.my_model.
+  where(user_id: @cur_user.id).
+  order_by(_id: -1).
+  page(params[:page]).per(20)
+
+%><dl class="see">
+  <dt class="wide"><%= @model.lang :files %></dt>
+  <dd class="wide" style="line-height: 2.5">
+    <% if @item.files.size > 0 %>
+    <div style="padding: 10px 5px; ;border-top: 1px solid #ccc;">
+      <% @item.files.each do |file| %>
+      <div><%= file.basename %></div>
+      <% end %>
+    </div>
+    <% end %>
+    
+    <div style="padding: 10px 5px; ;border-top: 1px solid #ccc;">
+      <%= link_to :upload, sns_user_files_path(@cur_user), target: :_blank %>
+      <% @files.each do |file| %>
+      <label style="display: block;">
+        <%= check_box_tag "item[file_ids][]", file._id, @item.file_ids.include?(file._id.to_s) %>
+        <%= file.basename %></label>
+      <% end %>
+    </div>
+  </dd>
+</dl>

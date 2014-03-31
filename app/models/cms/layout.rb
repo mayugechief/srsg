@@ -39,9 +39,9 @@ class Cms::Layout
           head.gsub!(/"#{path}"/, "\"#{path}?_=$now\"") if path !~ /\?/
         else
           file  = "#{site.path}#{path}"
-          data  = Storage.exists?(file) ? Storage.read(file) : "" rescue ""
+          data  = Fs.exists?(file) ? Fs.read(file) : "" rescue ""
           scss  = file.sub(/\.css$/, ".scss")
-          data << Storage.read(scss) if Storage.exists?(scss) rescue ""
+          data << Fs.read(scss) if Fs.exists?(scss) rescue ""
           head.gsub!(/"#{path}"/, "\"#{path}?_=#{Digest::MD5.hexdigest(data)}\"")
         end
       end

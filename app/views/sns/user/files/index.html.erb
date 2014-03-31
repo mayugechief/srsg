@@ -1,0 +1,64 @@
+<style> // TODO:
+.clear {
+  clear: both;
+}
+.user-files .item-box {
+  float:left;
+  overflow: hidden;
+  width: 150px;
+  height: 110px;
+  margin: 0px 10px 10px 0px;
+}
+.user-files .item-box .thumb {
+  display: table-cell;
+  width: 150px;
+  height: 90px;
+  padding: 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+.user-files .item-box .thumb img {
+  vertical-align: bottom;
+}
+.user-files .item-box .thumb .icon {
+  display: inline-block;
+  overflow: hidden;
+  width: 120px;
+  height: 70px;
+  border: 1px solid #ddd;
+  color: #484;
+  font-size: 200%;
+  font-weight: bold;
+  line-height: 70px;
+}
+.user-files .item-box .name {
+  height: 1.4em;
+  margin: 6px 0px 0px;
+  overflow: hidden;
+  text-align: center;
+  word-wrap: nowrap;
+}
+</style>
+
+<div class="index user-files">
+  <% @items.each do |item| %>
+  <div class="item-box">
+    <div class="thumb">
+      <a href="<%= url_for action: :show, id: item %>">
+        <% if item.image? %>
+        <img src="<%= thumb_sns_user_file_path id: item %>" alt="<%= item.basename %>" />
+        <% else %>
+        <span class="icon icon-<%= item.extname %>"><%= item.extname %></span>
+        <% end %>
+      </a>
+    </div>
+    <div class="name">
+      <a href="<%= url_for action: :show, id: item %>"><%= item.basename %></a>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div class="clear"></div>
+
+<%= paginate @items if @items.try(:current_page) %>

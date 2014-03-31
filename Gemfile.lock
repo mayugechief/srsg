@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/ahoward/mongoid-grid_fs.git
+  revision: 37287164eccc46c32471a8635dc1dfbabc1687d1
+  specs:
+    mongoid-grid_fs (2.0.0)
+      mime-types (>= 1.0, < 3.0)
+      mongoid (>= 3.0, < 5.0)
+
+GIT
   remote: https://github.com/mongoid/mongoid.git
   revision: bde8ac1b0f16aaad7e343073ce8c5b5b9c9ffc5b
   specs:
@@ -66,6 +74,7 @@ GEM
     execjs (2.0.2)
     fssm (0.2.10)
     hike (1.2.3)
+    holiday_japan (1.0.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -130,6 +139,7 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     redcarpet (3.1.1)
+    rmagick (2.13.2)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -185,6 +195,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass-rails
   dynamic_form
+  holiday_japan
   jbuilder (~> 1.2)
   jquery-cookie-rails
   jquery-rails
@@ -192,9 +203,11 @@ DEPENDENCIES
   kaminari
   mongo_mapper
   mongoid!
+  mongoid-grid_fs!
   mongoid-rspec
   rails (= 4.0.3)
   redcarpet
+  rmagick
   sass-rails (~> 4.0.0)
   sdoc
   therubyracer (~> 0.10.2)

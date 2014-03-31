@@ -1,0 +1,7 @@
+<dl class="see mod-event">
+  <dt><%= @model.lang :event_name %></dt>
+  <dd class="event-name"><%= @item.send :event_name %></dd>
+  
+  <dt><%= @model.lang :event_dates %></dt>
+  <dd class="event-dates"><%= (@item.send :event_dates).gsub(/\n|\r\n/, ", ") %></dd>
+</dl>

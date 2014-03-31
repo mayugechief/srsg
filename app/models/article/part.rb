@@ -4,5 +4,6 @@ module Article::Part
     include Cms::Part::Model
     
     field :limit, type: Integer, default: 20
+    permit_params :limit
   end
 end

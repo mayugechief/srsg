@@ -7,4 +7,11 @@ class Cms::Page
   include Model
   
   #scope :my_route, -> { where route: "cms/pages" }
+  
+  class << self
+    def addon(path)
+      Article::Page.include path.sub("/", "/addons/").camelize.constantize
+      super(path)
+    end
+  end
 end

@@ -1,7 +1,26 @@
 # coding: utf-8
 module SS::AddonFilter
+  module Layout
+    extend ActiveSupport::Concern
+    include SS::LayoutFilter
+    
+    included do
+      after_action :inherit_layout
+    end
+    
+    def inherit_layout
+      stylesheets.each do |path|
+        controller.stylesheets << path unless controller.stylesheets.include?(path)
+      end
+      javascripts.each do |path|
+        controller.javascripts << path unless controller.javascripts.include?(path)
+      end
+    end
+  end
+  
   module EditCell
     extend ActiveSupport::Concern
+    include SS::AddonFilter::Layout
     
     included do
       helper ApplicationHelper

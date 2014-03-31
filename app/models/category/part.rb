@@ -5,7 +5,8 @@ class Category::Part
   class Node
     include Cms::Part::Model
     
-    scope :my_route, -> { where route: "category/nodes" }
     field :limit, type: Integer, default: 20
+    permit_params :limit
+    scope :my_route, -> { where route: "category/nodes" }
   end
 end

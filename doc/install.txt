@@ -3,6 +3,11 @@ srsg install
 
 CentOS 6.5/64bit
 
+yum packages
+
+  yum -y install \
+    ImageMagick ImageMagick-devel
+
 mongodb
 
   vi /etc/yum.repos.d/CentOS-Base.repo

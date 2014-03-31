@@ -7,6 +7,8 @@ class SS::User
   field :email, type: String, metadata: { form: :email }
   field :password, type: String
   
+  permit_params :name, :email, :password
+  
   embeds_ids :groups, class_name: "SS::Group"
   
   index({ email: 1 }, { unique: true })

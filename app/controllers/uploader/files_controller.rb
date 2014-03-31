@@ -25,7 +25,7 @@ class Uploader::FilesController < ApplicationController
     def create
       params[:item][:files].each do |file|
         path = "#{@cur_node.path}/#{file.original_filename}"
-        Storage.binwrite(path, file.read)
+        Fs.binwrite(path, file.read)
       end
       
       redirect_to action: :index

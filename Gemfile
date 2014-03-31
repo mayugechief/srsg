@@ -32,6 +32,11 @@ gem "redcarpet"
 gem "compass-rails"
 gem "kaminari"
 #gem "non-stupid-digest-assets"
+gem "mongoid-grid_fs", github: "ahoward/mongoid-grid_fs"
+#gem "carrierwave"
+#gem "carrierwave-mongoid", require: "carrierwave/mongoid"
+gem "rmagick"
+gem "holiday_japan"
 
 group :development, :test do
 #  gem "spring"

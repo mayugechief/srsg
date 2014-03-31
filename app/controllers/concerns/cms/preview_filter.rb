@@ -1,12 +1,8 @@
 # coding: utf-8
-module Cms::PublicFilter
+module Cms::PreviewFilter
   extend ActiveSupport::Concern
   
   private
-    def replace_preview_paths(body)
-      body = body.gsub(/href="\//, "href=\"#{cms_preview_path}/")
-    end
-    
     def combine_layout(page)
       head = page.match(/<header.*?<\/header>/m).to_s
       site_name = head.sub(/.* id="ss-site-name".*?>(.*?)<.*/m, '\\1')
@@ -30,21 +26,14 @@ module Cms::PublicFilter
         page = page.sub(/( id="ss-page-name".*?>)[^<]+/, "\\1#{page_name}")
       end
       
-      pos  = "position: absolute; top: 2px; left: 0px; padding-left: 2px;"
-      css  = "#{pos}; color: #070; border-bottom: 3px solid #282;"
-      mark = %Q[<div style="#{css}">Preview</div>]
-      page = page.sub("</body>", "#{mark}</body>")
+      page
     end
     
-    def convert_mobile(body)
-      body.gsub!(/<(\/?)(header|nav|footer)( |>)/, '<\\1div\\3')
-      body.gsub!(/<link[ >].*?\/>/, "")
-      body.gsub!(/<script[ >].*?<\/script>/, "")
-      body.gsub!(/<body/, '<body style="font-size: 80%;"')
-      body.gsub!(/<(h\d)(.*?)>/, '<div\\2 class="\\1">\\1: ')
-      body.gsub!(/<\/(h\d)>/, '</div>')
-      body.gsub!(/( *\n+ *)+/, "\n")
-      
-      body
+    def replace_preview_paths(body)
+      body = body.gsub(/href="\//, "href=\"#{cms_preview_path}/")
+      pos  = "position: absolute; top: 2px; left: 0px; padding-left: 2px;"
+      css  = "#{pos}; border-bottom: 2px solid #282; color: #070; font-weight: bold;"
+      mark = %Q[<div style="#{css}">Preview</div>]
+      body = body.sub("</body>", "#{mark}</body>")
     end
 end

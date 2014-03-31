@@ -6,6 +6,7 @@ module SS::Document
   include SS::Fields::Sequencer
   
   included do
+    class_variable_set(:@@_permit_params, [])
     field :created, type: DateTime, default: -> { Time.now }
     field :updated, type: DateTime, default: -> { Time.now }
     before_save :set_updated
@@ -38,10 +39,13 @@ module SS::Document
       define_method(name) { opts[:class_name].constantize.where :_id.in => send(store) }
     end
     
-    def permitted_fields #TODO:
-      keys = fields.keys
-      fields.each {|k, f| keys << { k => [] } if f.type <= Array }
-      keys
+    def permitted_fields
+      class_variable_get(:@@_permit_params)
+    end
+    
+    def permit_params(*fields)
+      params = class_variable_get(:@@_permit_params)
+      class_variable_set(:@@_permit_params, params + fields)
     end
     
     def lookup_addons
@@ -50,7 +54,11 @@ module SS::Document
     
     def addons
       return @_addons if @_addons
-      @_addons = lookup_addons.map {|m| m.addon_name }
+      @_addons = lookup_addons.reverse.map {|m| m.addon_name }
+    end
+    
+    def addon(path)
+      include path.sub("/", "/addons/").camelize.constantize
     end
   end
   

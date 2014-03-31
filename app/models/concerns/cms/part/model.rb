@@ -9,6 +9,8 @@ module Cms::Part::Model
     
     field :route, type: String
     field :html, type: String, metadata: { form: :code }
+    
+    permit_params :route, :html
   end
   
   private

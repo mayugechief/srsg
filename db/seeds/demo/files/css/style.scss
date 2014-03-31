@@ -194,7 +194,7 @@ html, body {
   #topics {
     h1 { display: none; }
     div {
-      height: 240px;
+      height: 200px;
       background-color: #666;
       @include background-image(linear-gradient(left, #444, #567));
     }

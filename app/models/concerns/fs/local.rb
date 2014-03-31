@@ -1,5 +1,6 @@
 # coding: utf-8
-module Storage::Adapter::LocalFile
+require "mime/types"
+module Fs::Local
   extend ActiveSupport::Concern
   
   module ClassMethods
@@ -35,6 +36,30 @@ module Storage::Adapter::LocalFile
     
     def stat(path)
       ::File.stat(path)
+    end
+    
+    def size(path)
+      ::File.stat(path).size
+    end
+    
+    def content_type(path)
+      ::MIME::Types.type_for(path).first.content_type rescue nil
+    end
+    
+    def mkdir_p(path)
+      FileUtils.mkdir_p path
+    end
+    
+    def mv(src, dest)
+      FileUtils.mv src, dest
+    end
+    
+    def rm_rf(path)
+      FileUtils.rm_rf path
+    end
+    
+    def glob(path)
+      Dir.glob(path)
     end
   end
 end

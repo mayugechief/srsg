@@ -22,6 +22,8 @@ module Cms::Node::Model
     
     index({ site_id: 1, filename: 1 }, { unique: true })
     
+    permit_params :state, :name, :filename, :route, :shortcut
+    
     validates :name, presence: true, length: { maximum: 80 }
     validates :filename, uniqueness: { scope: :site_id }, presence: true, length: { maximum: 2000 }
     validates :route, presence: true
@@ -74,8 +76,8 @@ module Cms::Node::Model
       self.class.where(site_id: site_id, filename: /^#{filename}\//)
     end
     
-    def children
-      nodes.where depth: depth + 1
+    def children(cond = {})
+      nodes.where cond.merge(depth: depth + 1)
     end
     
     def pages

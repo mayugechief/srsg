@@ -16,6 +16,8 @@ module Cms::Page::Feature
     
     index({ site_id: 1, filename: 1 }, { unique: true })
     
+    permit_params :state, :name, :filename
+    
     validates :name, presence: true, length: { maximum: 80 }
     validates :filename, uniqueness: { scope: :site_id }, length: { maximum: 80 }
     

@@ -1,11 +1,9 @@
 # coding: utf-8
-class Cms::PreviewController < Cms::PublicController
+class Cms::PreviewController < ApplicationController
   include Cms::BaseFilter
-  include Cms::PublicFilter
+  include Cms::PublicController::Filter
   
-  after_action :render_preview
-  
-  layout "cms/page"
+  after_action :render_preview, prepend: true
   
   private
     def set_path
@@ -16,7 +14,8 @@ class Cms::PreviewController < Cms::PublicController
     end
     
     def render_preview
-      body = combine_layout response.body
+      body = response.body
+      body = combine_layout body unless @mobile
       body = replace_preview_paths body
       response.body = body
     end
