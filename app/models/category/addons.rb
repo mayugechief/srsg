@@ -6,7 +6,7 @@ module Category::Addons
     
     included do
       embeds_ids :categories, class_name: "Category::Node"
-      permit_params :category_ids
+      permit_params category_ids: []
     end
   end
 end

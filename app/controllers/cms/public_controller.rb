@@ -34,6 +34,9 @@ class Cms::PublicController < ApplicationController
           format.json { response.headers["Content-Type"] ||= "application/json; charset=utf-8" }
         end
         
+        #TODO:
+        response.headers["Content-Type"] = "application/xml; charset=utf-8" if params[:format] == "xml"
+        
         raise "404" if response.body.blank?
       end
     
@@ -196,9 +199,11 @@ class Cms::PublicController < ApplicationController
         @cur_node   = node
         @cur_layout = node.layout
         
-        respond_to do |format|
-          format.html { render inline: body, layout: true }
-          format.json { render json: body.to_json }
+        #TODO:
+        case params[:format].to_s.to_sym
+        when :html; render inline: body, layout: true
+        when :json; render json: body.to_json
+        when :xml ; render xml: body
         end
       end
       

@@ -10,7 +10,7 @@
   <dd>
     <%# if field.type <= Mongoid::Relations::Metadata %>
     <% if field.instance_of?(Mongoid::Fields::ForeignKey) %>
-      <%= f.select key, field.metadata[:class_name].constantize.all.map {|m| [m.name, m._id] }, :include_blank => "" %>
+      <%= f.select key, field.metadata[:class_name].constantize.all.map {|m| [m.name, m._id] }, :include_blank => " " %>
     <% elsif form_type =~ /text|code/ %>
       <%= f.text_area key, class: form_type %>
     <% else %>
