@@ -93,6 +93,8 @@ textarea {
 }
 textarea.code {
   height: 20em;
+  font-size: 120%;
+  font-family: monospace;
 }
 select, input, textarea {
   &:focus {
@@ -104,8 +106,10 @@ code {
   display: block;
   padding: 0px 8px;
   border-left: 5px solid #ddd;
-  font-family: $font-base;
-  //white-space: pre;
+  font-size: 120%;
+  font-family: monospace;
+  white-space: pre;
+  overflow-x: auto;
 }
 
 // -----------------------------------------------------------------------------
@@ -401,6 +405,7 @@ code {
     nav.row-menu {
       display: none;
       position: absolute;
+      min-width: 10em;
       border: 1px solid #ccc;
       @include border-radius(2px);
       box-shadow: 2px 2px 10px #ccc;

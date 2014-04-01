@@ -20,7 +20,7 @@ bind << "location.href = '#{url}?route=' + $(this).val();"
   
   <% if fields[:layout_id] != -1 %>
   <dt><%= @model.lang :layout_id %></dt>
-  <dd><%= f.select :layout_id, @cur_site.layouts.map {|c| [c.name, c.id]}, :include_blank => " " %></dd>
+  <dd><%= f.select :layout_id, @cur_site.layouts.map {|c| [c.name, c.id]}, include_blank: " " %></dd>
   <% end %>
   
   <% if fields[:shortcut] != -1 %>

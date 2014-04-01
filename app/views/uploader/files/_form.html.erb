@@ -1,0 +1,20 @@
+<div class="addon-view">
+  <dl class="see">
+    <dt><%= @model.lang :filename %></dt>
+    <dd><%= f.text_field :filename, class: :code, required: true,  pattern: "^#{@cur_node.filename}\/.+" %></dd>
+    
+    <% if !@item.directory? %>
+      <% if @item.image? %>
+      <dt><%= @model.lang :image %></dt>
+      <dd><%= image_tag @item.link %></dd>
+      <% end %>
+      
+      <% if @item.text? %>
+      <% begin %>
+      <dt class="wide"><%= @model.lang :text %></dt>
+      <dd class="wide"><%= f.text_area :text, class: :code, style: "height: 400px;"  %></dd>
+      <% rescue => e %>表示に失敗しました。(<%= e %>)<% end %>
+      <% end%>
+    <% end %>
+  </dl>
+</div>

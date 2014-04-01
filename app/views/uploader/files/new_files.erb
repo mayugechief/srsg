@@ -1,0 +1,13 @@
+<%= form_for :item, url: { action: :create, filename: @item.filename }, html: { multipart: true } do |f| %>
+<%= error_messages_for :item %>
+<div class="addon-view">
+  <dl class="see">
+    <dt><%= @model.lang :files %></dt>
+    <dd><%= f.file_field :files, multiple: :multiple %></dd>
+  </dl>
+</div>
+<footer class="send">
+<%= f.submit '保存', class: :save %>
+<%= f.button "キャンセル", onclick: "location.href='#{url_for(action: :show, filename: @item.filename)}'; return false;" %>
+</footer>
+<% end %>

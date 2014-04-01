@@ -1,10 +1,25 @@
 ja:
   views:
     general:
-      uploader_files: "ファイル"
+      uploader_files: "アップローダー"
+    links:
+      create_directory: "新規フォルダ"
+      upload_files: "アップロード"
 
   modules:
     contents:
       uploader: "アップローダー"
     nodes:
       uploader/file: "アップローダー"
+
+  activemodel:
+    models:
+      uploader/file:
+    attributes:
+      uploader/file:
+        name: "タイトル"
+        filename: "ファイル名"
+        content_type: "MIME"
+        size: "ファイルサイズ"
+        text: "内容"
+        image: "画像"

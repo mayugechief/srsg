@@ -1,18 +1,38 @@
-<header>
-  <h1><%= params[:controller] %></h1>
-</header>
+<table class="index">
+  <thead>
+    <tr>
+      <th style="width: 20px;"><input type="checkbox" /></th>
+      <th><%= @model.lang :name %></th>
+      <th><%= @model.lang :filename %></th>
+    </tr>
+  </thead>
 
-<%= form_for :item, url: { action: :create }, html: { multipart: true } do |f| %>
-  <%= error_messages_for :item %>
-  
-  <dl class="see">
-    <dt><%= @model.lang :file %></dt>
-    <dd><%= f.file_field :files, multiple: :multiple %> <%= f.submit '保存' %></dd>
-  </dl>
-<% end %>
+  <tbody>
+    <% if @cur_node.filename != @item.filename %>
+    <tr>
+      <td></td>
+      <td><%= link_to :parent_directory, { action: :show, filename: @item.dirname }, class: "icon-node" %></td>
+      <td></td>
+    </tr>
+    <% end %>
+    <% @items.each do |item| %>
+    <tr>
+      <td>
+        <input type="checkbox" name="ids[]" />
+        <nav class="row-menu">
+        <%= link_to "詳細を見る", action: :show, filename: item.filename, do: :show %>
+        <%= link_to "編集する", action: :show, filename: item.filename, do: :edit %>
+        <%= link_to "削除する", action: :show, filename: item.filename, do: :delete %>
+        </nav>
+      </td>
+      <% if item.directory? %>
+      <td><%= link_to item.name, { action: :show, filename: item.filename }, class: "icon-node" %></td>
+      <% else %>
+      <td><%= link_to item.name, { action: :show, filename: item.filename, do: :show }, class: "icon-page" %></td>
+      <% end %>
+      <td class="filename"><%= item.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<ul>
-  <% @items.each do |item| %>
-  <li><%= link_to item, "#{@cur_node.url}#{item}", target: "_blank" %></li>
-  <% end %>
-</ul>
