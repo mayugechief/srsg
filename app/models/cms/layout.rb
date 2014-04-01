@@ -7,6 +7,8 @@ class Cms::Layout
   field :css_paths, type: SS::Extensions::Words, metadata: { form: :none }
   field :js_paths, type: SS::Extensions::Words, metadata: { form: :none }
   
+  permit_params :html
+  
   before_save :set_part_paths
   before_save :set_css_paths
   before_save :set_js_paths
