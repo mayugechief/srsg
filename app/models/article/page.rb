@@ -9,7 +9,11 @@ class Article::Page
   
   private
     def prepare_seq_filename
-      self.filename = "-.html"
+      if @cur_node
+        self.filename = "#{@cur_node.filename}/-.html"
+      else
+        self.filename = "-.html"
+      end
     end
     
     def set_seq_filename

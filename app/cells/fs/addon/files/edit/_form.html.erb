@@ -20,8 +20,7 @@
       <%= link_to :upload, sns_user_files_path(@cur_user), target: :_blank %>
       <% @files.each do |file| %>
       <label style="display: block;">
-        <%= check_box_tag "item[file_ids][]", file._id, @item.file_ids.include?(file._id.to_s) %>
-        <%= file.basename %></label>
+        <%= f.check_box "file_ids[]", {}, file.id.to_s %><%= file.basename %></label>
       <% end %>
     </div>
   </dd>

@@ -32,6 +32,8 @@ module Cms::Node::Model
     validate :validate_filename
     
     before_save :set_depth, if: -> { filename.present? }
+    before_save :retain_changes
+    after_save :move_children, if: -> { @_filename_change }
     after_destroy :destroy_children
   end
   
@@ -120,10 +122,24 @@ module Cms::Node::Model
       self.depth = filename.scan(/[^\/]+/).size
     end
     
+    def retain_changes
+      @_filename_change = new_record? ? nil : changes["filename"]
+    end
+    
+    def move_children
+      src, dst = @_filename_change
+      
+      %w(nodes pages parts layouts).each do |name|
+        send(name).where(filename: /^#{src}\//).each do |item|
+          item.filename = item.filename.sub(/^#{src}\//, "#{dst}\/")
+          item.save validate: false
+        end
+      end
+    end
+    
     def destroy_children
-      nodes.destroy
-      pages.destroy
-      parts.destroy
-      layouts.destroy
+      %w(nodes pages parts layouts).each do |name|
+        send(name).destroy
+      end
     end
 end

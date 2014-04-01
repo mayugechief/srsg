@@ -32,6 +32,7 @@ class Cms::PublicController < ApplicationController
         respond_to do |format|
           format.html { response.headers["Content-Type"] ||= "text/html; charset=utf-8" }
           format.json { response.headers["Content-Type"] ||= "application/json; charset=utf-8" }
+          format.xml  { response.headers["Content-Type"] ||= "application/xml; charset=utf-8" }
         end
         
         #TODO:
@@ -199,11 +200,11 @@ class Cms::PublicController < ApplicationController
         @cur_node   = node
         @cur_layout = node.layout
         
-        #TODO:
-        case params[:format].to_s.to_sym
-        when :html; render inline: body, layout: true
-        when :json; render json: body.to_json
-        when :xml ; render xml: body
+        respond_to do |format|
+          format.html { render inline: body, layout: true }
+          format.json { render json: body.to_json }
+          format.json { render json: body }
+          format.xml  { render xml: body }
         end
       end
       
