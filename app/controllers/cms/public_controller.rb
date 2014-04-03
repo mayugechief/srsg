@@ -114,7 +114,7 @@ class Cms::PublicController < ApplicationController
         
         if page.route.present? && page.route != "cms/frees"
           cell = recognize_path "/.#{@cur_site.host}/part/#{page.route}.#{@path.sub(/.*\./, '')}"
-          nil unless cell
+          return unless cell
           @cur_page = page
           body = render_cell "#{page.route.sub('/', '/route/part/')}/view", cell[:action]
         else

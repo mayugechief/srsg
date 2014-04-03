@@ -19,4 +19,8 @@ SS::Application.routes.draw do
     get "pages/rss.xml" => "public#rss", cell: "node/pages", format: "xml"
   end
   
+  part "category" do
+    get "nodes" => "public#index", cell: "part/nodes"
+  end
+  
 end
