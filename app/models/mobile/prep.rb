@@ -1,6 +1,6 @@
 # coding: utf-8
 module Mobile
-  class Initializer
+  class Prep
     Cms::PublicController.include Mobile::MobileFilter
   end
 end

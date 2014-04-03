@@ -6,6 +6,11 @@ class Cms::PreviewController < ApplicationController
   after_action :render_preview, prepend: true
   
   private
+    def set_site
+      @cur_site = SS::Site.find_by host: params[:host]
+      @crumbs << [@cur_site.name, cms_main_path]
+    end
+    
     def set_path
       @path = request.env["REQUEST_PATH"].sub(/^#{cms_preview_path}/, "")
       @path = "index.html" if @path.blank?

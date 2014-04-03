@@ -1,7 +1,7 @@
 # coding: utf-8
 SS::Application.routes.draw do
 
-  Event::Initializer
+  Event::Prep
 
   concern :deletion do
     get :delete, on: :member

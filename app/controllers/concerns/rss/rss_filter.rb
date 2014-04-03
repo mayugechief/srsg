@@ -3,8 +3,12 @@ require "rss/maker"
 module Rss::RssFilter
   extend ActiveSupport::Concern
   
+  included do |mod|
+    alias_method :render_rss, :extend_render_rss
+  end
+  
   private
-    def render_rss(node, items)
+    def extend_render_rss(node, items)
       rss = RSS::Maker.make("2.0") do |rss|
         summary = nil
         %w[description summary name].each {|m| summary ||= node.send(m) if node.respond_to?(m) }

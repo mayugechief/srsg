@@ -1,6 +1,6 @@
 # coding: utf-8
 module Fs
-  class Initializer
+  class Prep
     Fs.include Fs::Local
     
     Cms::Page.addon "fs/files"

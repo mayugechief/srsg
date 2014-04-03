@@ -101,6 +101,7 @@ class @SS_Debug
   @test_url: (url)->
     return if url.match(/^#/)
     return if url.match(/\/logout$/)
+    return if url.match(/^\/\..*?\/uploader/)
     if url.match(/^https?:/)
       return unless url.match(new RegExp(location.host))
       url = url.replace(/^https?:\/\/.*?\//, "/")

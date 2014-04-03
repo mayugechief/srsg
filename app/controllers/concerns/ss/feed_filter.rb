@@ -2,10 +2,6 @@
 module SS::FeedFilter
   extend ActiveSupport::Concern
   
-  included do
-    # overrided
-  end
-  
   private
     def render_rss(channel, items)
       '<?xml version="1.0" encoding="UTF-8"?><rss />'

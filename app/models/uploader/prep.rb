@@ -1,6 +1,6 @@
 # coding: utf-8
 module Uploader
-  class Initializer
+  class Prep
     Cms::Node.plugin "uploader/files"
   end
 end
