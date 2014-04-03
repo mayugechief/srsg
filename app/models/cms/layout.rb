@@ -23,8 +23,8 @@ class Cms::Layout
         
         if part && part.route.present? && part.route != "cms/frees"
           eid  = "part-#{path.object_id}"
-          scr  = %Q[<script>SS.piece("##{eid}", "#{path.sub('.html', '.json')}");</script>]
-          html = %Q[<div id="#{eid}"><a href="#{path}">#{part.name}</a></div>#{scr}]
+          scr  = %Q[<script>SS.piece("##{eid}", "/#{path.sub('.html', '.json')}");</script>]
+          html = %Q[<div id="#{eid}"><a href="/#{path}">#{part.name}</a></div>#{scr}]
           html = "<!-- part #{path} -->#{html}<!-- /part -->"
         elsif part
           part.html
