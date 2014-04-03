@@ -28,6 +28,7 @@ module Cms::NodeFilter::EditCell
     
     def inherit_variables
       controller.instance_variables.select {|m| m =~ /^@[a-z]/ }.each do |name|
+        next if instance_variable_defined?(name)
         instance_variable_set name, controller.instance_variable_get(name)
       end
       @base = @item
@@ -41,6 +42,7 @@ module Cms::NodeFilter::EditCell
     def set_item
       @item = @base.new_record? ? @model.new(pre_params) : @model.find(@base.id)
       @item.attributes = { route: @base.route }.merge(@fix_params)
+      controller.instance_variable_set :@item, @item
     end
     
     def fix_params

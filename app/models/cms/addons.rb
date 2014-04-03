@@ -4,7 +4,7 @@ module Cms::Addons
     extend ActiveSupport::Concern
     extend SS::Addon
     
-    included do
+    included do |mod|
       field :tiny, type: String, metadata: { form: :text }
       permit_params :tiny
     end
