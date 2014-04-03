@@ -7,13 +7,12 @@ module Article::Route::Node::Pages
   
   class ViewCell < Cell::Rails
     include Cms::NodeFilter::ViewCell
-    include Rss::RssHelper 
     
     def index
       @items = Article::Page.site(@cur_site).node(@cur_node).my_route.
         where(deleted: nil).
         order_by(_id: -1).
-        page(params[:page]).per(10)
+        page(params[:page]).per(20)
       
       @items.empty? ? "" : render
     end
@@ -22,7 +21,7 @@ module Article::Route::Node::Pages
       @items = Article::Page.site(@cur_site).node(@cur_node).my_route.
         where(deleted: nil).
         order_by(_id: -1).
-        page(params[:page]).per(10)
+        limit(20)
       
       render_rss @cur_node, @items
     end

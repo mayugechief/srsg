@@ -16,5 +16,14 @@ module Category::Route::Node::Pages
       
       @items.empty? ? "" : render
     end
+    
+    def rss
+      @items = Cms::Page.site(@cur_site).
+        where(category_ids: @cur_node.id).
+        order_by(_id: -1).
+        limit(20)
+      
+      render_rss @cur_node, @items
+    end
   end
 end
