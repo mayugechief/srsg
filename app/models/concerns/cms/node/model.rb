@@ -44,6 +44,10 @@ module Cms::Node::Model
   end
   
   public
+    def dirname
+      filename.index("/") ? filename.sub(/\/[^\/]*$/, "") : nil
+    end
+    
     def basename
       filename.sub(/.*\//, "")
     end
