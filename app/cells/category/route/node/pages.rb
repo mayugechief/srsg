@@ -14,7 +14,7 @@ module Category::Route::Node::Pages
         order_by(_id: -1).
         page(params[:page]).per(20)
       
-      render
+      @items.empty? ? "" : render
     end
   end
 end

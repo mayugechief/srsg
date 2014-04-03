@@ -13,7 +13,7 @@ module Category::Route::Node::Nodes
         order_by(filename: 1).
         page(params[:page]).per(20)
       
-      render
+      @items.empty? ? "" : render
     end
   end
 end

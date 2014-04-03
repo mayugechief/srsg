@@ -1,7 +1,9 @@
-<% @items.each do |item| %>
-<article>
-  <header>
-    <h2><%= link_to item.name, item.url %></h2>
-  </header>
-</article>
-<% end %>
+<div class="category-nodes nodes">
+  <% @items.each do |item| %>
+  <article class="item-<%= item.basename.dasherize %>">
+    <header>
+      <h2><%= link_to item.name, item.url %></h2>
+    </header>
+  </article>
+  <% end %>
+</div>

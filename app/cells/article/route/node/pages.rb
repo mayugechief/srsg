@@ -15,7 +15,7 @@ module Article::Route::Node::Pages
         order_by(_id: -1).
         page(params[:page]).per(10)
       
-      render
+      @items.empty? ? "" : render
     end
     
     def rss

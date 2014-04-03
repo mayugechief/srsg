@@ -34,6 +34,10 @@ module Cms::Page::Feature
   end
   
   public
+    def basename
+      filename.sub(/.*\//, "")
+    end
+    
     def path
       "#{site.path}/#{filename}"
     end
