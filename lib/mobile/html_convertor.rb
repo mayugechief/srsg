@@ -1,5 +1,5 @@
 # coding: utf-8
-class Cms::Mobile::Convertor < String
+class Mobile::HtmlConvertor < String
   @@tags = {
     remove: %w[
       area audio canvas caption col colgroup embed iframe keygen map noscript
