@@ -1,7 +1,7 @@
 # coding: utf-8
 SS::Application.routes.draw do
 
-  Uploader::Prep
+  Uploader::Initializer
 
   content "uploader" do
     get "/" => "main#index", as: :main

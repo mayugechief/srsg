@@ -20,7 +20,7 @@ end
 
 SS::Application.routes.draw do
   
-  SS::Prep
+  SS::Initializer
   
   concern :deletion do
     get :delete, :on => :member

@@ -1,6 +1,6 @@
 # coding: utf-8
 module Cms
-  class Prep
+  class Initializer
     Cms::Part.plugin "cms/frees"
     
     Cms::Page.addon "cms/tiny"

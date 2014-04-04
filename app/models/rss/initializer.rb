@@ -1,7 +1,6 @@
 # coding: utf-8
-
 module Rss
-  class Prep
+  class Initializer
     SS::FeedFilter.include Rss::RssFilter
   end
 end
