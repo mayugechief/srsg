@@ -14,8 +14,10 @@ module Cms::Route::Part::Crumbs
       @root  = @cur_node || @cur_site
       @items = []
       
-      if params[:ref] =~ /^#{@root.url}/
-        ref = params[:ref].sub(/^#{@cur_site.url}/, "").sub(/\/([\w\-]+\.[\w\-]+)?$/, "")
+      ref = params[:ref].sub(/\.kana\.html$/, ".html")
+      
+      if ref =~ /^#{@root.url}/
+        ref = ref.sub(/^#{@cur_site.url}/, "").sub(/\/([\w\-]+\.[\w\-]+)?$/, "")
         
         if node = Cms::Node.site(@cur_site).where(filename: ref).first
           @items.unshift [node.name, node.url]

@@ -49,7 +49,7 @@ class @SS
     }
   
   @piece: (id, url) ->
-    url = url.replace(/\.json$/, ".kana.json") if SS.isKana()
+    url = url.replace(/\.json(\?|$)/, ".kana.json$1") if SS.isKana()
     $.ajax {
       type: "GET", url: url, dataType: "json" #, cache: false
       success: (data) ->
