@@ -9,9 +9,11 @@ title = "#{@cur_item.name} - #{@cur_site.name}" if @cur_item.filename != "index.
 <head>
 <meta charset="UTF-8" />
 <title><%= title %></title>
-<% if @cur_page %>
-<meta name="keywords" content="<%= @cur_page.keywords %>" />
-<meta name="description" content="<%= @cur_page.description.to_s.gsub(/\s+/, " ") %>" />
+<% if @cur_item.respond_to?(:keywords) %>
+<meta name="keywords" content="<%= @cur_item.keywords %>" />
+<% end %>
+<% if @cur_item.respond_to?(:description) %>
+<meta name="description" content="<%= @cur_item.description.to_s.gsub(/\s+/, " ") %>" />
 <% end %>
 <%= javascript_include_tag "cms/public" %>
 <%= csrf_meta_tags %>
@@ -24,9 +26,11 @@ title = "#{@cur_item.name} - #{@cur_site.name}" if @cur_item.filename != "index.
   <% if @cur_layout %><nav><%= link_to "Layout", @cur_layout.url %></nav><% end %>
 </header>
 
-<article id="page" data-layout="<%= @cur_layout.json_url if @cur_layout %>">
+<article>
+<div id="page" data-layout="<%= @cur_layout.json_url if @cur_layout %>">
 <script> $(function(){ SS.load(); }) </script>
 <%= yield %>
+</div>
 </article>
 
 </body>

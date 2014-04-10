@@ -4,9 +4,8 @@ class Category::Part
   
   class Node
     include Cms::Part::Model
+    include Cms::Addons::NodeList
     
-    field :limit, type: Integer, default: 20
-    permit_params :limit
     scope :my_route, -> { where route: "category/nodes" }
   end
 end

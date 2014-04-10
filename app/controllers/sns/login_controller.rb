@@ -4,6 +4,8 @@ class Sns::LoginController < ApplicationController
   
   skip_filter :logged_in?, only: [:login, :logout]
   
+  navi_view nil
+  
   private
     def get_params
       params.require(:item).permit(:email, :password, :ref)

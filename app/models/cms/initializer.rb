@@ -2,9 +2,9 @@
 module Cms
   class Initializer
     Cms::Part.plugin "cms/frees"
+    Cms::Part.plugin "cms/crumbs"
     
-    Cms::Page.addon "cms/tiny"
-    Cms::Page.addon "cms/wiki"
-    Cms::Page.addon "cms/html"
+    Cms::Page.addon "cms/meta"
+    Cms::Page.addon "cms/body"
   end
 end

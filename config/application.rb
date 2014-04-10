@@ -24,7 +24,7 @@ module SS
       config.i18n.load_path << file unless config.i18n.load_path.index(file)
     end
     
-    [:sys, :cms, :node].each do |name|
+    [:sys, :sns, :cms, :node].each do |name|
       config.paths["config/routes.rb"] << "#{config.root}/config/routes/#{name}/routes.rb"
     end
     Dir["#{config.root}/config/routes/*/routes.rb"].sort.each do |file|

@@ -8,13 +8,14 @@ bind << "location.href = '#{url}?route=' + $(this).val();"
 %>
 <dl class="see">
   <dt><%= @model.lang :route %></dt>
-  <dd><%= f.select :route, Cms::Part.plugins, {}, onchange: bind %></dd>
+  <dd><%= f.select :route, @item.route_options, {}, onchange: bind %></dd>
   
   <dt><%= @model.lang :name %></dt>
   <dd><%= f.text_field :name %></dd>
   
-  <% if fields[:filename] != -1 %>
   <dt><%= @model.lang :filename %></dt>
   <dd><%= f.text_field :filename %></dd>
-  <% end %>
+  
+  <dt><%= @model.lang :state %></dt>
+  <dd><%= f.select :state, @item.state_options, include_blank: " " %></dd>
 </dl>

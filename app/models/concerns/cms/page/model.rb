@@ -9,9 +9,6 @@ module Cms::Page::Model
     store_in collection: "cms_pages"
     
     field :route, type: String, default: -> { "cms/pages" }
-    field :keywords, type: SS::Extensions::Words
-    field :description, type: String, metadata: { form: :text }
-    
-    permit_params :route, :keywords, :description
+    permit_params :route
   end
 end

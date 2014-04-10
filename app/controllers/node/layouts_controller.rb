@@ -5,6 +5,7 @@ class Node::LayoutsController < ApplicationController
   
   model Cms::Layout
   
+  prepend_view_path "app/views/cms/layouts"
   navi_view "node/main/navi"
   
   private

@@ -5,6 +5,18 @@ class Cms::Part
   autoload :Model
   include Model
   
+  class Free
+    include Cms::Part::Model
+    
+    def render_html
+      html
+    end
+  end
+  
+  class Crumb
+    include Cms::Part::Model
+  end
+  
   class << self
     @@plugins = []
     

@@ -4,14 +4,14 @@ module Rss::RssFilter
   extend ActiveSupport::Concern
   
   included do |mod|
-    alias_method :render_rss, :extend_render_rss
+    #alias_method :render_rss, :extend_render_rss
   end
   
   private
-    def extend_render_rss(node, items)
+    def render_rss(node, items)
       rss = RSS::Maker.make("2.0") do |rss|
         summary = nil
-        %w[description summary name].each {|m| summary ||= node.send(m) if node.respond_to?(m) }
+        %w[description].each {|m| summary ||= node.send(m) if node.respond_to?(m) }
         
         rss.channel.title       = "#{node.name} - #{node.site.name}"
         rss.channel.link        = node.full_url
@@ -25,7 +25,7 @@ module Rss::RssFilter
           %w[published updated created].each {|m| date ||= item.send(m) if item.respond_to?(m) }
           
           summary = nil
-          %w[description summary].each {|m| summary ||= item.send(m) if item.respond_to?(m) }
+          #%w[summary description].each {|m| summary ||= item.send(m) if item.respond_to?(m) }
           
           rss.items.new_item do |entry|
             entry.title       = item.name

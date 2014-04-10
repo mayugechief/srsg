@@ -1,11 +1,12 @@
 # coding: utf-8
 module Sys::BaseFilter
   extend ActiveSupport::Concern
+  include SS::BaseFilter
   
   included do
-    include SS::BaseFilter
     before_action { @crumbs <<  [:system, sys_main_path] }
     before_action :set_crumbs
+    navi_view "sys/main/navi"
   end
   
   private

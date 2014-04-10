@@ -6,9 +6,8 @@ class Article::Node
   
   class Page
     include Cms::Node::Model
+    include Cms::Addons::PageList
     
-    field :limit, type: Integer, default: 20
-    permit_params :limit
     scope :my_route, -> { where route: "article/pages" }
   end
 end

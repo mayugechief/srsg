@@ -6,6 +6,7 @@ module Cms::PartFilter::ViewCell
     helper ApplicationHelper
     before_action :prepend_current_view_path
     before_action :inherit_variables
+    before_action :set_item
   end
   
   private
@@ -18,6 +19,10 @@ module Cms::PartFilter::ViewCell
         next if instance_variable_defined?(name)
         instance_variable_set name, controller.instance_variable_get(name)
       end
+    end
+    
+    def set_item
+      @cur_page = @cur_page.becomes_with_route
     end
     
     def redirect_to(*args)

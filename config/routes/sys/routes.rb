@@ -11,6 +11,12 @@ SS::Application.routes.draw do
     resources :users, concerns: :deletion
     resources :groups, concerns: :deletion
     resources :sites, concerns: :deletion
+    
+    namespace "db" do
+      get "/" => "main#index"
+      resources :colls, concerns: :deletion
+      resources :docs, concerns: :deletion, path: "colls/:coll/docs"
+    end
   end
   
 end

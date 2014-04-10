@@ -1,0 +1,16 @@
+<dl class="see">
+  <dt><%= @model.lang :order %></dt>
+  <dd><%= @item.label :order %></dd>
+  
+  <dt><%= @model.lang :limit %></dt>
+  <dd><%= @item.send :limit %></dd>
+  
+  <dt><%= @model.lang :upper_html %></dt>
+  <dd><%= @item.send :upper_html %></dd>
+  
+  <dt><%= @model.lang :loop_html %></dt>
+  <dd><%= @item.send :loop_html %></dd>
+  
+  <dt><%= @model.lang :lower_html %></dt>
+  <dd><%= @item.send :lower_html %></dd>
+</dl>

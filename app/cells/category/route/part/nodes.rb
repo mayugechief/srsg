@@ -7,6 +7,7 @@ module Category::Route::Part::Nodes
   
   class ViewCell < Cell::Rails
     include Cms::PartFilter::ViewCell
+    helper Cms::ListHelper
     
     def index
       @cur_node = @cur_page.node
@@ -26,8 +27,9 @@ module Category::Route::Part::Nodes
       @items = Category::Node.site(@cur_site).my_route.
         where(cond).
         where(deleted: nil).
-        order_by(_id: -1).
-        page(params[:page]).per(20)
+        order_by(@cur_page.orders).
+        page(params[:page]).
+        per(@cur_page.limit)
       
       render
     end

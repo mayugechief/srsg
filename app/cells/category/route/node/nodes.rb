@@ -7,11 +7,13 @@ module Category::Route::Node::Nodes
   
   class ViewCell < Cell::Rails
     include Cms::NodeFilter::ViewCell
+    helper Cms::ListHelper
     
     def index
       @items = Category::Node.site(@cur_site).node(@cur_node).my_route.
-        order_by(filename: 1).
-        page(params[:page]).per(20)
+        order_by(@cur_node.orders).
+        page(params[:page]).
+        per(@cur_node.limit)
       
       @items.empty? ? "" : render
     end

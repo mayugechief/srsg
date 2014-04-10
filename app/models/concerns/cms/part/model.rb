@@ -13,6 +13,28 @@ module Cms::Part::Model
     permit_params :route, :html
   end
   
+  public
+    def becomes_with_route
+      klass = route.sub("/", "/part/").singularize.camelize.constantize rescue nil
+      return self unless klass
+      
+      item = klass.new
+      instance_variables.each {|k| item.instance_variable_set k, instance_variable_get(k) }
+      item
+    end
+    
+    def render_html
+      json = url.sub('.html', '.json')
+      eid  = "part-#{path.object_id}"
+      scr  = %Q[<script>SS.piece("##{eid}", "#{json}?ref=" + location.pathname);</script>]
+      html = %Q[<div id="#{eid}"><a href="#{url}">#{name}</a></div>#{scr}]
+      html = "<!-- part #{path} -->#{html}<!-- /part -->"
+    end
+    
+    def route_options
+      Cms::Part.plugins
+    end
+    
   private
     def validate_filename
       return if errors[:filename].present?

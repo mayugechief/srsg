@@ -12,7 +12,7 @@
   <dd>
     <%= hidden_field_tag "item[group_ids][]" %>
     <% SS::Group.all.each do |item| %>
-    <label><%= check_box_tag "item[group_ids][]", item._id, @item.group_ids.include?(item._id) %><%= item.name %></label>
+    <label><%= f.check_box "group_ids[]", {}, item._id %><%= item.name %></label>
     <% end %>
   </dd>
 </dl>

@@ -5,8 +5,6 @@ class Sys::SitesController < ApplicationController
   
   model SS::Site
   
-  navi_view "sys/main/navi"
-  
   private
     def set_crumbs
       @crumbs << [:sites, sys_sites_path]

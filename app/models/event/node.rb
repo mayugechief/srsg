@@ -7,8 +7,6 @@ class Event::Node
   class Page
     include Cms::Node::Model
 
-    field :limit, type: Integer, default: 20
-    permit_params :limit
     scope :my_route, -> { where route: "event/pages" }
   end
 end

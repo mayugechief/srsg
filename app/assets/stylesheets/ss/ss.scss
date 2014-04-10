@@ -44,7 +44,7 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #f0a;
+  color: #e00;
   text-decoration: underline;
 }
 table {
@@ -85,7 +85,7 @@ input.date, input.js-date {
 }
 textarea {
   width: 100%;
-  height: 6em;
+  height: 6.5em;
   padding: 5px 5px;
   border: 1px solid #ccc;
   line-height: 1.4;
@@ -148,11 +148,12 @@ code {
       float: left;
       a {
         float: left;
-        width: 160px;
+        width: 170px;
+        margin-left: 15px;
         //border-right: 1px solid #ddd;
         background-image: image-url("ss/logo.png");
         background-repeat: no-repeat;
-        background-position: 20px 10px;
+        background-position: center center;
         text-indent: -9999px;
         line-height: 40px;
       }
@@ -167,7 +168,7 @@ code {
         border-left: 1px solid #ddd;
         text-align: center;
         color: #888;
-        &:hover { color: #f0e; }
+        &:hover { color: #e00; }
       }
     }
   }

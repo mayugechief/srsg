@@ -16,22 +16,13 @@ class Cms::Layout
   public
     def render_html
       html = self.html.to_s.gsub(/<\/ part ".+?" \/>/).each do |m|
-        path  = filename.index("/") ? File.dirname(filename) + "/" : ""
-        path << m.sub(/<\/ part "(.+)?" \/>/, '\\1') + ".part.html"
-        path  = path.sub(/^\//, "")
-        part  = Cms::Part.where(site_id: site_id, filename: path).first
+        path = filename.index("/") ? File.dirname(filename) + "/" : ""
+        path = path +  m.sub(/<\/ part "(.+)?" \/>/, '\\1') + ".part.html"
+        path = path.sub(/^\//, "")
         
-        if part && part.route.present? && part.route != "cms/frees"
-          json = path.sub('.html', '.json')
-          eid  = "part-#{path.object_id}"
-          scr  = %Q[<script>SS.piece("##{eid}", "/#{json}?ref=" + location.pathname);</script>]
-          html = %Q[<div id="#{eid}"><a href="/#{path}">#{part.name}</a></div>#{scr}]
-          html = "<!-- part #{path} -->#{html}<!-- /part -->"
-        elsif part
-          part.html
-        else
-          "<!-- #{path} -->"
-        end
+        part = Cms::Part.where(site_id: site_id, filename: path).first
+        part = part.becomes_with_route if part
+        part ? part.render_html : "<!-- #{path} -->"
       end
     end
     

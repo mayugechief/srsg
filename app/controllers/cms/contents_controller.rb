@@ -19,7 +19,7 @@ class Cms::ContentsController < ApplicationController
       
       @items = Cms::Node.site(@cur_site).
         where(cond).
-        where(shortcut: 1).
+        where(shortcut: :show).
         order_by(filename: 1).
         page(params[:page]).per(100)
     end

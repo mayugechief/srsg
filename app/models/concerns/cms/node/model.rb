@@ -6,6 +6,7 @@ module Cms::Node::Model
   include SS::References::Site
   include Cms::References::Layout
   include Acl::Addons::GroupOwner
+  include Cms::Addons::Meta
   
   included do
     store_in collection: "cms_nodes"
@@ -13,17 +14,18 @@ module Cms::Node::Model
     attr_accessor :cur_node # for UI
     
     seqid :id
-    field :state, type: String
+    field :state, type: String, default: "public"
     field :name, type: String
     field :filename, type: String
     field :depth, type: Integer, metadata: { form: :none }
     field :route, type: String
-    field :shortcut, type: Integer
+    field :shortcut, type: String
     
     index({ site_id: 1, filename: 1 }, { unique: true })
     
     permit_params :state, :name, :filename, :route, :shortcut
     
+    validates :state, presence: true
     validates :name, presence: true, length: { maximum: 80 }
     validates :filename, uniqueness: { scope: :site_id }, presence: true, length: { maximum: 2000 }
     validates :route, presence: true
@@ -39,11 +41,20 @@ module Cms::Node::Model
   
   module ClassMethods
     def node(node)
-      where filename: /^#{node.filename}\//, depth: node.depth + 1
+      node ? where(filename: /^#{node.filename}\//, depth: node.depth + 1) : where(depth: 1)
     end
   end
   
   public
+    def becomes_with_route
+      klass = route.sub("/", "/node/").singularize.camelize.constantize rescue nil
+      return self unless klass
+      
+      item = klass.new
+      instance_variables.each {|k| item.instance_variable_set k, instance_variable_get(k) }
+      item
+    end
+    
     def dirname
       filename.index("/") ? filename.sub(/\/[^\/]*$/, "") : nil
     end
@@ -62,6 +73,10 @@ module Cms::Node::Model
     
     def full_url
       "#{site.full_url}#{filename}/"
+    end
+    
+    def date
+      updated || created
     end
     
     def parents
@@ -100,6 +115,18 @@ module Cms::Node::Model
     
     def layouts
       Cms::Layout.where(site_id: site_id, filename: /^#{filename}\//)
+    end
+    
+    def route_options
+      Cms::Node.plugins
+    end
+    
+    def state_options
+      [ %w[公開 public], %w[非公開 closed] ]
+    end
+    
+    def shortcut_options
+      [ %w[表示 show], %w[非表示 hide] ]
     end
     
   private

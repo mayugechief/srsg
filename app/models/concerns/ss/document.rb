@@ -62,6 +62,12 @@ module SS::Document
     end
   end
   
+  public
+    def label(name)
+      send("#{name}_options").each {|m| return m[0] if m[1] == send(name) }
+      nil
+    end
+    
   private
     def set_updated
       return true if !changed?

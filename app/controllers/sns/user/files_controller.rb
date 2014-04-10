@@ -1,15 +1,13 @@
 # coding: utf-8
 class Sns::User::FilesController < ApplicationController
-  include Sns::BaseFilter
+  include Sns::UserFilter
   include Sns::CrudFilter
   
   model Sns::UserFile
   
-  navi_view "sns/main/navi"
-  
   private
     def set_crumbs
-      @crumbs << [:files, sns_files_path]
+      @crumbs << [:files, sns_user_files_path]
     end
   
     def fix_params
@@ -18,8 +16,12 @@ class Sns::User::FilesController < ApplicationController
     
   public
     def index
+      cond = {}
+      cond = { state: :public } if @cur_user.id != @sns_user.id
+      
       @items = @model.my_model.
         where(user_id: @cur_user.id).
+        where(cond).
         order_by(_id: -1).
         page(params[:page]).per(20)
     end

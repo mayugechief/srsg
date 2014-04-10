@@ -5,6 +5,7 @@ module Cms::NodeFilter::EditCell
   
   included do
     helper ApplicationHelper
+    helper Cms::FormHelper
     cattr_accessor :model_class
     before_action :inherit_variables
     before_action :set_model

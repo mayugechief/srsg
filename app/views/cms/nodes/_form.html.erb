@@ -6,9 +6,8 @@ bind  = "$(this).parent().parent().parent().parent().hide();"
 bind << "location.href = '#{url}?route=' + $(this).val();"
 
 %><dl class="see">
-  
   <dt><%= @model.lang :route %></dt>
-  <dd><%= f.select :route, Cms::Node.plugins, {}, onchange: bind %></dd>
+  <dd><%= f.select :route, @item.route_options, {}, onchange: bind %></dd>
   
   <dt><%= @model.lang :name %></dt>
   <dd><%= f.text_field :name %></dd>
@@ -18,13 +17,16 @@ bind << "location.href = '#{url}?route=' + $(this).val();"
   <dd><%= f.text_field :filename %></dd>
   <% end %>
   
+  <dt><%= @model.lang :state %></dt>
+  <dd><%= f.select :state, @item.state_options, include_blank: " " %></dd>
+  
   <% if fields[:layout_id] != -1 %>
   <dt><%= @model.lang :layout_id %></dt>
-  <dd><%= f.select :layout_id, @cur_site.layouts.map {|c| [c.name, c.id]}, include_blank: " " %></dd>
+  <dd><%= f.select :layout_id, ancestral_layouts(@item), include_blank: " " %></dd>
   <% end %>
   
   <% if fields[:shortcut] != -1 %>
   <dt><%= @model.lang :shortcut %></dt>
-  <dd><%= f.select :shortcut, [["表示する", "1"],["表示しない",""]], include_blank: " " %></dd>
+  <dd><%= f.select :shortcut, @item.shortcut_options, include_blank: " " %></dd>
   <% end %>
 </dl>

@@ -1,4 +1,4 @@
-srsg install
+SHIRASAGI install
 ============
 
 CentOS 6.5/64bit
@@ -28,10 +28,10 @@ ruby
   su -
   rvm install 2.1.1
 
-srsg
+SHIRASAGI
 
-  git clone https://github.com/tany/srsg.git /var/www/srsg
-  cd /var/www/srsg
+  git clone https://github.com/webtips/srsg /var/www/ss
+  cd /var/www/ss
   cp config/sample/* config/
   bundle install
   thin start -d

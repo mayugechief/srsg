@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=2.0" />
-<title>ss</title>
+<title>SHIRASAGI</title>
 <%= stylesheet_link_tag "ss/ss", media: "all", "data-turbolinks-track" => true %>
 <%= stylesheet_link_tag "jquery-ui/pepper-grinder/custom.min.css", media: "all", "data-turbolinks-track" => true %>
 <% controller.stylesheets.each do |path| %>
@@ -25,11 +25,11 @@
 
 <header id="head">
   <div class="wrap">
-    <h1><%= link_to "ss", sns_mypage_path %></h1>
+    <h1><%= link_to "SHIRASAGI", sns_mypage_path %></h1>
     <% if @cur_user %>
     <nav>
       <%= link_to Rails.env, "#", onclick: "alert('#{Rails.env}'); return false;" unless Rails.env.production? %>
-      <%= link_to @cur_user.name, "#", onclick: "alert('#{@cur_user.attributes}'); return false;" %>
+      <%= link_to @cur_user.name, sns_user_profile_path(@cur_user) %>
       <%= link_to :logout, sns_logout_path %>
     </nav>
     <% end %>
@@ -78,7 +78,7 @@
 
 <footer id="foot">
   <div class="wrap">
-    SS Project
+    SHIRASAGI Project
   </div>
 <!-- /#foot --></footer>
 

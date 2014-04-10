@@ -22,10 +22,6 @@ SS::Application.routes.draw do
   
   SS::Initializer
   
-  concern :deletion do
-    get :delete, :on => :member
-  end
-  
   namespace "fs" do
     get "*path" => "files#index"
   end
@@ -34,14 +30,6 @@ SS::Application.routes.draw do
     get   "/"      => "mypage#index", as: :mypage
     get   "logout" => "login#logout", as: :logout
     match "login"  => "login#login", as: :login, via: [:get, :post]
-  end
-  
-  namespace "sns_user", path: ".u:user", module: "sns/user" do
-    resources :files, concerns: :deletion do
-      get :view, on: :member
-      get :thumb, on: :member
-      get :download, on: :member
-    end
   end
   
 end

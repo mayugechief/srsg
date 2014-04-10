@@ -4,7 +4,7 @@
 
 %><dl class="see">
   <dt><%= @model.lang :route %></dt>
-  <dd><%= @item.send :route %></dd>
+  <dd><%= @item.label :route %></dd>
   
   <dt><%= @model.lang :name %></dt>
   <dd><%= @item.send :name %></dd>
@@ -13,6 +13,9 @@
   <dt><%= @model.lang :filename %></dt>
   <dd><%= @item.send :filename %></dd>
   <% end %>
+  
+  <dt><%= @model.lang :state %></dt>
+  <dd><%= @item.label :state %></dd>
   
   <% if fields[:layout_id] != -1 %>
   <dt><%= @model.lang :layout_id %></dt>

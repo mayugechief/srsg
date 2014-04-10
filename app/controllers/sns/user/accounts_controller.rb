@@ -1,0 +1,20 @@
+# coding: utf-8
+class Sns::User::AccountsController < ApplicationController
+  include Sns::UserFilter
+  include Sns::CrudFilter
+  
+  before_action :require_self
+  
+  model SS::User
+  
+  menu_view "ss/crud/resource_menu"
+  
+  private
+    def set_crumbs
+      @crumbs << [:account, sns_user_account_path]
+    end
+    
+    def set_item
+      @item = @sns_user
+    end
+end

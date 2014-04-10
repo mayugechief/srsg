@@ -5,12 +5,9 @@
   <dt><%= @model.lang :filename %></dt>
   <dd><%= f.text_field :filename %></dd>
   
+  <dt><%= @model.lang :state %></dt>
+  <dd><%= f.select :state, @item.state_options, include_blank: " " %></dd>
+  
   <dt><%= @model.lang :layout_id %></dt>
-  <dd><%= f.select :layout_id, Cms::Layout.site(@cur_site).map {|m| [m.name, m._id] }, include_blank: " " %></dd>
-  
-  <dt><%= @model.lang :keywords %></dt>
-  <dd><%= f.text_field :keywords %></dd>
-  
-  <dt><%= @model.lang :description %></dt>
-  <dd><%= f.text_area :description %></dd>
+  <dd><%= f.select :layout_id, ancestral_layouts(@item.node), include_blank: " " %></dd>
 </dl>

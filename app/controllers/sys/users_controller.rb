@@ -5,8 +5,6 @@ class Sys::UsersController < ApplicationController
   
   model SS::User
   
-  navi_view "sys/main/navi"
-  
   private
     def set_crumbs
       @crumbs << [:users, sys_users_path]

@@ -1,9 +1,9 @@
 # coding: utf-8
 module Cms::BaseFilter
   extend ActiveSupport::Concern
+  include SS::BaseFilter
   
   included do
-    include SS::BaseFilter
     before_action :set_site
     before_action :set_node
     before_action :set_crumbs

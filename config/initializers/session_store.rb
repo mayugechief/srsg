@@ -1,3 +1,3 @@
 # Be sure to restart your server when you modify this file.
 
-SS::Application.config.session_store :cookie_store, key: '_srsg_session'
+SS::Application.config.session_store :cookie_store, key: '_ss_session'

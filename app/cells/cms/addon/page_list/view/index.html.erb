@@ -1,0 +1,12 @@
+<% @items.each do |item| %>
+  <% if cur_item.loop_html.present? %>
+  <%== cur_item.render_loop_html(item) %>
+  <% else %>
+  <article class="item-<%= item.basename.dasherize %>">
+    <header>
+      <time><%= I18n.l item.date, format: :long %></time>
+      <h2><%= link_to item.name, item.url %></h2>
+    </header>
+  </article>
+  <% end %>
+<% end %>

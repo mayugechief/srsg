@@ -1,0 +1,16 @@
+<dl class="see">
+  <dt><%= @model.lang :order %></dt>
+  <dd><%= f.select :order, @item.order_options, include_blank: " " %></dd>
+  
+  <dt><%= @model.lang :limit %></dt>
+  <dd><%= f.number_field :limit %></dd>
+  
+  <dt><%= @model.lang :upper_html %></dt>
+  <dd><%= f.text_area :upper_html %></dd>
+  
+  <dt><%= @model.lang :loop_html %></dt>
+  <dd><%= f.text_area :loop_html, style: "height: 10em;" %></dd>
+  
+  <dt><%= @model.lang :lower_html %></dt>
+  <dd><%= f.text_area :lower_html %></dd>
+</dl>

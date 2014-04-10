@@ -1,0 +1,6 @@
+<div class="crumbs">
+  <% @items.each_with_index do |item, idx| %>
+  <% if idx > 0 %><span class="separator">&rsaquo;</span><% end %>
+  <span class="page"><%= link_to *item %></span>
+  <% end %>
+</div>

@@ -18,11 +18,13 @@ ja:
       cms: "CMS"
     parts:
       cms/free: "HTML記述"
+      cms/crumb: "パンくずリスト"
     addons:
-      cms/html: "本文 - HTML"
-      cms/tiny: "本文 - TinyMCE"
-      cms/wiki: "本文 - WIKI"
+      cms/meta: "メタ情報"
+      cms/body: "本文"
       cms/files: "添付ファイル"
+      cms/node_list: "一覧表示"
+      cms/page_list: "一覧表示"
 
   mongoid:
     models:
@@ -33,16 +35,22 @@ ja:
         name: "タイトル"
         filename: "フォルダ名"
         route: "フォルダ属性"
+        summary_html: "サマリー"
+        loop_html: "ループHTML"
+        upper_html: "上部HTML"
+        lower_html: "下部HTML"
       cms/page/model:
         name: "タイトル"
         route: "ページ属性"
+        summary_html: "サマリー"
       cms/part/model:
         name: "パーツ名"
         route: "パーツ属性"
+        loop_html: "ループHTML"
+        upper_html: "上部HTML"
+        lower_html: "下部HTML"
       cms/layout:
         name: "レイアウト名"
         html: "HTML"
       cms/page:
-        html: "HTML"
-        tiny: "TinyMCE"
-        wiki: "WIKI"
+        html: "本文"

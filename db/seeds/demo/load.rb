@@ -62,6 +62,7 @@ save_part route: "cms/frees"    , filename: "navi.part.html", name: "ナビ"
 save_part route: "cms/frees"    , filename: "menu.part.html", name: "メニュー"
 save_part route: "cms/frees"    , filename: "side.part.html", name: "サイド"
 save_part route: "cms/frees"    , filename: "foot.part.html", name: "フッター"
+save_part route: "cms/crumbs"   , filename: "crumbs.part.html", name: "パンくず"
 save_part route: "article/pages", filename: "docs/recent.part.html", name: "新着情報"
 
 ## -------------------------------------
@@ -75,15 +76,15 @@ def save_node(data)
   item.update data
 end
 
-save_node route: "uploader/files", filename: "css", name: "CSS"
+save_node route: "uploader/files", filename: "css", name: "CSS", shortcut: "show"
 save_node route: "uploader/files", filename: "img", name: "画像"
-save_node route: "article/pages" , filename: "docs", name: "記事", shortcut: 1
-save_node route: "category/nodes", filename: "kurashi", name: "暮らし", shortcut: 1
+save_node route: "article/pages" , filename: "docs", name: "記事", shortcut: "show"
+save_node route: "category/nodes", filename: "kurashi", name: "暮らし", shortcut: "show"
 save_node route: "category/pages", filename: "kurashi/kosodate", name: "子育て"
 save_node route: "category/nodes", filename: "kurashi/fukushi", name: "福祉"
 save_node route: "category/pages", filename: "kurashi/fukushi/jido", name: "児童福祉"
 save_node route: "category/pages", filename: "kurashi/fukushi/shogai", name: "障がい者福祉"
-save_node route: "category/nodes", filename: "lifeevent", name: "ライフイベント", shortcut: 1
+save_node route: "category/nodes", filename: "lifeevent", name: "ライフイベント", shortcut: "show"
 save_node route: "category/pages", filename: "lifeevent/kekkon", name: "結婚"
 save_node route: "category/pages", filename: "lifeevent/shussan", name:"出産"
 

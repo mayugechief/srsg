@@ -4,20 +4,23 @@ module Cms::Page::Feature
   include SS::Document
   include SS::References::Site
   include Acl::Addons::GroupOwner
+  include SS::Permission
   
   included do
     attr_accessor :cur_node # for UI
     
     seqid :id
-    field :state, type: String
+    field :state, type: String, default: "public"
     field :name, type: String
     field :filename, type: String
     field :depth, type: Integer, metadata: { form: :none }
+    field :published, type: DateTime
     
     index({ site_id: 1, filename: 1 }, { unique: true })
     
     permit_params :state, :name, :filename
     
+    validates :state, presence: true
     validates :name, presence: true, length: { maximum: 80 }
     validates :filename, uniqueness: { scope: :site_id }, length: { maximum: 80 }
     
@@ -29,7 +32,7 @@ module Cms::Page::Feature
   
   module ClassMethods
     def node(node)
-      where filename: /^#{node.filename}\//, depth: node.depth + 1
+      node ? where(filename: /^#{node.filename}\//, depth: node.depth + 1) : where(depth: 1)
     end
   end
   
@@ -58,15 +61,22 @@ module Cms::Page::Feature
       site.url + filename.sub(/\.html/, ".json")
     end
     
+    def date
+      published || updated || created
+    end
+    
     def node
       return @node if @node
-      return nil if depth == 1
+      return nil if depth.to_i <= 1
       
-      dirs = []
+      dirs  = []
       names = File.dirname(filename).split('/')
       names.each {|name| dirs << (dirs.size == 0 ? name : "#{dirs.last}/#{name}") }
-      
       @node = Cms::Node.where(site_id: site_id, :filename.in => dirs).sort(depth: -1).first
+    end
+    
+    def state_options
+      [ %w[公開 public], %w[非公開 closed] ]
     end
     
   private

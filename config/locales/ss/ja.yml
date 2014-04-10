@@ -26,6 +26,7 @@ ja:
       ss/document:
         created: "作成日時"
         updated: "更新日時"
+        state: "状態"
         filename: "ファイル名"
         order: "並び順"
         limit: "表示件数"
@@ -40,4 +41,4 @@ ja:
         name: "氏名"
         email: "メールアドレス"
         password: "パスワード"
-        groups: "グループ"
+        group_ids: "グループ"

@@ -5,8 +5,6 @@ class Sys::GroupsController < ApplicationController
   
   model SS::Group
   
-  navi_view "sys/main/navi"
-  
   private
     def set_crumbs
       @crumbs << [:groups, sys_groups_path]

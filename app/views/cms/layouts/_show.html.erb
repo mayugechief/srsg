@@ -1,0 +1,13 @@
+<dl class="see">
+  <dt><%= @model.lang :name %></dt>
+  <dd><%= @item.send :name %></dd>
+  
+  <dt><%= @model.lang :filename %></dt>
+  <dd><%= @item.send :filename %></dd>
+  
+  <dt><%= @model.lang :state %></dt>
+  <dd><%= @item.label :state %></dd>
+  
+  <dt><%= @model.lang :html %></dt>
+  <dd><code><%= @item.send :html %></code></dd>
+</dl>
