@@ -11,8 +11,7 @@ module Event::EventHelper
   end
 
   def event_h1_class(month)
-    %w[january february march april may june july august
-       september october november december][month - 1]
+    %w[jan feb mar apr may jun jul aug sep oct nov dec][month - 1]
   end
 
   def event_dl_class(date)
