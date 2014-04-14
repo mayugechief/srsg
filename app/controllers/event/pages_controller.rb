@@ -15,7 +15,8 @@ class Event::PagesController < ApplicationController
 
   public
     def index
-      @items = @model.site(@cur_site).node(@cur_node).my_route.
+      @items = @model.site(@cur_site).node(@cur_node).
+        where(route: "event/pages").
         order_by(updated: -1).
         page(params[:page]).per(50)
     end
