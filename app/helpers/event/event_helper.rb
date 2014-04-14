@@ -10,6 +10,11 @@ module Event::EventHelper
     t("date.abbr_day_names")[date.wday]
   end
 
+  def event_h1_class(month)
+    %w[january february march april may june july august
+       september october november december][month - 1]
+  end
+
   def event_dl_class(date)
     cls = %w[sun mon tue wed thu fri sat][date.wday]
     date.national_holiday? ? "#{cls} holiday" : cls
