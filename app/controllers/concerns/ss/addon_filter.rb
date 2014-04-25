@@ -13,7 +13,8 @@ module SS::AddonFilter
         controller.stylesheets << path unless controller.stylesheets.include?(path)
       end
       javascripts.each do |path|
-        controller.javascripts << path unless controller.javascripts.include?(path)
+        ctrl = controller.is_a?(Cell::Rails) ? controller.controller : controller
+        ctrl.javascripts << path unless ctrl.javascripts.include?(path)
       end
     end
   end
