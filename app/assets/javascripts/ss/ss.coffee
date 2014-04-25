@@ -40,7 +40,7 @@ class @SS
       $(this).addClass("external")
     
     # ajax to (color)box
-    $(container + " .ajax").each ->
+    $(container + " .ajax-box").each ->
       return true if $(this).hasClass("cboxElement") # continue
       if $(this).data("target")
         #
