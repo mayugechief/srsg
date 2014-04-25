@@ -3,10 +3,9 @@ class Node::PartsController < ApplicationController
   include Cms::BaseFilter
   include Cms::PartFilter
   
-  prepend_before_action :redirect_index, only: :index
-  
   model Cms::Part
   
+  prepend_view_path "app/views/cms/parts"
   navi_view "node/main/navi"
   
   private
@@ -18,7 +17,10 @@ class Node::PartsController < ApplicationController
       { route: "cms/frees" }
     end
     
-    def redirect_index
-      redirect_to node_layouts_path
+  public
+    def index
+      @items = Cms::Part.site(@cur_site).node(@cur_node).
+        order_by(filename: 1).
+        page(params[:page]).per(100)
     end
 end

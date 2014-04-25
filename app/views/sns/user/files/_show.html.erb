@@ -1,11 +1,14 @@
 <dl class="see">
-  <dt><%= @model.lang :filename %></dt>
-  <dd><%= @item.send :filename %></dd>
-  
   <% if @item.image? %>
   <dt><%= @model.lang :image %></dt>
   <dd><img src="<%= url_for action: :view %>"></dd>
   <% end %>
+  
+  <dt><%= @model.lang :filename %></dt>
+  <dd><%= @item.send :filename %></dd>
+  
+  <dt><%= @model.lang :state %></dt>
+  <dd><%= @item.label :state %></dd>
   
   <dt><%= @model.lang :download %></dt>
   <dd><%= link_to :download, action: :download %></dd>

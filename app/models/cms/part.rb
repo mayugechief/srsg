@@ -1,7 +1,6 @@
 # coding: utf-8
 class Cms::Part
   extend ActiveSupport::Autoload
-
   autoload :Model
   include Model
   
@@ -15,6 +14,13 @@ class Cms::Part
   
   class Crumb
     include Cms::Part::Model
+    
+    field :home_label, type: String
+    permit_params :home_label
+    
+    def home_label
+      read_attribute(:home_label).presence || "HOME"
+    end
   end
   
   class << self

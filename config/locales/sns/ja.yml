@@ -1,0 +1,8 @@
+ja:
+  mongoid:
+    attributes:
+      ss/file/model: #?
+        in_file: "ファイル"
+        in_files: "ファイル"
+        image: "画像"
+        download: "ダウンロード"

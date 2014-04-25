@@ -4,6 +4,7 @@ module Cms::BaseFilter
   include SS::BaseFilter
   
   included do
+    helper Cms::NodeHelper
     before_action :set_site
     before_action :set_node
     before_action :set_crumbs

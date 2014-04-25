@@ -5,4 +5,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   #before_action -> { FileUtils.touch "#{Rails.root}/Gemfile" } if Rails.env.to_s == "development"
+  
+  private
+    def remote_addr
+      request.env["HTTP_X_REAL_IP"] || request.remote_addr
+    end
 end

@@ -3,6 +3,8 @@ class SS::User
   include SS::Document
   include SS::Permission
   
+  index({ email: 1 }, { unique: true })
+  
   seqid :id
   field :name, type: String
   field :email, type: String, metadata: { form: :email }
@@ -11,8 +13,6 @@ class SS::User
   embeds_ids :groups, class_name: "SS::Group"
   
   permit_params :name, :email, :password, group_ids: []
-  
-  index({ email: 1 }, { unique: true })
   
   validates :name, presence: true, length: { maximum: 40 }
   validates :email, uniqueness: true, presence: true, email: true, length: { maximum: 80 }

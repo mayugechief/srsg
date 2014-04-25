@@ -8,7 +8,8 @@ module Cms::Page::Model
   included do
     store_in collection: "cms_pages"
     
-    field :route, type: String, default: -> { "cms/pages" }
+    field :route, type: String, default: ->{ "cms/pages" }
+    
     permit_params :route
   end
 end

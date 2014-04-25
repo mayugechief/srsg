@@ -10,12 +10,12 @@ class Article::PagesController < ApplicationController
   
   private
     def fix_params
-      { site_id: @cur_site._id, cur_node: @cur_node, route: "article/pages" }
+      { cur_user: @cur_user, site_id: @cur_site._id, cur_node: @cur_node }
     end
     
   public
     def index
-      @items = @model.site(@cur_site).node(@cur_node).my_route.
+      @items = @model.site(@cur_site).node(@cur_node).
         order_by(updated: -1).
         page(params[:page]).per(50)
     end

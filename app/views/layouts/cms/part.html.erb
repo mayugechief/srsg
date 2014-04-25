@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=2.0" />
-<title><%= @cur_page.name %> - <%= @cur_site.name %></title>
+<title><%= @cur_part.name %> - <%= @cur_site.name %></title>
 <%= javascript_include_tag "cms/public" %>
 <%= csrf_meta_tags %>
 </head>
@@ -11,7 +11,7 @@
 
 <header id="head">
   <h1><%= link_to @cur_site.name, @cur_site.url, id: "ss-site-name" %></h1>
-  <h2><%= link_to @cur_page.name, @cur_page.url, id: "ss-page-name" %></h2>
+  <h2><%= link_to @cur_part.name, @cur_part.url, id: "ss-page-name" %></h2>
 </header>
 
 <article id="page">

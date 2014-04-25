@@ -19,10 +19,13 @@ module Cms::PartFilter::ViewCell
         next if instance_variable_defined?(name)
         instance_variable_set name, controller.instance_variable_get(name)
       end
+      
+      @ref ||= params[:ref]
+      @ref.sub!(/\.kana\.html$/, ".html") if @ref
     end
     
     def set_item
-      @cur_page = @cur_page.becomes_with_route
+      @cur_part = @cur_part.becomes_with_route
     end
     
     def redirect_to(*args)

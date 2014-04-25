@@ -2,5 +2,3 @@ ja:
   modules:
     contents:
       fs: "ファイル"
-    addons:
-      fs/files: "ファイル"

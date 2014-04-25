@@ -1,7 +1,7 @@
 ja:
   views:
     links:
-      category_nodes: "フォルダ"
+      category_nodes: "カテゴリー"
 
   modules:
     contents:
@@ -10,7 +10,8 @@ ja:
       category/node: "カテゴリー一覧"
       category/page: "カテゴリー/ページ一覧"
     parts:
-      category/node: "カテゴリー一覧"
+      category/node: "カテゴリー/フォルダ一覧"
+      category/page: "カテゴリー/ページ一覧"
     addons:
       category/categories: "カテゴリー"
 

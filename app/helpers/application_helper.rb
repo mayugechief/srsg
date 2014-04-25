@@ -18,8 +18,11 @@ module ApplicationHelper
   end
   
   def lang(name, opts = {})
-    scope = opts[:scope] || [:views, :general]
-    hn = I18n.translate name, scope: scope, default: "unk"
+    opts[:scope] = [:views, :general] if name !~ /\./ && !opts[:scope]
+    hn = I18n.translate name, opts.merge(default: "unk")
+    return hn if hn != "unk"
+    
+    hn = I18n.translate name.to_s.sub(/.*\./, ""), scope: [:views, :general], default: "unk"
     (hn == "unk") ? name.to_s.humanize : hn
   end
   

@@ -22,6 +22,7 @@ SS::Application.routes.draw do
   
   part "category" do
     get "nodes" => "public#index", cell: "part/nodes"
+    get "pages" => "public#index", cell: "part/pages"
   end
   
 end

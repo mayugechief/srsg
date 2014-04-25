@@ -2,8 +2,8 @@
   <dt><%= @model.lang :name %></dt>
   <dd><%= f.text_field :name %></dd>
   
-  <dt><%= @model.lang :filename %></dt>
-  <dd><%= f.text_field :filename %></dd>
+  <dt><%= @model.lang :basename %></dt>
+  <dd><%= f.text_field :basename, class: "filename" %></dd>
   
   <dt><%= @model.lang :state %></dt>
   <dd><%= f.select :state, @item.state_options, include_blank: " " %></dd>

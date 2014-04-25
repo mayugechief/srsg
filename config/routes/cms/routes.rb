@@ -22,6 +22,10 @@ SS::Application.routes.draw do
     resources :roles, concerns: :deletion
   end
   
+  page "cms" do
+    get "pages/:filename.:format" => "public#index", cell: "page/pages"
+  end
+  
   part "cms" do
     get "crumbs" => "public#index", cell: "part/crumbs"
   end

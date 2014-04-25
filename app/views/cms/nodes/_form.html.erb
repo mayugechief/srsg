@@ -13,8 +13,8 @@ bind << "location.href = '#{url}?route=' + $(this).val();"
   <dd><%= f.text_field :name %></dd>
   
   <% if fields[:filename] != -1 %>
-  <dt><%= @model.lang :filename %></dt>
-  <dd><%= f.text_field :filename %></dd>
+  <dt><%= @model.lang :basename %></dt>
+  <dd><%= f.text_field :basename, class: "filename" %></dd>
   <% end %>
   
   <dt><%= @model.lang :state %></dt>

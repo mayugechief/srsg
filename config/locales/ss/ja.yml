@@ -10,6 +10,9 @@ ja:
       sites: "サイト"
       users: "ユーザー"
       basic_info: "基本情報"
+      upload: "アップロード"
+      user_file: "ユーザーファイル"
+      group_file: "グループファイル"
     links:
       new: "新規作成"
       edit: "編集する"
@@ -17,17 +20,24 @@ ja:
       back_to_show: "詳細へ戻る"
       back_to_index: "一覧へ戻る"
       parent_directory: "上の階層へ"
+    confirm:
+      delete: "削除してよろしいですか？"
 
   mongoid:
     models:
       ss/site: "サイト"
       ss/user: "ユーザー"
+      ss/temp_file: "一時ファイル"
+      ss/user_file: "ユーザーファイル"
+      ss/group_file: "グループファイル"
     attributes:
       ss/document:
         created: "作成日時"
         updated: "更新日時"
-        state: "状態"
+        state: "ステータス"
+        filepath: "ファイルパス"
         filename: "ファイル名"
+        basename: "ファイル名"
         order: "並び順"
         limit: "表示件数"
         layout_id: "レイアウト"
@@ -42,3 +52,8 @@ ja:
         email: "メールアドレス"
         password: "パスワード"
         group_ids: "グループ"
+      ss/file/model: #?
+        in_file: "ファイル"
+        in_files: "ファイル"
+        image: "画像"
+        download: "ダウンロード"

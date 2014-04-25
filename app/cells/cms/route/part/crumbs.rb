@@ -9,15 +9,13 @@ module Cms::Route::Part::Crumbs
     include Cms::PartFilter::ViewCell
     
     def index
-      @cur_node = @cur_page.node
+      @cur_node = @cur_part.node
       
       @root  = @cur_node || @cur_site
       @items = []
       
-      ref = params[:ref].sub(/\.kana\.html$/, ".html")
-      
-      if ref =~ /^#{@root.url}/
-        ref = ref.sub(/^#{@cur_site.url}/, "").sub(/\/([\w\-]+\.[\w\-]+)?$/, "")
+      if @ref =~ /^#{@root.url}/
+        ref = @ref.sub(/^#{@cur_site.url}/, "").sub(/\/([\w\-]+\.[\w\-]+)?$/, "")
         
         if node = Cms::Node.site(@cur_site).where(filename: ref).first
           @items.unshift [node.name, node.url]
@@ -29,7 +27,7 @@ module Cms::Route::Part::Crumbs
         end
       end
       
-      @items.unshift [@root.name, @root.url]
+      @items.unshift [@cur_part.home_label, @root.url]
       
       @items.empty? ? "" : render
     end

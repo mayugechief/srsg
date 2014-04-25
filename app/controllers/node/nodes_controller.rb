@@ -25,11 +25,6 @@ class Node::NodesController < ApplicationController
     def index
       @items = @model.site(@cur_site).node(@cur_node).
         order_by(filename: 1).
-        page(params[:page]).per(100)
-        
-      @pages = Cms::Page.site(@cur_site).node(@cur_node).
-        where(route: "cms/pages").
-        order_by(filename: 1).
-        page(params[:page]).per(100)
+        page(params[:page]).per(50)
     end
 end

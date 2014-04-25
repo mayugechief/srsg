@@ -10,13 +10,13 @@ module Article::Route::Part::Pages
     helper Cms::ListHelper
     
     def index
-      @cur_node = @cur_page.node
+      @cur_node = @cur_part.node
       
-      @items = Article::Page.site(@cur_site).node(@cur_node).my_route.
+      @items = Article::Page.site(@cur_site).node(@cur_node).
         where(deleted: nil).
-        order_by(@cur_page.orders).
+        order_by(@cur_part.orders).
         page(params[:page]).
-        per(@cur_page.limit)
+        per(@cur_part.limit)
       
       @items.empty? ? "" : render
     end

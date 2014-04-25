@@ -8,14 +8,16 @@ class Node::PagesController < ApplicationController
   prepend_view_path "app/views/cms/pages"
   navi_view "node/main/navi"
   
-  prepend_before_action :redirect_index, only: :index
-  
   private
     def fix_params
       { site_id: @cur_site._id, cur_node: @cur_node }
     end
     
-    def redirect_index
-      redirect_to node_nodes_path
+  public
+    def index
+      @items = Cms::Page.site(@cur_site).node(@cur_node).
+        where(route: "cms/pages").
+        order_by(filename: 1).
+        page(params[:page]).per(50)
     end
 end

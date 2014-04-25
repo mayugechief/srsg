@@ -18,9 +18,5 @@ class Node::LayoutsController < ApplicationController
       @items = @model.site(@cur_site).node(@cur_node).
         order_by(filename: 1).
         page(params[:page]).per(20)
-      
-      @parts = Cms::Part.site(@cur_site).node(@cur_node).
-        order_by(filename: 1).
-        page(params[:page]).per(100)
     end
 end

@@ -9,17 +9,18 @@ module Cms::PreviewFilter
       page_name = head.sub(/.* id="ss-page-name".*?>(.*?)<.*/m, '\\1')
       
       if @cur_layout
+        @ref = request.path.sub(/^(\/\.[\w\-]+)*/, "")
         data = ActiveSupport::JSON.decode(@cur_layout.render_json)
         
-        body = page.sub(/.*?<article.*?(<script.*)<\/article>.*/m, '\\1')
+        body = page.sub(/.*?<article>\n<div.*?(<script.*)<\/div>\n<\/article>.*/m, '\\1')
         body = data["body"].sub(/<\/ yield \/>/, body)
         
         page = page.sub("</head>", "#{data['head']}</head>")
         page = page.sub(/<body.*<\/body>/m, body)
         
         page = page.gsub(/<!-- part .*? -->.*?<!-- \/part -->/m) do |m|
-          path = m.sub(/<!-- part (.*?) -->.*/m, '\\1')
-          route_part(path)
+          url = m.sub(/<!-- part (.*?) -->.*/m, '\\1')
+          route_part(url)
         end
         
         page = page.sub(/( id="ss-site-name".*?>)[^<]+/, "\\1#{site_name}")

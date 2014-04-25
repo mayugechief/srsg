@@ -2,6 +2,9 @@
 class SS::Site
   include SS::Document
   
+  index({ host: 1 }, { unique: true })
+  index({ domains: 1 }, { unique: true })
+  
   seqid :id
   field :name, type: String
   field :host, type: String
@@ -14,9 +17,6 @@ class SS::Site
   has_many :nodes, class_name: "Cms::Node", dependent: :destroy
   has_many :parts, class_name: "Cms::Part", dependent: :destroy
   has_many :layouts, class_name: "Cms::Layout", dependent: :destroy
-  
-  index({ host: 1 }, { unique: true })
-  index({ domains: 1 }, { unique: true })
   
   validates :name, presence: true, length: { maximum: 40 }
   validates :host, uniqueness: true, presence: true, length: { minimum: 3, maximum: 16 }

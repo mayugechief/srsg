@@ -25,6 +25,7 @@ ja:
       cms/files: "添付ファイル"
       cms/node_list: "一覧表示"
       cms/page_list: "一覧表示"
+      cms/files: "ファイル"
 
   mongoid:
     models:
@@ -34,6 +35,7 @@ ja:
       cms/node/model:
         name: "タイトル"
         filename: "フォルダ名"
+        basename: "フォルダ名"
         route: "フォルダ属性"
         summary_html: "サマリー"
         loop_html: "ループHTML"
@@ -54,3 +56,5 @@ ja:
         html: "HTML"
       cms/page:
         html: "本文"
+      cms/part/crumb:
+        home_label: "ホームラベル"

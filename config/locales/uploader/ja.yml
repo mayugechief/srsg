@@ -1,7 +1,7 @@
 ja:
   views:
     general:
-      uploader_files: "アップローダー"
+      uploader_files: "ファイル"
     links:
       create_directory: "新規フォルダ"
       upload_files: "アップロード"
@@ -12,9 +12,9 @@ ja:
     nodes:
       uploader/file: "アップローダー"
 
-  activemodel:
+  mongoid:
     models:
-      uploader/file:
+      uploader/file: "アップローダー"
     attributes:
       uploader/file:
         name: "タイトル"

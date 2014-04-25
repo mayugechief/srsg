@@ -13,7 +13,7 @@ class Cms::PagesController < ApplicationController
     end
     
     def fix_params
-      { site_id: @cur_site._id, cur_node: false }
+      { cur_user: @cur_user, site_id: @cur_site._id, cur_node: false }
     end
     
   public

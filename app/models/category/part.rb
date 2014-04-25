@@ -5,7 +5,10 @@ class Category::Part
   class Node
     include Cms::Part::Model
     include Cms::Addons::NodeList
-    
-    scope :my_route, -> { where route: "category/nodes" }
+  end
+  
+  class Page
+    include Cms::Part::Model
+    include Cms::Addons::PageList
   end
 end

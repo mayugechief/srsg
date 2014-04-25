@@ -4,7 +4,7 @@
   <% else %>
   <article class="item-<%= item.basename.dasherize %>">
     <header>
-      <time><%= I18n.l item.date, format: :long %></time>
+      <time datetime="<%= item.date.to_date %>"><%= I18n.l item.date.to_date, format: :long %></time>
       <h2><%= link_to item.name, item.url %></h2>
     </header>
   </article>

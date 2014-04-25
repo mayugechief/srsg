@@ -11,6 +11,12 @@ class ActionDispatch::Routing::Mapper
     namespace(name, as: "node_#{name}", path: path, module: "cms") { yield }
   end
   
+  def page(ns, &block)
+    name = ns.gsub("/", "_")
+    path = ".:host/page/#{ns}"
+    namespace(name, as: "page_#{name}", path: path, module: "cms") { yield }
+  end
+  
   def part(ns, &block)
     name = ns.gsub("/", "_")
     path = ".:host/part/#{ns}"
@@ -23,7 +29,8 @@ SS::Application.routes.draw do
   SS::Initializer
   
   namespace "fs" do
-    get "*path" => "files#index"
+    get ":id/:filename" => "files#index"
+    get ":id/thumb/:filename" => "files#thumb"
   end
   
   namespace "sns", path: ".mypage" do

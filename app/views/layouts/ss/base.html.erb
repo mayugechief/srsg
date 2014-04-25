@@ -6,10 +6,13 @@
 <title>SHIRASAGI</title>
 <%= stylesheet_link_tag "ss/ss", media: "all", "data-turbolinks-track" => true %>
 <%= stylesheet_link_tag "jquery-ui/pepper-grinder/custom.min.css", media: "all", "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag "colorbox/colorbox.css", media: "all", "data-turbolinks-track" => true %>
 <% controller.stylesheets.each do |path| %>
 <%= stylesheet_link_tag path, media: "all", "data-turbolinks-track" => true %>
 <% end %>
 <%= javascript_include_tag "ss/ss", "data-turbolinks-track" => true %>
+<%= javascript_include_tag "jquery.form.js" %>
+<%= javascript_include_tag "jquery.colorbox.js" %>
 <%= javascript_include_tag "jquery-ui-1.10.4.custom.min.js" %>
 <%= javascript_include_tag "tinymce/tinymce.min.js" %>
 <% controller.javascripts.each do |path| %>
@@ -39,7 +42,7 @@
 <% if @crumbs.size > 0 %>
 <nav id="crumbs">
   <% @crumbs.each_with_index do |item, idx| %>
-    <% if idx > 0 %><span class="separator">/</span><% end %>
+    <% if idx > 0 %><span class="separator">&rsaquo;</span><% end %>
     <span class="link"><%= link_to *item %></span>
   <% end %>
 </nav>
@@ -56,15 +59,15 @@
   <div class="wrap">
     
     <% if ::File.exists?("#{Rails.root}/app/views/#{params[:controller]}/_navi.html.erb") %>
-    <div id="navi"><%= render partial: "navi" %><!-- /#navi --></div>
+    <div id="navi"><div class="wrap"><%= render partial: "navi" %></div></div>
     <% elsif controller.navi_view_file %>
-    <div id="navi"><%= render partial: controller.navi_view_file %><!-- /#navi --></div>
+    <div id="navi"><div class="wrap"><%= render partial: controller.navi_view_file %></div></div>
     <% end %>
     
     <% if ::File.exists?("#{Rails.root}/app/views/#{params[:controller]}/_menu.html.erb") %>
-    <div id="menu"><%= render partial: "menu" %><!-- /#menu --></div>
+    <div id="menu"><div class="wrap"><%= render partial: "menu" %></div></div>
     <% elsif controller.menu_view_file %>
-    <div id="menu"><%= render partial: controller.menu_view_file %><!-- /#menu --></div>
+    <div id="menu"><div class="wrap"><%= render partial: controller.menu_view_file %></div></div>
     <% end %>
     
     <article id="main">

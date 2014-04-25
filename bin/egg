@@ -36,7 +36,7 @@ class Frypan
         "config/locales",
         "config/routes",
         "db",
-        "doc",
+        "docs",
         "lib",
         "lib/tasks/",
       ]
@@ -48,11 +48,12 @@ class Frypan
     
     def ver
       ARGV.each_with_index {|arg, i| return ARGV[i+1] if arg == "-v" && ARGV[i+1] }
-      "0.0.0"
+      nil
     end
     
     def zip
-      "#{zip_dir}/#{ARGV[1]}-#{ver}.zip"
+      v = ver ? "-#{ver}" : nil 
+      "#{zip_dir}/#{ARGV[1]}#{v}.zip"
     end
     
   public

@@ -7,15 +7,9 @@ SS::Application.routes.draw do
     get :delete, on: :member
   end
   
-  concern :conf do
-    collection do
-      resource :conf, concerns: :deletion
-    end
-  end
-  
   content "node" do
     get "/" => "main#index", as: :main
-    resource :conf, concerns: :deletion, path: "nodes/conf"
+    resource :conf, concerns: :deletion
     resources :nodes, concerns: :deletion
     resources :pages, concerns: :deletion
     resources :parts, concerns: :deletion
@@ -29,4 +23,8 @@ SS::Application.routes.draw do
     get "pages/rss.xml" => "public#rss", cell: "node/pages", format: "xml"
   end
   
+  part "node" do
+    get "nodes" => "public#index", cell: "part/nodes"
+    get "pages" => "public#index", cell: "part/pages"
+  end
 end

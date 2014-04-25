@@ -1,9 +1,9 @@
-<%= render partial: "node/main/modules" %>
-
-<nav class="sub-menu">
-  <header><h1><%= lang :node, scope: [:modules, :contents] %></h1></header>
-  <div>
-    <%= link_to :nodes, node_nodes_path %>
-    <%= link_to :design, node_layouts_path %>
-  </div>
-</nav>
+<% begin %>
+  <% if @cur_node.route == "node/nodes" %>
+    <%= node_navi %>
+  <% else %>
+    <%= render partial: @cur_node.route.sub(/\/.*/, "/main/navi") %>
+  <% end %>
+<% rescue ActionView::MissingTemplate %>
+  <%= node_navi %>
+<% end %>

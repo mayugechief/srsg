@@ -1,0 +1,94 @@
+<%= javascript_tag do %>
+$(function(){
+  
+  $("#ajax-form").on("submit", function(e) {
+    $(this).ajaxSubmit({
+      url: "<%= url_for(action: :create, format: :json) %>",
+      success: function() {
+        $("#cboxLoadedContent").load("<%= url_for(action: :index) %>");
+      },
+      error: function(data, status) {
+        alert(["== Error =="].concat($.parseJSON(data.responseText)).join("\n"));
+      }
+    })
+    e.preventDefault();
+  });
+  
+  $(".select-file").click(function() {
+    var id = $(this).attr("data-id");
+    var h  = $("#file" + id).html();
+    $("#selected-files").append(h);
+    
+    jQuery.colorbox.close();
+    return false;
+  });
+  
+  $(".delete-file").click(function(e) {
+    if (!confirm("<%= t "views.confirm.delete" %>")) return false;
+    
+    $.ajax({
+      type: "DELETE",
+      data: "_method=delete",
+      url: $(this).attr("href"),
+      success: function() {
+        $("#cboxLoadedContent").load("<%= url_for(action: :index) %>");
+      },
+      error: function(data, status) {
+        alert(["== Error =="].concat($.parseJSON(data.responseText)).join("\n"));
+      }
+    });
+    return false;
+  });
+
+});
+<% end %>
+
+<%= form_for :item, url: { action: :create }, html: { id: "ajax-form", multipart: true } do |f| %>
+<%= error_messages_for :item %>
+
+  <div style="margin-bottom: 20px; padding: 10px; border: 1px solid #ddd;">
+    <%= f.file_field :in_files, multiple: :multiple %>
+    <%= f.submit :upload, class: :save %>
+  </div>
+  
+<% end %>
+
+<div class="index user-files">
+  <% @items.each do |item| %>
+  <article class="file-view">
+    <a class="thumb select-file" href="#" data-id="<%= item.id %>">
+      <% if item.image? %>
+      <img src="<%= url_for(action: :thumb, id: item) %>" alt="<%= item.basename %>" />
+      <% else %>
+      <span class="ext icon-<%= item.extname %>"><%= item.extname %></span>
+      <% end %>
+    </a>
+    <div class="name">
+      <%= item.basename %>
+    </div>
+    <nav class="menu">
+      <%= link_to :delete, { action: :destroy, id: item, format: :json }, class: "delete-file" %>
+    </nav>
+  </article>
+  
+  <div id="file<%= item.id %>" style="display: none;">
+    <div class="file-view">
+      <div class="thumb">
+        <% if item.image? %>
+        <img src="<%= url_for(action: :thumb, id: item) %>" alt="<%= item.basename %>" />
+        <% else %>
+        <span class="ext icon-<%= item.extname %>"><%= item.extname %></span>
+        <% end %>
+      </div>
+      <div class="name">
+        <input type="checkbox" name="item[file_ids][]" value="<%= item.id %>" checked="checked" />
+        <%= item.basename %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div style="clear: both;"></div>
+
+<%= paginate @items if @items.try(:current_page) %>

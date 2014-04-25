@@ -8,10 +8,11 @@ module Cms::Node::Model
   include Acl::Addons::GroupOwner
   include Cms::Addons::Meta
   
+  attr_accessor :cur_node, :basename
+  
   included do
     store_in collection: "cms_nodes"
-    
-    attr_accessor :cur_node # for UI
+    index({ site_id: 1, filename: 1 }, { unique: true })
     
     seqid :id
     field :state, type: String, default: "public"
@@ -21,21 +22,20 @@ module Cms::Node::Model
     field :route, type: String
     field :shortcut, type: String
     
-    index({ site_id: 1, filename: 1 }, { unique: true })
-    
-    permit_params :state, :name, :filename, :route, :shortcut
+    permit_params :state, :name, :filename, :basename, :route, :shortcut
     
     validates :state, presence: true
     validates :name, presence: true, length: { maximum: 80 }
-    validates :filename, uniqueness: { scope: :site_id }, presence: true, length: { maximum: 2000 }
+    validates :filename, presence: true, uniqueness: { scope: :site_id }, length: { maximum: 200 }
     validates :route, presence: true
     
-    before_validation :validate_node, if: -> { filename.present? }
-    validate :validate_filename
+    before_validation :validate_dirname
+    before_validation :validate_basename, if: ->{ @basename }
+    before_validation :validate_filename, if: ->{ filename.present? }
+    after_validation :set_depth, if: ->{ filename.present? }
     
-    before_save :set_depth, if: -> { filename.present? }
-    before_save :retain_changes
-    after_save :move_children, if: -> { @_filename_change }
+    before_save :set_db_changes
+    after_save :rename_children
     after_destroy :destroy_children
   end
   
@@ -56,11 +56,11 @@ module Cms::Node::Model
     end
     
     def dirname
-      filename.index("/") ? filename.sub(/\/[^\/]*$/, "") : nil
+      filename.index("/") ? filename.to_s.sub(/\/.*$/, "").precense : nil
     end
     
     def basename
-      filename.sub(/.*\//, "")
+      @basename.presence || filename.to_s.sub(/.*\//, "").presence
     end
     
     def path
@@ -130,40 +130,34 @@ module Cms::Node::Model
     end
     
   private
-    def validate_filename
-      return if errors[:filename].present?
-      return errors.add :filename, :blank if filename.blank?
-      
-      self.filename = filename.downcase if filename =~ /[A-Z]/
-      self.filename = filename.sub(/\/$/, "")
-      errors.add :filename, :invalid if filename !~ /^[\w\-\/]+$/
+    def validate_dirname
+      if @cur_node
+        self.filename = "#{@cur_node.filename}/#{basename}"
+      elsif @cur_node == false
+        self.filename = basename
+      end
     end
     
-    def validate_node
-      return if errors[:filename].present?
-      
-      if @cur_node #TODO:
-        if filename.index("/")
-          errors.add :filename, :invalid if File.dirname(filename) != @cur_node.filename
-        else
-          self.filename = "#{@cur_node.filename}/#{filename}"
-        end
-      elsif @cur_node == false
-        errors.add :filename, :invalid if filename.index("/")
-      end
+    def validate_basename
+      self.filename = filename.sub(/\/.*?$/, "/#{@basename}")
+    end
+    
+    def validate_filename
+      errors.add :filename, :invalid if filename !~ /^[\w\-]+(\/[\w\-]+)*$/
     end
     
     def set_depth
       self.depth = filename.scan(/[^\/]+/).size
     end
     
-    def retain_changes
-      @_filename_change = new_record? ? nil : changes["filename"]
+    def set_db_changes
+      @db_changes = new_record? ? {} : changes || {}
     end
     
-    def move_children
-      src, dst = @_filename_change
+    def rename_children
+      return unless @db_changes["filename"]
       
+      src, dst = @db_changes["filename"]
       %w(nodes pages parts layouts).each do |name|
         send(name).where(filename: /^#{src}\//).each do |item|
           item.filename = item.filename.sub(/^#{src}\//, "#{dst}\/")

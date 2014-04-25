@@ -1,11 +1,10 @@
-<%= render partial: "node/main/modules" %>
+<%= node_navi do %>
 
 <nav class="sub-menu">
-  <header><h1><%= lang :article, scope: [:modules, :contents] %></h1></header>
+  <header><h1><%= lang "modules.contents.article" %></h1></header>
   <div>
-    <%= link_to :pages, article_pages_path %>
-    <%= link_to "Category", "#" %>
-    <%= link_to "Import", "#" %>
-    <%= link_to "Publish", "#" %>
+    <%= link_to :article_pages, article_pages_path %>
   </div>
 </nav>
+
+<% end %>

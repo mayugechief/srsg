@@ -6,8 +6,10 @@ module Cms::Page::Feature
   include Acl::Addons::GroupOwner
   include SS::Permission
   
+  attr_accessor :cur_node, :basename
+  
   included do
-    attr_accessor :cur_node # for UI
+    index({ site_id: 1, filename: 1 }, { unique: true })
     
     seqid :id
     field :state, type: String, default: "public"
@@ -16,29 +18,32 @@ module Cms::Page::Feature
     field :depth, type: Integer, metadata: { form: :none }
     field :published, type: DateTime
     
-    index({ site_id: 1, filename: 1 }, { unique: true })
-    
-    permit_params :state, :name, :filename
+    permit_params :state, :name, :filename, :basename
     
     validates :state, presence: true
     validates :name, presence: true, length: { maximum: 80 }
-    validates :filename, uniqueness: { scope: :site_id }, length: { maximum: 80 }
+    validates :filename, uniqueness: { scope: :site_id }, length: { maximum: 200 }
     
-    before_validation :validate_node, if: -> { filename.present? }
-    validate :validate_filename
-    
-    before_save :set_depth, if: -> { filename.present? }
+    before_validation :validate_dirname
+    before_validation :validate_basename, if: ->{ @basename }
+    before_validation :validate_filename, if: ->{ filename.present? }
+    after_validation :set_depth, if: ->{ filename.present? }
   end
   
   module ClassMethods
+    # scope
     def node(node)
       node ? where(filename: /^#{node.filename}\//, depth: node.depth + 1) : where(depth: 1)
     end
   end
   
   public
+    def dirname
+      filename.index("/") ? filename.to_s.sub(/\/.*$/, "").precense : nil
+    end
+    
     def basename
-      filename.sub(/.*\//, "")
+      @basename.presence || filename.to_s.sub(/.*\//, "").presence
     end
     
     def path
@@ -66,6 +71,7 @@ module Cms::Page::Feature
     end
     
     def node
+      return @cur_node if @cur_node
       return @node if @node
       return nil if depth.to_i <= 1
       
@@ -80,30 +86,24 @@ module Cms::Page::Feature
     end
     
   private
-    def validate_node
-      return if errors[:filename].present?
-      
-      if @cur_node #TODO:
-        if filename.index("/")
-          errors.add :filename, :invalid if File.dirname(filename) != @cur_node.filename
-        else
-          self.filename = "#{@cur_node.filename}/#{filename}"
-        end
+    def validate_dirname
+      if @cur_node
+        self.filename = "#{@cur_node.filename}/#{basename}"
       elsif @cur_node == false
-        errors.add :filename, :invalid if filename.index("/")
+        self.filename = basename
       end
     end
     
+    def validate_basename
+      self.filename = filename.sub(/\/.*?$/, "/#{@basename}")
+    end
+    
     def validate_filename
-      return if errors[:filename].present?
-      return errors.add :filename, :blank if filename.blank?
-      
-      self.filename = filename.downcase if filename =~ /[A-Z]/
-      self.filename << ".html" if filename =~ /(^|\/)[\w\-]+$/
+      self.filename = filename.sub(/\..*$/, "") + ".html"
       errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.html$/
     end
     
     def set_depth
-      self.depth = filename.scan(/[^\/]+/).size
+      self.depth = read_attribute(:filename).scan(/[^\/]+/).size
     end
 end

@@ -28,7 +28,7 @@ class @SS
     
     url = url.replace(/\.json$/, ".kana.json") if isKana
     $.ajax {
-      type: "GET", url: url, dataType: "json"#, cache: false
+      type: "GET", url: url, dataType: "json", cache: false
       success: (data) ->
         $("body").hide()
         $("body").append SS.kanaFlag if isKana
@@ -52,6 +52,7 @@ class @SS
     url = url.replace(/\.json(\?|$)/, ".kana.json$1") if SS.isKana()
     $.ajax {
       type: "GET", url: url, dataType: "json" #, cache: false
+      data: "ref=" + location.pathname
       success: (data) ->
         $(id).replaceWith data
     }

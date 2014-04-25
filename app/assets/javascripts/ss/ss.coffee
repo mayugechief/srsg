@@ -5,11 +5,20 @@
 //= require turbolinks
 
 $ ->
+  #$.ajaxSetup({
+  #  headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
+  #});
+  
+  # default render
+  SS.render()
+  
+  # current menu
   path = location.pathname + "/"
   $("#navi .main-menu a, #navi .sub-menu a").each ->
     menu = $(this)
     menu.addClass("current") if path.indexOf(menu.attr("href")) == 0
   
+  # pulldown menu
   if $(window).width() >= 800
     menu = $(".pulldown-menu")
     link = menu.find("a")
@@ -18,9 +27,6 @@ $ ->
       link.filter(".current").prependTo(menu).click ->
         link.not(".current").slideToggle("fast")
         return false
-        
-  $("a[href^=http]").each ->
-    $(this).addClass("external")
   
   #$("input.date").datepicker()
   
@@ -28,6 +34,24 @@ $ ->
   SS_Addon.tabs(".addon-tab")
 
 class @SS
+  @render:(container = "") ->
+    # external links
+    $(container + " a[href^=http]").each ->
+      $(this).addClass("external")
+    
+    # ajax to (color)box
+    $(container + " .ajax").each ->
+      return true if $(this).hasClass("cboxElement") # continue
+      if $(this).data("target")
+        #
+      else
+        $(this).colorbox({ fixed: true, width: "90%", height: "90%" })
+    
+    # ajax 
+    if container != ""
+      $(container + " a").each ->
+        $(this).colorbox({ fixed: true, width: "90%", height: "90%" })
+    
   @switchView: ->
     if navigator.userAgent.match(/(Android|iPad|iPhone)/)
       if $.cookie("switchView") == "pc"

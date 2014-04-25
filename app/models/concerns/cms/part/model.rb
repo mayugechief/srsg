@@ -11,9 +11,15 @@ module Cms::Part::Model
     field :html, type: String, metadata: { form: :code }
     
     permit_params :route, :html
+    
+    validates :filename, presence: true
   end
   
   public
+    def route_options
+      Cms::Part.plugins
+    end
+    
     def becomes_with_route
       klass = route.sub("/", "/part/").singularize.camelize.constantize rescue nil
       return self unless klass
@@ -24,24 +30,15 @@ module Cms::Part::Model
     end
     
     def render_html
-      json = url.sub('.html', '.json')
       eid  = "part-#{path.object_id}"
-      scr  = %Q[<script>SS.piece("##{eid}", "#{json}?ref=" + location.pathname);</script>]
+      scr  = %Q[<script>SS.piece("##{eid}", "#{url.sub('.html', '.json')}");</script>]
       html = %Q[<div id="#{eid}"><a href="#{url}">#{name}</a></div>#{scr}]
-      html = "<!-- part #{path} -->#{html}<!-- /part -->"
-    end
-    
-    def route_options
-      Cms::Part.plugins
+      html = "<!-- part #{url.sub(/^\//, '')} -->#{html}<!-- /part -->"
     end
     
   private
     def validate_filename
-      return if errors[:filename].present?
-      return errors.add :filename, :blank if filename.blank?
-      
-      self.filename = filename.downcase if filename =~ /[A-Z]/
-      self.filename << ".part.html" unless filename.index(".")
+      self.filename = filename.sub(/\..*$/, "") + ".part.html"
       errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.part\.html$/
     end
 end

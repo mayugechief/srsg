@@ -109,16 +109,16 @@ class Cms::PublicController < ApplicationController
       
       def route_part(path)
         path = path.sub(/\.json$/, ".html")
-        page = Cms::Part.find_by(site_id: @cur_site, filename: path) rescue nil
-        return nil unless page
+        part = Cms::Part.find_by(site_id: @cur_site, filename: path) rescue nil
+        return nil unless part
         
-        if page.route.present? && page.route != "cms/frees"
-          cell = recognize_path "/.#{@cur_site.host}/part/#{page.route}.#{@path.sub(/.*\./, '')}"
+        if part.route.present? && part.route != "cms/frees"
+          cell = recognize_path "/.#{@cur_site.host}/part/#{part.route}.#{@path.sub(/.*\./, '')}"
           return unless cell
-          @cur_page = page
-          body = render_cell page.route.sub(/\/.*/, "/route/#{cell[:controller]}/view"), cell[:action]
+          @cur_part = part
+          body = render_cell part.route.sub(/\/.*/, "/route/#{cell[:controller]}/view"), cell[:action]
         else
-          body = page.html
+          body = part.html
         end
         
         body = render_kana body
@@ -159,11 +159,14 @@ class Cms::PublicController < ApplicationController
       end
       
       def render_page
-        page = Cms::Page.find_by(site_id: @cur_site, filename: @path) rescue nil 
+        page = Cms::Page.find_by(site_id: @cur_site, filename: @path) rescue nil
         return unless page
         
+        cell = recognize_path "/.#{@cur_site.host}/page/#{page.route}/#{page.basename}"
+        return unless cell
+        
         @cur_page = page
-        body = render_cell "cms/route/page/pages/view", "index"
+        body = render_cell page.route.sub(/\/.*/, "/route/#{cell[:controller]}/view"), cell[:action]
         return if response.body.present?
         
         body = render_kana body

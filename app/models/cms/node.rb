@@ -1,7 +1,6 @@
 # coding: utf-8
 class Cms::Node
   extend ActiveSupport::Autoload
-  
   autoload :Model
   include Model
   

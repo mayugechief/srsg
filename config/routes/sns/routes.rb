@@ -16,6 +16,19 @@ SS::Application.routes.draw do
       get :thumb, on: :member
       get :download, on: :member
     end
+    
+    resources :temp_files, concerns: :deletion do
+      get :view, on: :member
+      get :thumb, on: :member
+      get :download, on: :member
+    end
+    
+    resources :ajax_files, concerns: :deletion do
+      get :view, on: :member
+      get :thumb, on: :member
+      get :download, on: :member
+    end
+
   end
   
 end

@@ -1,0 +1,6 @@
+<% if @cur_page.categories.present? %>
+<aside class="categories">
+  <header><h2>カテゴリー</h2></header>
+  <%== @cur_page.categories.map {|m| link_to m.name, m.url}.join(" ") %>
+</aside>
+<% end %>

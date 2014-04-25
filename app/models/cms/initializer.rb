@@ -6,5 +6,6 @@ module Cms
     
     Cms::Page.addon "cms/meta"
     Cms::Page.addon "cms/body"
+    Cms::Page.addon "cms/files"
   end
 end

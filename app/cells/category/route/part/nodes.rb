@@ -10,10 +10,10 @@ module Category::Route::Part::Nodes
     helper Cms::ListHelper
     
     def index
-      @cur_node = @cur_page.node
+      @cur_node = @cur_part.node
       
-      path = params[:ref].present? ? params[:ref].sub(/^\//, "").sub(/\/[^\/]*$/, "") : nil
-      node = path ? Category::Node.site(@cur_site).my_route.where(filename: path).first : nil
+      path   = @ref.present? ? @ref.sub(/^\//, "").sub(/\/[^\/]*$/, "") : nil
+      node   = path ? Category::Node.site(@cur_site).my_route.where(filename: path).first : nil
       node ||= @cur_node
       
       if node && node.dirname
@@ -27,9 +27,9 @@ module Category::Route::Part::Nodes
       @items = Category::Node.site(@cur_site).my_route.
         where(cond).
         where(deleted: nil).
-        order_by(@cur_page.orders).
+        order_by(@cur_part.orders).
         page(params[:page]).
-        per(@cur_page.limit)
+        per(@cur_part.limit)
       
       render
     end

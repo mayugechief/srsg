@@ -11,7 +11,7 @@ namespace :ss do
     end
     
     puts "# replace field: shortcut"
-    Cms::Page.where(shorcut: 1).each do |item|
+    Cms::Page.where(shortcut: 1).each do |item|
       puts "  #{item.id}, #{item.filename}, #{item.name}"
       item.shortcut = "show"
       item.save

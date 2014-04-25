@@ -11,8 +11,8 @@
   <dd><%= @item.send :name %></dd>
   
   <% if fields[:filename] != -1 %>
-  <dt><%= @model.lang :filename %></dt>
-  <dd><%= @item.send :filename %></dd>
+  <dt><%= @model.lang :basename %></dt>
+  <dd><%= @item.send :basename %></dd>
   <% end %>
   
   <dt><%= @model.lang :state %></dt>

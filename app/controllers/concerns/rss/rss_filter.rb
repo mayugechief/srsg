@@ -11,7 +11,7 @@ module Rss::RssFilter
     def render_rss(node, items)
       rss = RSS::Maker.make("2.0") do |rss|
         summary = nil
-        %w[description].each {|m| summary ||= node.send(m) if node.respond_to?(m) }
+        %w[description name].each {|m| summary ||= node.send(m) if node.respond_to?(m) }
         
         rss.channel.title       = "#{node.name} - #{node.site.name}"
         rss.channel.link        = node.full_url

@@ -10,7 +10,7 @@ module Article::Route::Node::Pages
     helper Cms::ListHelper
     
     def index
-      @items = Article::Page.site(@cur_site).node(@cur_node).my_route.
+      @items = Article::Page.site(@cur_site).node(@cur_node).
         where(deleted: nil).
         order_by(@cur_node.orders).
         page(params[:page]).
@@ -20,7 +20,7 @@ module Article::Route::Node::Pages
     end
     
     def rss
-      @items = Article::Page.site(@cur_site).node(@cur_node).my_route.
+      @items = Article::Page.site(@cur_site).node(@cur_node).
         where(deleted: nil).
         order_by(published: -1).
         limit(20)

@@ -2,22 +2,13 @@
 class Article::Page
   include Cms::Page::Model
   
-  scope :my_route, -> { where route: "article/pages" }
+  default_scope ->{ where(route: "article/pages") }
   
-  before_validation :prepare_seq_filename, if: -> { filename.blank? }
-  before_save :set_seq_filename
+  before_save :set_filename, if: ->{ filename.blank? }
   
   private
-    def prepare_seq_filename
-      if @cur_node
-        self.filename = "#{@cur_node.filename}/-.html"
-      else
-        self.filename = "-.html"
-      end
-    end
-    
-    def set_seq_filename
-      return if filename !~ /(^|\/)-\.html$/
-      self.filename = filename.sub(/-\.html/, "#{id}.html")
+    def set_filename
+      @cur_node.filename
+      self.filename = @cur_node ? "#{@cur_node.filename}/#{id}.html" : "#{id}.html"
     end
 end

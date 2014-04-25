@@ -100,12 +100,12 @@ module SS::CrudFilter
       if result
         respond_to do |format|
           format.html { redirect_to location, notice: "Created." }
-          format.json { render action: 'show', status: :created, location: @item }
+          format.json { render json: @item.to_json, status: :created }
         end
       else
         respond_to do |format|
           format.html { render file: :new }
-          format.json { render json: @item.errors, status: :unprocessable_entity }
+          format.json { render json: @item.errors.full_messages, status: :unprocessable_entity }
         end
       end
     end
@@ -121,7 +121,7 @@ module SS::CrudFilter
       else
         respond_to do |format|
           format.html { render file: :edit }
-          format.json { render json: @item.errors, status: :unprocessable_entity }
+          format.json { render json: @item.errors.full_messages, status: :unprocessable_entity }
         end
       end
     end
@@ -137,7 +137,7 @@ module SS::CrudFilter
       else
         respond_to do |format|
           format.html { render file: :delete }
-          format.json { render json: @item.errors, status: :unprocessable_entity }
+          format.json { render json: @item.errors.full_messages, status: :unprocessable_entity }
         end
       end
     end
