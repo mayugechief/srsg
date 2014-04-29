@@ -7,7 +7,7 @@ class Cms::Page
   
   #default_scope ->{ where(route: "cms/pages") }
   
-  validates :filename, presence: true
+  validates :basename, presence: true, if: ->{ @basename }
   
   class << self
     def addon(path)

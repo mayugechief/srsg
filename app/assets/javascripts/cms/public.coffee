@@ -46,15 +46,23 @@ class @SS
         $("body").fadeIn(50)
       error: (req, status, error) ->
         $("body").html SS.page
+      complete: ->
+        $(".ss-part").each ->
+          SS.part $(this)
     }
   
-  @piece: (id, url) ->
-    url = url.replace(/\.json(\?|$)/, ".kana.json$1") if SS.isKana()
+  @part: (obj) ->
+    url = obj.data("href")
+    url = url.replace(/\.json/, ".kana.json") if SS.isKana()
+    
+    obj.append "&nbsp; <img style='vertical-align: middle;' src='/images/loading.gif' />"
     $.ajax {
       type: "GET", url: url, dataType: "json" #, cache: false
       data: "ref=" + location.pathname
       success: (data) ->
-        $(id).replaceWith data
+        $(obj).replaceWith data
+      error: ->
+        $(obj).find("img").remove()
     }
   
   @isKana: ->
@@ -71,11 +79,10 @@ class @SS
       $(id).html('<a class="on" href="' + url + '" ' + evh + '>ふりがなをつける</a>')
   
   @renderKana: (url) ->
-    $.ajax {
+    $.ajax
       type: "GET", url: url, dataType: "html" #, cache: false
       success: (data) ->
         $("body").html data.replace(/[\s\S]*<body.*?>([\s\S]*)<\/body>[\s\S]*/, "$1") + SS.kanaFlag
-    }
     return false
     
   @switchView: ->

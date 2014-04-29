@@ -98,5 +98,5 @@ puts "articles:"
 1.step(9) do |i|
   save_page filename: "docs/#{i}.html", name: "サンプル記事#{i}", html: "<p>本文です。</p>",
     route: "article/pages", layout_id: layouts["page"].id,
-    category_ids: Category::Node.pluck(:_id).sample(4)
+    category_ids: Category::Node.my_route.pluck(:_id).sample(4)
 end

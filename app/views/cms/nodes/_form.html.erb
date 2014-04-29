@@ -6,27 +6,27 @@ bind  = "$(this).parent().parent().parent().parent().hide();"
 bind << "location.href = '#{url}?route=' + $(this).val();"
 
 %><dl class="see">
-  <dt><%= @model.lang :route %></dt>
+  <dt><%= @model.t :route %></dt>
   <dd><%= f.select :route, @item.route_options, {}, onchange: bind %></dd>
   
-  <dt><%= @model.lang :name %></dt>
+  <dt><%= @model.t :name %></dt>
   <dd><%= f.text_field :name %></dd>
   
   <% if fields[:filename] != -1 %>
-  <dt><%= @model.lang :basename %></dt>
+  <dt><%= @model.t :basename %></dt>
   <dd><%= f.text_field :basename, class: "filename" %></dd>
   <% end %>
   
-  <dt><%= @model.lang :state %></dt>
+  <dt><%= @model.t :state %></dt>
   <dd><%= f.select :state, @item.state_options, include_blank: " " %></dd>
   
   <% if fields[:layout_id] != -1 %>
-  <dt><%= @model.lang :layout_id %></dt>
+  <dt><%= @model.t :layout_id %></dt>
   <dd><%= f.select :layout_id, ancestral_layouts(@item), include_blank: " " %></dd>
   <% end %>
   
   <% if fields[:shortcut] != -1 %>
-  <dt><%= @model.lang :shortcut %></dt>
+  <dt><%= @model.t :shortcut %></dt>
   <dd><%= f.select :shortcut, @item.shortcut_options, include_blank: " " %></dd>
   <% end %>
 </dl>

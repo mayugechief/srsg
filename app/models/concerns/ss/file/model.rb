@@ -15,7 +15,7 @@ module SS::File::Model
     field :user_id, type: Integer
     field :state, type: String, default: "public"
     field :filename, type: String
-    field :length, type: Integer
+    field :size, type: Integer
     field :content_type, type: String
     
     permit_params :state, :filename
@@ -30,6 +30,10 @@ module SS::File::Model
     
     before_save :save_file
     before_destroy :remove_file
+  end
+  
+  class UploadedFile < ::Tempfile
+    attr_accessor :original_filename, :content_type
   end
   
   public
@@ -58,7 +62,7 @@ module SS::File::Model
       file_id.blank? ? nil : Mongoid::GridFs.get(file_id) rescue nil
     end
     
-    def read_file
+    def read
       file.data
     end
     
@@ -76,10 +80,19 @@ module SS::File::Model
       true
     end
     
+    def uploaded_file
+      file = UploadedFile.new("aa")
+      file.binmode
+      file.write(read)
+      file.original_filename = basename
+      file.content_type = content_type
+      file
+    end
+    
   private
     def set_filename
       self.filename   ||= in_file.original_filename
-      self.length       = in_file.size
+      self.size         = in_file.size
       self.content_type = in_file.content_type
     end
     

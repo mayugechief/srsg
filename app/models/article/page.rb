@@ -4,11 +4,14 @@ class Article::Page
   
   default_scope ->{ where(route: "article/pages") }
   
-  before_save :set_filename, if: ->{ filename.blank? }
+  before_save :seq_filename, if: ->{ basename.blank? }
   
   private
-    def set_filename
-      @cur_node.filename
+    def validate_filename
+      (@basename && @basename.blank?) ? nil : super
+    end
+    
+    def seq_filename
       self.filename = @cur_node ? "#{@cur_node.filename}/#{id}.html" : "#{id}.html"
     end
 end

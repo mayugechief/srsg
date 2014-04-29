@@ -6,6 +6,7 @@ class Cms::Part
   
   class Free
     include Cms::Part::Model
+    include Cms::Addons::Html
     
     def render_html
       html

@@ -5,7 +5,7 @@ def current?(name)
 end
 
 %><nav class="page-menu">
-  <header><h1><%= lang :modules %></h1></header>
+  <header><h1><%= t :modules %></h1></header>
   <div>
     <%= link_to :all, cms_contents_path, class: current?("") %>
     <% Cms::Node.modules.each do |name, key| %>

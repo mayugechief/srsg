@@ -1,13 +1,10 @@
 <dl class="see">
-  <dt><%= @model.lang :name %></dt>
+  <dt><%= @model.t :name %></dt>
   <dd><%= f.text_field :name %></dd>
   
-  <dt><%= @model.lang :basename %></dt>
+  <dt><%= @model.t :basename %></dt>
   <dd><%= f.text_field :basename, class: "filename" %></dd>
   
-  <dt><%= @model.lang :state %></dt>
+  <dt><%= @model.t :state %></dt>
   <dd><%= f.select :state, @item.state_options, include_blank: " " %></dd>
-  
-  <dt><%= @model.lang :html %></dt>
-  <dd><%= f.text_area :html, class: "code" %></dd>
 </dl>

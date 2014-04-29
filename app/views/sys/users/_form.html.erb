@@ -1,14 +1,14 @@
 <dl class="see">
-  <dt><%= @model.lang :name %></dt>
+  <dt><%= @model.t :name %></dt>
   <dd><%= f.text_field :name %></dd>
   
-  <dt><%= @model.lang :email %></dt>
+  <dt><%= @model.t :email %></dt>
   <dd><%= f.email_field :email %></dd>
   
-  <dt><%= @model.lang :password %></dt>
+  <dt><%= @model.t :password %></dt>
   <dd><%= f.text_field :password %></dd>
   
-  <dt><%= @model.lang :groups %></dt>
+  <dt><%= @model.t :groups %></dt>
   <dd>
     <%= hidden_field_tag "item[group_ids][]" %>
     <% SS::Group.all.each do |item| %>

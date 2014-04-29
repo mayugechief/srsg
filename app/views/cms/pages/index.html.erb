@@ -2,9 +2,9 @@
   <thead>
     <tr>
       <th class="checkbox"><input type="checkbox" /></th>
-      <th><%= @model.lang :name %></th>
-      <th class="filename"><%= @model.lang :filename %></th>
-      <th class="datetime"><%= @model.lang :updated %></th>
+      <th><%= @model.t :name %></th>
+      <th class="filename"><%= @model.t :filename %></th>
+      <th class="datetime"><%= @model.t :updated %></th>
     </tr>
   </thead>
   
@@ -15,6 +15,7 @@
         <input type="checkbox" name="ids[]" value="<%= item.id %>" />
         <nav class="row-menu">
           <%= link_to "詳細を見る", action: :show, id: item %>
+          <%= link_to "編集する", action: :edit, id: item %>
         </nav>
       </td>
       <td><%= link_to item.name, { action: :show, id: item }, class: "icon-page" %></td>

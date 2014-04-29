@@ -1,10 +1,10 @@
 <dl class="see">
-  <dt><%= @model.lang :name %></dt>
+  <dt><%= @model.t :name %></dt>
   <dd><%= @item.send :name %></dd>
   
-  <dt><%= @model.lang :email %></dt>
+  <dt><%= @model.t :email %></dt>
   <dd><%= @item.send :email %></dd>
   
-  <dt><%= @model.lang :group_ids %></dt>
+  <dt><%= @model.t :group_ids %></dt>
   <dd><%= @item.groups.map {|m| m.name }.join(", ") %></dd>
 </dl>

@@ -1,9 +1,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.cookie
-//= require jquery.turbolinks
-//= require turbolinks
+#//= #require jquery.turbolinks
+#//= #require turbolinks
 
+<% environment.context_class.instance_eval { include ApplicationHelper } %>
+
+##
+#  $(".js-date").datetimepicker { lang: "ja", timepicker: false, format: "Y/m/d" }
+##
+  
 $ ->
   #$.ajaxSetup({
   #  headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
@@ -28,10 +34,9 @@ $ ->
         link.not(".current").slideToggle("fast")
         return false
   
-  #$("input.date").datepicker()
-  
   SS_ListUI.render("table.index")
   SS_Addon.tabs(".addon-tab")
+  SS_Agent.render();
 
 class @SS
   @render:(container = "") ->
@@ -52,16 +57,68 @@ class @SS
       $(container + " a").each ->
         $(this).colorbox({ fixed: true, width: "90%", height: "90%" })
     
-  @switchView: ->
+  @ajaxForm:(elem, params = {}) ->
+    elem = $(elem)
+    defaults = {
+      url: elem.attr("action") + ".json"
+      dataType: "json"
+      success: ->
+        #
+      error: (data, status) ->
+        alert(["== Error =="].concat(data.responseJSON).join("\n"));
+    }
+    elem.on "submit", (e) ->
+      $(this).ajaxSubmit $.extend(defaults, params)
+      e.preventDefault();
+    
+  @ajax:(elem, params = {}) ->
+    $(elem).click (e) ->
+      self = $(this)
+      defaults = {
+        url: self.attr("href")
+        beforeSend: ->
+          self.html "<img style='vertical-align: middle;' src='/images/loading.gif' />"
+        success: ->
+          console.log "success"
+        error: (data, status) ->
+          alert("== Error ==");
+      }
+      $.ajax $.extend(defaults, params)
+      e.preventDefault();
+      return false
+    
+  @ajaxDelete:(elem, params = {}) ->
+    $(elem).click (e) ->
+      return false if !confirm("<%= t "views.confirm.delete" %>")
+      self = $(this)
+      defaults = {
+        type: "DELETE",
+        data: "_method=delete",
+        url: self.attr("href") + ".json"
+        dataType: "json"
+        beforeSend: ->
+          self.html "<img style='vertical-align: middle;' src='/images/loading.gif' />"
+        success: ->
+          $(self.data("remove")).remove() if self.data("remove")
+        error: (data, status) ->
+          alert(["== Error =="].concat(data.responseJSON).join("\n"));
+      }
+      $.ajax $.extend(defaults, params)
+      e.preventDefault();
+      return false
+  
+class @SS_Agent
+  @render: ->
     if navigator.userAgent.match(/(Android|iPad|iPhone)/)
+      console.log $.cookie("switchView")
       if $.cookie("switchView") == "pc"
         $("head meta[name=viewport]").remove
         $("head").append '<meta name="viewport" content="width=1024" />'
         sp = $("#sp-view")
-        sp.html('<a href="" onclick="SS.switchSpView()">' + sp.text() + '</a>').show()
+        sp.html('<a href="" onclick="SS_Agent.switchSpView()">' + sp.text() + '</a>').show()
       else
         pc = $("#pc-view")
-        pc.html('<a href="" onclick="SS.switchPcView()">' + pc.text() + '</a>').show()
+        pc.html('<a href="" onclick="SS_Agent.switchPcView()">' + pc.text() + '</a>').show()
       
   @switchPcView: ->
     $.cookie("switchView", "pc", { expires: 7, path: '/' })
@@ -126,6 +183,7 @@ class @SS_Debug
     return if url.match(/^#/)
     return if url.match(/\/logout$/)
     return if url.match(/^\/\..*?\/uploader/)
+    return if url.match(/^\/\..*?\/db/)
     if url.match(/^https?:/)
       return unless url.match(new RegExp(location.host))
       url = url.replace(/^https?:\/\/.*?\//, "/")

@@ -1,13 +1,15 @@
 ja:
+  base:
+    contents: "コンテンツ"
+    design: "デザイン"
+    nodes: "フォルダ"
+    pages: "ページ"
+    layouts: "レイアウト"
+    parts: "パーツ"
   views:
-    general:
-      contents: "コンテンツ"
-      design: "デザイン"
-      nodes: "フォルダ"
-      pages: "ページ"
-      layouts: "レイアウト"
-      parts: "パーツ"
     links:
+      view_site: "サイト確認"
+      preview_site: "サイトプレビュー"
       new_node: "新規フォルダ"
       new_page: "新規ページ"
       new_layout: "新規レイアウト"
@@ -21,6 +23,7 @@ ja:
       cms/crumb: "パンくずリスト"
     addons:
       cms/meta: "メタ情報"
+      cms/html: "HTML"
       cms/body: "本文"
       cms/files: "添付ファイル"
       cms/node_list: "一覧表示"
@@ -37,14 +40,16 @@ ja:
         filename: "フォルダ名"
         basename: "フォルダ名"
         route: "フォルダ属性"
-        summary_html: "サマリー"
+        summary_html: "Summary"
         loop_html: "ループHTML"
         upper_html: "上部HTML"
         lower_html: "下部HTML"
       cms/page/model:
         name: "タイトル"
         route: "ページ属性"
-        summary_html: "サマリー"
+        summary_html: "Summary"
+        html: "本文"
+        files: "ファイル"
       cms/part/model:
         name: "パーツ名"
         route: "パーツ属性"

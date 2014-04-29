@@ -18,12 +18,14 @@ SS::Application.routes.draw do
     end
     
     resources :temp_files, concerns: :deletion do
+      get :select, on: :member
       get :view, on: :member
       get :thumb, on: :member
       get :download, on: :member
     end
     
     resources :ajax_files, concerns: :deletion do
+      get :select, on: :member
       get :view, on: :member
       get :thumb, on: :member
       get :download, on: :member

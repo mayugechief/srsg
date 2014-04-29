@@ -1,0 +1,10 @@
+<div class="mypage-box">
+  <nav class="sites">
+    <header><h1><%= t :sites %></h1></header>
+    <div>
+      <% SS::Site.all.each do |item| %>
+      <%= link_to item.name, "/.#{item.host}" %>
+      <% end %>
+    </div>
+  </nav>
+</div>

@@ -1,8 +1,8 @@
 <dl class="see">
-  <dt><%= @model.lang :html %></dt>
-  <dd>
-    <% if @item.send(:html).present? %>
-    <code><%= @item.send :html %></code>
+  <dd class="wide">
+    <% if @item.send(:html).present?  %>
+    <%= html_editor "#mod-cms-body", height: "400px", readonly: true %>
+    <%= text_area_tag "mod-cms-body", @item.html %>
     <% end %>
   </dd>
 </dl>

@@ -1,0 +1,78 @@
+/* mobile */
+
+/* ---------------------------------- */
+
+body {
+  margin: 0px 10px;
+  font-size: 12px;
+  font-family: sans-serif;
+}
+h1, h2, h3, h4, h5 {
+  margin: 0px;
+  font-size: 120%;
+}
+
+/* ---------------------------------- */
+
+#kana, #pc-view, #sp-view {
+  display: none;
+}
+
+/* ---------------------------------- */
+
+#head {
+  margin: 0px -10px;
+  background-color: #49c;
+}
+#head h1 {
+  padding: 10px 0px;
+  font-size: 150%;
+  text-align: center;
+}
+#head h1 a {
+  color: #fff;
+  text-decoration: none;
+}
+#navi {
+  margin: 0px -10px 0px;
+  padding: 10px 0px;
+  border-bottom: 1px solid #ccc;
+  background-color: #ddd;
+  text-align: center;
+}
+.crumbs {
+  margin: 0px -10px 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+#foot {
+  margin: 20px -10px 0px;
+  padding: 20px 0px;
+  background-color: #ddd;
+  text-align: center;
+}
+
+/* ---------------------------------- */
+
+#menu, #side,
+.tag-article, .tag-aside {
+  margin: 10px;
+}
+#menu h1, #side h1,
+.tag-article h1, .tag-aside h2 {
+  margin: 20px -10px;
+  padding: 5px;
+  border-bottom: 1px solid #888;
+  border-left: 5px solid #888;
+}
+
+.pages .tag-article {
+  margin: 0px 0px 5px;
+  padding: 0px 0px 5px;
+  border-bottom: 1px solid #ddd;
+}
+.nodes .tag-article {
+  margin: 0px 0px 5px;
+  padding: 0px 0px 5px;
+  border-bottom: 1px solid #ddd;
+}

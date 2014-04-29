@@ -1,5 +1,8 @@
 <div class="addon-view" id="addon-basic">
-<%= render file: "_show" %>
+  <% if @model && (addons = @model.addons).size > 0 %>
+  <header><h2><%= t :basic_info %></h2></header>
+  <% end %>
+  <%= render file: "_show" %>
 </div>
 
 <%= render file: "_addons_show" %>

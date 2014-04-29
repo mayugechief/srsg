@@ -26,12 +26,11 @@ module Cms::Node::Model
     
     validates :state, presence: true
     validates :name, presence: true, length: { maximum: 80 }
-    validates :filename, presence: true, uniqueness: { scope: :site_id }, length: { maximum: 200 }
+    validates :filename, uniqueness: { scope: :site_id }, length: { maximum: 200 }
     validates :route, presence: true
     
-    before_validation :validate_dirname
-    before_validation :validate_basename, if: ->{ @basename }
-    before_validation :validate_filename, if: ->{ filename.present? }
+    before_validation :set_filename
+    before_validation :validate_filename
     after_validation :set_depth, if: ->{ filename.present? }
     
     before_save :set_db_changes
@@ -56,11 +55,11 @@ module Cms::Node::Model
     end
     
     def dirname
-      filename.index("/") ? filename.to_s.sub(/\/.*$/, "").precense : nil
+      filename.index("/") ? filename.to_s.sub(/\/.*$/, "").presence : nil
     end
     
     def basename
-      @basename.presence || filename.to_s.sub(/.*\//, "").presence
+      @basename || filename.to_s.sub(/.*\//, "").presence
     end
     
     def path
@@ -130,20 +129,22 @@ module Cms::Node::Model
     end
     
   private
-    def validate_dirname
+    def set_filename
       if @cur_node
         self.filename = "#{@cur_node.filename}/#{basename}"
-      elsif @cur_node == false
+      elsif @basename
         self.filename = basename
       end
     end
     
-    def validate_basename
-      self.filename = filename.sub(/\/.*?$/, "/#{@basename}")
-    end
-    
     def validate_filename
-      errors.add :filename, :invalid if filename !~ /^[\w\-]+(\/[\w\-]+)*$/
+      if @basename
+        return errors.add :basename, :empty if @basename.blank?
+        errors.add :basename, :invalid if filename !~ /^[\w\-]+(\/[\w\-]+)*$/
+      else
+        return errors.add :filename, :empty if filename.blank?
+        errors.add :filename, :invalid if filename !~ /^[\w\-]+(\/[\w\-]+)*$/
+      end
     end
     
     def set_depth

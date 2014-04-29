@@ -14,8 +14,6 @@ module Cms::Layout::Model
     
     permit_params :html
     
-    validates :filename, presence: true
-    
     before_save :set_part_paths
     before_save :set_css_paths
     before_save :set_js_paths
@@ -56,9 +54,8 @@ module Cms::Layout::Model
     end
     
   private
-    def validate_filename
-      self.filename = filename.sub(/\..*$/, "") + ".layout.html"
-      errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.layout\.html$/
+    def fix_extname
+      ".layout.html"
     end
     
     def set_part_paths

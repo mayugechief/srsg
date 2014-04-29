@@ -4,15 +4,11 @@ module Cms::Part::Model
   extend SS::Translation
   include Cms::Page::Feature
   
-  included do
+  included do |mod|
     store_in collection: "cms_parts"
     
     field :route, type: String
-    field :html, type: String, metadata: { form: :code }
-    
-    permit_params :route, :html
-    
-    validates :filename, presence: true
+    permit_params :route
   end
   
   public
@@ -30,15 +26,11 @@ module Cms::Part::Model
     end
     
     def render_html
-      eid  = "part-#{path.object_id}"
-      scr  = %Q[<script>SS.piece("##{eid}", "#{url.sub('.html', '.json')}");</script>]
-      html = %Q[<div id="#{eid}"><a href="#{url}">#{name}</a></div>#{scr}]
-      html = "<!-- part #{url.sub(/^\//, '')} -->#{html}<!-- /part -->"
+      %Q[<a class="ss-part" href="#{url}" data-href="#{url.sub('.html', '.json')}">#{name}</a>]
     end
     
   private
-    def validate_filename
-      self.filename = filename.sub(/\..*$/, "") + ".part.html"
-      errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+\.part\.html$/
+    def fix_extname
+      ".part.html"
     end
 end

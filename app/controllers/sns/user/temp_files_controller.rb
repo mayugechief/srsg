@@ -19,4 +19,9 @@ class Sns::User::TempFilesController < ApplicationController
         order_by(_id: -1).
         page(params[:page]).per(20)
     end
+    
+    def select
+      set_item
+      render layout: !request.xhr?
+    end
 end

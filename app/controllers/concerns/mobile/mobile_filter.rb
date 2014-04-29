@@ -16,6 +16,15 @@ module Mobile::MobileFilter
       body.gsub_q!
       body.gsub_wbr!
       body.gsub_br!
+      
+      dir = "#{@cur_site.path}/css"
+      if Fs.exists?("#{dir}/mobile.css") || Fs.exists?("#{dir}/mobile.scss")
+        css = "/css/mobile.css"
+      else
+        css = "/stylesheets/cms/mobile.css"
+      end
+      body.sub!("</head>", %Q[<link rel="stylesheet" href="#{css}" /></head>])
+      
       body.to_s
     end
 end

@@ -18,6 +18,16 @@ module Cms::Addons
     end
   end
   
+  module Html
+    extend ActiveSupport::Concern
+    extend SS::Addon
+    
+    included do
+      field :html, type: String, metadata: { form: :text }
+      permit_params :html
+    end
+  end
+  
   module Body
     extend ActiveSupport::Concern
     extend SS::Addon

@@ -1,7 +1,7 @@
 # coding: utf-8
 module Cms::ListHelper
   def render_node_list(&block)
-    cur_item = @cur_page || @cur_part || @cur_node
+    cur_item = @cur_part || @cur_node
     
     h  = []
     h << cur_item.upper_html.html_safe if cur_item.upper_html.present?
@@ -16,7 +16,7 @@ module Cms::ListHelper
   end
 
   def render_page_list(&block)
-    cur_item = @cur_page || @cur_part || @cur_node
+    cur_item = @cur_part || @cur_node
     
     h  = []
     h << cur_item.upper_html.html_safe if cur_item.upper_html.present?

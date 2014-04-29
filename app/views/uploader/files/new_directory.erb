@@ -2,7 +2,7 @@
 <%= error_messages_for :item %>
 <div class="addon-view">
   <dl class="see">
-    <dt><%= @model.lang :directory %></dt>
+    <dt><%= @model.t :directory %></dt>
     <dd><%= text_field_tag 'item[directory]', 'item[directory]', value: @directory %></dd>
   </dl>
 </div>

@@ -4,17 +4,17 @@
 
 %>
 <dl class="see">
-  <dt><%= @model.lang :route %></dt>
+  <dt><%= @model.t :route %></dt>
   <dd><%= @item.label :route %></dd>
   
-  <dt><%= @model.lang :name %></dt>
+  <dt><%= @model.t :name %></dt>
   <dd><%= @item.send :name %></dd>
   
   <% if fields[:filename] != -1 %>
-  <dt><%= @model.lang :basename %></dt>
+  <dt><%= @model.t :basename %></dt>
   <dd><%= @item.send :basename %></dd>
   <% end %>
   
-  <dt><%= @model.lang :state %></dt>
+  <dt><%= @model.t :state %></dt>
   <dd><%= @item.label :state %></dd>
 </dl>

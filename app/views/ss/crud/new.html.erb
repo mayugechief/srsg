@@ -2,7 +2,10 @@
 <%= error_messages_for :item %>
 
 <div class="addon-view" id="addon-basic">
-<%= render file: '_form', locals: { f: f } %>
+  <% if @model && (addons = @model.addons).size > 0 %>
+  <header><h2><%= t :basic_info %></h2></header>
+  <% end %>
+  <%= render file: '_form', locals: { f: f } %>
 </div>
 
 <%= render file: "_addons_form", locals: { f: f } %>

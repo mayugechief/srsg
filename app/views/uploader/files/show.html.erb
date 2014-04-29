@@ -1,21 +1,23 @@
+<%= code_editor "#mod-uploader-text", filename: @item.filename, readonly: true %>
+
 <div class="addon-view">
   <dl class="see">
-    <dt><%= @model.lang :filename %></dt>
+    <dt><%= @model.t :filename %></dt>
     <dd><%= @item.filename %></dd>
     
     <% if !@item.directory? %>
-      <dt><%= @model.lang :size %></dt>
+      <dt><%= @model.t :size %></dt>
       <dd><%= @item.size %></dd>
       
       <% if @item.image? %>
-      <dt><%= @model.lang :image %></dt>
+      <dt><%= @model.t :image %></dt>
       <dd><%= image_tag @item.link %></dd>
       <% end %>
       
       <% if @item.text? %>
       <% begin %>
-      <dt class="wide"><%= @model.lang :text %></dt>
-      <dd class="wide"><code><%=br @item.text %></code></dd>
+      <dt class="wide"><%= @model.t :text %></dt>
+      <dd class="wide"><%= text_area_tag "mod-uploader-text", @item.text %></dd>
       <% rescue => e %>表示に失敗しました。(<%= e %>)<% end %>
       <% end %>
     <% end %>

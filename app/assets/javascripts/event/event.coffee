@@ -28,9 +28,9 @@ $ ->
       $(".mod-event textarea.event-dates").val Event_Form.datesToString(dates)
       return
 
-    $(".mod-event input.js-date").datepicker
-      dateFormat: "yy/mm/dd",
-      yearRange: "-10:+10"
+#    $(".mod-event input.js-date").datepicker
+#      dateFormat: "yy/mm/dd",
+#      yearRange: "-10:+10"
 
     Event_Form.setStoredDates()
     return
@@ -139,9 +139,11 @@ class @Event_Form
         Event_Form.clearTermForm $(this).parent("dd")
       return
 
-    $(".mod-event input.js-date").attr("id", "").removeClass("hasDatepicker").datepicker
-      dateFormat: "yy/mm/dd",
-      yearRange: "-10:+10"
+    $(".mod-event input.js-date").attr("id", "").datetimepicker
+      lang: "ja"
+      timepicker: false
+      format: "Y/m/d"
+      #yearRange: "-10:+10"
 
     if $(".mod-event dd.date").length >= @maxTermForm
       $(".mod-event button:button.add-date").attr "disabled", true

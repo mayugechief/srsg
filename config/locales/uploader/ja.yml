@@ -1,7 +1,7 @@
 ja:
+  base:
+    uploader_files: "ファイル"
   views:
-    general:
-      uploader_files: "ファイル"
     links:
       create_directory: "新規フォルダ"
       upload_files: "アップロード"

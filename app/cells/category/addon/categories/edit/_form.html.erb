@@ -29,13 +29,12 @@ def cate_form(item)
 end
 
 %>
-<dl class="see">
-  <dt>Category</dt>
-  <dd style="line-height: 2.5">
+<dl class="see mod-category">
+  <dd class="wide" style="line-height: 2.5">
     <%= f.hidden_field "category_ids[]", value: "" %>
     
     <% categories.each do |cate| %>
-    <div style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd;">
       <%= cate_form cate %></div>
     <% end %>
   </dd>

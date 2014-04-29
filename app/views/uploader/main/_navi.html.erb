@@ -1,9 +1,9 @@
 <%= node_navi do %>
 
 <nav class="sub-menu">
-  <header><h1><%= lang "modules.contents.uploader" %></h1></header>
+  <header><h1><%= t "modules.contents.uploader" %></h1></header>
   <div>
-    <%= link_to :uploader_files, uploader_files_path %>
+    <%= link_to :uploader_files, uploader_files_path, class: "icon-page" %>
   </div>
 </nav>
 

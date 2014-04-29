@@ -3,27 +3,27 @@
 #fields = {} #local-variable
 
 %><dl class="see">
-  <dt><%= @model.lang :route %></dt>
+  <dt><%= @model.t :route %></dt>
   <dd><%= @item.label :route %></dd>
   
-  <dt><%= @model.lang :name %></dt>
+  <dt><%= @model.t :name %></dt>
   <dd><%= @item.send :name %></dd>
   
   <% if fields[:filename] != -1 %>
-  <dt><%= @model.lang :basename %></dt>
+  <dt><%= @model.t :basename %></dt>
   <dd><%= @item.send :basename %></dd>
   <% end %>
   
-  <dt><%= @model.lang :state %></dt>
+  <dt><%= @model.t :state %></dt>
   <dd><%= @item.label :state %></dd>
   
   <% if fields[:layout_id] != -1 %>
-  <dt><%= @model.lang :layout_id %></dt>
+  <dt><%= @model.t :layout_id %></dt>
   <dd><%= tryb { @item.layout.name }%></dd>
   <% end %>
   
   <% if fields[:shortcut] != -1 %>
-  <dt><%= @model.lang :shortcut %></dt>
+  <dt><%= @model.t :shortcut %></dt>
   <dd><%= @item.send :shortcut %></dd>
   <% end %>
 </dl>

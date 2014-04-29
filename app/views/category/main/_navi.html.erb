@@ -1,9 +1,9 @@
 <%= node_navi do %>
 
 <nav class="sub-menu">
-  <header><h1><%= lang "modules.contents.category" %></h1></header>
+  <header><h1><%= t "modules.contents.category" %></h1></header>
   <div>
-    <%= link_to :category_nodes, category_nodes_path %>
+    <%= link_to :category_nodes, category_nodes_path, class: "icon-node" %>
   </div>
 </nav>
 

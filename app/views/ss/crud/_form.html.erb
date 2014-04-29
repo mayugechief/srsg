@@ -6,7 +6,7 @@
   <% next if form_type == :none %>
   <% next if key =~ /^(_id|id|created|updated|state|site_id)$/ %>
   
-  <dt><%= @model.lang key %></dt>
+  <dt><%= @model.t key %></dt>
   <dd>
     <%# if field.type <= Mongoid::Relations::Metadata %>
     <% if field.instance_of?(Mongoid::Fields::ForeignKey) %>

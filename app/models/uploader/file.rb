@@ -57,7 +57,7 @@ class Uploader::File
     def content_type
       Fs.content_type path
     end
-
+    
     def ext
       if !directory? && path =~ /\./
         ".#{path.sub(/^.*\./, '')}"
@@ -172,7 +172,7 @@ class Uploader::File
 
   class << self
     public
-      def lang(*args)
+      def t(*args)
         human_attribute_name *args
       end
 

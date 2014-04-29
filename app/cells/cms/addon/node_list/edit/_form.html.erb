@@ -1,16 +1,18 @@
-<dl class="see">
-  <dt><%= @model.lang :order %></dt>
+<%= code_editor ".mod-cms-nodelist textarea", mode: :html %>
+
+<dl class="see mod-cms-nodelist">
+  <dt><%= @model.t :order %></dt>
   <dd><%= f.select :order, @item.order_options, include_blank: " " %></dd>
   
-  <dt><%= @model.lang :limit %></dt>
+  <dt><%= @model.t :limit %></dt>
   <dd><%= f.number_field :limit %></dd>
   
-  <dt><%= @model.lang :upper_html %></dt>
+  <dt><%= @model.t :upper_html %></dt>
   <dd><%= f.text_area :upper_html %></dd>
   
-  <dt><%= @model.lang :loop_html %></dt>
+  <dt><%= @model.t :loop_html %></dt>
   <dd><%= f.text_area :loop_html, style: "height: 10em;" %></dd>
   
-  <dt><%= @model.lang :lower_html %></dt>
+  <dt><%= @model.t :lower_html %></dt>
   <dd><%= f.text_area :lower_html %></dd>
 </dl>

@@ -1,6 +1,6 @@
 <% if @model && (addons = @model.addons).size > 0 %>
 <nav class="addon-menu">
-  <header><h1><%= lang :addons %></h1></header>
+  <header><h1><%= t :addons %></h1></header>
   <div>
     <%= link_to :all, "#", class: "addon-tab", "data-id" => "#addon-all" %>
     <%= link_to :basic_info, "#basic", class: "addon-tab", "data-id" => "#addon-basic" %>

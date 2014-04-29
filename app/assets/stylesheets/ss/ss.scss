@@ -61,8 +61,6 @@ td {
 }
 code {
   display: block;
-  overflow-x: auto;
-  max-height: 30em;
   padding: 10px;
   border: 1px solid #eee;
   background-color: #f7f7f7;
@@ -122,6 +120,13 @@ textarea.code {
   font-size: 120%;
   font-family: monospace;
 }
+.ace_editor {
+  border: 1px solid #ddd;
+  @include box-sizing(border-box);
+}
+form .ace_editor {
+  border: 1px solid #ccc;
+}
 
 // -----------------------------------------------------------------------------
 // outline mixin
@@ -157,10 +162,9 @@ textarea.code {
     background-color: #fff;
     a {
       display: inline-block;
-      border-left: 10px solid #ddd;
       padding: 5px 15px;
       color: #bbb;
-      font-size: 200%;
+      font-size: 300%;
       font-weight: bold;
     }
   }
@@ -175,8 +179,7 @@ textarea.code {
       a {
         float: left;
         width: 150px;
-        margin-left: 15px;
-        //border-right: 1px solid #ddd;
+        margin-left: 10px;
         background-image: image-url("ss/logo.png");
         background-repeat: no-repeat;
         background-position: center center;
@@ -227,12 +230,12 @@ textarea.code {
     @include clear;
     //overflow: hidden;
     padding: 0px 10px 5px;
-    padding-bottom: 60px;
+    padding-bottom: 80px;
   }
   #navi {
     position: relative;
     float: left;
-    width: 170px;
+    width: 150px;
     margin: 0px 10px 0px 0px;
     //margin-bottom: -32768px;
     //padding-bottom: 32768px;
@@ -240,7 +243,7 @@ textarea.code {
   #menu {
     position: relative;
     float: left;
-    width: 170px;
+    width: 150px;
   }
   #navi + #main {
     float: right;
@@ -248,7 +251,7 @@ textarea.code {
     margin: 0px 0px 0px -100%;
     .wrap {
       @include main-view;
-      margin-left: 180px;
+      margin-left: 160px;
     }
   }
   #menu + #main {
@@ -257,20 +260,20 @@ textarea.code {
     margin: 0px 0px 0px -100%;
     .wrap {
       @include main-view;
-      margin-left: 360px;
+      margin-left: 320px;
     }
   }
   #foot {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 40px;
+    height: 50px;
     margin: 20px 0px 0px;
     border-top: 1px solid #ccc;
     //background-color: #ddd;
     color: #aaa;
     text-align: center;
-    line-height: 40px;
+    line-height: 50px;
   }
   #ajax-container {
     margin: 10px;
@@ -298,7 +301,7 @@ textarea.code {
           border-bottom-width: 0px;
         }
         &[class ^= "icon"] {
-          padding-left: 30px;
+          padding-left: 28px;
           background-position: 10px center;
         }
         &:hover {
@@ -409,9 +412,18 @@ textarea.code {
 // common
 
 .addon-view {
-  margin: 0px 0px;
-  padding: 10px 0px;
-  border-bottom: 1px solid #ddd;
+  margin: 0px 0px 20px;
+  padding: 0px 0px 0px 15px;
+  header {
+    margin: 0px 0px 10px -20px;
+    padding: 15px 2px;
+    border-top: 1px solid #ddd;
+    color: #444;
+    h2 { font-weight: bold; }
+  }
+  + footer.send {
+    border-top: 1px solid #ddd;
+  }
 }
 .file-view {
   float:left;
@@ -542,14 +554,13 @@ textarea.code {
 
 dl.see {
   margin: 0px;
-  //border-bottom: 1px solid #ddd;
   > dt {
     @include clear;
     float: left;
     width: 120px;
     min-height: 1.0em;
     margin: 0px 0px -1px 0px;
-    padding: 15px 10px;
+    padding: 15px 0px;
     //border-top: 1px solid #eee;
     color: #b38;
     font-weight: bold;
@@ -557,7 +568,7 @@ dl.see {
   > dd {
     min-height: 1.41em;
     margin: 0px 0px -1px 140px;
-    padding: 15px 10px;
+    padding: 15px 0px;
     //border-top: 1px solid #eee;
   }
   > dt.wide {
@@ -608,7 +619,7 @@ a.external:after {
   content: "";
 }
 @mixin list-icon {
-  padding-left: 20px;
+  padding-left: 19px;
   background-repeat: no-repeat;
   background-position: 0px center;
   @content;
@@ -620,6 +631,29 @@ a.icon-page    { @include list-icon { background-image: image-url("ss/icon-page.
 a.icon-layout  { @include list-icon { background-image: image-url("ss/icon-layout.png"); } }
 a.icon-part    { @include list-icon { background-image: image-url("ss/icon-part.png"); } }
 a.icon-conf    { @include list-icon { background-image: image-url("ss/icon-conf.png"); } }
+
+// -----------------------------------------------------------------------------
+// modules
+
+.mypage-box {
+  float: left;
+  width: 300px;
+  
+  .sites {
+    margin: 0px 15px 15px 0px;
+    header {
+      padding: 7px 10px;
+      background-color: #ddd;
+    }
+    div {
+      a {
+        display: block;
+        padding: 7px 10px;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+}
 
 // -----------------------------------------------------------------------------
 // smartphone
@@ -700,13 +734,12 @@ a.icon-conf    { @include list-icon { background-image: image-url("ss/icon-conf.
   }
   #pc-view {
     position: absolute;
-    bottom: 9px;
-    right: 10px;
+    left: 0px;
+    bottom: 15px;
     a {
       display: inline-block;
       padding: 4px 8px;
       border: 1px solid #ddd;
-      border-radius: 4px;
       background-color: #fff;
       color: #bbb;
       text-align: center;

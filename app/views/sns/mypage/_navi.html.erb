@@ -1,11 +1,2 @@
-<nav class="main-menu">
-  <header><h1><%= lang :cms %></h1></header>
-  <div>
-    <% SS::Site.all.each do |item| %>
-      <%= link_to item.name, "/.#{item.host}" %>
-    <% end %>
-  </div>
-</nav>
-
 <%= render partial: "sns/main/navi" %>
 <%= render partial: "sys/main/navi" %>

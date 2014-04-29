@@ -39,5 +39,6 @@ gem "rmagick"
 gem "holiday_japan"
 
 group :development, :test do
-#  gem "spring"
+  #gem "spring"
+  #gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git'
 end
