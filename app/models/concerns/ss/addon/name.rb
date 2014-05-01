@@ -1,8 +1,12 @@
 # coding: utf-8
 class SS::Addon::Name
-  def initialize(name, params = {})
-    @class = name
-    @name  = name.is_a?(String) ? name : name.to_s.underscore.sub("addons/", "")
+  def initialize(mod, params = {})
+    @klass = mod
+    @name  = mod.to_s.underscore.sub("addon/", "")
+  end
+  
+  def klass
+    @klass
   end
   
   def name
@@ -10,15 +14,18 @@ class SS::Addon::Name
   end
   
   def path
-    @name.sub("/", "/addon/")#.pluralize
+    @name.sub("/", "/addons/")#.pluralize
+  end
+  
+  def id
+    path.gsub('/', '-')
   end
   
   def exists?(type = :view)
     begin
-      klass = "#{path}/#{type}_cell".camelize
-      klass = Module.const_get(klass)
+      klass = "#{path}/#{type}_cell".camelize.constantize
       klass.is_a?(Class)
-    rescue
+    rescue => e
       return false
     end
   end

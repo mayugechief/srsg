@@ -9,7 +9,7 @@ module ApplicationHelper
   end
   
   def t(key, opts = {})
-    opts[:scope]   = [:base] if key !~ /\./ && !opts[:scope]
+    opts[:scope] = [:base] if key !~ /\./ && !opts[:scope]
     I18n.translate key, opts.merge(default: key.to_s.humanize)
   end
   
@@ -42,7 +42,7 @@ module ApplicationHelper
     end
   end
   
-  def code_editor(elem, opts = {})
+  def code_editor(elm, opts = {})
     mode = opts[:mode]
     if !mode && opts[:filename]
       extname = opts[:filename].sub(/.*\./, "")
@@ -55,7 +55,7 @@ module ApplicationHelper
     h <<  coffee do
       j  = []
       j << %Q[$ ->]
-      j << %Q[  editor = $("#{elem}").ace({ theme: "chrome", lang: "#{mode}" })]
+      j << %Q[  editor = $("#{elm}").ace({ theme: "chrome", lang: "#{mode}" })]
       j << %Q[  ace = editor.data("ace").editor.ace]
       
       if opts[:readonly]
@@ -72,7 +72,7 @@ module ApplicationHelper
     h.join("\n").html_safe
   end
   
-  def html_editor(elem, opts = {})
+  def html_editor(elm, opts = {})
     opts = { extraPlugins: "", removePlugins: "" }.merge(opts)
     
     if opts[:readonly]
@@ -82,12 +82,15 @@ module ApplicationHelper
     end
     opts[:removePlugins] << ",resize"
     opts[:extraPlugins]  << ",autogrow"
+    opts[:enterMode] = 2 #BR
+    opts[:shiftEnterMode] = 1 #P
+    opts[:allowedContent] = true
     
     h  = []
     h <<  coffee do
       j = []
       j << %Q[$ ->]
-      j << %Q[  $("#{elem}").ckeditor #{opts.to_json}]
+      j << %Q[  $("#{elm}").ckeditor #{opts.to_json}]
       
       j.join("\n").html_safe
     end
@@ -96,13 +99,13 @@ module ApplicationHelper
   end
   
   def scss(&block)
-    opts = SS::Application.config.sass
-    sass = Sass::Engine.new capture(&block),
+    opts = Rails.application.config.sass
+    sass = Sass::Engine.new "@import 'compass/css3';\n" + capture(&block),
       syntax: :scss,
       cache: false,
       style: :compressed,
       debug_info: false,
-      load_paths: opts.load_paths[1..-1]
+      load_paths: opts.load_paths[1..-1] + ["#{Gem.loaded_specs['compass'].full_gem_path}/frameworks/compass/stylesheets"]
     
     h  = []
     h << "<style>"

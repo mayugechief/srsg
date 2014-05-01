@@ -5,14 +5,16 @@ module Cms::Node::Model
   include SS::Document
   include SS::References::Site
   include Cms::References::Layout
-  include Acl::Addons::GroupOwner
-  include Cms::Addons::Meta
+  include Acl::Addon::GroupOwner
+  include Cms::Addon::Meta
   
   attr_accessor :cur_node, :basename
   
   included do
     store_in collection: "cms_nodes"
     index({ site_id: 1, filename: 1 }, { unique: true })
+    
+    scope :public, ->{ where(state: "public") }
     
     seqid :id
     field :state, type: String, default: "public"
@@ -73,6 +75,10 @@ module Cms::Node::Model
     def full_url
       "#{site.full_url}#{filename}/"
     end
+    
+    #def current?(path)
+    #  "/#{filename}/" =~ /^#{path.sub(/\.[^\.]+?$/, '')}/ ? :current : nil
+    #end
     
     def date
       updated || created
@@ -148,7 +154,7 @@ module Cms::Node::Model
     end
     
     def set_depth
-      self.depth = filename.scan(/[^\/]+/).size
+      self.depth = filename.scan("/").size + 1
     end
     
     def set_db_changes

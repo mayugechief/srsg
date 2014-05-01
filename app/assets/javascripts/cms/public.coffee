@@ -10,8 +10,8 @@ class @SS
   @href = ""
   @siteName = null
   @pageName = null
-  @kanaFlag = '<div id="kana-view" style="margin:0;padding:0;display:inline"></div>'
   @viewPort = 'width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=2.0'
+  @loading  = '<img style="vertical-align:middle" src="/images/loading.gif" alt="loading.." />'
   
   @load: ->
     if layout = $("#page").attr("data-layout")
@@ -20,86 +20,102 @@ class @SS
       SS.layout(layout)
     
   @layout: (url) ->
-    SS.head = $("head").html()
+    head = $("head")
+    body = $("body")
+    
+    SS.head = head.html()
     SS.page = $("#page").html()
-    isKana  = SS.isKana()
     
-    $("body").html ""
+    body.html ""
+    url = url.replace(/\.json$/, ".kana.json") if SS.kana()
     
-    url = url.replace(/\.json$/, ".kana.json") if isKana
     $.ajax {
       type: "GET", url: url, dataType: "json", cache: false
       success: (data) ->
-        $("body").hide()
-        $("body").append SS.kanaFlag if isKana
-        $("body").append data.body.replace("</ yield />", SS.page)
+        body.hide()
+        body.append data.body.replace("</ yield />", SS.page)
+        
         $("#ss-site-name").html SS.siteName
         $("#ss-page-name").html SS.pageName
+        SS.renderKana()
+        SS.renderMobile()
         
         if data.href != SS.href
-          $("head link").add("head script").remove() if SS.href
-          $("head").append data.head.replace(/\$now/g, $.now())
-          if !$("head meta[name=viewport]").length
-            $("head").append '<meta name="viewport" content="' + SS.viewPort + '" />'
+          if SS.href
+            head.children("link").remove()
+            head.children("script").remove()
+          head.append data.head.replace(/\$now/g, $.now())
+          if !head.children("meta[name=viewport]").length
+            head.append '<meta name="viewport" content="' + SS.viewPort + '" />'
         SS.href = data.href
         
-        $("body").fadeIn(50)
+        body.fadeIn(70)
       error: (req, status, error) ->
-        $("body").html SS.page
+        body.html SS.page
       complete: ->
         $(".ss-part").each ->
-          SS.part $(this)
+          SS.renderPart $(this)
     }
   
-  @part: (obj) ->
-    url = obj.data("href")
-    url = url.replace(/\.json/, ".kana.json") if SS.isKana()
+  @renderPart: (elm) ->
+    url = elm.data("href")
+    url = url.replace(/\.json/, ".kana.json") if SS.kana()
     
-    obj.append "&nbsp; <img style='vertical-align: middle;' src='/images/loading.gif' />"
-    $.ajax {
+    elm.append " " + SS.loading
+    $.ajax
       type: "GET", url: url, dataType: "json" #, cache: false
       data: "ref=" + location.pathname
       success: (data) ->
-        $(obj).replaceWith data
+        $(elm).replaceWith data
       error: ->
-        $(obj).find("img").remove()
-    }
+        $(elm).find("img").remove()
   
-  @isKana: ->
-    $("#kana-view").length || location.pathname.match(/\.kana\.(html|json)$/)
+  ## kana
+  
+  @kana: (flag = null) ->
+    body = $("body")
+    return body.data("kana", flag) if flag != null
+    return body.data("kana") if body.data("kana") != undefined
+    return location.pathname.match(/\.kana\.(html|json)$/) != null
     
-  @kana: (id) ->
-    url = location.pathname
-    if SS.isKana() || url.match(/\.kana\.html$/)
+  @renderKana: ->
+    url  = location.pathname
+    bind = 'onclick="return SS.loadKana($(this))"'
+    if SS.kana()
       url = url.replace(/\.kana\.html$/, ".html")
-      $(id).html('<a class="off" href="' + url + '">ふりがなをはずす</a>')
+      $("#ss-kana").html '<a class="off" href="' + url + '" ' + bind + '>ふりがなをはずす</a>'
     else
-      url = url.replace(/\/$/, "/index.html").replace(/\.html$/, ".kana.html")
-      evh = 'onclick="return SS.renderKana(this)"'
-      $(id).html('<a class="on" href="' + url + '" ' + evh + '>ふりがなをつける</a>')
+      url = url.replace(/\/$/, "/index.html").replace(/(\.kana)?\.html$/, ".kana.html")
+      $("#ss-kana").html '<a class="on" href="' + url + '" ' + bind + '>ふりがなをつける</a>'
   
-  @renderKana: (url) ->
+  @loadKana: (elm) ->
     $.ajax
-      type: "GET", url: url, dataType: "html" #, cache: false
+      type: "GET", url: elm.attr("href"), dataType: "html" #, cache: false
       success: (data) ->
-        $("body").html data.replace(/[\s\S]*<body.*?>([\s\S]*)<\/body>[\s\S]*/, "$1") + SS.kanaFlag
+        SS.kana elm.hasClass("on")
+        $("body").html data.replace(/[\s\S]*<body.*?>([\s\S]*)<\/body>[\s\S]*/, "$1")
     return false
-    
-  @switchView: ->
+  
+  ## mobile view
+  
+  @renderMobile: ->
     if navigator.userAgent.match(/(Android|iPad|iPhone)/)
       if $.cookie("switchView") == "pc"
-        $("head meta[name=viewport]").remove
-        $("head").append '<meta name="viewport" content="width=1024" />'
-        sp = $("#sp-view")
-        sp.html('<a href="" onclick="SS.switchSpView()">' + sp.text() + '</a>').show()
+        head = $("head")
+        head.children("meta[name=viewport]").remove
+        head.append '<meta name="viewport" content="width=1024" />'
+        vr = $("#ss-mb")
+        vr.html('<a href="#" onclick="return SS.renderMobile_mb()">' + vr.text() + '</a>').show()
       else
-        pc = $("#pc-view")
-        pc.html('<a href="" onclick="SS.switchPcView()">' + pc.text() + '</a>').show()
+        vr = $("#ss-pc")
+        vr.html('<a href="#" onclick="return SS.renderMobile_pc()">' + vr.text() + '</a>').show()
       
-  @switchPcView: ->
+  @renderMobile_pc: ->
     $.cookie("switchView", "pc", { expires: 7, path: '/' })
     location.reload()
+    return false
     
-  @switchSpView: ->
+  @renderMobile_mb: ->
     $.removeCookie("switchView", { expires: 7, path: '/' })
     location.reload()
+    return false

@@ -11,10 +11,17 @@ h1, h2, h3, h4, h5 {
   margin: 0px;
   font-size: 120%;
 }
+a {
+  color: #05d;
+}
+a:hover {
+  color: #e00;
+  text-decoration: none;
+}
 
 /* ---------------------------------- */
 
-#kana, #pc-view, #sp-view {
+#ss-kana, #ss-pc, #ss-mb {
   display: none;
 }
 
@@ -43,12 +50,12 @@ h1, h2, h3, h4, h5 {
 .crumbs {
   margin: 0px -10px 10px;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ccc;
 }
 #foot {
   margin: 20px -10px 0px;
   padding: 20px 0px;
-  background-color: #ddd;
+  background-color: #49c;
   text-align: center;
 }
 
@@ -70,6 +77,10 @@ h1, h2, h3, h4, h5 {
   margin: 0px 0px 5px;
   padding: 0px 0px 5px;
   border-bottom: 1px solid #ddd;
+}
+.pages .tag-article .tag-time {
+  margin: 0px 0px 5px;
+  color: #080;
 }
 .nodes .tag-article {
   margin: 0px 0px 5px;

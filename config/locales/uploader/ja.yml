@@ -3,7 +3,7 @@ ja:
     uploader_files: "ファイル"
   views:
     links:
-      create_directory: "新規フォルダ"
+      create_directory: "新規フォルダー"
       upload_files: "アップロード"
 
   modules:

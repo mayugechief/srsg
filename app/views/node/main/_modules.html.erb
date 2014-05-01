@@ -1,8 +1,0 @@
-<nav class="main-menu">
-  <header><h1><%= t :modules %></h1></header>
-  <div class="pulldown-menu">
-    <% Cms::Node.modules.each do |name, key| %>
-      <%= link_to name, send("#{key}_main_path") %>
-    <% end %>
-  </div>
-</nav>

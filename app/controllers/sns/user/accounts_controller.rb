@@ -14,6 +14,12 @@ class Sns::User::AccountsController < ApplicationController
       @crumbs << [:account, sns_user_account_path]
     end
     
+    def get_params
+      para = super
+      para.delete(:password) if para[:password].blank?
+      para
+    end
+    
     def set_item
       @item = @sns_user
     end

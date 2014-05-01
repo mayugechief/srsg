@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   
   #before_action -> { FileUtils.touch "#{Rails.root}/Gemfile" } if Rails.env.to_s == "development"
   
+  public
+    def t(key, opts = {})
+      opts[:scope] = [:base] if key !~ /\./ && !opts[:scope]
+      I18n.translate key, opts.merge(default: key.to_s.humanize)
+    end
+    
   private
     def remote_addr
       request.env["HTTP_X_REAL_IP"] || request.remote_addr

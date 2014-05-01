@@ -48,17 +48,27 @@ module SS::Document
       class_variable_set(:@@_permit_params, params + fields)
     end
     
-    def lookup_addons
-      self.ancestors.select { |x| x.respond_to?(:addon_name) }
+    def addons
+      lookup_addons.reverse.map {|m| m.addon_name }
     end
     
-    def addons
-      return @_addons if @_addons
-      @_addons = lookup_addons.reverse.map {|m| m.addon_name }
+    def lookup_addons
+      ancestors.select { |x| x.respond_to?(:addon_name) }
     end
     
     def addon(path)
-      include path.sub("/", "/addons/").camelize.constantize
+      include path.sub("/", "/addon/").camelize.constantize
+    end
+    
+    def inherit_addons(mod)
+      names = addons.map {|m| m.klass }
+      mod.addons.each {|addon| include addon.klass unless names.include?(addon.klass) }
+      mod.instance_eval do
+        def addon(*args)
+          Article::Page.addon *args
+          super
+        end
+      end
     end
   end
   

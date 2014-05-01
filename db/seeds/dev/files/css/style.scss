@@ -146,7 +146,7 @@ html, body {
     margin: 0px 10px;
   }
 }
-#pc-view, #sp-view {
+#ss-pc, #ss-mb {
   padding: 15px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
@@ -156,7 +156,7 @@ html, body {
     color: #888;
   }
 }
-#sp-view {
+#ss-mb {
   font-size: 300%;
 }
 
@@ -190,6 +190,9 @@ aside h2 {
   article {
     padding: 5px 5px;
     border-bottom: 1px solid #ddd;
+    &.current {
+      background-color: #ffd;
+    }
     time {
       float: left;
       margin: 0px 10px 0px 0px;

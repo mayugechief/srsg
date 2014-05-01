@@ -75,16 +75,16 @@ class Cms::PublicController < ApplicationController
         
         css = ""
         begin
-          opts = SS::Application.config.sass
+          opts = Rails.application.config.sass
           sass = Sass::Engine.new Fs.read(@scss), filename: @scss, syntax: :scss, cache: false,
             style: (opts.debug_info ? :expanded : :compressed),
             load_paths: opts.load_paths[1..-1],
             debug_info: opts.debug_info
           css = sass.render
         rescue Sass::SyntaxError => e
-          msg = e.backtrace[0].sub(/.*?\/_\//, "")
-          msg = "[#{msg}]\\A #{e}".gsub('"', '\\"')
-          css = "body:before { position: absolute; top: 8px; right: 8px; display: block;"
+          msg  = e.backtrace[0].sub(/.*?\/_\//, "")
+          msg  = "[#{msg}]\\A #{e}".gsub('"', '\\"')
+          css  = "body:before { position: absolute; top: 8px; right: 8px; display: block;"
           css << " padding: 4px 8px; border: 1px solid #b88; background-color: #fff;"
           css << " color: #822; font-size: 85%; font-family: tahoma, sans-serif; line-height: 1.6;"
           css << " white-space: pre; z-index: 9; content: \"#{msg}\"; }"
@@ -110,13 +110,14 @@ class Cms::PublicController < ApplicationController
       def route_part(path)
         path = path.sub(/\.json$/, ".html")
         part = Cms::Part.find_by(site_id: @cur_site, filename: path) rescue nil
-        return nil unless part
+        return unless part
+        return if !@preview && part.state != "public"
         
         if part.route.present? && part.route != "cms/frees"
-          cell = recognize_path "/.#{@cur_site.host}/part/#{part.route}.#{@path.sub(/.*\./, '')}"
+          cell = recognize_path "/.#{@cur_site.host}/parts/#{part.route}.#{@path.sub(/.*\./, '')}"
           return unless cell
           @cur_part = part
-          body = render_cell part.route.sub(/\/.*/, "/route/#{cell[:controller]}/view"), cell[:action]
+          body = render_cell part.route.sub(/\/.*/, "/#{cell[:controller]}/view"), cell[:action]
         else
           body = part.html
         end
@@ -149,6 +150,7 @@ class Cms::PublicController < ApplicationController
         path = @path.sub(/\.json$/, ".html")
         page = Cms::Layout.find_by(site_id: @cur_site, filename: path) rescue nil
         raise "404" unless page
+        raise "404" if !@preview && page.state != "public"
         
         body = render_kana(page.render_html)
         
@@ -161,12 +163,13 @@ class Cms::PublicController < ApplicationController
       def render_page
         page = Cms::Page.find_by(site_id: @cur_site, filename: @path) rescue nil
         return unless page
+        return if !@preview && page.state != "public"
         
-        cell = recognize_path "/.#{@cur_site.host}/page/#{page.route}/#{page.basename}"
+        cell = recognize_path "/.#{@cur_site.host}/pages/#{page.route}/#{page.basename}"
         return unless cell
         
         @cur_page = page
-        body = render_cell page.route.sub(/\/.*/, "/route/#{cell[:controller]}/view"), cell[:action]
+        body = render_cell page.route.sub(/\/.*/, "/#{cell[:controller]}/view"), cell[:action]
         return if response.body.present?
         
         body = render_kana body
@@ -188,14 +191,14 @@ class Cms::PublicController < ApplicationController
         node = Cms::Node.where(site_id: @cur_site.id, :filename.in => dirs).sort(depth: -1).first
         return unless node
         return if node.route.blank?
-        return if node.route =~ /\/none$/
+        return if !@preview && node.state != "public"
         
         rest = @path.sub(/^#{node.filename}/, "")
-        cell = recognize_path "/.#{@cur_site.host}/node/#{node.route}#{rest}"
+        cell = recognize_path "/.#{@cur_site.host}/nodes/#{node.route}#{rest}"
         return unless cell
         
         @cur_node = node
-        body = render_cell node.route.sub(/\/.*/, "/route/#{cell[:controller]}/view"), cell[:action]
+        body = render_cell node.route.sub(/\/.*/, "/#{cell[:controller]}/view"), cell[:action]
         return if response.body.present?
         
         body = render_kana body
@@ -244,7 +247,7 @@ class Cms::PublicController < ApplicationController
       end
       
       def render_error(e, opts = {})
-        raise e if SS::Application.config.consider_all_requests_local
+        raise e if Rails.application.config.consider_all_requests_local
         status = opts[:status].presence || 500
         
         dir = "#{Rails.root}/public"

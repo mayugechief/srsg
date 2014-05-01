@@ -1,11 +1,16 @@
 # coding: utf-8
 module Cms
   class Initializer
-    Cms::Part.plugin "cms/frees"
-    Cms::Part.plugin "cms/crumbs"
+    Cms::Node.plugin "cms/node"
+    Cms::Node.plugin "cms/page"
+    
+    Cms::Part.plugin "cms/free"
+    Cms::Part.plugin "cms/node"
+    Cms::Part.plugin "cms/page"
+    Cms::Part.plugin "cms/crumb"
     
     Cms::Page.addon "cms/meta"
     Cms::Page.addon "cms/body"
-    Cms::Page.addon "cms/files"
+    Cms::Page.addon "cms/file"
   end
 end

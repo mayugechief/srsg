@@ -17,7 +17,7 @@ class Cms::PartsController < ApplicationController
     end
     
     def pre_params
-      { route: "cms/frees" }
+      { route: "cms/free" }
     end
     
   public
@@ -26,5 +26,17 @@ class Cms::PartsController < ApplicationController
         where(depth: 1).
         order_by(filename: 1).
         page(params[:page]).per(100)
+    end
+    
+    def routes
+      @items = {}
+      
+      Cms::Part.new.route_options.each do |name, path|
+        mod = path.sub(/\/.*/, '')
+        @items[mod] = { name: t("modules.contents.#{mod}"), items: [] } if !@items[mod]
+        @items[mod][:items] << [ name.sub(/.*\//, ""), path ]
+      end
+      
+      render file: "cms/nodes/routes", layout: "ss/ajax"
     end
 end

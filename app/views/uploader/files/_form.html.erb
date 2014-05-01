@@ -15,7 +15,7 @@
       <% begin %>
       <dt class="wide"><%= @model.t :text %></dt>
       <dd class="wide"><%= f.text_area :text, style: "height: 500px;"  %></dd>
-      <% rescue => e %>表示に失敗しました。(<%= e %>)<% end %>
+      <% rescue => e %>Error (<%= e %>)<% end %>
       <% end%>
     <% end %>
   </dl>

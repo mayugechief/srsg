@@ -3,16 +3,14 @@ module Cms::Layout::Model
   extend ActiveSupport::Concern
   extend SS::Translation
   include Cms::Page::Feature
+  include Cms::Addon::Html
   
   included do
     store_in collection: "cms_layouts"
     
-    field :html, type: String, metadata: { form: :code }
     field :part_paths, type: SS::Extensions::Words, metadata: { form: :none }
     field :css_paths, type: SS::Extensions::Words, metadata: { form: :none }
     field :js_paths, type: SS::Extensions::Words, metadata: { form: :none }
-    
-    permit_params :html
     
     before_save :set_part_paths
     before_save :set_css_paths

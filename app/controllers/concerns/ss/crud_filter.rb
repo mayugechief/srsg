@@ -52,7 +52,6 @@ module SS::CrudFilter
     end
     
     def get_params
-      #keys = [keys] if keys.class != Array
       params.require(:item).permit(permit_fields).merge(fix_params)
     end
     
@@ -62,7 +61,7 @@ module SS::CrudFilter
     end
     
     def show
-      #dump @cur_user.has_permit?(read: @item)
+      #@cur_user.has_permit?(read: @item) #TODO:
       
       render
     end
@@ -99,7 +98,7 @@ module SS::CrudFilter
       
       if result
         respond_to do |format|
-          format.html { redirect_to location, notice: "Created." }
+          format.html { redirect_to location, notice: t(:saved) }
           format.json { render json: @item.to_json, status: :created }
         end
       else
@@ -115,7 +114,7 @@ module SS::CrudFilter
       
       if result
         respond_to do |format|
-          format.html { redirect_to location, notice: "Updated." }
+          format.html { redirect_to location, notice: t(:saved) }
           format.json { head :no_content }
         end
       else
@@ -131,7 +130,7 @@ module SS::CrudFilter
       
       if result
         respond_to do |format|
-          format.html { redirect_to location, notice: "Destroyed." }
+          format.html { redirect_to location, notice: t(:deleted) }
           format.json { head :no_content }
         end
       else

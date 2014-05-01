@@ -1,12 +1,4 @@
 <nav class="main-menu">
-  <header><h1><%= t :site_menu %></h1></header>
-  <div>
-    <%= link_to :view_site, @cur_site.full_url, target: "_blank" %>
-    <%= link_to :preview_site, cms_preview_path, target: "_blank" %>
-  </div>
-</nav>
-
-<nav class="main-menu">
   <header><h1><%= t :root_menu %></h1></header>
   <div>
     <%= link_to :contents, cms_contents_path, class: "icon-content" %>
@@ -14,5 +6,13 @@
     <%= link_to :pages, cms_pages_path, class: "icon-page" %>
     <%= link_to :layouts, cms_layouts_path, class: "icon-layout" %>
     <%= link_to :parts, cms_parts_path, class: "icon-part" %>
+  </div>
+</nav>
+
+<nav class="main-menu">
+  <header><h1><%= t :site_menu %></h1></header>
+  <div>
+    <%= link_to :view_site, @cur_site.full_url, target: "_blank" %>
+    <%= link_to :preview_site, cms_preview_path, target: "_blank" %>
   </div>
 </nav>

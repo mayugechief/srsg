@@ -13,9 +13,13 @@ SS::Application.routes.draw do
   end
 
   node "event" do
-    get "pages/(index.:format)" => "public#index", cell: "node/pages"
-    get "pages/:year:month.:format" => "public#index", cell: "node/pages",
+    get "page/(index.:format)" => "public#index", cell: "nodes/page"
+    get "page/:year:month.:format" => "public#index", cell: "nodes/page",
       year: /\d{4}/, month: /\d{2}/
   end
 
+  page "event" do
+    get "page/:filename.:format" => "public#index", cell: "pages/page"
+  end
+  
 end

@@ -9,20 +9,18 @@ SS::Application.routes.draw do
   
   content "category" do
     get "/" => "main#index", as: :main
-    resource :conf, concerns: :deletion, path: "nodes/conf"
     resources :nodes, concerns: :deletion
   end
   
   node "category" do
-    get "nodes/(index.:format)" => "public#index", cell: "node/nodes"
-    get "nodes/rss.xml" => "public#rss", cell: "node/pages", format: "xml"
-    get "pages/(index.:format)" => "public#index", cell: "node/pages"
-    get "pages/rss.xml" => "public#rss", cell: "node/pages", format: "xml"
+    get "node/(index.:format)" => "public#index", cell: "nodes/node"
+    get "node/rss.xml" => "public#rss", cell: "nodes/page", format: "xml"
+    get "page/(index.:format)" => "public#index", cell: "nodes/page"
+    get "page/rss.xml" => "public#rss", cell: "nodes/page", format: "xml"
   end
   
   part "category" do
-    get "nodes" => "public#index", cell: "part/nodes"
-    get "pages" => "public#index", cell: "part/pages"
+    get "node" => "public#index", cell: "parts/node"
   end
   
 end

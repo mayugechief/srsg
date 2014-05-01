@@ -6,8 +6,8 @@
     <%= link_to :basic_info, "#basic", class: "addon-tab", "data-id" => "#addon-basic" %>
     
     <% addons.each do |addon| %>
-      <%= link_to addon.name, "##{addon.object_id}", class: "addon-tab",
-        "data-id" => "#addon-#{addon.object_id}" %>
+      <%= link_to addon.name, "##{addon.id}", class: "addon-tab",
+        "data-id" => "#addon-#{addon.id}" %>
     <% end %>
   </div>
 </nav>

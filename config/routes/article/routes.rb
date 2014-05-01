@@ -13,16 +13,16 @@ SS::Application.routes.draw do
   end
   
   node "article" do
-    get "pages/(index.:format)" => "public#index", cell: "node/pages"
-    get "pages/rss.xml" => "public#rss", cell: "node/pages", format: "xml"
-  end
-  
-  page "article" do
-    get "pages/:filename.:format" => "public#index", cell: "page/pages"
+    get "page/(index.:format)" => "public#index", cell: "nodes/page"
+    get "page/rss.xml" => "public#rss", cell: "nodes/page", format: "xml"
   end
   
   part "article" do
-    get "pages" => "public#index", cell: "part/pages"
+    get "page" => "public#index", cell: "parts/page"
+  end
+  
+  page "article" do
+    get "page/:filename.:format" => "public#index", cell: "pages/page"
   end
   
 end

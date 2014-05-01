@@ -3,7 +3,7 @@ module Cms::Page::Feature
   extend ActiveSupport::Concern
   include SS::Document
   include SS::References::Site
-  include Acl::Addons::GroupOwner
+  include Acl::Addon::GroupOwner
   include SS::Permission
   
   attr_accessor :cur_node, :basename
@@ -11,14 +11,17 @@ module Cms::Page::Feature
   included do
     index({ site_id: 1, filename: 1 }, { unique: true })
     
+    scope :public, ->{ where(state: "public") }
+    
     seqid :id
     field :state, type: String, default: "public"
     field :name, type: String
     field :filename, type: String
     field :depth, type: Integer, metadata: { form: :none }
     field :published, type: DateTime
+    embeds_ids :categories, class_name: "Cms::Node"
     
-    permit_params :state, :name, :filename, :basename
+    permit_params :state, :name, :filename, :basename, category_ids: []
     
     validates :state, presence: true
     validates :name, presence: true, length: { maximum: 80 }
@@ -109,6 +112,6 @@ module Cms::Page::Feature
     end
     
     def set_depth
-      self.depth = read_attribute(:filename).scan(/[^\/]+/).size
+      self.depth = filename.scan("/").size + 1
     end
 end

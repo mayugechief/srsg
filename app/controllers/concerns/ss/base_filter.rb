@@ -13,7 +13,7 @@ module SS::BaseFilter
       return @cur_user if @cur_user
       
       if session[:user]
-        u = SS::Crypt.decrypt(session[:user]).split(",", 3)
+        u = SS::Crypt.decrypt(session[:user]).to_s.split(",", 3)
         return unset_user redirect: true if u[1] != remote_addr
         return unset_user redirect: true if u[2] != request.user_agent
         @cur_user = SS::User.find u[0].to_i rescue nil

@@ -18,7 +18,7 @@
       <% begin %>
       <dt class="wide"><%= @model.t :text %></dt>
       <dd class="wide"><%= text_area_tag "mod-uploader-text", @item.text %></dd>
-      <% rescue => e %>表示に失敗しました。(<%= e %>)<% end %>
+      <% rescue => e %>Error (<%= e %>)<% end %>
       <% end %>
     <% end %>
   </dl>

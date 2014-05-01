@@ -7,9 +7,9 @@ ja:
     contents:
       article: "記事"
     nodes:
-      article/page: "記事/ページ一覧"
+      article/page: "記事/ページリスト"
     parts:
-      article/page: "記事/ページ一覧"
+      article/page: "記事リスト"
     
     attributes:
       article/node/page:

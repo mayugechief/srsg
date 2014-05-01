@@ -2,7 +2,7 @@
 class Article::Page
   include Cms::Page::Model
   
-  default_scope ->{ where(route: "article/pages") }
+  default_scope ->{ where(route: "article/page") }
   
   before_save :seq_filename, if: ->{ basename.blank? }
   
@@ -12,6 +12,6 @@ class Article::Page
     end
     
     def seq_filename
-      self.filename = @cur_node ? "#{@cur_node.filename}/#{id}.html" : "#{id}.html"
+      self.filename = dirname ? "#{dirname}/#{id}.html" : "#{id}.html"
     end
 end

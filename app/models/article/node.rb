@@ -1,13 +1,15 @@
 # coding: utf-8
-class Article::Node
-  include Cms::Node::Model
-  
-  scope :my_route, -> { where route: /^article\// }
+module Article::Node
+  class Base
+    include Cms::Node::Model
+    
+    default_scope ->{ where(route: /^article\//) }
+  end
   
   class Page
     include Cms::Node::Model
-    include Cms::Addons::PageList
+    include Cms::Addon::PageList
     
-    scope :my_route, -> { where route: "article/pages" }
+    default_scope ->{ where(route: "article/page") }
   end
 end

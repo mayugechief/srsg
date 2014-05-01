@@ -20,7 +20,7 @@ class Cms::PagesController < ApplicationController
     def index
       @items = @model.site(@cur_site).
         where(depth: 1).
-        where(route: "cms/pages").
+        where(route: "cms/page").
         order_by(updated: -1).
         page(params[:page]).per(100)
     end

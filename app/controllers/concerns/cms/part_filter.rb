@@ -13,7 +13,7 @@ module Cms::PartFilter
         @item.route = params[:route] if params[:route].present?
         @fix_params = fix_params
         
-        cell = "#{@item.route.sub('/', '/route/part/')}/edit"
+        cell = "#{@item.route.sub('/', '/parts/')}/edit"
         resp = render_cell cell, params[:action]
         
         if resp.is_a?(String)

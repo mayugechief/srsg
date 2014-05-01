@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=2.0" />
 <title>SHIRASAGI</title>
-<%= stylesheet_link_tag "ss/ss", media: "all", "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag "ss/ss", media: "all" %>
 <%= stylesheet_link_tag "jquery-ui/pepper-grinder/custom.min.css", media: "all", "data-turbolinks-track" => true %>
 <%= stylesheet_link_tag "colorbox/colorbox.css", media: "all", "data-turbolinks-track" => true %>
 <%= stylesheet_link_tag "datetimepicker/jquery.datetimepicker.css", media: "all", "data-turbolinks-track" => true %>
@@ -16,8 +16,8 @@
 <%= javascript_include_tag "jquery.colorbox.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "jquery-ui-1.10.4.custom.min.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "jquery.datetimepicker.js", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "tinymce/tinymce.min.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "ckeditor/ckeditor.js", "data-turbolinks-track" => true %>
+<%#= javascript_include_tag "tinymce/tinymce.min.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "ckeditor/adapters/jquery.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "ace/ace.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "ace/theme-chrome.js", "data-turbolinks-track" => true %>
@@ -31,7 +31,7 @@
 
 <div id="page">
 
-<header id="sp-view" style="display: none">Mobile View</header>
+<header id="ss-mb" style="display: none">Mobile View</header>
 
 <header id="head">
   <div class="wrap">
@@ -92,7 +92,7 @@
   </div>
 <!-- /#foot --></footer>
 
-<footer id="pc-view" style="display: none">Desktop View</footer>
+<footer id="ss-pc" style="display: none">PC View</footer>
 
 <!-- /#page --></div>
 

@@ -7,7 +7,7 @@
 <%= render file: "#{Rails.root}/app/views/ss/crud/_form", locals: { f: f } %>
 <% end %>
 <footer class="send">
-<%= f.submit '保存', class: :save %>
-<%= f.button "キャンセル", onclick: "location.href='#{url_for(action: :show, filename: @item.filename, do: "show")}'; return false;" %>
+<%= f.submit t(:save), class: :save %>
+<%= f.button t(:cancel), onclick: "location.href='#{url_for(action: :show, filename: @item.filename, do: "show")}'; return false;" %>
 </footer>
 <% end %>

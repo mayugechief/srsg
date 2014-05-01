@@ -11,14 +11,12 @@
 ##
   
 $ ->
-  #$.ajaxSetup({
-  #  headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
-  #});
+  # $.ajaxSetup
+  #   headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
   
-  # default render
   SS.render()
   
-  # current menu
+  # navi
   path = location.pathname + "/"
   $("#navi .main-menu a, #navi .sub-menu a").each ->
     menu = $(this)
@@ -35,49 +33,54 @@ $ ->
         return false
   
   SS_ListUI.render("table.index")
-  SS_Addon.tabs(".addon-tab")
-  SS_Agent.render();
+  SS_Mobile.render()
+  SS_AddonTabs.render()
 
 class @SS
-  @render:(container = "") ->
+  @loading  = '<img style="vertical-align:middle" src="/images/loading.gif" alt="loading.." />'
+  
+  @render:(box = null) ->
+    if box
+      $(box).find("a").each ->
+        elm = $(this)
+        if !elm.attr("target") && !elm.data("target")
+          elm.colorbox({ fixed: true, width: "90%", height: "90%" })
+    
+    # default
+    box = $(document)
+    
     # external links
-    $(container + " a[href^=http]").each ->
+    box.find("a[href^=http]").each ->
       $(this).addClass("external")
     
     # ajax to (color)box
-    $(container + " .ajax-box").each ->
-      return true if $(this).hasClass("cboxElement") # continue
-      if $(this).data("target")
-        #
-      else
-        $(this).colorbox({ fixed: true, width: "90%", height: "90%" })
+    box.find(".ajax-box").each ->
+      elm = $(this)
+      return true if elm.hasClass("cboxElement")
+      if !elm.attr("target") && !elm.data("target")
+        elm.colorbox({ fixed: true, width: "90%", height: "90%" })
     
-    # ajax 
-    if container != ""
-      $(container + " a").each ->
-        $(this).colorbox({ fixed: true, width: "90%", height: "90%" })
-    
-  @ajaxForm:(elem, params = {}) ->
-    elem = $(elem)
+  @ajaxForm:(elm, params = {}) ->
+    elm = $(elm)
     defaults = {
-      url: elem.attr("action") + ".json"
+      url: elm.attr("action") + ".json"
       dataType: "json"
       success: ->
         #
       error: (data, status) ->
         alert(["== Error =="].concat(data.responseJSON).join("\n"));
     }
-    elem.on "submit", (e) ->
+    elm.on "submit", (e) ->
       $(this).ajaxSubmit $.extend(defaults, params)
       e.preventDefault();
     
-  @ajax:(elem, params = {}) ->
-    $(elem).click (e) ->
+  @ajax:(elm, params = {}) ->
+    $(elm).click (e) ->
       self = $(this)
       defaults = {
         url: self.attr("href")
         beforeSend: ->
-          self.html "<img style='vertical-align: middle;' src='/images/loading.gif' />"
+          self.html SS.loading
         success: ->
           console.log "success"
         error: (data, status) ->
@@ -87,8 +90,8 @@ class @SS
       e.preventDefault();
       return false
     
-  @ajaxDelete:(elem, params = {}) ->
-    $(elem).click (e) ->
+  @ajaxDelete:(elm, params = {}) ->
+    $(elm).click (e) ->
       return false if !confirm("<%= t "views.confirm.delete" %>")
       self = $(this)
       defaults = {
@@ -97,7 +100,7 @@ class @SS
         url: self.attr("href") + ".json"
         dataType: "json"
         beforeSend: ->
-          self.html "<img style='vertical-align: middle;' src='/images/loading.gif' />"
+          self.html SS.loading
         success: ->
           $(self.data("remove")).remove() if self.data("remove")
         error: (data, status) ->
@@ -107,24 +110,31 @@ class @SS
       e.preventDefault();
       return false
   
-class @SS_Agent
+  @confirmUnloading: ->
+    $("input[type=text],textarea,select").change ->
+      $(window).on "beforeunload", ->
+        return "<%= t('views.confirm.unload') %>"
+    $("input[type=submit]").click ->
+      $(window).off "beforeunload"
+
+class @SS_Mobile
   @render: ->
     if navigator.userAgent.match(/(Android|iPad|iPhone)/)
       console.log $.cookie("switchView")
       if $.cookie("switchView") == "pc"
         $("head meta[name=viewport]").remove
         $("head").append '<meta name="viewport" content="width=1024" />'
-        sp = $("#sp-view")
-        sp.html('<a href="" onclick="SS_Agent.switchSpView()">' + sp.text() + '</a>').show()
+        sp = $("#ss-mb")
+        sp.html('<a href="" onclick="SS_Mobile.renderMb()">' + sp.text() + '</a>').show()
       else
-        pc = $("#pc-view")
-        pc.html('<a href="" onclick="SS_Agent.switchPcView()">' + pc.text() + '</a>').show()
+        pc = $("#ss-pc")
+        pc.html('<a href="" onclick="SS_Mobile.renderPc()">' + pc.text() + '</a>').show()
       
-  @switchPcView: ->
+  @renderPc: ->
     $.cookie("switchView", "pc", { expires: 7, path: '/' })
     location.reload()
     
-  @switchSpView: ->
+  @renderMb: ->
     $.removeCookie("switchView", { expires: 7, path: '/' })
     location.reload()
 
@@ -146,40 +156,41 @@ class @SS_ListUI
       tr.mouseleave ->
         tr.find(".row-menu").hide()
 
-class @SS_Addon
-  @tabs: (tabs)->
-    $(tabs + "[data-id=#addon-all]").addClass("current");
-    
-    $(tabs).click (ev) ->
+class @SS_AddonTabs
+  @render: ->
+    tabs = $(".addon-tab")
+    tabs.filter("[data-id=#addon-all]").addClass("current");
+    tabs.click (ev) ->
       cur = $(this)
       $(tabs).each ->
+        tab = $(this)
         if cur.attr("data-id") == "#addon-all"
-          $($(this).attr("data-id")).fadeIn(150)
-          $(this).removeClass("current");
-        else if cur.attr("data-id") == $(this).attr("data-id")
-          $($(this).attr("data-id")).fadeIn(150)
+          $(tab.attr("data-id")).fadeIn(150)
+          tab.removeClass("current");
+        else if cur.attr("data-id") == tab.attr("data-id")
+          $(tab.attr("data-id")).fadeIn(150)
         else
-          $($(this).attr("data-id")).hide(0)
-        $(this).removeClass("current");
+          $(tab.attr("data-id")).hide(0)
+        tab.removeClass("current");
       cur.addClass("current");
       ev.preventDefault();
 
-class @SS_Form
-  @move_confirm: ()->
-    $("input[type=text],textarea,select").change ->
-      $(window).on "beforeunload", ->
-        return "このページから移動しますか？"
-    $("input[type=submit]").click ->
-      $(window).off "beforeunload"
-
 class @SS_Debug
-  @test: ()->
+  @doing = false
+  
+  @run: ->
     $("#log").val("")
     $("#err").val("")
     $("#queue").val("0")
-    SS_Debug.test_url location.href
+    @doing = true
+    @connect_url location.href
   
-  @test_url: (url)->
+  @stop: ->
+    @doing = false
+    
+  @connect_url: (url)->
+    return if @doing == false
+    return if @testing
     return if url.match(/^#/)
     return if url.match(/\/logout$/)
     return if url.match(/^\/\..*?\/uploader/)
@@ -204,7 +215,7 @@ class @SS_Debug
       success: (data, status, xhr)->
         queue.val parseInt(queue.val()) - 1
         $(data).find("a").each ->
-          SS_Debug.test_url $(this).attr("href")
+          SS_Debug.connect_url $(this).attr("href")
       error: (xhr, status, error)->
         queue.val parseInt(queue.val()) - 1
         view = $("#err")

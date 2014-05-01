@@ -2,7 +2,7 @@ ja:
   base:
     contents: "コンテンツ"
     design: "デザイン"
-    nodes: "フォルダ"
+    nodes: "フォルダー"
     pages: "ページ"
     layouts: "レイアウト"
     parts: "パーツ"
@@ -10,40 +10,41 @@ ja:
     links:
       view_site: "サイト確認"
       preview_site: "サイトプレビュー"
-      new_node: "新規フォルダ"
+      new_node: "新規フォルダー"
       new_page: "新規ページ"
       new_layout: "新規レイアウト"
       new_part: "新規パーツ"
 
   modules:
     contents:
-      cms: "CMS"
+      cms: "標準機能"
+    nodes:
+      cms/node: "フォルダーリスト"
+      cms/page: "ページリスト"
     parts:
       cms/free: "HTML記述"
+      cms/node: "フォルダーリスト"
+      cms/page: "ページリスト"
       cms/crumb: "パンくずリスト"
     addons:
       cms/meta: "メタ情報"
       cms/html: "HTML"
       cms/body: "本文"
-      cms/files: "添付ファイル"
-      cms/node_list: "一覧表示"
-      cms/page_list: "一覧表示"
-      cms/files: "ファイル"
+      cms/file: "ファイル"
+      cms/node_list: "リスト表示"
+      cms/page_list: "リスト表示"
 
   mongoid:
     models:
-      cms/node: "フォルダ"
+      cms/node: "フォルダー"
       cms/page: "ページ"
     attributes:
       cms/node/model:
         name: "タイトル"
-        filename: "フォルダ名"
-        basename: "フォルダ名"
-        route: "フォルダ属性"
+        filename: "フォルダー名"
+        basename: "フォルダー名"
+        route: "フォルダー属性"
         summary_html: "Summary"
-        loop_html: "ループHTML"
-        upper_html: "上部HTML"
-        lower_html: "下部HTML"
       cms/page/model:
         name: "タイトル"
         route: "ページ属性"
@@ -53,9 +54,6 @@ ja:
       cms/part/model:
         name: "パーツ名"
         route: "パーツ属性"
-        loop_html: "ループHTML"
-        upper_html: "上部HTML"
-        lower_html: "下部HTML"
       cms/layout:
         name: "レイアウト名"
         html: "HTML"
@@ -63,3 +61,9 @@ ja:
         html: "本文"
       cms/part/crumb:
         home_label: "ホームラベル"
+      
+      cms/addon/list/model:
+        conditions: "検索条件(URL)"
+        loop_html: "ループHTML"
+        upper_html: "上部HTML"
+        lower_html: "下部HTML"

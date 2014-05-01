@@ -8,7 +8,7 @@ module Cms::ListHelper
     if block_given?
       h << capture(&block)
     else
-      h << render(file: "app/cells/cms/addon/node_list/view/index", locals: { cur_item: cur_item })
+      h << render(file: "app/cells/cms/addons/node_list/view/index", locals: { cur_item: cur_item })
     end
     h << cur_item.lower_html.html_safe if cur_item.lower_html.present?
     
@@ -23,7 +23,7 @@ module Cms::ListHelper
     if block_given?
       h << capture(&block)
     else
-      h << render(file: "app/cells/cms/addon/page_list/view/index", locals: { cur_item: cur_item })
+      h << render(file: "app/cells/cms/addons/page_list/view/index", locals: { cur_item: cur_item })
     end
     h << cur_item.lower_html.html_safe if cur_item.lower_html.present?
     

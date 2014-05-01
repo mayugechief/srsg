@@ -13,7 +13,7 @@ module Cms::NodeFilter
         @item.route = params[:route] if params[:route].present?
         @fix_params = fix_params
         
-        cell = "#{@item.route.sub('/', '/route/node/')}/edit"
+        cell = "#{@item.route.sub('/', '/nodes/')}/edit"
         resp = render_cell cell, params[:action]
         
         if resp.is_a?(String)
@@ -28,7 +28,7 @@ module Cms::NodeFilter
           return cms_nodes_path unless @item.parent
           diff = @item.route.split("/")[0] != @item.parent.route.split("/")[0]
           return node_nodes_path(cid: @item.parent) if diff
-          { controller: params[:controller].split("/")[0].pluralize, cid: @item.parent }
+          { controller: params[:controller], cid: @item.parent }
         else
           diff = @item.route.split("/")[0] != params[:controller].split("/")[0]
           diff ? { action: :show, id: @item } : nil

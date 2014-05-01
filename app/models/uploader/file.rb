@@ -147,7 +147,7 @@ class Uploader::File
     def validate_scss
       if ext == ".scss"
         begin
-          opts = SS::Application.config.sass
+          opts = Rails.application.config.sass
           sass = Sass::Engine.new @binary.force_encoding("utf-8"), filename: @path,
             syntax: :scss, cache: false, style: :expanded,
             load_paths: opts.load_paths[1..-1]

@@ -1,0 +1,10 @@
+<nav class="sub-menu">
+  <header><h1><%= t "modules.contents.cms" %></h1></header>
+  <div>
+    <%= link_to :nodes, node_nodes_path, class: "icon-node" %>
+    <%= link_to :pages, node_pages_path, class: "icon-page" %>
+    <%= link_to :layouts, node_layouts_path, class: "icon-layout" %>
+    <%= link_to :parts, node_parts_path, class: "icon-part" %>
+    <%= link_to :config, node_conf_path, class: "icon-conf" %>
+  </div>
+</nav>

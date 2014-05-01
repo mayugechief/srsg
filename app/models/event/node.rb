@@ -1,12 +1,14 @@
 # coding: utf-8
-class Event::Node
-  include Cms::Node::Model
+module Event::Node
+  class Base
+    include Cms::Node::Model
 
-  scope :my_route, -> { where route: /^event\// }
+    default_scope ->{ where(route: /^event\//) }
+  end
 
   class Page
     include Cms::Node::Model
 
-    scope :my_route, -> { where route: "event/pages" }
+    default_scope ->{ where(route: "event/page") }
   end
 end

@@ -6,7 +6,7 @@ require "action_mailer/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-Bundler.require(:default, Rails.env)
+Bundler.require(*Rails.groups)
 
 module SS
   class Application < Rails::Application
@@ -17,14 +17,14 @@ module SS
     config.time_zone = 'Tokyo'
     config.i18n.default_locale = :ja
     
-    [:ss, :sys, :cms].each do |name|
+    %w[ss sys cms].each do |name|
       config.i18n.load_path += Dir["#{config.root}/config/locales/#{name}/*.{rb,yml}"]
     end
     Dir["#{config.root}/config/locales/*/*.{rb,yml}"].each do |file|
       config.i18n.load_path << file unless config.i18n.load_path.index(file)
     end
     
-    [:sys, :sns, :cms, :node].each do |name|
+    %w[sys sns cms].each do |name|
       config.paths["config/routes.rb"] << "#{config.root}/config/routes/#{name}/routes.rb"
     end
     Dir["#{config.root}/config/routes/*/routes.rb"].sort.each do |file|

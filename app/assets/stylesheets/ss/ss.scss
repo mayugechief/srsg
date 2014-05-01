@@ -47,9 +47,9 @@ a:hover {
   text-decoration: underline;
 }
 table {
-   border-collapse: collapse;
-   border-spacing: 0;
-   empty-cells: show;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
 }
 th {
   font-size: 100%;
@@ -135,10 +135,9 @@ form .ace_editor {
   @include clear;
   margin: 0px 0px 10px;
   padding: 15px;
-  border: 1px solid #ddd;
-  //border-left: 12px solid #eee;
-  @include border-radius(2px);
-  //@include box-shadow(0px 0px 2px #bbb);
+  border: 1px solid #d4d4d4;
+  //@include border-radius(2px);
+  //@include box-shadow(0px 0px 1px #bbb);
   background-color: #fff;
 }
 .main-view  { @include main-view; }
@@ -157,22 +156,11 @@ form .ace_editor {
     height: 100%;
     min-height: 100%;
   }
-  #sp-view {
-    border-bottom: 1px solid #ccc;
-    background-color: #fff;
-    a {
-      display: inline-block;
-      padding: 5px 15px;
-      color: #bbb;
-      font-size: 300%;
-      font-weight: bold;
-    }
-  }
   #head {
     @include clear;
     //overflow: hidden;
     margin: 0px 0px 20px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #d4d4d4;
     background-color: #fff;
     h1 {
       float: left;
@@ -275,7 +263,7 @@ form .ace_editor {
     text-align: center;
     line-height: 50px;
   }
-  #ajax-container {
+  #ajax-box {
     margin: 10px;
   }
   
@@ -301,7 +289,6 @@ form .ace_editor {
           border-bottom-width: 0px;
         }
         &[class ^= "icon"] {
-          padding-left: 28px;
           background-position: 10px center;
         }
         &:hover {
@@ -416,7 +403,7 @@ form .ace_editor {
   padding: 0px 0px 0px 15px;
   header {
     margin: 0px 0px 10px -20px;
-    padding: 15px 2px;
+    padding: 15px 5px;
     border-top: 1px solid #ddd;
     color: #444;
     h2 { font-weight: bold; }
@@ -464,11 +451,28 @@ form .ace_editor {
 }
 
 // -------------------------------------
+// switch view
+
+#ss-pc, #ss-mb {
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  text-align: center;
+  a {
+    color: #888;
+  }
+}
+#ss-mb {
+  font-size: 300%;
+}
+
+// -------------------------------------
 // form
 
 #notice {
   display: table;
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -609,28 +613,37 @@ footer.send {
   }
 }
 
-a.external:after {
-  display: inline-block;
-  width: 11px;
-  height: 10px;
-  margin-left: 4px;
-  background-image: image-url("ss/icon-link-external.png");
-  background-repeat: no-repeat;
-  content: "";
+@mixin ss-icon {
+  &:before {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    text-indent: -99px;
+    background-image: image-url("ss/icons.png");
+    content: " ";
+    @content;
+  }
 }
-@mixin list-icon {
-  padding-left: 19px;
-  background-repeat: no-repeat;
-  background-position: 0px center;
-  @content;
+a.icon-content { @include ss-icon { background-position: -0px 0px; } }
+a.icon-node    { @include ss-icon { background-position: -15px 0px; } }
+a.icon-node-up { @include ss-icon { background-position: -30px 0px; } }
+a.icon-page    { @include ss-icon { background-position: -45px 0px; } }
+a.icon-layout  { @include ss-icon { background-position: -60px 0px; } }
+a.icon-part    { @include ss-icon { background-position: -75px 0px; } }
+a.icon-conf    { @include ss-icon { background-position: -90px 0px; } }
+a.external {
+  &:after {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+    text-indent: -99px;
+    background-image: image-url("ss/icons.png");
+    background-position: -0px -15px;
+    content: " ";
+  }
 }
-a.icon-content { @include list-icon { background-image: image-url("ss/icon-content.png"); } }
-a.icon-node    { @include list-icon { background-image: image-url("ss/icon-node.png"); } }
-a.icon-node-up { @include list-icon { background-image: image-url("ss/icon-node-up.png"); } }
-a.icon-page    { @include list-icon { background-image: image-url("ss/icon-page.png"); } }
-a.icon-layout  { @include list-icon { background-image: image-url("ss/icon-layout.png"); } }
-a.icon-part    { @include list-icon { background-image: image-url("ss/icon-part.png"); } }
-a.icon-conf    { @include list-icon { background-image: image-url("ss/icon-conf.png"); } }
 
 // -----------------------------------------------------------------------------
 // modules
@@ -731,19 +744,6 @@ a.icon-conf    { @include list-icon { background-image: image-url("ss/icon-conf.
     background-color: #eee;
     color: #aaa;
     text-align: center;
-  }
-  #pc-view {
-    position: absolute;
-    left: 0px;
-    bottom: 15px;
-    a {
-      display: inline-block;
-      padding: 4px 8px;
-      border: 1px solid #ddd;
-      background-color: #fff;
-      color: #bbb;
-      text-align: center;
-    }
   }
   
   // -------------------------------------------------------------------

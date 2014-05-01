@@ -1,6 +1,6 @@
 <%
 
-@cur_item = @cur_page || @cur_part || @cur_node
+@cur_item = @cur_part || @cur_page || @cur_node
 title = @cur_site.name
 title = "#{@cur_item.name} - #{@cur_site.name}" if @cur_item.filename != "index.html"
 

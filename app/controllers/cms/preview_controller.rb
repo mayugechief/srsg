@@ -7,6 +7,7 @@ class Cms::PreviewController < ApplicationController
   
   private
     def set_site
+      @preview  = true
       @cur_site = SS::Site.find_by host: params[:host]
       @crumbs << [@cur_site.name, cms_main_path]
     end

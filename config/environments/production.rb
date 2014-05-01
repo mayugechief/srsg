@@ -1,11 +1,11 @@
-SS::Application.configure do
+Rails.application.configure do
 
   # Code loading.
   config.cache_classes = true
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local = false
+  config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
   # config.action_dispatch.rack_cache = true
 
@@ -17,7 +17,7 @@ SS::Application.configure do
   config.assets.compile = false
   config.assets.digest = true
   config.assets.version = '1.0'
-  config.sass.debug_info = true # sites'
+  config.sass.debug_info = true # for cms
   
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -58,4 +58,7 @@ SS::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Do not dump schema after migrations.
+  #config.active_record.dump_schema_after_migration = false
 end

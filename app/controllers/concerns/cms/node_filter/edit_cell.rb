@@ -41,7 +41,7 @@ module Cms::NodeFilter::EditCell
     end
     
     def set_item
-      @item = @base.new_record? ? @model.new(pre_params) : @model.find(@base.id)
+      @item = @base.new_record? ? @model.new(pre_params) : @model.unscoped.find(@base.id)
       @item.attributes = { route: @base.route }.merge(@fix_params)
       controller.instance_variable_set :@item, @item
     end

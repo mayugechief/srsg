@@ -7,16 +7,15 @@ ja:
     contents:
       category: "カテゴリー"
     nodes:
-      category/node: "カテゴリー一覧"
-      category/page: "カテゴリー/ページ一覧"
+      category/node: "カテゴリー/フォルダーリスト"
+      category/page: "カテゴリー/ページリスト"
     parts:
-      category/node: "カテゴリー/フォルダ一覧"
-      category/page: "カテゴリー/ページ一覧"
+      category/node: "カテゴリーリスト"
     addons:
-      category/categories: "カテゴリー"
+      category/category: "カテゴリー"
 
   mongoid:
     attributes:
-      cms/page:
-        category_ids: "カテゴリー" #?
-        categories: "カテゴリー" #?
+      cms/page/model:
+        categories: "カテゴリー"
+        category_ids: "カテゴリー"

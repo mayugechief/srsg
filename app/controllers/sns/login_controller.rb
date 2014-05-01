@@ -27,7 +27,8 @@ class Sns::LoginController < ApplicationController
       end
       
       set_user user, session: true
-      redirect_to sns_mypage_path
+      render action: :redirect
+      #redirect_to sns_mypage_path
     end
     
     def logout

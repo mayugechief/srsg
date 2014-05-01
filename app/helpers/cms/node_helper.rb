@@ -7,8 +7,9 @@ module Cms::NodeHelper
       h << capture(&block)
     end
     
-    h << render(partial: "node/main/node_navi")
-    h << render(partial: "node/main/modules")
+    h << render(partial: "cms/node/main/node_navi")
+    h << render(partial: "cms/node/main/modules")
+    #h << render(partial: "cms/main/navi")
     h.join.html_safe
   end
 end

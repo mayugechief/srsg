@@ -2,11 +2,12 @@
 <%= error_messages_for :item %>
 
 <div class="addon-view" id="addon-basic">
-<%= render file: "_delete" %>
+  <header><h2><%= t("views.confirm.delete") %></h2></header>
+  <%= render file: "_delete" %>
 </div>
 
 <footer class="send">
-  <%= f.submit '削除', class: :delete %>
-  <%= f.button "キャンセル", onclick: "location.href='#{url_for(action: :show)}'; return false;" %>
+  <%= f.submit t(:delete), class: :delete %>
+  <%= f.button t(:cancel), onclick: "location.href='#{url_for(action: :show)}'; return false;" %>
 </footer>
 <% end %>

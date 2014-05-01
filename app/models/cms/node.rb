@@ -2,7 +2,28 @@
 class Cms::Node
   extend ActiveSupport::Autoload
   autoload :Model
-  include Model
+  
+  include Cms::Node::Model
+  
+  class Base
+    include Cms::Node::Model
+  
+    default_scope ->{ where(route: /^cms\//) }
+  end
+  
+  class Node
+    include Cms::Node::Model
+    include Cms::Addon::NodeList
+    
+    default_scope ->{ where(route: "cms/node") }
+  end
+  
+  class Page
+    include Cms::Node::Model
+    include Cms::Addon::PageList
+    
+    default_scope ->{ where(route: "cms/page") }
+  end
   
   class << self
     @@plugins = []

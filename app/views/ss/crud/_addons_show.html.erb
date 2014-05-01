@@ -1,7 +1,7 @@
 <% if @model && (addons = @model.addons).size > 0 %>
 
 <% addons.each do |addon| %>
-<div class="addon-view" id="addon-<%= addon.object_id %>">
+<div class="addon-view" id="addon-<%= addon.id %>">
   <header><h2><%= addon.name %></h2></header>
   <%= render_cell "#{addon.path}/edit", params[:action] %>
 </div>

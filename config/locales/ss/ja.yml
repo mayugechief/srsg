@@ -15,16 +15,25 @@ ja:
     create: "作成"
     edit: "編集"
     delete: "削除"
+    save: "保存"
+    cancel: "キャンセル"
+    saved: "保存しました。"
+    deleted: "削除しました。"
   views:
     links:
       new: "新規作成"
+      show: "詳細を見る"
       edit: "編集する"
       delete: "削除する"
       back_to_show: "詳細へ戻る"
       back_to_index: "一覧へ戻る"
       parent_directory: "上の階層へ"
+      preview: "プレビュー"
+      open: "開く"
+      change: "変更する"
     confirm:
       delete: "削除してよろしいですか？"
+      unload: "入力したデータは保存されません。"
 
   mongoid:
     models:

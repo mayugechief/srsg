@@ -16,7 +16,7 @@ class SS::Extensions::Words < Array
     def mongoize(object)
       case object
       when self.class then object.mongoize
-      when String then self.new(object.gsub(/[, 　、]+/, ",").split(",").uniq).mongoize
+      when String then self.new(object.gsub(/[, 　、\r\n]+/, ",").split(",").compact.uniq).mongoize
       else object
       end
     end

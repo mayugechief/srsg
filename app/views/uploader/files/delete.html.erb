@@ -6,7 +6,7 @@
 </div>
 
 <footer class="send">
-<%= f.submit '削除', class: :delete %>
-<%= f.button "キャンセル", onclick: "location.href='#{url_for(action: :show, filename: @item.filename, do: "show")}'; return false;" %>
+<%= f.submit t(:delete), class: :delete %>
+<%= f.button t(:cancel), onclick: "location.href='#{url_for(action: :show, filename: @item.filename, do: "show")}'; return false;" %>
 </footer>
 <% end %>

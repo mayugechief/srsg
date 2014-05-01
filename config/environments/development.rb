@@ -1,4 +1,4 @@
-SS::Application.configure do
+Rails.application.configure do
 
   # Code loading.
   config.cache_classes = false
@@ -16,8 +16,12 @@ SS::Application.configure do
 
   # Asset pipeline.
   config.assets.debug = true
+  #config.assets.raise_runtime_errors = true
   config.assets.compress = false
   config.sass.debug_info = true
+  
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
   
   # Logger
   config.logger = Logger.new("#{Rails.root}/log/development.log")

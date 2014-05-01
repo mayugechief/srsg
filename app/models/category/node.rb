@@ -1,20 +1,22 @@
 # coding: utf-8
-class Category::Node
-  include Cms::Node::Model
+module Category::Node
+  class Base
+    include Cms::Node::Model
   
-  scope :my_route, -> { where route: /^category\// }
+    default_scope ->{ where(route: /^category\//) }
+  end
   
   class Node
     include Cms::Node::Model
-    include Cms::Addons::NodeList
+    include Cms::Addon::NodeList
     
-    scope :my_route, -> { where route: "category/nodes" }
+    default_scope ->{ where(route: "category/node") }
   end
   
   class Page
     include Cms::Node::Model
-    include Cms::Addons::PageList
+    include Cms::Addon::PageList
     
-    scope :my_route, -> { where route: "category/pages" }
+    default_scope ->{ where(route: "category/page") }
   end
 end

@@ -32,7 +32,7 @@ module Cms::PreviewFilter
     
     def replace_preview_paths(body)
       body = body.gsub(/href="\//, "href=\"#{cms_preview_path}/")
-      pos  = "position: absolute; top: 10px; left: 0px; padding: 5px 10px;"
+      pos  = "position: fixed; top: 10px; left: 0px; padding: 5px;"
       css  = "background-color: rgba(0, 120, 100, 0.6); color: #fff; font-weight: bold;"
       mark = %Q[<div id="ss-preview" style="#{pos}#{css}">Preview</div>]
       body = body.sub("</body>", "#{mark}</body>")

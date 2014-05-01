@@ -8,8 +8,13 @@ module Cms::Page::Model
   included do
     store_in collection: "cms_pages"
     
-    field :route, type: String, default: ->{ "cms/pages" }
+    field :route, type: String, default: ->{ "cms/page" }
     
     permit_params :route
   end
+  
+  public
+    #def current?(path)
+    #  "/#{filename}" == "#{path.sub(/\.[^\.]+?$/, '.html')}" ? :current : nil
+    #end
 end
