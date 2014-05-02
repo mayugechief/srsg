@@ -10,7 +10,7 @@ class SS::Site
   field :host, type: String
   field :domains, type: SS::Extensions::Words
   
-  permit_params :name, :host, :domains
+  permit_params :name, :host, :group_id, :domains
   
   belongs_to :group, class_name: "SS::Group"
   has_many :pages, class_name: "Cms::Page", dependent: :destroy
@@ -18,8 +18,11 @@ class SS::Site
   has_many :parts, class_name: "Cms::Part", dependent: :destroy
   has_many :layouts, class_name: "Cms::Layout", dependent: :destroy
   
+  scope :group, ->(group_ids) { where :group_id.in => group_ids }
+  
   validates :name, presence: true, length: { maximum: 40 }
   validates :host, uniqueness: true, presence: true, length: { minimum: 3, maximum: 16 }
+  validates :group_id, presence: true
   
   def domain
     domains[0]

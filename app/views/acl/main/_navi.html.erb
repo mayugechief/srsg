@@ -1,0 +1,14 @@
+<nav class="main-menu">
+  <header><h1><%= t :site_menu %></h1></header>
+  <div>
+    <%= link_to :view_site, @cur_site.full_url, target: "_blank" %>
+    <%= link_to :preview_site, cms_preview_path, target: "_blank" %>
+  </div>
+</nav>
+
+<nav class="sub-menu">
+  <header><h1><%= t :acl, scope: [:modules, :contents] %></h1></header>
+  <div>
+        <%= link_to :entries, acl_entries_path %>
+  </div>
+</nav>

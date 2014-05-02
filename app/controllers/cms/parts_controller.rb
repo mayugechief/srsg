@@ -24,6 +24,7 @@ class Cms::PartsController < ApplicationController
     def index
       @items = @model.site(@cur_site).
         where(depth: 1).
+        where_permitted(user: @cur_user, site: @cur_site).
         order_by(filename: 1).
         page(params[:page]).per(100)
     end

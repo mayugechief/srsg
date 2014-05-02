@@ -10,9 +10,10 @@
   
   <dt><%= @model.t :groups %></dt>
   <dd>
-    <%= hidden_field_tag "item[group_ids][]" %>
+    <select multiple="multiple" id="multi-select" name="item[group_ids][]">
     <% SS::Group.all.each do |item| %>
-    <label><%= f.check_box "group_ids[]", {}, item._id %><%= item.name %></label>
+    <option value="<%= item._id %>" <%= "selected" if @item.group_ids.include?(item._id) %>><%= item.name %></option>
     <% end %>
+    </select>
   </dd>
 </dl>

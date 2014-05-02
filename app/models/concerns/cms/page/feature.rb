@@ -3,7 +3,6 @@ module Cms::Page::Feature
   extend ActiveSupport::Concern
   include SS::Document
   include SS::References::Site
-  include Acl::Addons::GroupOwner
   include SS::Permission
   
   attr_accessor :cur_node, :basename

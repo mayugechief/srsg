@@ -5,7 +5,6 @@ module Cms::Node::Model
   include SS::Document
   include SS::References::Site
   include Cms::References::Layout
-  include Acl::Addons::GroupOwner
   include Cms::Addons::Meta
   
   attr_accessor :cur_node, :basename

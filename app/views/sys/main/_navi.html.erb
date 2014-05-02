@@ -1,3 +1,4 @@
+<%  if @cur_user.has_permit?(permits: :master)  %>
 <nav class="main-menu">
   <header><h1><%= t :system %></h1></header>
   <div>
@@ -8,3 +9,4 @@
     <%= link_to :db, sys_db_path %>
   </div>
 </nav>
+<% end %>

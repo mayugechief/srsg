@@ -1,0 +1,21 @@
+<nav class="act-menu">
+  <header><h1><%= t :actions %></h1></header>
+  <div>
+    <% if params[:action] =~ /index/ %>
+      <%= link_to :new, action: :new if @cur_node.permitted?(action: :create_parts, user: @cur_user)   %>
+    <% elsif params[:action] =~ /new|create/ %>
+      <%= link_to :back_to_index, action: :index %>
+    <% elsif params[:action] =~ /edit|update|delete/ %>
+      <%= link_to :back_to_show, action: :show, id: @item %>
+      <%= link_to :back_to_index, action: :index %>
+    <% else %>
+      <%= link_to :edit, action: :edit, id: @item if @item.permitted?(action: :update, user: @cur_user) %>
+      <%= link_to :delete, action: :delete, id: @item if @item.permitted?(action: :delete, user: @cur_user)  %>
+      <%= link_to :back_to_index, action: :index %>
+    <% end %>
+  </div>
+</nav>
+
+<% if params[:action] =~ /show|new|edit|create|update/ %>
+<%= render file: "_addons_menu" %>
+<% end %>

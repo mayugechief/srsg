@@ -11,6 +11,8 @@ class Cms::ContentsController < ApplicationController
     
   public
     def index
+      raise "403" unless  @cur_user.my_site?(@cur_site)
+      
       @model = Cms::Node
       
       @mod = params[:mod]
@@ -20,6 +22,7 @@ class Cms::ContentsController < ApplicationController
       @items = Cms::Node.site(@cur_site).
         where(cond).
         where(shortcut: :show).
+        where_permitted(site: @cur_site, user: @cur_user).
         order_by(filename: 1).
         page(params[:page]).per(100)
     end

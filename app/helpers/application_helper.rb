@@ -10,6 +10,7 @@ module ApplicationHelper
   
   def t(key, opts = {})
     opts[:scope]   = [:base] if key !~ /\./ && !opts[:scope]
+    dump opts
     I18n.translate key, opts.merge(default: key.to_s.humanize)
   end
   

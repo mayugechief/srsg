@@ -19,6 +19,7 @@ class Cms::PreviewController < ApplicationController
     end
     
     def render_preview
+      raise "403" unless  @cur_user.my_site?(@cur_site)
       body = response.body
       body = combine_layout body unless @mobile
       body = replace_preview_paths body

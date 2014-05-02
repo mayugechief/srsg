@@ -1,4 +1,30 @@
 ja:
+  base:
+    entries: "権限"
+
+  views:
+    general:
+      entries: "権限"
+      owner: "所有者"
+      owners: "所有者"
+      selectable_owners: "候補"
+      selection_owners: "選択"
+
+  mongoid:
+    models:
+      acl/entry: "権限"
+    attributes:
+      acl/entry:
+        user_id: "ユーザ"
+        permits: "権限"
+
   modules:
     addons:
-      acl/group_owner: "所有者グループ"
+      acl/owners: "所有者グループ"
+    permits:
+      admin: "管理者"
+      manage_private_node: "フォルダ編集者"
+      manage_private_page: "ページ編集者"
+      manage_private_layout: "レイアウト編集者"
+      manage_private_part: "パーツ編集者"
+      

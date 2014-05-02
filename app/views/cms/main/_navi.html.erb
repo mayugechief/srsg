@@ -10,9 +10,10 @@
   <header><h1><%= t :root_menu %></h1></header>
   <div>
     <%= link_to :contents, cms_contents_path, class: "icon-content" %>
-    <%= link_to :nodes, cms_nodes_path, class: "icon-node" %>
-    <%= link_to :pages, cms_pages_path, class: "icon-page" %>
-    <%= link_to :layouts, cms_layouts_path, class: "icon-layout" %>
-    <%= link_to :parts, cms_parts_path, class: "icon-part" %>
+    <%= link_to :nodes, cms_nodes_path, class: "icon-node" if Cms::Node.new.permitted?(site: @cur_site, user: @cur_user) %>
+    <%= link_to :pages, cms_pages_path, class: "icon-page" if Cms::Page.new.permitted?(site: @cur_site, user: @cur_user) %>
+    <%= link_to :layouts, cms_layouts_path, class: "icon-layout" if Cms::Layout.new.permitted?(site: @cur_site, user: @cur_user) %>
+    <%= link_to :parts, cms_parts_path, class: "icon-part" if Cms::Part.new.permitted?(site: @cur_site, user: @cur_user)  %>
+		<%= link_to :entries, acl_entries_path, class: "icon-acl" if @cur_user.has_permit?(permits: :admin, site: @cur_site)  %>
   </div>
 </nav>

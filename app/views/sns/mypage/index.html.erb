@@ -2,7 +2,14 @@
   <nav class="sites">
     <header><h1><%= t :sites %></h1></header>
     <div>
-      <% SS::Site.all.each do |item| %>
+      <%
+      if @cur_user.has_permit?(permits: :master)
+        sites = SS::Site.all()
+      else
+        sites = SS::Site.group(@cur_user.root_group_ids)
+      end
+      %>
+      <% sites.each do |item| %>
       <%= link_to item.name, "/.#{item.host}" %>
       <% end %>
     </div>

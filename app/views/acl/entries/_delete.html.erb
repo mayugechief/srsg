@@ -1,0 +1,6 @@
+<dl class="see">
+  <dt><%= @model.t :user_id %></dt>
+  <dd><%=br @item.user.name %></dd>
+  <dt><%= @model.t :permits %></dt>
+  <dd><%=br @item.permit_names.join("\n") %></dd>
+</dl>

@@ -1,0 +1,21 @@
+<dl class="see">
+  <dt><%= @model.t :user_id %></dt>
+  <dd>
+  <% if @item.id == 0 %>
+    <%= render 'form_group', {f: f}%>
+    <%= render 'form_user', {f: f}%>
+  <% else %>
+    <%= @item.user.name %>
+  <% end %>
+  </dd>
+  
+  <dt><%= @model.t :permits %></dt>
+  <dd>
+    <%= hidden_field_tag "item[permits][]" %>
+    <ul>
+    <% Acl::Entry.selectable_permits.each do |item| %>
+      <li><%= check_box_tag "item[permits][]", item[:_id],@item.permits.try(:include?, item[:_id]) %><%= item[:name] %></li>
+    <% end %>
+    </ul>
+  </dd>
+</dl>

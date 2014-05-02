@@ -1,0 +1,13 @@
+<dl class="see">
+  <dt><%= @model.t :name %></dt>
+  <dd><%= f.text_field :name %></dd>
+  
+  <dt><%= @model.t :host %></dt>
+  <dd><%= f.email_field :host %></dd>
+
+  <dt><%= @model.t :domains %></dt>
+  <dd><%= f.email_field :domains %></dd>
+  
+  <dt><%= @model.t :group_id %></dt>
+  <dd><%= f.select :group_id, SS::Group.new.root_options,  include_blank: " "  %></dd>
+</dl>

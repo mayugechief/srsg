@@ -23,7 +23,10 @@ class Node::NodesController < ApplicationController
     
   public
     def index
+      raise "403" unless @cur_node.permitted?(user: @cur_user)
+
       @items = @model.site(@cur_site).node(@cur_node).
+        where_permitted(user: @cur_user, site: @cur_site).
         order_by(filename: 1).
         page(params[:page]).per(50)
     end

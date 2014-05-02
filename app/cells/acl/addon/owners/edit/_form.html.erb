@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag "jquery-ui/multi-select/css/multi-select.css", media: "all", "data-turbolinks-track" => true %>
+<dl class="see">
+  <dt><%= t :owner %></dt>
+  <dd>
+    <select multiple="multiple" id="multi-select" name="item[owner_group_ids][]">
+    <% SS::Group.site(@cur_site).each do |item| %>
+    <option value="<%= item._id %>" <%= "selected" if @item.owner_group_ids.include?(item._id) %>><%= item.name %></option>
+    <% end %>
+    </select>
+  </dd>
+</dl>
