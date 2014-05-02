@@ -23,7 +23,7 @@ module Article::Nodes::Page
       @items = Article::Page.site(@cur_site).public.
         where(@cur_node.condition_hash).
         order_by(published: -1).
-        per(@cur_node.limit)
+        limit(@cur_node.limit)
       
       render_rss @cur_node, @items
     end
