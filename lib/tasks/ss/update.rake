@@ -1,23 +1,10 @@
 # coding: utf-8
 namespace :ss do
   task :update => :environment  do
-    puts "# replace field value: route"
+    puts "# replace user password"
     
-    Cms::Node.all.each do |item|
-      item.route = item.route.singularize
-      item.route = item.route.sub(/^node\//, "cms/")
-      item.save
-    end
-    
-    Cms::Page.all.each do |item|
-      item.route = item.route.singularize
-      item.save
-    end
-    
-    Cms::Part.all.each do |item|
-      item.route = item.route.singularize
-      item.route = item.route.sub(/^node\//, "cms/")
-      item.route = item.route.sub("category/page", "cms/page")
+    SS::User.all.each do |item|
+      item.password = SS::Crypt.crypt("pass")
       item.save
     end
     

@@ -11,7 +11,7 @@ class Sns::User::AccountsController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:account, sns_user_account_path]
+      @crumbs << [:"sns.account", sns_user_account_path]
     end
     
     def get_params

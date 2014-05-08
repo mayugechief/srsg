@@ -72,7 +72,7 @@ module Cms::Addon
             cond << { filename: /^#{node.filename}\//, depth: depth }
             cids << node.id
           else
-            cond << { depth: depth + 1 }
+            cond << { depth: depth }
           end
         else # from nodes
           cond << { filename: /^#{filename}\//, depth: depth + 1 }
@@ -85,7 +85,7 @@ module Cms::Addon
           cond << { filename: /^#{node.filename}\//, depth: node.depth + 1 }
           cids << node.id
         end
-        cond << { :category_ids.in => cids }
+        cond << { :category_ids.in => cids } if cids.present?
         
         { '$or' => cond }
       end

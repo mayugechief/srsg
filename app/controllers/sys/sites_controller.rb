@@ -7,7 +7,7 @@ class Sys::SitesController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:sites, sys_sites_path]
+      @crumbs << [:"sys.site", sys_sites_path]
     end
   
   public

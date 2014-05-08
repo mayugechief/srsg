@@ -11,7 +11,7 @@ class Sns::User::ProfilesController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:profile, sns_user_profile_path]
+      @crumbs << [:"sns.profile", sns_user_profile_path]
     end
     
     def set_item

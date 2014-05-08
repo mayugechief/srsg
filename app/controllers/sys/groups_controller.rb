@@ -7,7 +7,7 @@ class Sys::GroupsController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:groups, sys_groups_path]
+      @crumbs << [:"sys.group", sys_groups_path]
     end
   
   public

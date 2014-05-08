@@ -44,7 +44,7 @@
       </td>
       <td><%= link_to item.name, { cid: item }, class: "icon-node" %></td>
       <td class="filename"><%= File.basename item.filename %></td>
-      <td class="route"><%= t("modules.nodes.#{item.route}").sub(/\/.*/, '') %></td>
+      <td class="route"><%= t("cms.nodes.#{item.route}") %></td>
       <td class="datetime"><%= item.updated.strftime("%Y/%m/%d %H:%M") %></td>
     </tr>
     <% end %>

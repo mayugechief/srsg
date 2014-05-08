@@ -20,9 +20,8 @@ module Cms::Layout::Model
   public
     def render_html
       html = self.html.to_s.gsub(/<\/ part ".+?" \/>/).each do |m|
-        path = filename.index("/") ? File.dirname(filename) + "/" : ""
-        path = path +  m.sub(/<\/ part "(.+)?" \/>/, '\\1') + ".part.html"
-        path = path.sub(/^\//, "")
+        path = m.sub(/<\/ part "(.+)?" \/>/, '\\1') + ".part.html"
+        path = path[0] == "/" ? path.sub(/^\//, "") : dirname(path)
         
         part = Cms::Part.where(site_id: site_id, filename: path).first
         part = part.becomes_with_route if part
@@ -60,9 +59,8 @@ module Cms::Layout::Model
       return true if html.blank?
       
       paths = html.scan(/<\/ part ".+?" \/>/).map do |m|
-        path  = filename.index("/") ? File.dirname(filename) + "/" : ""
-        path << m.sub(/<\/ part "(.+)?" \/>/, '\\1') + ".part.html"
-        path  = path.sub(/^\//, "")
+        path = m.sub(/<\/ part "(.+)?" \/>/, '\\1') + ".part.html"
+        path = path[0] == "/" ? path.sub(/^\//, "") : dirname(path)
       end
       self.part_paths = paths.uniq
     end

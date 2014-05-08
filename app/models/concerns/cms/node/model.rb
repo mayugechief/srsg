@@ -14,7 +14,7 @@ module Cms::Node::Model
     store_in collection: "cms_nodes"
     index({ site_id: 1, filename: 1 }, { unique: true })
     
-    scope :public, ->{ where(state: "public") }
+    #scope :public, ->{ where(state: "public") }
     
     seqid :id
     field :state, type: String, default: "public"
@@ -41,6 +41,10 @@ module Cms::Node::Model
   end
   
   module ClassMethods
+    def public
+      where(state: "public")
+    end
+    
     def node(node)
       node ? where(filename: /^#{node.filename}\//, depth: node.depth + 1) : where(depth: 1)
     end

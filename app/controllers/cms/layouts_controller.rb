@@ -9,7 +9,7 @@ class Cms::LayoutsController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:layouts, action: :index]
+      @crumbs << [:"cms.layout", action: :index]
     end
     
     def fix_params

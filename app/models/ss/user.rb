@@ -5,6 +5,8 @@ class SS::User
   
   index({ email: 1 }, { unique: true })
   
+  attr_accessor :in_password
+  
   seqid :id
   field :name, type: String
   field :email, type: String, metadata: { form: :email }
@@ -12,16 +14,16 @@ class SS::User
   
   embeds_ids :groups, class_name: "SS::Group"
   
-  permit_params :name, :email, :password, group_ids: []
+  permit_params :name, :email, :password, :in_password, group_ids: []
   
   validates :name, presence: true, length: { maximum: 40 }
   validates :email, uniqueness: true, presence: true, email: true, length: { maximum: 80 }
   validates :password, presence: true
   
-  before_save :encrypt_password
+  before_validation :encrypt_password, if: ->{ in_password.present? }
   
   def encrypt_password
-    self.password = SS::Crypt.crypt(password) if password_changed?
+    self.password = SS::Crypt.crypt(in_password)
   end
   
   def has_permit?(targets = {})

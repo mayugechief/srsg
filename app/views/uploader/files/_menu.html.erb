@@ -1,6 +1,6 @@
 <% if params[:action] !~ /index/ %>
 <nav class="act-menu">
-  <header><h1><%= t :actions %></h1></header>
+  <header><h1><%= t :"ss.action" %></h1></header>
   <div>
   <% if params[:action] =~ /show|create/ %>
     <% if params[:do] =~ /show/ %>
@@ -13,8 +13,8 @@
     <% elsif params[:do] =~ /new/ %>
     <%= link_to :back_to_index, { action: :show, filename: @item.filename } %>
   <% else %>
-    <%= link_to :create_directory, {action: :show, filename: @item.filename, do: "new_directory" }, class: "icon-node" %>
-    <%= link_to :upload_files, {action: :show, filename: @item.filename,  do: "new_files" }, class: "icon-page" %>
+    <%= link_to :new_directory, {action: :show, filename: @item.filename, do: "new_directory" }, class: "icon-node" %>
+    <%= link_to :upload, {action: :show, filename: @item.filename,  do: "new_files" }, class: "icon-page" %>
     <% end %>
   <% elsif params[:action] =~ /update/ %>
     <%= link_to :back_to_show, { action: :show, filename: @item.filename, do: "show" } %>

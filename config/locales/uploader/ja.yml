@@ -1,25 +1,27 @@
 ja:
-  base:
-    uploader_files: "ファイル"
+  uploader:
+    files: ファイル
+
   views:
     links:
-      create_directory: "新規フォルダー"
-      upload_files: "アップロード"
+      new_directory: 新規フォルダー
+      upload: アップロード
 
   modules:
-    contents:
-      uploader: "アップローダー"
+    uploader: アップローダー
+
+  cms:
     nodes:
-      uploader/file: "アップローダー"
+      uploader/file: アップローダー
 
   mongoid:
     models:
-      uploader/file: "アップローダー"
+      uploader/file: アップローダー
     attributes:
       uploader/file:
-        name: "タイトル"
-        filename: "ファイル名"
-        content_type: "MIME"
-        size: "ファイルサイズ"
-        text: "内容"
-        image: "画像"
+        name: タイトル
+        filename: ファイル名
+        content_type: MIME
+        size: ファイルサイズ
+        text: 内容
+        image: 画像

@@ -1,0 +1,13 @@
+# cms configuration
+
+production:
+  cms: &inherit
+    ajax_layout: true
+
+test:
+  cms:
+    <<: *inherit
+
+development:
+  cms:
+    <<: *inherit

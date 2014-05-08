@@ -7,7 +7,7 @@ class Sys::UsersController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:users, sys_users_path]
+      @crumbs << [:"sys.user", sys_users_path]
     end
   
   public

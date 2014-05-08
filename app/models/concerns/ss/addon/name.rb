@@ -10,7 +10,7 @@ class SS::Addon::Name
   end
   
   def name
-    I18n.t @name, scope: [:modules, :addons], default: @name.titleize
+    I18n.t "modules.addons.#{@name}", default: @name.titleize
   end
   
   def path

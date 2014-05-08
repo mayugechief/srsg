@@ -9,7 +9,7 @@ class Cms::PartsController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:parts, action: :index]
+      @crumbs << [:"cms.part", action: :index]
     end
     
     def fix_params
@@ -33,7 +33,7 @@ class Cms::PartsController < ApplicationController
       
       Cms::Part.new.route_options.each do |name, path|
         mod = path.sub(/\/.*/, '')
-        @items[mod] = { name: t("modules.contents.#{mod}"), items: [] } if !@items[mod]
+        @items[mod] = { name: t("modules.#{mod}"), items: [] } if !@items[mod]
         @items[mod][:items] << [ name.sub(/.*\//, ""), path ]
       end
       

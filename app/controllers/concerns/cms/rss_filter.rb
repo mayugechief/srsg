@@ -1,11 +1,7 @@
 # coding: utf-8
 require "rss/maker"
-module Rss::RssFilter
+module Cms::RssFilter
   extend ActiveSupport::Concern
-  
-  included do |mod|
-    #alias_method :render_rss, :extend_render_rss
-  end
   
   private
     def render_rss(node, items)

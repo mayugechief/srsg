@@ -1,5 +1,3 @@
-<% if Rails.env.development? %><div class="dev-view">ss/crud/_show</div><% end %>
-
 <dl class="see">
   <% @model.fields.each do |key, field| %>
   <% next if key =~ /^(id|site_id)$/ %>

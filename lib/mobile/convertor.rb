@@ -1,5 +1,5 @@
 # coding: utf-8
-class Mobile::HtmlConvertor < String
+class Mobile::Convertor < String
   @@tags = {
     remove: %w[
       area audio canvas caption col colgroup embed iframe keygen map noscript
@@ -14,6 +14,21 @@ class Mobile::HtmlConvertor < String
   }
 
   public
+    def convert!
+      downcase_tags!
+      remove_comments!
+      remove_cdata_sections!
+      remove_other_namespace_tags!
+      remove_convert_tags!
+      strip_convert_tags!
+      gsub_convert_tags!
+      gsub_img!
+      gsub_q!
+      gsub_wbr!
+      gsub_br!
+    end
+    
+  private
     def s_to_attr(str)
       str.scan(/\S+?=".+?"/m).
         map { |s| s.split(/=/).size == 2 ? s.gsub(/"/, "").split(/=/) : nil }.
@@ -48,21 +63,21 @@ class Mobile::HtmlConvertor < String
     end
 
     def remove_tag!(tag)
-      self.gsub!(/<#{tag}[ >].*?<\/#{tag}>/m, "")
-      self.gsub_tag!(tag, "")
+      gsub!(/<#{tag}[ >].*?<\/#{tag}>/m, "")
+      gsub_tag!(tag, "")
     end
 
     def remove_convert_tags!
-      @@tags[:remove].each { |tag| self.remove_tag!(tag) }
+      @@tags[:remove].each { |tag| remove_tag!(tag) }
     end
 
     def strip_convert_tags!
-      @@tags[:strip].each { |tag| self.gsub_tag!(tag, "") }
+      @@tags[:strip].each { |tag| gsub_tag!(tag, "") }
     end
 
     def gsub_convert_tags!
-      @@tags[:div].each  { |tag| self.gsub_tag!(tag, "div")  }
-      @@tags[:span].each { |tag| self.gsub_tag!(tag, "span") }
+      @@tags[:div].each  { |tag| gsub_tag!(tag, "div")  }
+      @@tags[:span].each { |tag| gsub_tag!(tag, "span") }
     end
 
     def gsub_img!

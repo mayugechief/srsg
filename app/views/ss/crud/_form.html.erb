@@ -1,5 +1,3 @@
-<% if Rails.env.development? %><div class="dev-view">ss/crud/_form</div><% end %>
-
 <dl class="see">
   <% @model.fields.each do |key, field| %>
   <% form_type = tryb{ field.metadata[:form] } %>

@@ -26,7 +26,7 @@ module Cms::Part::Model
     end
     
     def render_html
-      %Q[<a class="ss-part" href="#{url}" data-href="#{url.sub('.html', '.json')}">#{name}</a>]
+      %Q[<a class="ss-part" href="#{url}">#{name}</a>]
     end
     
   private

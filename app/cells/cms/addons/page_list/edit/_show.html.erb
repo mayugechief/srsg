@@ -1,3 +1,5 @@
+<%= code_editor ".mod-cms-pagelist .html", filename: @item.filename, readonly: true %>
+
 <dl class="see mod-cms-pagelist">
   <dt><%= @model.t :conditions %></dt>
   <dd><%=br @item.conditions.join("\n") %></dd>
@@ -11,24 +13,21 @@
   <dt><%= @model.t :upper_html %></dt>
   <dd>
     <% if @item.upper_html.present? %>
-    <%= code_editor ".mod-cms-pagelist .html1", filename: @item.filename, readonly: true %>
-    <%= text_area_tag :upper_html, @item.upper_html, class: "html1" %>
+    <%= text_area_tag :upper_html, @item.upper_html, class: "html" %>
     <% end %>
   </dd>
   
   <dt><%= @model.t :loop_html %></dt>
   <dd>
     <% if @item.loop_html.present? %>
-    <%= code_editor ".mod-cms-pagelist .html2", filename: @item.filename, readonly: true %>
-    <%= text_area_tag :loop_html, @item.loop_html, class: "html2" %>
+    <%= text_area_tag :loop_html, @item.loop_html, class: "html" %>
     <% end %>
   </dd>
   
   <dt><%= @model.t :lower_html %></dt>
   <dd>
     <% if @item.lower_html.present? %>
-    <%= code_editor ".mod-cms-pagelist .html3", filename: @item.filename, readonly: true %>
-    <%= text_area_tag :lower_html, @item.lower_html, class: "html3" %>
+    <%= text_area_tag :lower_html, @item.lower_html, class: "html" %>
     <% end %>
   </dd>
 </dl>

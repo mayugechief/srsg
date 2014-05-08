@@ -9,8 +9,8 @@ module ApplicationHelper
   end
   
   def t(key, opts = {})
-    opts[:scope] = [:base] if key !~ /\./ && !opts[:scope]
-    I18n.translate key, opts.merge(default: key.to_s.humanize)
+    opts[:scope] = [:ss] if key !~ /\./ && !opts[:scope]
+    I18n.t key, opts.merge(default: key.to_s.humanize)
   end
   
   def br(str)
@@ -24,8 +24,7 @@ module ApplicationHelper
   
   def link_to(*args)
     if args[0].class == Symbol
-      hn = I18n.translate args[0], scope: [:views, :links], default: "unk"
-      args[0] = (hn == "unk") ? t(args[0]) : hn
+      args[0] = I18n.t "views.links.#{args[0]}", default: nil || t(args[0])
     end
     super *args
   end

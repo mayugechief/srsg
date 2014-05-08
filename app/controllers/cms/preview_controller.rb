@@ -1,28 +1,36 @@
 # coding: utf-8
 class Cms::PreviewController < ApplicationController
   include Cms::BaseFilter
-  include Cms::PublicController::Filter
+  include Cms::PublicFilter
   
-  after_action :render_preview, prepend: true
+  before_action :set_path_with_preview, prepend: true
+  after_action :render_preview
   
   private
     def set_site
-      @preview  = true
-      @cur_site = SS::Site.find_by host: params[:host]
-      @crumbs << [@cur_site.name, cms_main_path]
+      @cur_site    = SS::Site.find_by host: params[:host]
+      @preview     = true
+      @ajax_layout = false
     end
     
-    def set_path
-      @path = request.env["REQUEST_PATH"].sub(/^#{cms_preview_path}/, "")
+    def set_path_with_preview
+      @path ||= request.env["REQUEST_PATH"]
+      @path = @path.sub(/^#{cms_preview_path}/, "")
       @path = "index.html" if @path.blank?
-      @path = @path.sub(/\/$/, "/index.html").sub(/^\//, "")
-      @file = File.join @cur_site.path, @path
     end
     
     def render_preview
       body = response.body
-      body = combine_layout body unless @mobile
-      body = replace_preview_paths body
+      
+      body.gsub!(/(href=")(\/[^"]+\/(|\.html))"/, %Q[\\1#{cms_preview_path}\\2"])
+      body.gsub!('href="/"', %Q[href="#{cms_preview_path}/"])
+      body.gsub!(/(<img [^>]+ src=")(\/[^"]+\/(|\.html))"/, %Q[\\1#{cms_preview_path}\\2"])
+      
+      css  = "position: fixed; top: 0px; left: 0px; padding: 5px;"
+      css << "background-color: rgba(0, 150, 100, 0.6); color: #fff; font-weight: bold;"
+      mark = %Q[<div id="ss-preview" style="#{css}">Preview</div>]
+      body.sub!("</body>", "#{mark}</body>")
+      
       response.body = body
     end
 end

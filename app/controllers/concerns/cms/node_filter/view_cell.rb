@@ -1,7 +1,7 @@
 # coding: utf-8
 module Cms::NodeFilter::ViewCell
   extend ActiveSupport::Concern
-  include SS::FeedFilter
+  include Cms::RssFilter
   
   included do
     helper ApplicationHelper

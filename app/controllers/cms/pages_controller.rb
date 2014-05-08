@@ -9,7 +9,7 @@ class Cms::PagesController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:pages, action: :index]
+      @crumbs << [:"cms.page", action: :index]
     end
     
     def fix_params

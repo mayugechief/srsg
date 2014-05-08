@@ -21,7 +21,7 @@ a:hover {
 
 /* ---------------------------------- */
 
-#ss-kana, #ss-pc, #ss-mb {
+#ss-small, #ss-medium, #ss-large, #ss-kana, #ss-pc, #ss-mb {
   display: none;
 }
 
@@ -29,11 +29,11 @@ a:hover {
 
 #head {
   margin: 0px -10px;
-  background-color: #49c;
+  background-color: #259;
 }
 #head h1 {
   padding: 10px 0px;
-  font-size: 150%;
+  font-size: 120%;
   text-align: center;
 }
 #head h1 a {
@@ -55,7 +55,8 @@ a:hover {
 #foot {
   margin: 20px -10px 0px;
   padding: 20px 0px;
-  background-color: #49c;
+  background-color: #259;
+  color: #fff;
   text-align: center;
 }
 

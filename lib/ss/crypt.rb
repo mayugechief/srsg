@@ -3,8 +3,7 @@ require 'digest/md5'
 require 'openssl'
 require 'base64'
 module SS::Crypt
-  @@base = Rails.application.secrets.secret_key_base || "ss-pass"
-  @@salt = Rails.application.secrets.crypt_salt || "ss-salt"
+  @@salt = Rails.application.secrets.secret_key_base || "ss-salt"
   
   class << self
     public
@@ -14,7 +13,7 @@ module SS::Crypt
       end
       
       def encrypt(str, opts = {})
-        opts = { pass: @@base, salt: nil, type: "AES-256-CBC" }.merge(opts)
+        opts = { pass: @@salt, salt: nil, type: "AES-256-CBC" }.merge(opts)
         cipher = OpenSSL::Cipher::Cipher.new opts[:type]
         cipher.encrypt
         cipher.pkcs5_keyivgen opts[:pass], opts[:salt]
@@ -22,7 +21,7 @@ module SS::Crypt
       end
       
       def decrypt(str, opts = {})
-        opts = { pass: @@base, salt: nil, type: "AES-256-CBC" }.merge(opts)
+        opts = { pass: @@salt, salt: nil, type: "AES-256-CBC" }.merge(opts)
         cipher = OpenSSL::Cipher::Cipher.new opts[:type]
         cipher.decrypt
         cipher.pkcs5_keyivgen opts[:pass], opts[:salt]

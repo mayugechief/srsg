@@ -1,4 +1,4 @@
 ja:
   modules:
     addons:
-      acl/group_owner: "所有者グループ"
+      acl/group_owner: 所有者グループ

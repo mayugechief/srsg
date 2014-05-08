@@ -9,7 +9,7 @@ class Sys::Db::CollsController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:db, sys_db_path]
+      @crumbs << [:"sys.db_tool", sys_db_path]
     end
     
     def set_db

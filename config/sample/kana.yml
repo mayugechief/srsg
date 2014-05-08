@@ -1,0 +1,14 @@
+# cms configuration
+
+production:
+  kana: &inherit
+    disable: false
+    location: /kana
+
+test:
+  kana:
+    <<: *inherit
+
+development:
+  kana:
+    <<: *inherit

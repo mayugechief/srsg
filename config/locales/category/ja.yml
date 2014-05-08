@@ -1,21 +1,21 @@
 ja:
-  views:
-    links:
-      category_nodes: "カテゴリー"
+  category:
+    node: カテゴリー
 
   modules:
-    contents:
-      category: "カテゴリー"
-    nodes:
-      category/node: "カテゴリー/フォルダーリスト"
-      category/page: "カテゴリー/ページリスト"
-    parts:
-      category/node: "カテゴリーリスト"
+    category: カテゴリー
     addons:
-      category/category: "カテゴリー"
+      category/category: カテゴリー
+
+  cms:
+    nodes:
+      category/node: カテゴリーリスト
+      category/page: ページリスト
+    parts:
+      category/node: カテゴリーリスト
 
   mongoid:
     attributes:
       cms/page/model:
-        categories: "カテゴリー"
-        category_ids: "カテゴリー"
+        categories: カテゴリー
+        category_ids: カテゴリー

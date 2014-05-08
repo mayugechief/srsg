@@ -11,7 +11,7 @@ module Cms::Page::Feature
   included do
     index({ site_id: 1, filename: 1 }, { unique: true })
     
-    scope :public, ->{ where(state: "public") }
+    #scope :public, ->{ where(state: "public") }
     
     seqid :id
     field :state, type: String, default: "public"
@@ -33,15 +33,19 @@ module Cms::Page::Feature
   end
   
   module ClassMethods
-    # scope
+    def public
+      where(state: "public")
+    end
+    
     def node(node)
       node ? where(filename: /^#{node.filename}\//, depth: node.depth + 1) : where(depth: 1)
     end
   end
   
   public
-    def dirname
-      filename.index("/") ? filename.to_s.sub(/\/.*$/, "").presence : nil
+    def dirname(basename = nil)
+      dir = filename.index("/") ? filename.to_s.sub(/\/.*$/, "").presence : nil
+      basename ? (dir ? "#{dir}/" : "") + basename : dir
     end
     
     def basename

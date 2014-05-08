@@ -8,7 +8,7 @@ class Sns::User::FilesController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:files, sns_user_files_path]
+      @crumbs << [:"sns.file", sns_user_files_path]
     end
     
     def fix_params

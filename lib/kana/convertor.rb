@@ -1,32 +1,22 @@
 # coding: utf-8
-module Cms::Kana
+module Kana::Convertor
   @@mecab = nil
   
+  if SS.config.kana.disable == false
+    require "MeCab"
+    @@mecab = MeCab::Tagger
+    
+    #require "natto"
+    #@@mecab = Natto::MeCab
+  end
+  
   class << self
-    private
-      def load_binding(name = "MeCab")
-        if name == "MeCab"
-          require "MeCab"
-          @@mecab = MeCab::Tagger
-        elsif name == "natto"
-          require "natto"
-          @@mecab = Natto::MeCab
-        end
-      rescue LoadError => e
-        Rails.logger.warn e.to_s
-        @@mecab = false
-      end
-      
-      def mpad(str)
-        str.gsub(/[^ -~]/, "   ")
-      end
-      
     public
       def kana_html(html)
         return html unless @@mecab
         
         text = html.gsub(/[\r\n\t]/, " ")
-        tags = [:head, :ruby, :script, :style]
+        tags = %w[head ruby script style]
         text.gsub!(/<!\[CDATA\[.*?\]\]>/m) {|m| mpad(m) }
         text.gsub!(/<!--.*?-->/m) {|m| mpad(m) }
         tags.each {|t| text.gsub!(/<#{t}( [^>]*\/>|[^\w].*?<\/#{t}>)/m) {|m| mpad(m) } }
@@ -54,9 +44,12 @@ module Cms::Kana
         end
         
         kana << byte[pl..-1].pack("C*").force_encoding("utf-8")
-        kana
+        kana.strip
+      end
+      
+    private
+      def mpad(str)
+        str.gsub(/[^ -~]/, "   ")
       end
   end
-  
-  load_binding
 end

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   public
     def t(key, opts = {})
       opts[:scope] = [:base] if key !~ /\./ && !opts[:scope]
-      I18n.translate key, opts.merge(default: key.to_s.humanize)
+      I18n.t key, opts.merge(default: key.to_s.humanize)
     end
     
   private

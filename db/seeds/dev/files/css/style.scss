@@ -107,7 +107,7 @@ html, body {
   }
 }
 #wrap {
-  @include clear;
+  //@include clear;
   display: table;
   width: 100%;
   max-width: $page-max-width;
@@ -194,7 +194,7 @@ aside h2 {
       background-color: #ffd;
     }
     time {
-      float: left;
+      display: inline;
       margin: 0px 10px 0px 0px;
     }
   }

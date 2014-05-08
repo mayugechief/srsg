@@ -53,7 +53,8 @@ class Cms::Part
     @@plugins = []
     
     def plugin(path)
-      name = I18n.translate path.singularize, scope: [:modules, :parts], default: path.titleize
+      name  = I18n.t("modules.#{path.sub(/\/.*/, '')}", default: path.titleize)
+      name << "/" + I18n.t("cms.parts.#{path.singularize}", default: path.titleize)
       @@plugins << [name, path]
     end
     

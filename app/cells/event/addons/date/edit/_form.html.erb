@@ -13,8 +13,8 @@ $ ->
   <dd class="date">
     <%= text_field_tag "event[][start_date]", nil, { id: nil, class: "js-date start" } %>
     - <%= text_field_tag "event[][close_date]", nil, { id: nil, class: "js-date close" } %>
-    <%= button_tag t("event_views.button.del_date"), { type: :button, class: "clear" } %>
+    <%= button_tag t("event.del_date"), { type: :button, class: "clear" } %>
   </dd>
-  <dd><%= button_tag t("event_views.button.add_date"), { type: :button, class: "add-date" } %></dd>
+  <dd><%= button_tag t("event.add_date"), { type: :button, class: "add-date" } %></dd>
   <dd style="display: none;"><%= f.text_area :event_dates, class: "event-dates" %></dd>
 </dl>

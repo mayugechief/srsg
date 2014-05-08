@@ -29,7 +29,8 @@ class Cms::Node
     @@plugins = []
     
     def plugin(path)
-      name = I18n.translate path.singularize, scope: [:modules, :nodes], default: path.titleize
+      name  = I18n.t("modules.#{path.sub(/\/.*/, '')}", default: path.titleize)
+      name << "/" + I18n.t("cms.nodes.#{path.singularize}", default: path.titleize)
       @@plugins << [name, path]
     end
     
@@ -39,10 +40,7 @@ class Cms::Node
     
     def modules
       keys = @@plugins.map {|m| m[1].sub(/\/.*/, "") }.uniq
-      keys.map do |key|
-        name = I18n.translate key, scope: [:modules, :contents], default: key.to_s.titleize
-        [name, key]
-      end
+      keys.map {|key| [I18n.t("modules.#{key}", default: key.to_s.titleize), key] }
     end
   end
 end
