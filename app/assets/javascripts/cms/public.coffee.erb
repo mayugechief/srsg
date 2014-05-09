@@ -119,11 +119,11 @@ class @SS_Font
     
   @set: (size) ->
     if size ==  true
-      size = @size + 10
-      return if size > 150
+      size = @size + 20
+      return false if size > 200
     else if size == false
-      size = @size - 10
-      return if size < 80
+      size = @size - 20
+      return false if size < 60
     
     @size = size
     $("body").css "font-size", size + "%"
