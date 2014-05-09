@@ -3,7 +3,7 @@
 $ ->
   if $("form .mod-event").length
     $(".mod-event button:button.add-date").click ->
-      if $(".mod-event dd.date").length < Event_Form.maxTermForm
+      if $(".mod-event dd.dates").length < Event_Form.maxTermForm
         Event_Form.cloneTermForm()
       return
 
@@ -18,17 +18,17 @@ $ ->
       return
 
     $("form").submit ->
-      terms = $(".mod-event dd.date")
+      terms = $(".mod-event dd.dates")
       dates = []
 
       for term in terms
         add = Event_Form.termToDates($(term).find(".start").val(), $(term).find(".close").val())
         dates = dates.concat(add)
 
-      $(".mod-event textarea.event-dates").val Event_Form.datesToString(dates)
+      $(".mod-event .event-dates").val Event_Form.datesToString(dates)
       return
 
-#    $(".mod-event input.js-date").datepicker
+#    $(".mod-event input.date").datepicker
 #      dateFormat: "yy/mm/dd",
 #      yearRange: "-10:+10"
 
@@ -110,7 +110,7 @@ class @Event_Form
     return terms
 
   @setStoredDates: ()->
-    stored = $(".mod-event textarea.event-dates").val().split(/\r\n|\n/)
+    stored = $(".mod-event .event-dates").val().split(/\r\n|\n/)
     dates  = []
 
     for d in stored
@@ -121,11 +121,11 @@ class @Event_Form
 
     for term, i in terms
       @cloneTermForm() if i != 0
-      $(".mod-event dd.date:last").find(".start").val @dateToString(term[0])
-      $(".mod-event dd.date:last").find(".close").val @dateToString(term[1])
+      $(".mod-event dd.dates:last").find(".start").val @dateToString(term[0])
+      $(".mod-event dd.dates:last").find(".close").val @dateToString(term[1])
 
   @cloneTermForm: ()->
-    cln = $(".mod-event dd.date:last").clone(false).insertAfter($(".mod-event dd.date:last"))
+    cln = $(".mod-event dd.dates:last").clone(false).insertAfter($(".mod-event dd.dates:last"))
     cln.find(".start").val ""
     cln.find(".close").val ""
     
@@ -139,19 +139,19 @@ class @Event_Form
         Event_Form.clearTermForm $(this).parent("dd")
       return
 
-    $(".mod-event input.js-date").attr("id", "").datetimepicker
+    $(".mod-event .date").attr("id", "").datetimepicker
       lang: "ja"
       timepicker: false
       format: "Y/m/d"
       #yearRange: "-10:+10"
 
-    if $(".mod-event dd.date").length >= @maxTermForm
+    if $(".mod-event dd.dates").length >= @maxTermForm
       $(".mod-event button:button.add-date").attr "disabled", true
 
   @clearTermForm: (ele)->
     ele.find(".start").val ""
     ele.find(".close").val ""
-    ele.remove() if $(".mod-event dd.date").length > 1
+    ele.remove() if $(".mod-event dd.dates").length > 1
 
-    if $(".mod-event dd.date").length < @maxTermForm
+    if $(".mod-event dd.dates").length < @maxTermForm
       $(".mod-event button:button.add-date").removeAttr "disabled"

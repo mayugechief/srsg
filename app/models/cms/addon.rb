@@ -39,10 +39,47 @@ module Cms::Addon
     end
   end
   
+  module Release
+    extend ActiveSupport::Concern
+    extend SS::Addon
+    
+    included do
+      field :released, type: DateTime
+      field :release_date, type: DateTime
+      field :unrelease_date, type: DateTime
+      permit_params :released, :release_date, :unrelease_date
+      
+      validate :validate_release_date
+    end
+    
+    def validate_release_date
+      if public? && released.blank?
+        self.released = Time.now
+      end
+      
+      if unrelease_date.present? 
+        if release_date.present? && release_date >= unrelease_date 
+          errors.add :unrelease_date, :greater_than, count: t(:release_date)
+        end
+      end
+    end
+  end
+  
   module NodeList
     extend ActiveSupport::Concern
     extend SS::Addon
     include Cms::Addon::List::Model
+    
+    public
+      def order_options
+        [ ["タイトル", "name"], ["ファイル名", "filename"],
+          ["作成日時", "created"], ["更新日時", "updated -1"] ]
+      end
+      
+      def orders
+        return { filename: 1 } if order.blank?
+        { order.sub(/ .*/, "") => (order =~ /-1$/ ? -1 : 1) }
+      end
   end
   
   module PageList
@@ -58,9 +95,14 @@ module Cms::Addon
     end
     
     public
-      def limit_options
+      def order_options
         [ ["タイトル", "name"], ["ファイル名", "filename"],
-          ["作成日時", "created"], ["更新日時", "updated -1"], ["公開日時", "published -1"] ]
+          ["作成日時", "created"], ["更新日時", "updated -1"], ["公開日時", "released -1"] ]
+      end
+      
+      def orders
+        return { released: -1 } if order.blank?
+        { order.sub(/ .*/, "") => (order =~ /-1$/ ? -1 : 1) }
       end
       
       def condition_hash

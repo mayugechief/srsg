@@ -73,6 +73,10 @@ module SS::Document
   end
   
   public
+    def t(name)
+      self.class.t name
+    end
+    
     def label(name)
       send("#{name}_options").each {|m| return m[0] if m[1] == send(name) }
       nil

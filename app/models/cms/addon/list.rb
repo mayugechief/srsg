@@ -15,13 +15,11 @@ module Cms::Addon::List
     
     public
       def order_options
-        [ ["タイトル", "name"], ["ファイル名", "filename"],
-          ["作成日時", "created"], ["更新日時", "updated -1"] ]
+        []
       end
       
       def orders
-        return nil if order.blank?
-        { order.sub(/ .*/, "") => (order =~ /-1$/ ? -1 : 1) }
+        {}
       end
       
       def limit

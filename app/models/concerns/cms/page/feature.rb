@@ -18,7 +18,7 @@ module Cms::Page::Feature
     field :name, type: String
     field :filename, type: String
     field :depth, type: Integer, metadata: { form: :none }
-    field :published, type: DateTime
+    #field :released, type: DateTime
     embeds_ids :categories, class_name: "Cms::Node"
     
     permit_params :state, :name, :filename, :basename, category_ids: []
@@ -77,7 +77,7 @@ module Cms::Page::Feature
     end
     
     def date
-      published || updated || created
+      released || updated || created
     end
     
     def node

@@ -29,6 +29,7 @@ ja:
       cms/html: HTML
       cms/body: 本文
       cms/file: ファイル
+      cms/release: 公開設定
       cms/node_list: リスト表示
       cms/page_list: リスト表示
 
@@ -49,6 +50,9 @@ ja:
         summary_html: Summary
         html: 本文
         files: ファイル
+        released: 公開日時
+        release_date: 公開開始日時(予約)
+        unrelease_date: 公開終了日時(予約)
       cms/part/model:
         name: パーツ名
         route: パーツ属性

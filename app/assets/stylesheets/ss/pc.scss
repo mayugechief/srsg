@@ -161,11 +161,13 @@ nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu, nav.addon-menu {
   header {
     display: block;
     margin-bottom: 10px;
-    padding: 0px 2px 5px;
-    border-bottom: 1px solid #c38;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #f7f7f7;
     font-size: 120%;
-    h1 { color: #c38; }
+    h1 {
+      padding: 0px 2px 5px;
+      border-bottom: 1px solid #ccc;
+      color: #c38;
+    }
   }
   div {
     a {
