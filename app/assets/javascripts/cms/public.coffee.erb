@@ -63,7 +63,8 @@ class @SS
     }
   
   @renderPart: (elm) ->
-    url = SS_Kana.url elm.attr("href").replace(/\.html/, ".json")
+    url = elm.data("href") || elm.attr("href")
+    url = SS_Kana.url url.replace(/\.html/, ".json")
     
     elm.append " " + SS.loading
     $.ajax
