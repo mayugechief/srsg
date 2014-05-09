@@ -111,7 +111,7 @@ module Cms::Node::Model
     end
     
     def nodes
-      self.class.where(site_id: site_id, filename: /^#{filename}\//)
+      Cms::Node.where(site_id: site_id, filename: /^#{filename}\//)
     end
     
     def children(cond = {})
@@ -183,7 +183,7 @@ module Cms::Node::Model
     
     def destroy_children
       %w(nodes pages parts layouts).each do |name|
-        send(name).destroy
+        send(name).destroy_all
       end
     end
 end
