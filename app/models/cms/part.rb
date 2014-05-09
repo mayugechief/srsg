@@ -47,6 +47,10 @@ class Cms::Part
     def home_label
       read_attribute(:home_label).presence || "HOME"
     end
+    
+    def render_html
+      %Q[<div class="crumbs"><span class="page">#{super}</span></div>]
+    end
   end
   
   class << self

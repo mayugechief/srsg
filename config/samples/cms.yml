@@ -1,13 +1,10 @@
-# cms configuration
+# cms
 
-production:
-  cms: &inherit
-    ajax_layout: true
+production: &production
+  ajax_layout: true
 
 test:
-  cms:
-    <<: *inherit
+  <<: *production
 
 development:
-  cms:
-    <<: *inherit
+  <<: *production

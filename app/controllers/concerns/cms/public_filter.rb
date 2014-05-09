@@ -140,7 +140,11 @@ module Cms::PublicFilter
     
     def send_layout(body)
       respond_to do |format|
-        format.html { render inline: body }
+        format.html do
+          body.sub!(/(<[^>]+ id="ss-site-name".*?>)[^<]+/, "\\1#{@cur_site.name}")
+          body.sub!(/(<[^>]+ id="ss-page-name".*?>)[^<]+/, "\\1Layout")
+          render inline: body
+        end
         format.json { render json: body }
       end
     end

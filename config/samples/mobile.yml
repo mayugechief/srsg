@@ -1,13 +1,10 @@
-# cms configuration
+# mobile
 
-production:
-  mobile: &inherit
-    location: /mobile
+production: &production
+  location: /mobile
 
 test:
-  mobile:
-    <<: *inherit
+  <<: *production
 
 development:
-  mobile:
-    <<: *inherit
+  <<: *production
