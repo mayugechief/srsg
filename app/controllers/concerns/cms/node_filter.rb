@@ -28,7 +28,7 @@ module Cms::NodeFilter
           return cms_nodes_path unless @item.parent
           diff = @item.route.split("/")[0] != @item.parent.route.split("/")[0]
           return node_nodes_path(cid: @item.parent) if diff
-          { controller: params[:controller], cid: @item.parent }
+          { controller: params[:controller], cid: @item.parent.id }
         else
           diff = @item.route.split("/")[0] != params[:controller].split("/")[0]
           diff ? { action: :show, id: @item } : nil

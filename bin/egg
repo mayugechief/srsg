@@ -9,6 +9,30 @@ require "fileutils"
 require 'zipruby'
 
 class Frypan
+  
+  TARGETS = [
+    "app/assets/images",
+    "app/assets/javascripts",
+    "app/assets/stylesheets",
+    "app/cells",
+    "app/controllers",
+    "app/controllers/concerns",
+    "app/helpers",
+    "app/mailers",
+    "app/models",
+    "app/models/concerns",
+    "app/views",
+    "app/views/layouts",
+    "config/initializers",
+    "config/locales",
+    "config/routes",
+    "config/samples",
+    "db",
+    "doc",
+    "lib",
+    "lib/tasks/",
+  ]
+  
   private
     def root
       "#{File.dirname(__dir__)}"
@@ -18,42 +42,22 @@ class Frypan
       "#{root}/vendor/eggs"
     end
     
-    def mod_dirs
-      [
-        "app/assets/images",
-        "app/assets/javascripts",
-        "app/assets/stylesheets",
-        "app/cells",
-        "app/controllers",
-        "app/controllers/concerns",
-        "app/helpers",
-        "app/mailers",
-        "app/models",
-        "app/models/concerns",
-        "app/views",
-        "app/views/layouts",
-        "config/initializers",
-        "config/locales",
-        "config/routes",
-        "db",
-        "docs",
-        "lib",
-        "lib/tasks/",
-      ]
+    def zip_file
+      v = ver ? "-#{ver}" : nil 
+      "#{zip_dir}/#{ARGV[1]}#{v}.zip"
+    end
+    
+    def name
+      ARGV[1]
     end
     
     def mod
-      ARGV[1].gsub("-", "_")
+      name.gsub("-", "_")
     end
     
     def ver
       ARGV.each_with_index {|arg, i| return ARGV[i+1] if arg == "-v" && ARGV[i+1] }
       nil
-    end
-    
-    def zip
-      v = ver ? "-#{ver}" : nil 
-      "#{zip_dir}/#{ARGV[1]}#{v}.zip"
     end
     
   public
@@ -62,19 +66,20 @@ class Frypan
       puts ""
       
       Dir.chdir(root)
-      mod_dirs.each do |dir|
+      TARGETS.each do |dir|
         return puts "    Module exists: #{dir}/#{mod}" if File.exists?("#{dir}/#{mod}")
       end
       
-      Zip::Archive.open(zip) do |ar|
+      Zip::Archive.open(zip_file) do |ar|
         entry_names = ar.map do |f|
+          path = f.name.sub(/^#{name}\//, '')
           if f.directory?
-            puts "    create  #{f.name.sub(/\/$/, '')}"
-            FileUtils.mkdir_p(f.name) if !File.exists?(f.name)
-            next
+            puts "    create  #{path}"
+            FileUtils.mkdir_p(path) if !File.exists?(path)
+          else
+            puts "    create  #{path}"
+            File.binwrite(path, f.read)
           end
-          File.binwrite(f.name, f.read)
-          puts "    create  #{f.name}"
         end
       end
     end
@@ -84,7 +89,7 @@ class Frypan
       puts ""
       
       Dir.chdir(root)
-      mod_dirs.each do |dir|
+      TARGETS.each do |dir|
         Dir.glob("#{dir}/#{mod}{/,/**/*,.*}").each do |f|
           puts "    delete  #{f.sub(/\/$/, '')}"
           FileUtils.rm_r(f) if File.exists?(f)
@@ -97,25 +102,25 @@ class Frypan
       puts ""
       
       Dir.chdir(root)
-      Zip::Archive.open("#{zip}.tmp", Zip::CREATE) do |ar|
-        mod_dirs.each do |dir|
-          ar.add_dir "#{dir}/#{mod}" if File.exists? "#{dir}/#{mod}"
+      Zip::Archive.open("#{zip_file}.tmp", Zip::CREATE) do |ar|
+        TARGETS.each do |dir|
+          ar.add_dir "#{name}/#{dir}/#{mod}" if File.exists? "#{dir}/#{mod}"
           Dir.glob("#{dir}/#{mod}{/**/*,.*}") do |f|
             if File.directory?(f)
               puts "     fetch  #{f}"
-              ar.add_dir(f)
+              ar.add_dir "#{name}/#{f}"
               next
             end
             puts "     fetch  #{f}"
-            ar.add_file(f, f)
+            ar.add_file "#{name}/#{f}", f
           end
         end
       end
       
-      return puts "    No such module: #{mod}" if !File.exists?("#{zip}.tmp")
+      return puts "    No such module: #{mod}" if !File.exists?("#{zip_file}.tmp")
       
-      puts "\n    create  #{zip}"
-      FileUtils.mv "#{zip}.tmp", zip
+      puts "\n    create  #{zip_file}"
+      FileUtils.mv "#{zip_file}.tmp", zip_file
     end
 end
 

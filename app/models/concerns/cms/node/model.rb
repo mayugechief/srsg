@@ -80,6 +80,10 @@ module Cms::Node::Model
       "#{site.full_url}#{filename}/"
     end
     
+    def public?
+      state == "public"
+    end
+    
     #def current?(path)
     #  "/#{filename}/" =~ /^#{path.sub(/\.[^\.]+?$/, '')}/ ? :current : nil
     #end

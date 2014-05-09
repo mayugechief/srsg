@@ -17,9 +17,12 @@ class Cms::Node::ConfsController < ApplicationController
       { site_id: @cur_site._id, cur_node: @cur_node.parent }
     end
     
-  public
-    def destroy
-      render_route
-      render_destroy @resp.blank?, location: node_nodes_path
+    def redirect_url
+      if params[:action] == "destroy"
+        return cms_nodes_path unless @item.parent
+        node_nodes_path(cid: @item.parent)
+      else
+        { action: :show, cid: @item }
+      end
     end
 end

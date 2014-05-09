@@ -1,14 +1,17 @@
-SHIRASAGI install
-============
+SHIRASAGI インストールマニュアル
+================================
 
-CentOS 6.5/64bit
+# 想定環境
 
-yum packages
+  CentOS 6.5/64bit
 
-  yum -y install \
-    ImageMagick ImageMagick-devel
+----------------------------------------------------------------------------------------------------
+# Packages
 
-mongodb
+  yum -y install ImageMagick ImageMagick-devel
+
+----------------------------------------------------------------------------------------------------
+# MongoDB
 
   vi /etc/yum.repos.d/CentOS-Base.repo
     --
@@ -22,25 +25,26 @@ mongodb
   /sbin/service mongod start
   /sbin/chkconfig mongod on
 
-ruby
+----------------------------------------------------------------------------------------------------
+# Ruby (RVM)
 
   bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
   su -
   rvm install 2.1.1
 
-SHIRASAGI
+----------------------------------------------------------------------------------------------------
+# SHIRASAGI
 
-  git clone https://github.com/webtips/srsg /var/www/ss
-  cd /var/www/ss
-  cp config/sample/* config/
+  git clone --depth 1 https://github.com/shirasagi/shirasagi /var/www/shirasagi
+  cd /var/www/shirasagi
+  cp config/samples/* config/
   bundle install
-  thin start -d
-
-access to http://localhost:3000/.mypage
+  thin start -d -e production
+  
+  Access to http://localhost:3000/.mypage
 
 ----------------------------------------------------------------------------------------------------
-
-mecab
+# ふりがな機能
 
   cd /usr/local/src
   wget http://mecab.googlecode.com/files/mecab-0.996.tar.gz \
@@ -63,34 +67,30 @@ mecab
   ldconfig
 
 ----------------------------------------------------------------------------------------------------
+# データベース操作
 
-database utility
-================
+  ## インデックスの作成
+  rake db:create_indexes
 
-# create index
-rake db:create_indexes
+  ## ユーザーの作成
+  rake db:user:create data='{ name: "user", email: "user@example.jp", password: "pass" }'
 
-# add user
-rake db:user:create data='{ name: "user", email: "user@example.jp", password: "pass" }'
+  # サイトの作成
+  rake db:site:create data='{ name: "Your Site", host: "www", domains: "localhost:3000" }'
 
-# add site
-rake db:site:create data='{ name: "Your Site", host: "www", domains: "localhost:3000" }'
-
-# add sample
-rake db:seed name=demo site=www
+  # サンプルデータの投入
+  rake db:seed name=demo site=www
 
 ----------------------------------------------------------------------------------------------------
+# 開発ツール
 
-module utility
-==============
+  # Eggインストール
+  bin/egg install sample-egg -v 1.0.0
 
-# install
-bin/egg install sample-egg -v 1.0.0
+  # Eggアンインストール
+  bin/egg uninstall sample-egg
 
-# uninstall
-bin/egg uninstall sample-egg
-
-# pack
-bin/egg pack sample-egg -v 1.0.0
+  # Egg作成
+  bin/egg pack sample-egg -v 1.0.0
 
 ----------------------------------------------------------------------------------------------------

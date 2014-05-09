@@ -127,7 +127,7 @@ module Cms::PublicFilter
     def find_layout(path)
       layout = Cms::Layout.find_by(site_id: @cur_site, filename: path) rescue nil
       return nil unless layout
-      @preview || layout.state == "public" ? layout : nil
+      @preview || layout.public? ? layout : nil
     end
     
     def render_layout(layout)
@@ -150,7 +150,7 @@ module Cms::PublicFilter
     def find_part(path)
       part = Cms::Part.find_by(site_id: @cur_site, filename: path) rescue nil
       return unless part
-      @preview || part.state == "public" ? part : nil
+      @preview || part.public?  ? part : nil
     end
     
     def render_part(part, path = @path)
@@ -173,7 +173,7 @@ module Cms::PublicFilter
     def find_page(path)
       page = Cms::Page.find_by(site_id: @cur_site, filename: path) rescue nil
       return unless page
-      @preview || page.state == "public" ? page : nil
+      @preview || page.public? ? page : nil
     end
     
     def render_page(page)
@@ -201,7 +201,7 @@ module Cms::PublicFilter
       
       node = Cms::Node.where(site_id: @cur_site.id, :filename.in => dirs).sort(depth: -1).first
       return unless node
-      @preview || node.state == "public" ? node : nil
+      @preview || node.public? ? node : nil
     end
     
     def render_node(node, path = @path)

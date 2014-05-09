@@ -72,6 +72,10 @@ module Cms::Page::Feature
       site.url + filename.sub(/\.html/, ".json")
     end
     
+    def public?
+      state == "public"
+    end
+    
     def date
       published || updated || created
     end
