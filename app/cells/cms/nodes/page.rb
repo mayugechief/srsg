@@ -9,23 +9,27 @@ module Cms::Nodes::Page
     include Cms::NodeFilter::ViewCell
     helper Cms::ListHelper
     
-    def index
-      @items = Cms::Page.site(@cur_site).public.
-        where(@cur_node.condition_hash).
-        order_by(@cur_node.orders).
-        page(params[:page]).
-        per(@cur_node.limit)
+    public
+      def pages
+        Cms::Page.site(@cur_site).public.
+          where(@cur_node.condition_hash)
+      end
       
-      @items.empty? ? "" : render
-    end
-    
-    def rss
-      @items = Cms::Page.site(@cur_site).public.
-        where(@cur_node.condition_hash).
-        order_by(publushed: -1).
-        per(@cur_node.limit)
+      def index
+        @items = pages.
+          order_by(@cur_node.orders).
+          page(params[:page]).
+          per(@cur_node.limit)
+        
+        @items.empty? ? "" : render
+      end
       
-      render_rss @cur_node, @items
-    end
+      def rss
+        @items = pages.
+          order_by(publushed: -1).
+          per(@cur_node.limit)
+        
+        render_rss @cur_node, @items
+      end
   end
 end

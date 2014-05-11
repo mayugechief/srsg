@@ -6,6 +6,7 @@ class Cms::PartsController < ApplicationController
   model Cms::Part
   
   navi_view "cms/main/navi"
+  menu_view "cms/main/node_menu"
   
   private
     def set_crumbs

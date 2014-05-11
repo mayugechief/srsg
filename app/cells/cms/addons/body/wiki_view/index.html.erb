@@ -1,5 +1,0 @@
-<% if @cur_page.wiki.present? %>
-<article>
-  <%== ::Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(@cur_page.wiki) %>
-</article>
-<% end %>

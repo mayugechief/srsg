@@ -38,15 +38,9 @@ module Cms::PublicFilter
         end
       end
       raise "404" if response.body.blank?
-      
-      cover_layout unless ajax_layout?
     end
   
   private
-    def ajax_layout?
-      @ajax_layout.nil? ? SS.config.cms.ajax_layout : @ajax_layout
-    end
-    
     def set_site
       @cur_site ||= SS::Site.find_by domains: request.env["HTTP_HOST"] rescue nil
       @cur_site ||= SS::Site.first if Rails.env.development?
@@ -77,7 +71,7 @@ module Cms::PublicFilter
     def parse_path
       @path = @path.sub(/\/$/, "/index.html").sub(/^\//, "")
       @html = @path.sub(/^\//, "").sub(/\.\w+$/, ".html")
-      @file = File.join @cur_site.path, @path
+      @file = File.join(@cur_site.path, @path)
     end
     
     def compile_scss
@@ -152,7 +146,7 @@ module Cms::PublicFilter
     # part
     
     def find_part(path)
-      part = Cms::Part.find_by(site_id: @cur_site, filename: path) rescue nil
+      part = Cms::Part.find_by site_id: @cur_site, filename: path rescue nil
       return unless part
       @preview || part.public?  ? part : nil
     end
@@ -248,15 +242,14 @@ module Cms::PublicFilter
       render status: status, nothing: true
     end
     
-    def cover_layout
-      body = response.body
-      
+    def embed_layout(body, opts = {})
       head = body.match(/<header.*?<\/header>/m).to_s
       site_name = head =~ /<[^>]+ id="ss-site-name".*?>(.*?)</m ? $1 : nil
       page_name = head =~ /<[^>]+ id="ss-page-name".*?>(.*?)</m ? $1 : nil
       
       if @cur_layout
-        @ref = "/#{@path}"
+        @request_url = "/#{@path}"
+        @cur_layout.parts_condition = opts[:part_condition]
         data = ActiveSupport::JSON.decode(@cur_layout.render_json)
         
         main = body =~ /<!-- yield -->(.*)<!-- \/yield -->/m ? $1 : body
@@ -275,7 +268,7 @@ module Cms::PublicFilter
         body.sub!(/(<[^>]+ id="ss-page-name".*?>)[^<]+/, "\\1#{page_name}")
       end
       
-      response.body = body
+      body
     end
     
   class << self

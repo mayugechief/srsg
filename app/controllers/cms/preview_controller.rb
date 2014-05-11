@@ -10,7 +10,6 @@ class Cms::PreviewController < ApplicationController
     def set_site
       @cur_site    = SS::Site.find_by host: params[:host]
       @preview     = true
-      @ajax_layout = false
     end
     
     def set_path_with_preview
@@ -20,9 +19,9 @@ class Cms::PreviewController < ApplicationController
     end
     
     def render_preview
-      body = response.body
+      body = embed_layout(response.body)
       
-      body.gsub!(/(href=")(\/[^"]+\/(|\.html))"/, %Q[\\1#{cms_preview_path}\\2"])
+      body.gsub!(/(href=")(\/[^"]+(\/|\.html))"/, %Q[\\1#{cms_preview_path}\\2"])
       body.gsub!('href="/"', %Q[href="#{cms_preview_path}/"])
       body.gsub!(/(<img [^>]+ src=")(\/[^"]+\/(|\.html))"/, %Q[\\1#{cms_preview_path}\\2"])
       

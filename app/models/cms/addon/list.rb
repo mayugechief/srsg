@@ -5,12 +5,15 @@ module Cms::Addon::List
     extend SS::Translation
     
     included do |mod|
+      field :conditions, type: SS::Extensions::Words
       field :order, type: String
       field :limit, type: Integer, default: 20
       field :loop_html, type: String
       field :upper_html, type: String
       field :lower_html, type: String
-      permit_params :order, :limit, :loop_html, :upper_html, :lower_html
+      permit_params :conditions, :order, :limit, :loop_html, :upper_html, :lower_html
+      
+      before_validation :validate_conditions
     end
     
     public
@@ -33,8 +36,41 @@ module Cms::Addon::List
           str == false ? m : str
         end
       end
-    
+      
+      def condition_hash
+        cond = []
+        cids = []
+        
+        if respond_to?(:node) # parts
+          if node
+            cond << { filename: /^#{node.filename}\//, depth: depth }
+            cids << node.id
+          else
+            cond << { depth: depth }
+          end
+        else # nodes
+          cond << { filename: /^#{filename}\//, depth: depth + 1 }
+          cids << id
+        end
+        
+        conditions.each do |url|
+          node = Cms::Node.where(filename: url).first
+          next unless node
+          cond << { filename: /^#{node.filename}\//, depth: node.depth + 1 }
+          cids << node.id
+        end
+        cond << { :category_ids.in => cids } if cids.present?
+        
+        { '$or' => cond }
+      end
+      
     private
+      def validate_conditions
+        self.conditions = conditions.map do |m|
+          m.strip.sub(/^\w+:\/\/.*?\//, "").sub(/^\//, "").sub(/\/$/, "")
+        end.compact.uniq
+      end
+      
       def eval_loop_variable(name, item)
         if name =~ /^(name|url|summary)$/
           item.send name

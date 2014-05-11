@@ -14,15 +14,16 @@ module Cms::Node::Model
     store_in collection: "cms_nodes"
     index({ site_id: 1, filename: 1 }, { unique: true })
     
+    scope :root, ->{ where(depth: 1) }
     #scope :public, ->{ where(state: "public") }
     
     seqid :id
     field :state, type: String, default: "public"
     field :name, type: String
     field :filename, type: String
-    field :depth, type: Integer, metadata: { form: :none }
+    field :depth, type: Integer
     field :route, type: String
-    field :shortcut, type: String
+    field :shortcut, type: String, default: "hide"
     
     permit_params :state, :name, :filename, :basename, :route, :shortcut
     
@@ -52,7 +53,7 @@ module Cms::Node::Model
   
   public
     def becomes_with_route
-      klass = route.sub("/", "/node/").singularize.camelize.constantize rescue nil
+      klass = route.sub("/", "/node/").camelize.constantize rescue nil
       return self unless klass
       
       item = klass.new

@@ -202,6 +202,41 @@ aside h2 {
     }
   }
 }
+.tabs {
+  margin: 0px 0px 20px;
+  .name {
+    display: inline-block;
+    margin: 0px 4px 0px 0px;
+    padding: 4px 8px;
+    border: 1px solid #bbb;
+    background-color: #eee;
+    &.current {
+      border-bottom: 1px solid #fff;
+      background-color: #fff;
+    }
+  }
+  .view {
+    min-height: 170px;
+    margin: -1px 0px 0px;
+    padding: 8px;
+    border: 1px solid #bbb;
+    article {
+      .new {
+        color: "#f70";
+      }
+      .new::after {
+        color: #e00;
+        font-size: 90%;
+        font-weight: bold;
+        content: "NEW";
+      }
+    }
+    footer {
+      margin: 8px 0px 0px;
+      text-align: right;
+    }
+  }
+}
 
 // -------------------------------------------------------------------------------------------------
 

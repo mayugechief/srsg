@@ -36,6 +36,13 @@ class Cms::Part
     default_scope ->{ where(route: "cms/page") }
   end
   
+  class Tabs
+    include Cms::Part::Model
+    include Cms::Addon::Tabs
+    
+    default_scope ->{ where(route: "cms/tabs") }
+  end
+  
   class Crumb
     include Cms::Part::Model
     
@@ -59,7 +66,7 @@ class Cms::Part
     
     def plugin(path)
       name  = I18n.t("modules.#{path.sub(/\/.*/, '')}", default: path.titleize)
-      name << "/" + I18n.t("cms.parts.#{path.singularize}", default: path.titleize)
+      name << "/" + I18n.t("cms.parts.#{path}", default: path.titleize)
       @@plugins << [name, path]
     end
     

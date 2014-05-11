@@ -20,6 +20,7 @@ ja:
       cms/free: HTML記述
       cms/node: フォルダーリスト
       cms/page: ページリスト
+      cms/tabs: 新着タブ
       cms/crumb: パンくずリスト
 
   modules:
@@ -32,6 +33,7 @@ ja:
       cms/release: 公開設定
       cms/node_list: リスト表示
       cms/page_list: リスト表示
+      cms/tabs: タブ表示
 
   mongoid:
     models:
@@ -56,6 +58,7 @@ ja:
       cms/part/model:
         name: パーツ名
         route: パーツ属性
+        mobile_view: 携帯向け表示
       cms/layout:
         name: レイアウト名
         html: HTML
@@ -69,3 +72,6 @@ ja:
         loop_html: ループHTML
         upper_html: 上部HTML
         lower_html: 下部HTML
+      cms/addon/tabs:
+        conditions: タブ設定(URL)
+        new_days: NEWマーク期間

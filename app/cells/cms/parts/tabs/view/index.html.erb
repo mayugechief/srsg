@@ -1,0 +1,23 @@
+<%= jquery do %>
+SS_Tabs.render("#cms-tabs-<%= @tabs.object_id %>");
+<% end %>
+
+<div class="cms-tabs tabs" id="cms-tabs-<%= @tabs.object_id %>">
+  <% @tabs.each do |tab| %>
+  <article class="tab" id="cms-tab-<%= tab.object_id %>" data-href="<%= tab[:url] %>">
+    <header><h1><%= tab[:name] %></h1></header>
+    <div class="pages">
+      <% tab[:pages].each do |item| %>
+      <article>
+        <header>
+          <h2>
+            <%= link_to item.name, item.url %>
+            <% if @cur_part.in_new_days?(item.date) %><span class="new" title="NEW"></span><% end %>
+          </h2>
+        </header>
+      </article>
+      <% end %>
+    </div>
+  </article>
+  <% end %>
+</div>

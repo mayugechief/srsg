@@ -12,7 +12,7 @@ module Cms::Parts::Node
     def index
       @cur_node = @cur_part.node
       
-      path = @ref.present? ? @ref.sub(/^\//, "").sub(/\/[^\/]*$/, "") : nil
+      path = @request_url.present? ? @request_url.sub(/^\//, "").sub(/\/[^\/]*$/, "") : nil
       node = path ? Category::Node::Base.site(@cur_site).where(filename: path).first : nil
       node ||= @cur_node
       

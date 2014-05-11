@@ -78,7 +78,11 @@ module SS::Document
     end
     
     def label(name)
-      send("#{name}_options").each {|m| return m[0] if m[1] == send(name) }
+      if send(name).blank?
+        send("#{name}_options").each {|m| return m[0] if m[1].blank? }
+      else
+        send("#{name}_options").each {|m| return m[0] if m[1] == send(name) }
+      end
       nil
     end
     

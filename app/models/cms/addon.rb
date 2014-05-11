@@ -65,6 +65,42 @@ module Cms::Addon
     end
   end
   
+  module Tabs
+    extend ActiveSupport::Concern
+    extend SS::Addon
+    
+    included do
+      field :conditions, type: SS::Extensions::Words
+      field :limit, type: Integer, default: 10
+      field :new_days, type: Integer, default: 1
+      permit_params :conditions, :limit, :new_days
+      
+      before_validation :validate_conditions
+    end
+    
+    public
+      def limit
+        value = read_attribute(:limit).to_i
+        (value < 1 || 100 < value) ? 100 : value
+      end
+    
+      def new_days
+        value = read_attribute(:new_days).to_i
+        (value < 0 || 30 < value) ? 30 : value
+      end
+      
+      def in_new_days?(date)
+        date + new_days > Time.now
+      end
+      
+    private
+      def validate_conditions
+        self.conditions = conditions.map do |m|
+          m.strip.sub(/^\w+:\/\/.*?\//, "").sub(/^\//, "").sub(/\/$/, "")
+        end.compact.uniq
+      end
+  end
+  
   module NodeList
     extend ActiveSupport::Concern
     extend SS::Addon
@@ -87,13 +123,6 @@ module Cms::Addon
     extend SS::Addon
     include Cms::Addon::List::Model
     
-    included do |mod|
-      field :conditions, type: SS::Extensions::Words
-      permit_params :conditions
-      
-      before_validation :validate_conditions
-    end
-    
     public
       def order_options
         [ ["タイトル", "name"], ["ファイル名", "filename"],
@@ -103,40 +132,6 @@ module Cms::Addon
       def orders
         return { released: -1 } if order.blank?
         { order.sub(/ .*/, "") => (order =~ /-1$/ ? -1 : 1) }
-      end
-      
-      def condition_hash
-        cond = []
-        cids = []
-        
-        if respond_to?(:node) # from parts
-          if node
-            cond << { filename: /^#{node.filename}\//, depth: depth }
-            cids << node.id
-          else
-            cond << { depth: depth }
-          end
-        else # from nodes
-          cond << { filename: /^#{filename}\//, depth: depth + 1 }
-          cids << id
-        end
-        
-        conditions.each do |url|
-          node = Cms::Node.where(filename: url).first
-          next unless node
-          cond << { filename: /^#{node.filename}\//, depth: node.depth + 1 }
-          cids << node.id
-        end
-        cond << { :category_ids.in => cids } if cids.present?
-        
-        { '$or' => cond }
-      end
-      
-    private
-      def validate_conditions
-        self.conditions = conditions.map do |m|
-          m.strip.sub(/^\w+:\/\/.*?\//, "").sub(/^\//, "").sub(/\/$/, "")
-        end.compact.uniq
       end
   end
 end

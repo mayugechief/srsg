@@ -30,7 +30,7 @@ class Cms::Node
     
     def plugin(path)
       name  = I18n.t("modules.#{path.sub(/\/.*/, '')}", default: path.titleize)
-      name << "/" + I18n.t("cms.nodes.#{path.singularize}", default: path.titleize)
+      name << "/" + I18n.t("cms.nodes.#{path}", default: path.titleize)
       @@plugins << [name, path]
     end
     

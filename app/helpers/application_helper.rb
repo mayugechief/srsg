@@ -41,62 +41,6 @@ module ApplicationHelper
     end
   end
   
-  def code_editor(elm, opts = {})
-    mode = opts[:mode]
-    if !mode && opts[:filename]
-      extname = opts[:filename].sub(/.*\./, "")
-      extname = "javascript" if extname == "js"
-      mode = extname if File.exists?("#{Rails.root}/public/javascripts/ace/mode-#{extname}.js")
-    end
-    
-    h  = []
-    h << javascript_include_tag("ace/mode-#{mode}.js", "data-turbolinks-track" => true) if mode
-    h <<  coffee do
-      j  = []
-      j << %Q[$ ->]
-      j << %Q[  editor = $("#{elm}").ace({ theme: "chrome", lang: "#{mode}" })]
-      j << %Q[  ace = editor.data("ace").editor.ace]
-      
-      if opts[:readonly]
-        j << %Q[  ace.setReadOnly(true)]
-        j << %Q[  h = ace.getSession().getScreenLength() * 16 + ace.renderer.scrollBar.getWidth()]
-        j << %Q[  $(ace["container"]).css("line-height", "16px")]
-        j << %Q[  $(ace["container"]).height(h + "px")]
-        j << %Q[  $(ace["container"]).find(".ace_scrollbar").hide()]
-      end
-      
-      j.join("\n").html_safe
-    end
-    
-    h.join("\n").html_safe
-  end
-  
-  def html_editor(elm, opts = {})
-    opts = { extraPlugins: "", removePlugins: "" }.merge(opts)
-    
-    if opts[:readonly]
-      opts[:removePlugins] << ",toolbar"
-      opts[:readOnly] = true
-      opts.delete :readonly
-    end
-    opts[:removePlugins] << ",resize"
-    opts[:extraPlugins]  << ",autogrow"
-    opts[:enterMode] = 2 #BR
-    opts[:shiftEnterMode] = 1 #P
-    opts[:allowedContent] = true
-    
-    h  = []
-    h <<  coffee do
-      j = []
-      j << %Q[$ ->]
-      j << %Q[  $("#{elm}").ckeditor #{opts.to_json}]
-      
-      j.join("\n").html_safe
-    end
-    
-    h.join("\n").html_safe
-  end
-  
   def scss(&block)
     opts = Rails.application.config.sass
     sass = Sass::Engine.new "@import 'compass/css3';\n" + capture(&block),

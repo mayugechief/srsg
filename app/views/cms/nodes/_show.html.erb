@@ -24,6 +24,6 @@
   
   <% if fields[:shortcut] != -1 %>
   <dt><%= @model.t :shortcut %></dt>
-  <dd><%= @item.send :shortcut %></dd>
+  <dd><%= @item.label :shortcut %></dd>
   <% end %>
 </dl>

@@ -19,7 +19,7 @@ bind << "location.href = '#{url}?route=' + $(this).val();"
   <% end %>
   
   <dt><%= @model.t :state %></dt>
-  <dd><%= f.select :state, @item.state_options, include_blank: " " %></dd>
+  <dd><%= f.select :state, @item.state_options %></dd>
   
   <% if fields[:layout_id] != -1 %>
   <dt><%= @model.t :layout_id %></dt>
@@ -28,6 +28,6 @@ bind << "location.href = '#{url}?route=' + $(this).val();"
   
   <% if fields[:shortcut] != -1 %>
   <dt><%= @model.t :shortcut %></dt>
-  <dd><%= f.select :shortcut, @item.shortcut_options, include_blank: " " %></dd>
+  <dd><%= f.select :shortcut, @item.shortcut_options %></dd>
   <% end %>
 </dl>

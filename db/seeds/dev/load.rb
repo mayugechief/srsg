@@ -37,7 +37,7 @@ puts "nodes:"
 
 def save_node(data)
   puts "  #{data[:name]}"
-  klass = data[:route].sub("/", "/node/").singularize.camelize.constantize
+  klass = data[:route].sub("/", "/node/").camelize.constantize
   
   cond = { site_id: @site._id, filename: data[:filename] }
   item = klass.unscoped.find_or_create_by cond
@@ -49,9 +49,9 @@ save_node filename: "css", name: "CSS", route: "uploader/file", shortcut: "show"
 save_node filename: "docs"  , name: "記事"    , route: "article/page", shortcut: "show"
 save_node filename: "topics", name: "注目記事", route: "category/page", shortcut: "show", conditions: %w[product]
 
-save_node filename: "product"    , name: "製品情報"            , route: "cms/node", shortcut: "show"
-save_node filename: "product/cms", name: "サイト構築システム"  , route: "cms/page"
-save_node filename: "product/sns", name: "社内情報共有システム", route: "cms/page"
+save_node filename: "product"     , name: "製品情報", route: "cms/node", shortcut: "show"
+save_node filename: "product/word", name: "文書管理", route: "cms/page"
+save_node filename: "product/calc", name: "表計算"  , route: "cms/page"
 
 save_node filename: "recruit"      , name: "採用情報", shortcut: "show",  route: "category/node"
 save_node filename: "recruit/sales", name: "営業部"  , route: "category/page"
@@ -71,7 +71,7 @@ puts "parts:"
 
 def save_part(data)
   puts "  #{data[:name]}"
-  klass = data[:route].sub("/", "/part/").singularize.camelize.constantize
+  klass = data[:route].sub("/", "/part/").camelize.constantize
   
   cond = { site_id: @site._id, filename: data[:filename] }
   item = klass.unscoped.find_or_create_by cond
@@ -84,6 +84,7 @@ save_part filename: "head.part.html"  , name: "ヘッダー", route: "cms/free"
 save_part filename: "navi.part.html"  , name: "ナビ"    , route: "cms/free"
 save_part filename: "foot.part.html"  , name: "フッター", route: "cms/free"
 save_part filename: "crumbs.part.html", name: "パンくず", route: "cms/crumb"
+save_part filename: "tabs.part.html"  , name: "新着タブ", route: "cms/tabs", conditions: %w[topics product recruit], limit: 5
 
 save_part filename: "docs/pages.part.html"  , name: "新着記事リスト", route: "article/page"
 save_part filename: "topics/pages.part.html", name: "注目記事リスト", route: "cms/page", conditions: %w[product]
@@ -111,10 +112,10 @@ save_page filename: "index.html", name: "トップページ", layout_id: layouts
 
 save_page filename: "product/index2.html", name: "仕様について", layout_id: layouts["product/index"].id, html: body
 save_page filename: "product/index3.html", name: "サポートについて", layout_id: layouts["product/index"].id, html: body
-save_page filename: "product/cms/about.html", name: "CMSの概要", layout_id: layouts["product/index"].id, html: body
-save_page filename: "product/cms/demo.html" , name: "CMSのデモ", layout_id: layouts["product/index"].id, html: body
-save_page filename: "product/sns/about.html", name: "SNSの概要", layout_id: layouts["product/index"].id, html: body
-save_page filename: "product/sns/demo.html" , name: "SNSのデモ", layout_id: layouts["product/index"].id, html: body
+save_page filename: "product/word/page1.html", name: "仕様", layout_id: layouts["product/index"].id, html: body
+save_page filename: "product/word/page2.html", name: "環境", layout_id: layouts["product/index"].id, html: body
+save_page filename: "product/calc/page3.html", name: "価格", layout_id: layouts["product/index"].id, html: body
+save_page filename: "product/calc/page4.html", name: "実績", layout_id: layouts["product/index"].id, html: body
 
 ## -------------------------------------
 puts "articles:"

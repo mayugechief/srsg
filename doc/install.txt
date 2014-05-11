@@ -39,6 +39,7 @@ SHIRASAGI インストールマニュアル
   cd /var/www/shirasagi
   cp config/samples/* config/
   bundle install
+  bin/deploy
   thin start -d -e production
   
   Access to http://localhost:3000/.mypage

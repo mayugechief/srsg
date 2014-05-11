@@ -35,5 +35,6 @@ gem "mongoid-grid_fs", github: "ahoward/mongoid-grid_fs"
 #gem "carrierwave-mongoid", require: "carrierwave/mongoid"
 gem "rmagick"
 gem "holiday_japan"
+gem "mail-iso-2022-jp"
 
 #gem "rails-dev-boost", git: "git://github.com/thedarkone/rails-dev-boost.git", group: :development

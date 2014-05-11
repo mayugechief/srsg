@@ -1,7 +1,11 @@
 # cms
 
 production: &production
+  # Ajax layout
   ajax_layout: true
+  
+  # HTML Editor (ckeditor, tinymce)
+  html_editor: ckeditor
 
 test:
   <<: *production

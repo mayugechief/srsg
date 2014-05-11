@@ -4,6 +4,7 @@ module SS::BaseFilter
   include SS::LayoutFilter
   
   included do
+    helper EditorHelper
     before_action :logged_in?
     layout "ss/base"
   end

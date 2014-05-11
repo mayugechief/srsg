@@ -20,8 +20,8 @@ module Cms::PartFilter::ViewCell
         instance_variable_set name, controller.instance_variable_get(name)
       end
       
-      @ref ||= params[:ref]
-      @ref.sub!(/\.kana\.html$/, ".html") if @ref
+      @request_url ||= params[:ref]
+      @request_url.sub!(/\.kana\.html$/, ".html") if @request_url
     end
     
     def set_item

@@ -1,6 +1,9 @@
-<%= code_editor ".mod-cms-nodelist textarea", mode: :html %>
+<%= code_editor ".mod-cms-nodelist .html", mode: :html %>
 
 <dl class="see mod-cms-nodelist">
+  <dt><%= @model.t :conditions %></dt>
+  <dd><%= f.text_area :conditions, value: @item.conditions.join("\n"), style: "height: 100px;" %></dd>
+  
   <dt><%= @model.t :order %></dt>
   <dd><%= f.select :order, @item.order_options, include_blank: " " %></dd>
   
@@ -8,11 +11,11 @@
   <dd><%= f.number_field :limit %></dd>
   
   <dt><%= @model.t :upper_html %></dt>
-  <dd><%= f.text_area :upper_html %></dd>
+  <dd><%= f.text_area :upper_html, class: :html %></dd>
   
   <dt><%= @model.t :loop_html %></dt>
-  <dd><%= f.text_area :loop_html, style: "height: 100px;" %></dd>
+  <dd><%= f.text_area :loop_html, class: :html, style: "height: 100px;" %></dd>
   
   <dt><%= @model.t :lower_html %></dt>
-  <dd><%= f.text_area :lower_html %></dd>
+  <dd><%= f.text_area :lower_html, class: :html %></dd>
 </dl>

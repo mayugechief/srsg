@@ -25,6 +25,7 @@ module SS::AddonFilter
     
     included do
       helper ApplicationHelper
+      helper EditorHelper
       helper AddonHelper
       before_action :inherit_variables
     end
@@ -64,6 +65,7 @@ module SS::AddonFilter
     
     included do
       helper ApplicationHelper
+      helper EditorHelper
       before_action :inherit_variables
     end
     

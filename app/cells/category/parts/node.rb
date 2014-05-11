@@ -9,28 +9,29 @@ module Category::Parts::Node
     include Cms::PartFilter::ViewCell
     helper Cms::ListHelper
     
-    def index
-      @cur_node = @cur_part.node
-      
-      path   = @ref.present? ? @ref.sub(/^\//, "").sub(/\/[^\/]*$/, "") : nil
-      node   = path ? Category::Node::Base.site(@cur_site).where(filename: path).first : nil
-      node ||= @cur_node
-      
-      if node && node.dirname
-        cond = { filename: /^#{node.dirname}\//, depth: node.depth }
-      elsif node
-        cond = { filename: /^#{node.filename}\//, depth: node.depth + 1 }
-      else
-        cond = { depth: 1 }
+    public
+      def index
+        @cur_node = @cur_part.node
+        
+        path   = @request_url.present? ? @request_url.sub(/^\//, "").sub(/\/[^\/]*$/, "") : nil
+        node   = path ? Category::Node::Base.site(@cur_site).where(filename: path).first : nil
+        node ||= @cur_node
+        
+        if node && node.dirname
+          cond = { filename: /^#{node.dirname}\//, depth: node.depth }
+        elsif node
+          cond = { filename: /^#{node.filename}\//, depth: node.depth + 1 }
+        else
+          cond = { depth: 1 }
+        end
+        
+        @items = Category::Node::Base.site(@cur_site).
+          where(cond).
+          order_by(@cur_part.orders).
+          page(params[:page]).
+          per(@cur_part.limit)
+        
+        render
       end
-      
-      @items = Category::Node::Base.site(@cur_site).
-        where(cond).
-        order_by(@cur_part.orders).
-        page(params[:page]).
-        per(@cur_part.limit)
-      
-      render
-    end
   end
 end

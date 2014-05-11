@@ -9,14 +9,15 @@ module Article::Parts::Page
     include Cms::PartFilter::ViewCell
     helper Cms::ListHelper
     
-    def index
-      @items = Article::Page.site(@cur_site).public.
-        where(@cur_part.condition_hash).
-        order_by(@cur_part.orders).
-        page(params[:page]).
-        per(@cur_part.limit)
-      
-      @items.empty? ? "" : render
-    end
+    public
+      def index
+        @items = Article::Page.site(@cur_site).public.
+          where(@cur_part.condition_hash).
+          order_by(@cur_part.orders).
+          page(params[:page]).
+          per(@cur_part.limit)
+        
+        @items.empty? ? "" : render
+      end
   end
 end

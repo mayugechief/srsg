@@ -119,10 +119,12 @@ nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu, nav.addon-menu {
     a {
       float: left;
       display: inline-block;
+      max-width: 200px;
       margin: 0px 2px;
       padding: 8px 1px 3px;
       border-bottom: 4px solid #ddd;
       color: #000;
+      @include ellipsis;
       &.current {
         border-color: #b00;
         background-color: #fff;

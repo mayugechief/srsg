@@ -6,7 +6,7 @@
   <dd><%= f.text_field :basename, class: "filename" %></dd>
   
   <dt><%= @model.t :state %></dt>
-  <dd><%= f.select :state, @item.state_options, include_blank: " " %></dd>
+  <dd><%= f.select :state, @item.state_options %></dd>
   
   <dt><%= @model.t :layout_id %></dt>
   <dd><%= f.select :layout_id, ancestral_layouts(@item.node), include_blank: " " %></dd>

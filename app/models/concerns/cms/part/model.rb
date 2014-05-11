@@ -8,7 +8,8 @@ module Cms::Part::Model
     store_in collection: "cms_parts"
     
     field :route, type: String
-    permit_params :route
+    field :mobile_view, type: String, default: "show"
+    permit_params :route, :mobile_view
   end
   
   public
@@ -17,7 +18,7 @@ module Cms::Part::Model
     end
     
     def becomes_with_route
-      klass = route.sub("/", "/part/").singularize.camelize.constantize rescue nil
+      klass = route.sub("/", "/part/").camelize.constantize rescue nil
       return self unless klass
       
       item = klass.new
@@ -27,6 +28,10 @@ module Cms::Part::Model
     
     def render_html
       %Q[<a class="ss-part" href="#{url}">#{name}</a>]
+    end
+    
+    def mobile_view_options
+      [ %w[表示 show], %w[非表示 hide] ]
     end
     
   private

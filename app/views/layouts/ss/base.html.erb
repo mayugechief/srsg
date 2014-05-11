@@ -17,8 +17,11 @@
 <%= javascript_include_tag "jquery-ui-1.10.4.custom.min.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "jquery.datetimepicker.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "ckeditor/ckeditor.js", "data-turbolinks-track" => true %>
-<%#= javascript_include_tag "tinymce/tinymce.min.js", "data-turbolinks-track" => true %>
+<% if SS.config.cms.html_editor == "ckeditor" %>
 <%= javascript_include_tag "ckeditor/adapters/jquery.js", "data-turbolinks-track" => true %>
+<% elsif SS.config.cms.html_editor == "tinymce" %>
+<%= javascript_include_tag "tinymce/tinymce.min.js", "data-turbolinks-track" => true %>
+<% end %>
 <%= javascript_include_tag "ace/ace.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "ace/theme-chrome.js", "data-turbolinks-track" => true %>
 <%= javascript_include_tag "jquery-ace.min.js", "data-turbolinks-track" => true %>

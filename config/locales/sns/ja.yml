@@ -2,6 +2,8 @@ ja:
   sns:
     profile: プロフィール
     file: ファイル
+    user_file: "ユーザーファイル"
+    group_file: グループファイル
     account: アカウント
 
   modules:

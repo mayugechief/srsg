@@ -14,13 +14,12 @@ module Mobile::PublicFilter
   def set_path_with_mobile
     if @path =~ /^#{SS.config.mobile.location}\//
       @path.sub!(/^#{SS.config.mobile.location}\//, "/")
-      @ajax_layout = false
     end
   end
   
   private
     def render_mobile
-      body = response.body
+      body = embed_layout(response.body, { part_condition: { mobile_view: "show"} })
       
       body = Mobile::Convertor.new(body)
       body.convert!

@@ -42,9 +42,9 @@ class @SS
   @render:(box = null) ->
     if box
       $(box).find("a").each ->
-        elm = $(this)
-        if !elm.attr("target") && !elm.data("target")
-          elm.colorbox({ fixed: true, width: "90%", height: "90%" })
+        elem = $(this)
+        if !elem.attr("target") && !elem.data("target")
+          elem.colorbox({ fixed: true, width: "90%", height: "90%" })
     
     # default
     box = $(document)
@@ -55,27 +55,27 @@ class @SS
     
     # ajax to (color)box
     box.find(".ajax-box").each ->
-      elm = $(this)
-      return true if elm.hasClass("cboxElement")
-      if !elm.attr("target") && !elm.data("target")
-        elm.colorbox({ fixed: true, width: "90%", height: "90%" })
+      elem = $(this)
+      return true if elem.hasClass("cboxElement")
+      if !elem.attr("target") && !elem.data("target")
+        elem.colorbox({ fixed: true, width: "90%", height: "90%" })
     
-  @ajaxForm:(elm, params = {}) ->
-    elm = $(elm)
+  @ajaxForm:(elem, params = {}) ->
+    elem = $(elem)
     defaults = {
-      url: elm.attr("action") + ".json"
+      url: elem.attr("action") + ".json"
       dataType: "json"
       success: ->
         #
       error: (data, status) ->
         alert(["== Error =="].concat(data.responseJSON).join("\n"));
     }
-    elm.on "submit", (e) ->
+    elem.on "submit", (e) ->
       $(this).ajaxSubmit $.extend(defaults, params)
       e.preventDefault();
     
-  @ajax:(elm, params = {}) ->
-    $(elm).click (e) ->
+  @ajax:(elem, params = {}) ->
+    $(elem).click (e) ->
       self = $(this)
       defaults = {
         url: self.attr("href")
@@ -90,8 +90,8 @@ class @SS
       e.preventDefault();
       return false
     
-  @ajaxDelete:(elm, params = {}) ->
-    $(elm).click (e) ->
+  @ajaxDelete:(elem, params = {}) ->
+    $(elem).click (e) ->
       return false if !confirm("<%= t "views.confirm.delete" %>")
       self = $(this)
       defaults = {

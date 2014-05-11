@@ -9,8 +9,9 @@ module Uploader::Nodes::File
     include Cms::NodeFilter::ViewCell
     helper Cms::ListHelper
     
-    def index
-      render inline: ""
-    end
+    public
+      def index
+        ""
+      end
   end
 end
