@@ -123,5 +123,5 @@ puts "articles:"
 1.step(9) do |i|
   save_page filename: "docs/#{i}.html", name: "サンプル記事#{i}", html: body,
     route: "article/page", layout_id: layouts["page"].id,
-    category_ids: Category::Node::Base.pluck(:_id).sample(2)
+    category_ids: Category::Node::Base.site(@site).pluck(:_id).sample(2)
 end
