@@ -4,7 +4,8 @@ module Cms::ReleaseFilter
   
   private
     def recognize_path(path, env = {})
-      env[:method] ||= request.method
+      env[:method] ||= request.method rescue "GET"
+      
       rec = Rails.application.routes.recognize_path(path, env) rescue {}
       return nil unless rec[:cell]
       

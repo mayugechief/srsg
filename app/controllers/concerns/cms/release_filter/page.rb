@@ -2,6 +2,7 @@
 module Cms::ReleaseFilter::Page
   extend ActiveSupport::Concern
   include Cms::ReleaseFilter
+  include Cms::ReleaseFilter::Layout
   
   private
     def find_page(path)
@@ -33,11 +34,16 @@ module Cms::ReleaseFilter::Page
       self.request = ActionDispatch::Request.new method: "GET"
       self.response = ActionDispatch::Response.new
       
-      body = render_page(page, method: "get")
-      html = render_to_string inline: body, layout: "cms/page"
+      @path = page.url
+      
+      html = render_page(page, method: "get")
+      html = render_to_string inline: html, layout: "cms/page"
+      
+      if page.layout
+        html = embed_layout(html, page.layout) unless SS.config.cms.ajax_layout
+      end
       
       keep = html.to_s == File.read(page.path).to_s rescue false # prob: csrf-token
-      
       Fs.write page.path, html unless keep
     end
 end
