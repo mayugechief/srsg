@@ -4,16 +4,12 @@ module Article
     Cms::Node.plugin "article/page"
     Cms::Part.plugin "article/page"
   end
-end
-
-class Cms::Page
-  _addons = Article::Page.addons.map {|m| m.klass }
-  addons.each {|addon| Article::Page.include(addon.klass) unless _addons.include?(addon.klass) }
   
-  class << self
+  Cms::Page.instance_exec do
     def addon(*args)
-      Article::Page.addon *args
-      super
+      Article::Page.addon(*args) and super
     end
   end
+  Article::Page.inherit_addons Cms::Page
+  
 end

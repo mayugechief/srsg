@@ -49,8 +49,12 @@ module SS::Document
       class_variable_set(:@@_permit_params, params + fields)
     end
     
+    def addon(path)
+      include path.sub("/", "/addon/").camelize.constantize
+    end
+    
     def addons
-      return @addons if @addons
+      #return @addons if @addons
       @addons = lookup_addons.sort {|a, b| a.order <=> b.order }.map {|m| m.addon_name }
     end
     
@@ -58,8 +62,9 @@ module SS::Document
       ancestors.select { |x| x.respond_to?(:addon_name) }
     end
     
-    def addon(path)
-      include path.sub("/", "/addon/").camelize.constantize
+    def inherit_addons(mod)
+      names = addons.map {|m| m.klass }
+      mod.addons.each {|addon| include addon.klass unless names.include?(addon.klass) }
     end
   end
   
