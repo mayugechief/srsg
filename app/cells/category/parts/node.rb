@@ -27,7 +27,7 @@ module Category::Parts::Node
         
         @items = Category::Node::Base.site(@cur_site).
           where(cond).
-          order_by(@cur_part.orders).
+          order_by(@cur_part.sort_hash).
           page(params[:page]).
           per(@cur_part.limit)
         

@@ -72,6 +72,7 @@ ja:
         loop_html: ループHTML
         upper_html: 上部HTML
         lower_html: 下部HTML
+        new_days: NEWマーク期間
       cms/addon/tabs:
         conditions: タブ設定(URL)
         new_days: NEWマーク期間

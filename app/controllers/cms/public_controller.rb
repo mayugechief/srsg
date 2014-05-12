@@ -7,7 +7,9 @@ class Cms::PublicController < ApplicationController
   
   private
     def render_public
-      response.body = embed_layout(response.body) unless SS.config.cms.ajax_layout
+      if @cur_layout
+        response.body = embed_layout(response.body, @cur_layout) unless SS.config.cms.ajax_layout
+      end
     end
     
     def put_access_log

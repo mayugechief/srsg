@@ -4,6 +4,8 @@ module Cms::Addon
     extend ActiveSupport::Concern
     extend SS::Addon
     
+    set_order 100
+    
     included do |mod|
       field :keywords, type: SS::Extensions::Words
       field :description, type: String, metadata: { form: :text }
@@ -22,6 +24,8 @@ module Cms::Addon
     extend ActiveSupport::Concern
     extend SS::Addon
     
+    set_order 200
+    
     included do
       field :html, type: String, metadata: { form: :text }
       permit_params :html
@@ -31,6 +35,8 @@ module Cms::Addon
   module Body
     extend ActiveSupport::Concern
     extend SS::Addon
+    
+    set_order 200
     
     included do
       field :html, type: String, metadata: { form: :text }
@@ -42,6 +48,8 @@ module Cms::Addon
   module Release
     extend ActiveSupport::Concern
     extend SS::Addon
+    
+    set_order 500
     
     included do
       field :released, type: DateTime
@@ -69,9 +77,11 @@ module Cms::Addon
     extend ActiveSupport::Concern
     extend SS::Addon
     
+    set_order 200
+    
     included do
       field :conditions, type: SS::Extensions::Words
-      field :limit, type: Integer, default: 10
+      field :limit, type: Integer, default: 8
       field :new_days, type: Integer, default: 1
       permit_params :conditions, :limit, :new_days
       
@@ -106,15 +116,17 @@ module Cms::Addon
     extend SS::Addon
     include Cms::Addon::List::Model
     
+    set_order 200
+    
     public
-      def order_options
+      def sort_options
         [ ["タイトル", "name"], ["ファイル名", "filename"],
           ["作成日時", "created"], ["更新日時", "updated -1"] ]
       end
       
-      def orders
-        return { filename: 1 } if order.blank?
-        { order.sub(/ .*/, "") => (order =~ /-1$/ ? -1 : 1) }
+      def sort_hash
+        return { filename: 1 } if sort.blank?
+        { sort.sub(/ .*/, "") => (sort =~ /-1$/ ? -1 : 1) }
       end
   end
   
@@ -123,15 +135,31 @@ module Cms::Addon
     extend SS::Addon
     include Cms::Addon::List::Model
     
+    set_order 200
+    
+    included do
+      field :new_days, type: Integer, default: 1
+      permit_params :new_days
+    end
+    
     public
-      def order_options
+      def sort_options
         [ ["タイトル", "name"], ["ファイル名", "filename"],
           ["作成日時", "created"], ["更新日時", "updated -1"], ["公開日時", "released -1"] ]
       end
       
-      def orders
-        return { released: -1 } if order.blank?
-        { order.sub(/ .*/, "") => (order =~ /-1$/ ? -1 : 1) }
+      def sort_hash
+        return { released: -1 } if sort.blank?
+        { sort.sub(/ .*/, "") => (sort =~ /-1$/ ? -1 : 1) }
+      end
+      
+      def new_days
+        value = read_attribute(:new_days).to_i
+        (value < 0 || 30 < value) ? 30 : value
+      end
+      
+      def in_new_days?(date)
+        date + new_days > Time.now
       end
   end
 end

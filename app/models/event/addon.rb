@@ -4,10 +4,11 @@ module Event::Addon
     extend ActiveSupport::Concern
     extend SS::Addon
 
+    set_order 305
+
     included do
       field :event_name, type: String
       field :event_dates, type: Event::Extensions::EventDates
-      
       permit_params :event_name, :event_dates
       
       validate :validate_event

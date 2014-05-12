@@ -1,24 +1,23 @@
 # coding: utf-8
 namespace :cms do
+
   namespace :layout do
-    task :publish => :environment  do
-      puts "Publish layouts ..."
-      Cms::Layout.all.each do |item|
-        puts "  #{item.path}"
-        Fs.write item.json_path, item.render_json
-      end
-      puts "Completed."
+    task :generate => :environment do
+      Cms::Task::LayoutsController.new.generate
+    end
+    
+    task :remove => :environment  do
+      Cms::Task::LayoutsController.new.remove
     end
   end
   
-  # namespace :part do
-    # task :publish => :environment  do
-      # puts "Publish layouts ..."
-      # Cms::Part.all.each do |item|
-        # puts "  #{item.path}"
-        # Fs.write item.path, item.render_html
-      # end
-      # puts "Completed."
-    # end
-  # end
+  namespace :page do
+    task :generate => :environment do
+      Cms::Task::PagesController.new.generate
+    end
+    
+    task :remove => :environment do
+      Cms::Task::PagesController.new.remove
+    end
+  end
 end

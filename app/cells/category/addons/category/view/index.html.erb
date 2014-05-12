@@ -1,5 +1,5 @@
 <% if @cur_page.categories.present? %>
-<aside class="categories">
+<nav class="categories">
   <!-- <header><h2>カテゴリー</h2></header> -->
   <div>
     <% @cur_page.categories.each_with_index do |m, idx| %>
@@ -7,5 +7,5 @@
     <span class="item"><%= link_to m.name, m.url %></span>
     <% end %>
   </div>
-</aside>
+</nav>
 <% end %>

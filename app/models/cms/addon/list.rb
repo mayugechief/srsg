@@ -6,22 +6,22 @@ module Cms::Addon::List
     
     included do |mod|
       field :conditions, type: SS::Extensions::Words
-      field :order, type: String
+      field :sort, type: String
       field :limit, type: Integer, default: 20
       field :loop_html, type: String
       field :upper_html, type: String
       field :lower_html, type: String
-      permit_params :conditions, :order, :limit, :loop_html, :upper_html, :lower_html
+      permit_params :conditions, :sort, :limit, :loop_html, :upper_html, :lower_html
       
       before_validation :validate_conditions
     end
     
     public
-      def order_options
+      def sort_options
         []
       end
       
-      def orders
+      def sort_hash
         {}
       end
       

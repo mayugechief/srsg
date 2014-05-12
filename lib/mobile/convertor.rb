@@ -87,12 +87,13 @@ class Mobile::Convertor < String
         ext = File.extname(src_attr["src"].to_s).downcase
 
         if ext =~ /^\.(jpeg|jpg|bmp)$/
-          dst_attr["href"]  = src_attr["src"] if src_attr["src"]
-          dst_attr["title"] = src_attr["alt"] if src_attr["alt"]
-          dst_attr["title"] = src_attr["title"] if src_attr["title"]
-          dst_attr["class"] = "tag-img" + ( src_attr["class"] ? " #{src_attr['class']}" : "" )
-
-          "<a #{attr_to_s(dst_attr)}>#{dst_attr["title"] ? dst_attr["title"] : dst_attr["src"]}</a>"
+          href = src_attr["src"].presence
+          name = src_attr["alt"].presence || src_attr["title"].presence || href.sub(/.*\//, "")
+          cls  = "tag-img" + ( src_attr["class"] ? " #{src_attr['class']}" : "" )
+          
+          html  = name
+          html += %Q( <a href="#{href}" class="#{cls}" title="#{name}">[Image]</a>) if href
+          html
         else
           match
         end

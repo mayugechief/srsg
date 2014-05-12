@@ -9,6 +9,7 @@ module SS::Document
     class_variable_set(:@@_permit_params, [])
     field :created, type: DateTime, default: -> { Time.now }
     field :updated, type: DateTime, default: -> { Time.now }
+    before_save :set_db_changes
     before_save :set_updated
   end
   
@@ -49,7 +50,8 @@ module SS::Document
     end
     
     def addons
-      lookup_addons.reverse.map {|m| m.addon_name }
+      return @addons if @addons
+      @addons = lookup_addons.sort {|a, b| a.order <=> b.order }.map {|m| m.addon_name }
     end
     
     def lookup_addons
@@ -58,17 +60,6 @@ module SS::Document
     
     def addon(path)
       include path.sub("/", "/addon/").camelize.constantize
-    end
-    
-    def inherit_addons(mod)
-      names = addons.map {|m| m.klass }
-      mod.addons.each {|addon| include addon.klass unless names.include?(addon.klass) }
-      mod.instance_eval do
-        def addon(*args)
-          Article::Page.addon *args
-          super
-        end
-      end
     end
   end
   
@@ -87,6 +78,10 @@ module SS::Document
     end
     
   private
+    def set_db_changes
+      @db_changes = new_record? ? {} : changes || {}
+    end
+    
     def set_updated
       return true if !changed?
       self.updated = Time.now

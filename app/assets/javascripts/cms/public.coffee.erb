@@ -161,8 +161,9 @@ class @SS_Tabs
     
     box.find(".tab").each (i) ->
       tab  = $(this)
-      url  = tab.data("href")
       name = tab.find('header > h1').html()
+      nav  = tab.find('nav')
+      url  = nav.find(".more").attr("href")
       
       base_id = tab.attr("id")
       name_id = base_id + "-name"
@@ -179,7 +180,7 @@ class @SS_Tabs
       html  = "<article id='" + view_id + "' class='view' " + disp + ">"
       html += "<h1 style='display: none'>" + name + "</h1>"
       html += "<div class='pages'>" + tab.find(".pages").html() + "</div>"
-      html += "<footer><a href='" + url + "'>もっと読む</a></footer>"
+      html += "<nav>" + tab.find('nav').html() + "</nav>"
       html += "</article>"
       
       box.append html

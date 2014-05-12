@@ -36,8 +36,8 @@ module Cms::Node::Model
     before_validation :validate_filename
     after_validation :set_depth, if: ->{ filename.present? }
     
-    before_save :set_db_changes
     after_save :rename_children
+    after_destroy :remove_directory
     after_destroy :destroy_children
   end
   
@@ -166,12 +166,12 @@ module Cms::Node::Model
       self.depth = filename.scan("/").size + 1
     end
     
-    def set_db_changes
-      @db_changes = new_record? ? {} : changes || {}
-    end
-    
     def rename_children
       return unless @db_changes["filename"]
+      
+      src = "#{site.path}/#{@db_changes['filename'][0]}"
+      dst = "#{site.path}/#{@db_changes['filename'][1]}"
+      Fs.mv src, dst if Fs.exists?(src)
       
       src, dst = @db_changes["filename"]
       %w(nodes pages parts layouts).each do |name|
@@ -180,6 +180,10 @@ module Cms::Node::Model
           item.save validate: false
         end
       end
+    end
+    
+    def remove_directory
+      Fs.rm_rf path
     end
     
     def destroy_children

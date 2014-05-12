@@ -19,7 +19,11 @@ module Mobile::PublicFilter
   
   private
     def render_mobile
-      body = embed_layout(response.body, { part_condition: { mobile_view: "show"} })
+      body = response.body
+      
+      if @cur_layout
+        body = embed_layout(body, @cur_layout, { part_condition: { mobile_view: "show"} })
+      end
       
       body = Mobile::Convertor.new(body)
       body.convert!

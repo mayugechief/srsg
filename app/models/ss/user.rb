@@ -11,7 +11,6 @@ class SS::User
   field :name, type: String
   field :email, type: String, metadata: { form: :email }
   field :password, type: String
-  
   embeds_ids :groups, class_name: "SS::Group"
   
   permit_params :name, :email, :password, :in_password, group_ids: []

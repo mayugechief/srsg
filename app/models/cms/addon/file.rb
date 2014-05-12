@@ -4,9 +4,11 @@ module Cms::Addon
     extend ActiveSupport::Concern
     extend SS::Addon
     
+    set_order 210
+    
+    attr_accessor :cur_user
+    
     included do
-      attr_accessor :cur_user
-      
       embeds_ids :files, class_name: "SS::File"
       permit_params file_ids: []
       
@@ -19,6 +21,7 @@ module Cms::Addon
       files.each do |file|
         next if @cur_user && @cur_user.id != file.user_id
         file.update_attribute(:model, model_name.i18n_key)
+        file.update_attribute(:site_id, site_id)
         ids << file.id
       end
       

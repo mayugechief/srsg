@@ -19,7 +19,9 @@ class Cms::PreviewController < ApplicationController
     end
     
     def render_preview
-      body = embed_layout(response.body)
+      body = response.body
+      
+      body = embed_layout(body, @cur_layout) if @cur_layout
       
       body.gsub!(/(href=")(\/[^"]+(\/|\.html))"/, %Q[\\1#{cms_preview_path}\\2"])
       body.gsub!('href="/"', %Q[href="#{cms_preview_path}/"])

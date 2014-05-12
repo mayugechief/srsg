@@ -26,7 +26,7 @@ module Cms::Parts::Node
       
       @items = Cms::Node.site(@cur_site).public.
         where(cond).
-        order_by(@cur_part.orders).
+        order_by(@cur_part.sort_hash).
         page(params[:page]).
         per(@cur_part.limit)
       

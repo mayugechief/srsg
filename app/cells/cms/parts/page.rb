@@ -12,7 +12,7 @@ module Cms::Parts::Page
     def index
       @items = Cms::Page.site(@cur_site).public.
         where(@cur_part.condition_hash).
-        order_by(@cur_part.orders).
+        order_by(@cur_part.sort_hash).
         page(params[:page]).
         per(@cur_part.limit)
       

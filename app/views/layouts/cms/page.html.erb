@@ -16,7 +16,7 @@ title = "#{@cur_item.name} - #{@cur_site.name}" if @cur_item.filename != "index.
 <meta name="description" content="<%= @cur_item.description.to_s.gsub(/\s+/, " ") %>" />
 <% end %>
 <%= javascript_include_tag "cms/public" %>
-<%= csrf_meta_tags %>
+<%#= csrf_meta_tags %>
 </head>
 <body>
 

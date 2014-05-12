@@ -17,7 +17,7 @@ module Cms::Nodes::Page
       
       def index
         @items = pages.
-          order_by(@cur_node.orders).
+          order_by(@cur_node.sort_hash).
           page(params[:page]).
           per(@cur_node.limit)
         

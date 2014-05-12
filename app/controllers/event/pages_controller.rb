@@ -7,6 +7,7 @@ class Event::PagesController < ApplicationController
 
   append_view_path "app/views/cms/pages"
   navi_view "event/main/navi"
+  menu_view false
 
   private
     def fix_params
@@ -15,8 +16,10 @@ class Event::PagesController < ApplicationController
 
   public
     def index
-      @items = @model.site(@cur_site).node(@cur_node).
-        order_by(updated: -1).
-        page(params[:page]).per(50)
+      render inline: "", layout: true
+      
+      #@items = @model.site(@cur_site).node(@cur_node).
+      #  order_by(updated: -1).
+      #  page(params[:page]).per(50)
     end
 end

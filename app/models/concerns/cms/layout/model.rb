@@ -17,6 +17,8 @@ module Cms::Layout::Model
     before_save :set_part_paths
     before_save :set_css_paths
     before_save :set_js_paths
+    after_save :generate_file
+    after_destroy :remove_file
   end
   
   public
@@ -75,5 +77,23 @@ module Cms::Layout::Model
     
     def  set_js_paths
       self.js_paths = html.scan(/<script [^>]*src="([^"]*\.js)"[^>]*>/).map {|m| m[0] }.uniq
+    end
+    
+    def generate_file
+      if public?
+        if @db_changes["filename"]
+          src = "#{site.path}/#{@db_changes['filename'][0]}"
+          dst = "#{site.path}/#{@db_changes['filename'][1]}"
+          Fs.mv src, dst if Fs.exists?(src)
+        end
+        Cms::Task::LayoutsController.new.generate_file self if @db_changes.present?
+      else
+        remove_file
+      end
+    end
+    
+    def remove_file
+      Fs.rm_rf path
+      Fs.rm_rf json_path
     end
 end

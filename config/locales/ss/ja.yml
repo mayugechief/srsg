@@ -29,6 +29,7 @@ ja:
       preview: プレビュー
       open: 開く
       change: 変更する
+      more: もっと見る
     confirm:
       delete: 削除してよろしいですか？
       unload: 入力したデータは保存されません。
@@ -48,7 +49,7 @@ ja:
         filepath: ファイルパス
         filename: ファイル名
         basename: ファイル名
-        order: 並び順
+        sort: 並び順
         limit: 表示件数
         layout_id: レイアウト
         shortcut: ショートカット

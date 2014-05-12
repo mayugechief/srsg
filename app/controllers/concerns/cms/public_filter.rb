@@ -1,6 +1,8 @@
 # coding: utf-8
 module Cms::PublicFilter
   extend ActiveSupport::Concern
+  include Cms::ReleaseFilter::Layout
+  include Cms::ReleaseFilter::Page 
   
   cattr_accessor(:filters) { [] }
   
@@ -109,89 +111,6 @@ module Cms::PublicFilter
       send_file @file, disposition: :inline, x_sendfile: true
     end
     
-    def recognize_path(path)
-      rec = Rails.application.routes.recognize_path(path, method: request.method) rescue {}
-      return nil unless rec[:cell]
-      params.merge!(rec)
-      { controller: rec[:cell], action: rec[:action] }
-    end
-    
-    # layout
-    
-    def find_layout(path)
-      layout = Cms::Layout.find_by(site_id: @cur_site, filename: path) rescue nil
-      return nil unless layout
-      @preview || layout.public? ? layout : nil
-    end
-    
-    def render_layout(layout)
-      @cur_layout = layout
-      respond_to do |format|
-        format.html { layout.render_html }
-        format.json { layout.render_json }
-      end
-    end
-    
-    def send_layout(body)
-      respond_to do |format|
-        format.html do
-          body.sub!(/(<[^>]+ id="ss-site-name".*?>)[^<]+/, "\\1#{@cur_site.name}")
-          body.sub!(/(<[^>]+ id="ss-page-name".*?>)[^<]+/, "\\1Layout")
-          render inline: body
-        end
-        format.json { render json: body }
-      end
-    end
-    
-    # part
-    
-    def find_part(path)
-      part = Cms::Part.find_by site_id: @cur_site, filename: path rescue nil
-      return unless part
-      @preview || part.public?  ? part : nil
-    end
-    
-    def render_part(part, path = @path)
-      return part.html if part.route == "cms/frees"
-      cell = recognize_path "/.#{@cur_site.host}/parts/#{part.route}.#{path.sub(/.*\./, '')}"
-      return unless cell
-      @cur_part = part
-      render_cell part.route.sub(/\/.*/, "/#{cell[:controller]}/view"), cell[:action]
-    end
-    
-    def send_part(body)
-      respond_to do |format|
-        format.html { render inline: body, layout: (request.xhr? ? false : "cms/part") }
-        format.json { render json: body.to_json }
-      end
-    end
-    
-    # page
-    
-    def find_page(path)
-      page = Cms::Page.find_by(site_id: @cur_site, filename: path) rescue nil
-      return unless page
-      @preview || page.public? ? page : nil
-    end
-    
-    def render_page(page)
-      cell = recognize_path "/.#{@cur_site.host}/pages/#{page.route}/#{page.basename}"
-      return unless cell
-      
-      @cur_page   = page
-      @cur_layout = page.layout
-      render_cell page.route.sub(/\/.*/, "/#{cell[:controller]}/view"), cell[:action]
-    end
-    
-    def send_page(body)
-      return unless body
-      respond_to do |format|
-        format.html { render inline: body, layout: "cms/page" }
-        format.json { render json: body }
-        format.xml  { render xml: body }
-      end
-    end
-    
     def find_node(path)
       dirs  = []
       names = path.sub(/\/[^\/]+$/, "").split('/')
@@ -240,35 +159,6 @@ module Cms::PublicFilter
         render(status: status, file: file, layout: false) and return if Fs.exists?(file)
       end
       render status: status, nothing: true
-    end
-    
-    def embed_layout(body, opts = {})
-      head = body.match(/<header.*?<\/header>/m).to_s
-      site_name = head =~ /<[^>]+ id="ss-site-name".*?>(.*?)</m ? $1 : nil
-      page_name = head =~ /<[^>]+ id="ss-page-name".*?>(.*?)</m ? $1 : nil
-      
-      if @cur_layout
-        @request_url = "/#{@path}"
-        @cur_layout.parts_condition = opts[:part_condition]
-        data = ActiveSupport::JSON.decode(@cur_layout.render_json)
-        
-        main = body =~ /<!-- yield -->(.*)<!-- \/yield -->/m ? $1 : body
-        main = data["body"].sub(/<\/ yield \/>/, main)
-        
-        body.sub!("</head>", "#{data['head']}</head>")
-        body.sub!(/<body.*<\/body>/m, main)
-        
-        body.gsub!(/<a( [^>]*?class="ss-part"[^>]*?)>.*?<\/a>/m) do |m|
-          path = (m =~ / href=/) ? m.sub(/.* href="(.*?)".*/, '\\1').sub(/^\//, '') : nil
-          part = find_part(path)
-          part ? render_part(part, path) : m
-        end
-        
-        body.sub!(/(<[^>]+ id="ss-site-name".*?>)[^<]+/, "\\1#{site_name}")
-        body.sub!(/(<[^>]+ id="ss-page-name".*?>)[^<]+/, "\\1#{page_name}")
-      end
-      
-      body
     end
     
   class << self

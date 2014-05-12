@@ -114,6 +114,7 @@ body {
   margin: 0px 0px 0px -100%;
   .wrap {
     @include main-view;
+    min-height: 400px;
     margin-left: 160px;
   }
 }
@@ -123,6 +124,7 @@ body {
   margin: 0px 0px 0px -100%;
   .wrap {
     @include main-view;
+    min-height: 400px;
     margin-left: 310px;
   }
 }
@@ -195,8 +197,9 @@ nav.main-menu, nav.sub-menu, nav.act-menu, nav.page-menu, nav.addon-menu {
       background-color: #ddd;
     }
     &:after {
-      float: right;
-      margin: -2px -2px 0px 0px;
+      position: absolute;
+      right: 5px;
+      margin: -1px 0px 0px 0px;
       color: #bbb;
       content: "▼";
     }
