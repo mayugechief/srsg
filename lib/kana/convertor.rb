@@ -21,6 +21,7 @@ module Kana::Convertor
         text.gsub!(/<!--.*?-->/m) {|m| mpad(m) }
         tags.each {|t| text.gsub!(/<#{t}( [^>]*\/>|[^\w].*?<\/#{t}>)/m) {|m| mpad(m) } }
         text.gsub!(/<.*?>/m) {|m| mpad(m) }
+        text.gsub!(/\\u003c.*?\\u003e/m) {|m| mpad(m) } #<>
         text.gsub!(/[ -~]/m, "\r")
         
         byte = html.bytes
