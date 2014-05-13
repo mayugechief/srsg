@@ -40,9 +40,9 @@ class @SS
       success: (data) ->
         body.hide()
         
-        #body.append data.body.replace("</ yield />", SS.page)
-        body.append data.body
-        $("#ss-yield").replaceWith SS.page
+        body.append data.body.replace("</ yield />", SS.page)
+        #body.append data.body
+        #$("#ss-yield").replaceWith SS.page
         
         $("#ss-site-name").html SS.siteName
         $("#ss-page-name").html SS.pageName
