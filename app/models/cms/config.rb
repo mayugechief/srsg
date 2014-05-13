@@ -4,7 +4,7 @@ class Cms::Config
     {
       ajax_layout: true,
       serve_static_pages: true,
-      serve_static_layouts: true,
+      serve_static_layouts: false,
       html_editor: "ckeditor"
     }
   end

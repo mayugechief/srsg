@@ -42,13 +42,13 @@ module Cms::Layout::Model
       head.scan(/<link [^>]*href="([^"]*\.css)" [^>]*\/>/).uniq.each do |m|
         if (path = m[0]).index("//")
           head.gsub!(/"#{path}"/, "\"#{path}?_=$now\"") if path !~ /\?/
-        else
+        elsif SS.config.cms.serve_static_layouts
           head.gsub!(/"#{path}"/, "\"#{path}?_=$now\"") if path !~ /\?/
-          #file  = "#{site.path}#{path}"
-          #data  = Fs.exists?(file) ? Fs.read(file) : "" rescue ""
-          #scss  = file.sub(/\.css$/, ".scss")
-          #data << Fs.read(scss) if Fs.exists?(scss) rescue ""
-          #head.gsub!(/"#{path}"/, "\"#{path}?_=#{Digest::MD5.hexdigest(data)}\"")
+        else
+          file  = "#{site.path}#{path}"
+          data  = Fs.stat(file).mtime.to_s rescue ""
+          data << Fs.stat(file.sub(/\.css$/, ".scss")).mtime.to_s rescue ""
+          head.gsub!(/"#{path}"/, "\"#{path}?_=#{Digest::MD5.hexdigest(data)}\"")
         end
       end
       

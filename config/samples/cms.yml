@@ -6,7 +6,7 @@ production: &production
   
   # Static files
   serve_static_pages: true
-  serve_static_layouts: true
+  serve_static_layouts: false
   
   # HTML editor (ckeditor, tinymce)
   html_editor: ckeditor

@@ -44,7 +44,7 @@ module Cms::ListHelper
           ih << '<article class="item-#{class} #{new}">'
           ih << '  <header>'
           ih << '    <time datetime="#{date.iso}">#{date.long}</time>'
-          ih << '     <h2><a href="#{url}">#{name}</a></h2>'
+          ih << '    <h2><a href="#{url}">#{name}</a></h2>'
           ih << '  </header>'
           ih << '</article>'
           
