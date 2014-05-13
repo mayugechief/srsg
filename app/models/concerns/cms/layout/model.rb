@@ -53,6 +53,8 @@ module Cms::Layout::Model
       end
       
       body = (html =~ /<body/) ? html.sub(/^.*?(<body.*<\/body>).*/im, "\\1") : ""
+      body = body.sub("</ yield />", "<div id='ss-yield'></div>")
+      
       href = head.scan(/ (?:src|href)="(.*?)"/).map {|m| m[0]}.uniq.sort.join(",") rescue nil
       href = Digest::MD5.hexdigest href
       
