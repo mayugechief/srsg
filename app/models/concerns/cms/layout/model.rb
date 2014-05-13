@@ -5,8 +5,6 @@ module Cms::Layout::Model
   include Cms::Page::Feature
   include Cms::Addon::Html
   
-  attr_accessor :parts_condition
-  
   included do
     store_in collection: "cms_layouts"
     
@@ -30,7 +28,6 @@ module Cms::Layout::Model
         path = path[0] == "/" ? path.sub(/^\//, "") : dirname(path)
         
         part = Cms::Part
-        part = part.where(parts_condition) if parts_condition
         part = part.where(site_id: site_id, filename: path).first
         part = part.becomes_with_route if part
         part ? part.render_html : "<!-- #{path} -->"

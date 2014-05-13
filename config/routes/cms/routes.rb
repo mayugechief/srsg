@@ -43,6 +43,7 @@ SS::Application.routes.draw do
   end
   
   part "cms" do
+    get "free"  => "public#index", cell: "parts/free"
     get "node"  => "public#index", cell: "parts/node"
     get "page"  => "public#index", cell: "parts/page"
     get "tabs"  => "public#index", cell: "parts/tabs"

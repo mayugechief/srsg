@@ -18,7 +18,8 @@ class Cms::Part
     default_scope ->{ where(route: "cms/free") }
     
     def render_html
-      html
+      dump SS.config.cms.ajax_free_part
+      SS.config.cms.ajax_free_part ? super : html
     end
   end
   
@@ -57,7 +58,7 @@ class Cms::Part
     
     def render_html
       h = super.sub("ss-part", "")
-      %Q[<div class="crumbs ss-part" data-href="#{url}"><span class="page">#{h}</span></div>]
+      %Q[<div class="ss-part crumbs" data-href="#{url}"><span class="page">#{h}</span></div>]
     end
   end
   

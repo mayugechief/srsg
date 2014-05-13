@@ -67,20 +67,20 @@ module Cms::ReleaseFilter::Layout
       
       if layout
         @request_url = "/#{@path}"
-        layout.parts_condition = opts[:part_condition]
-        data = ActiveSupport::JSON.decode(layout.render_json)
+        
+        html = layout.html.to_s.gsub(/<\/ part ".+?" \/>/) do |m|
+          path = m.sub(/<\/ part "(.+)?" \/>/, '\\1') + ".part.html"
+          path = path[0] == "/" ? path.sub(/^\//, "") : layout.dirname(path)
+          
+          part = Cms::Part.site(@cur_site)
+          part = part.where opts[:part_condition] if opts[:part_condition]
+          part = part.where(filename: path).first
+          part = part.becomes_with_route if part
+          part ? render_part(part, path) : ""
+        end
         
         main = body =~ /<!-- yield -->(.*)<!-- \/yield -->/m ? $1 : body
-        main = data["body"].sub(/<\/ yield \/>/, main)
-        
-        body.sub!("</head>", "#{data['head']}</head>")
-        body.sub!(/<body.*<\/body>/m, main)
-        
-        body.gsub!(/<a( [^>]*?class="ss-part"[^>]*?)>.*?<\/a>/m) do |m|
-          path = (m =~ / href=/) ? m.sub(/.* href="(.*?)".*/, '\\1').sub(/^\//, '') : nil
-          part = find_part(path)
-          part ? render_part(part, path) : m
-        end
+        body = html.sub(/<\/ yield \/>/, main)
         
         body.sub!(/(<[^>]+ id="ss-site-name".*?>)[^<]+/, "\\1#{site_name}")
         body.sub!(/(<[^>]+ id="ss-page-name".*?>)[^<]+/, "\\1#{page_name}")
