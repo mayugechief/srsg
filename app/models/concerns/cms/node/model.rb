@@ -36,7 +36,8 @@ module Cms::Node::Model
     before_validation :validate_filename
     after_validation :set_depth, if: ->{ filename.present? }
     
-    after_save :rename_children
+    after_save :rename_children, if: ->{ @db_changes }
+    after_save :remove_directory, if: ->{ @db_changes && @db_changes["state"] && !public? }
     after_destroy :remove_directory
     after_destroy :destroy_children
   end
@@ -168,6 +169,7 @@ module Cms::Node::Model
     
     def rename_children
       return unless @db_changes["filename"]
+      return unless @db_changes["filename"][0]
       
       src = "#{site.path}/#{@db_changes['filename'][0]}"
       dst = "#{site.path}/#{@db_changes['filename'][1]}"
