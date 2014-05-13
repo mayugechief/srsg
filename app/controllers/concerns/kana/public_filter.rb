@@ -11,12 +11,12 @@ module Kana::PublicFilter
     after_action :render_kana, if: ->{ @filter == :kana }
   end
   
-  def set_path_with_kana
-    if @path =~ /^#{SS.config.kana.location}\//
+  public
+    def set_path_with_kana
+      return if @path !~ /^#{SS.config.kana.location}\//
       @path.sub!(/^#{SS.config.kana.location}\//, "/")
     end
-  end
-  
+    
   private
     def render_kana
       body = response.body

@@ -16,6 +16,7 @@ ja:
     saved: 保存しました。
     deleted: 削除しました。
     upload: アップロード
+    image: 画像
 
   views:
     links:
