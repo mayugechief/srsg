@@ -84,7 +84,7 @@ module SS::Document
     
   private
     def set_db_changes
-      @db_changes = new_record? ? {} : changes || {}
+      @db_changes = changes
     end
     
     def set_updated

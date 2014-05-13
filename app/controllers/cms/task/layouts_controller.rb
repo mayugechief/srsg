@@ -12,6 +12,7 @@ class Cms::Task::LayoutsController < ApplicationController
       set_site
       return puts "Site is unselected." unless @cur_site
       return puts "Site is unselected." unless SS.config.cms.ajax_layout
+      return puts "config.cms.serve_static_layouts is false" unless SS.config.cms.serve_static_layouts
       
       puts "Generate layouts"
       

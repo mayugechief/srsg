@@ -31,6 +31,9 @@ class Uploader::File
               Fs.binwrite path, binary
             end
           end
+          compile_scss if @css
+          compile_coffee if @js
+          
           @saved_path = @path
           return true
         rescue => e
@@ -151,7 +154,7 @@ class Uploader::File
           sass = Sass::Engine.new @binary.force_encoding("utf-8"), filename: @path,
             syntax: :scss, cache: false, style: :expanded,
             load_paths: opts.load_paths[1..-1]
-          css = sass.render
+          @css = sass.render
         rescue Sass::SyntaxError => e
           msg = e.backtrace[0].sub(/.*?\/_\//, "")
           msg = "[#{msg}] #{e}"
@@ -163,11 +166,21 @@ class Uploader::File
     def validate_coffee
       if ext == ".coffee"
         begin
-          CoffeeScript.compile @binary
+          @js = CoffeeScript.compile @binary
         rescue => e
           errors.add :coffee, e.message
         end
       end
+    end
+
+    def compile_scss
+      path = @saved_path.sub(/(\.css)?\.scss$/, ".css")
+      Fs.binwrite path, @css
+    end
+
+    def compile_coffee
+      path = @saved_path.sub(/(\.js)?\.coffee$/, ".js")
+      Fs.binwrite path, @js
     end
 
   class << self

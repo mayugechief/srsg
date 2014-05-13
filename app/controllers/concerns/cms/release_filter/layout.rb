@@ -30,8 +30,9 @@ module Cms::ReleaseFilter::Layout
     end
     
     def generate_layout(layout)
-      html = layout.render_html
+      return unless SS.config.cms.serve_static_layouts
       
+      html = layout.render_html
       keep = html.to_s == File.read(layout.path).to_s rescue false
       
       Fs.write layout.path, html

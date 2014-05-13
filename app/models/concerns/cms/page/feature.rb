@@ -117,6 +117,7 @@ module Cms::Page::Feature
         errors.add :filename, :invalid if filename !~ /^([\w\-]+\/)*[\w\-]+(#{fix_extname})?$/
       end
       self.filename = filename.sub(/\..*$/, "") + fix_extname if basename.present?
+      @basename = filename.sub(/.*\//, "") if filename
     end
     
     def set_depth

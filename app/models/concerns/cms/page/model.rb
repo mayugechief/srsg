@@ -11,7 +11,9 @@ module Cms::Page::Model
     field :route, type: String, default: ->{ "cms/page" }
     permit_params :route
     
-    after_save :generate_file
+    after_save :rename_file, if: ->{ @db_changes }
+    after_save :generate_file, if: ->{ @db_changes }
+    after_save :remove_file, if: ->{ @db_changes && @db_changes["state"] && !public? }
     after_destroy :remove_file
   end
   
@@ -20,18 +22,19 @@ module Cms::Page::Model
     #  "/#{filename}" == "#{path.sub(/\.[^\.]+?$/, '.html')}" ? :current : nil
     #end
     
-  private
     def generate_file
-      if public?
-        if @db_changes["filename"]
-          src = "#{site.path}/#{@db_changes['filename'][0]}"
-          dst = "#{site.path}/#{@db_changes['filename'][1]}"
-          Fs.mv src, dst if Fs.exists?(src)
-        end
-        Cms::Task::PagesController.new.generate_file self if @db_changes.present?
-      else
-        remove_file
-      end
+      return unless public?
+      Cms::Task::PagesController.new.generate_file(self)
+    end
+    
+  private
+    def rename_file
+      return unless @db_changes["filename"]
+      return unless @db_changes["filename"][0]
+      
+      src = "#{site.path}/#{@db_changes['filename'][0]}"
+      dst = "#{site.path}/#{@db_changes['filename'][1]}"
+      Fs.mv src, dst if Fs.exists?(src)
     end
     
     def remove_file

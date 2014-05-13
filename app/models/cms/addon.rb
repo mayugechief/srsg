@@ -137,11 +137,6 @@ module Cms::Addon
     
     set_order 200
     
-    included do
-      field :new_days, type: Integer, default: 1
-      permit_params :new_days
-    end
-    
     public
       def sort_options
         [ ["タイトル", "name"], ["ファイル名", "filename"],
@@ -151,15 +146,6 @@ module Cms::Addon
       def sort_hash
         return { released: -1 } if sort.blank?
         { sort.sub(/ .*/, "") => (sort =~ /-1$/ ? -1 : 1) }
-      end
-      
-      def new_days
-        value = read_attribute(:new_days).to_i
-        (value < 0 || 30 < value) ? 30 : value
-      end
-      
-      def in_new_days?(date)
-        date + new_days > Time.now
       end
   end
 end

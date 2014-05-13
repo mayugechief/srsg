@@ -1,3 +1,5 @@
+<%= jquery do %> SS.confirmUnloading(); <% end %>
+
 <%= form_for :item, url: { action: :create, filename: @item.filename }, html: { multipart: true } do |f| %>
 <%= error_messages_for :item %>
 <div class="addon-view">

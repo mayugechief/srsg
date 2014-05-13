@@ -11,6 +11,7 @@ class Cms::Task::PagesController < ApplicationController
     def generate
       set_site
       return puts "Site is unselected." unless @cur_site
+      return puts "config.cms.serve_static_pages is false" unless SS.config.cms.serve_static_pages
       
       puts "Generate pages"
       

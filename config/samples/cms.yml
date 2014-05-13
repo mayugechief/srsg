@@ -4,7 +4,11 @@ production: &production
   # Ajax layout
   ajax_layout: true
   
-  # HTML Editor (ckeditor, tinymce)
+  # Static files
+  serve_static_pages: true
+  serve_static_layouts: true
+  
+  # HTML editor (ckeditor, tinymce)
   html_editor: ckeditor
 
 test:

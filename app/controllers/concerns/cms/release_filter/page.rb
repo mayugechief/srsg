@@ -30,13 +30,15 @@ module Cms::ReleaseFilter::Page
     end
     
     def generate_page(page)
+      return unless SS.config.cms.serve_static_pages
+      
       self.params = ActionController::Parameters.new format: "html"
       self.request = ActionDispatch::Request.new method: "GET"
       self.response = ActionDispatch::Response.new
       
       @path = page.url
       
-      html = render_page(page, method: "get")
+      html = render_page(page, method: "GET")
       html = render_to_string inline: html, layout: "cms/page"
       
       if page.layout

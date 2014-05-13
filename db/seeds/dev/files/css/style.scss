@@ -201,6 +201,15 @@ aside h2 {
       display: inline;
     }
   }
+  article.new {
+    h2:after {
+      margin-left: 4px;
+      color: #e00;
+      font-size: 90%;
+      font-weight: bold;
+      content: "NEW";
+    }
+  }
 }
 .tabs {
   margin: 0px 0px 20px;
@@ -220,17 +229,6 @@ aside h2 {
     margin: -1px 0px 0px;
     padding: 8px;
     border: 1px solid #bbb;
-    article {
-      .new {
-        color: "#f70";
-      }
-      .new::after {
-        color: #e00;
-        font-size: 90%;
-        font-weight: bold;
-        content: "NEW";
-      }
-    }
     nav {
       margin: 8px 0px 0px;
       text-align: right;

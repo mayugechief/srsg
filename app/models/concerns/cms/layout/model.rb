@@ -17,7 +17,9 @@ module Cms::Layout::Model
     before_save :set_part_paths
     before_save :set_css_paths
     before_save :set_js_paths
-    after_save :generate_file
+    after_save :rename_file, if: ->{ @db_changes }
+    after_save :generate_file, if: ->{ @db_changes }
+    after_save :remove_file, if: ->{ @db_changes && @db_changes["state"] && !public? }
     after_destroy :remove_file
   end
   
@@ -41,11 +43,12 @@ module Cms::Layout::Model
         if (path = m[0]).index("//")
           head.gsub!(/"#{path}"/, "\"#{path}?_=$now\"") if path !~ /\?/
         else
-          file  = "#{site.path}#{path}"
-          data  = Fs.exists?(file) ? Fs.read(file) : "" rescue ""
-          scss  = file.sub(/\.css$/, ".scss")
-          data << Fs.read(scss) if Fs.exists?(scss) rescue ""
-          head.gsub!(/"#{path}"/, "\"#{path}?_=#{Digest::MD5.hexdigest(data)}\"")
+          head.gsub!(/"#{path}"/, "\"#{path}?_=$now\"") if path !~ /\?/
+          #file  = "#{site.path}#{path}"
+          #data  = Fs.exists?(file) ? Fs.read(file) : "" rescue ""
+          #scss  = file.sub(/\.css$/, ".scss")
+          #data << Fs.read(scss) if Fs.exists?(scss) rescue ""
+          #head.gsub!(/"#{path}"/, "\"#{path}?_=#{Digest::MD5.hexdigest(data)}\"")
         end
       end
       
@@ -54,6 +57,11 @@ module Cms::Layout::Model
       href = Digest::MD5.hexdigest href
       
       { head: head, body: body, href: href }.to_json
+    end
+    
+    def generate_file
+      return unless public?
+      Cms::Task::LayoutsController.new.generate_file(self)
     end
     
   private
@@ -79,17 +87,17 @@ module Cms::Layout::Model
       self.js_paths = html.scan(/<script [^>]*src="([^"]*\.js)"[^>]*>/).map {|m| m[0] }.uniq
     end
     
-    def generate_file
-      if public?
-        if @db_changes["filename"]
-          src = "#{site.path}/#{@db_changes['filename'][0]}"
-          dst = "#{site.path}/#{@db_changes['filename'][1]}"
-          Fs.mv src, dst if Fs.exists?(src)
-        end
-        Cms::Task::LayoutsController.new.generate_file self if @db_changes.present?
-      else
-        remove_file
-      end
+    def rename_file
+      return unless @db_changes["filename"]
+      return unless @db_changes["filename"][0]
+      
+      src = "#{site.path}/#{@db_changes['filename'][0]}"
+      dst = "#{site.path}/#{@db_changes['filename'][1]}"
+      Fs.mv src, dst if Fs.exists?(src)
+      
+      src.sub!(/\.html$/, '.json')
+      dst.sub!(/\.html$/, '.json')
+      Fs.mv src, dst if Fs.exists?(src)
     end
     
     def remove_file

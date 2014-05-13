@@ -11,7 +11,8 @@ module Cms::Addon::List
       field :loop_html, type: String
       field :upper_html, type: String
       field :lower_html, type: String
-      permit_params :conditions, :sort, :limit, :loop_html, :upper_html, :lower_html
+      field :new_days, type: Integer, default: 1
+      permit_params :conditions, :sort, :limit, :loop_html, :upper_html, :lower_html, :new_days
       
       before_validation :validate_conditions
     end
@@ -30,11 +31,13 @@ module Cms::Addon::List
         (value < 1 || 100 < value) ? 100 : value
       end
       
-      def render_loop_html(item)
-        loop_html.gsub(/\#\{(.*?)\}/) do |m|
-          str = eval_loop_variable($1, item) rescue false
-          str == false ? m : str
-        end
+      def new_days
+        value = read_attribute(:new_days).to_i
+        (value < 0 || 30 < value) ? 30 : value
+      end
+      
+      def in_new_days?(date)
+        date + new_days > Time.now
       end
       
       def condition_hash
@@ -64,18 +67,20 @@ module Cms::Addon::List
         { '$or' => cond }
       end
       
-    private
-      def validate_conditions
-        self.conditions = conditions.map do |m|
-          m.strip.sub(/^\w+:\/\/.*?\//, "").sub(/^\//, "").sub(/\/$/, "")
-        end.compact.uniq
+      def render_loop_html(item, opts = {})
+        (opts[:html] || loop_html).gsub(/\#\{(.*?)\}/) do |m|
+          str = template_variable_get(item, $1) rescue false
+          str == false ? m : str
+        end
       end
       
-      def eval_loop_variable(name, item)
+      def template_variable_get(item, name)
         if name =~ /^(name|url|summary)$/
           item.send name
         elsif name == "class"
           item.basename.sub(/\..*/, "").dasherize
+        elsif name == "new"
+          respond_to?(:in_new_days?) && in_new_days?(item.date) ? "new" : nil
         elsif name == "date"
           I18n.l item.date.to_date
         elsif name =~ /^date\.(\w+)$/
@@ -87,6 +92,13 @@ module Cms::Addon::List
         else
           false
         end
+      end
+      
+    private
+      def validate_conditions
+        self.conditions = conditions.map do |m|
+          m.strip.sub(/^\w+:\/\/.*?\//, "").sub(/^\//, "").sub(/\/$/, "")
+        end.compact.uniq
       end
   end
 end
