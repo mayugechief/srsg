@@ -9,7 +9,7 @@ gem "jquery-rails"
 gem "turbolinks"
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'spring', group: :development
+#gem 'spring', group: :development
 
 # gem 'bcrypt', '~> 3.1.7'
 # gem "unicorn"
@@ -38,3 +38,10 @@ gem "holiday_japan"
 gem "mail-iso-2022-jp"
 
 #gem "rails-dev-boost", git: "git://github.com/thedarkone/rails-dev-boost.git", group: :development
+
+group :development, :test do
+  gem 'spring'
+  gem 'rspec'  
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
