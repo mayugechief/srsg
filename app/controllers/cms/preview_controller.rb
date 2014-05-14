@@ -18,14 +18,27 @@ class Cms::PreviewController < ApplicationController
       @path = "index.html" if @path.blank?
     end
     
+    def x_sendfile(file = @file)
+      return if file =~ /\.html$/
+      raise "404" unless Fs.exists?(file)
+      super
+    end
+    
     def render_preview
       body = response.body
       
       body = embed_layout(body, @cur_layout) if @cur_layout
       
-      body.gsub!(/(href=")(\/[^"]+(\/|\.html))"/, %Q[\\1#{cms_preview_path}\\2"])
-      body.gsub!('href="/"', %Q[href="#{cms_preview_path}/"])
-      body.gsub!(/(<img [^>]+ src=")(\/[^"]+\/(|\.html))"/, %Q[\\1#{cms_preview_path}\\2"])
+      body.gsub!(/(href|src)=".*?"/) do |m|
+        url = m.match(/.*?="(.*?)"/)[1]
+        if url =~ /^\/(assets|images|javascripts|stylesheets)\//
+          m
+        elsif url =~ /^\//
+          m.sub(/="/, "=\"#{cms_preview_path}")
+        else
+          m
+        end
+      end
       
       css  = "position: fixed; top: 0px; left: 0px; padding: 5px;"
       css << "background-color: rgba(0, 150, 100, 0.6); color: #fff; font-weight: bold;"

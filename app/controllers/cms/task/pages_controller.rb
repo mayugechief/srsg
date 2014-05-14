@@ -4,7 +4,7 @@ class Cms::Task::PagesController < ApplicationController
   
   private
     def set_site
-      @cur_site = SS::Site.find_by host: ENV["site"]
+      @cur_site = SS::Site.where(host: ENV["site"]).first
     end
     
   public
