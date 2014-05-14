@@ -71,25 +71,25 @@ SHIRASAGI インストールマニュアル
 # データベース操作
 
   ## インデックスの作成
-  rake db:create_indexes RAILS_ENV=production
+  rake db:create_indexes
 
   ## ユーザーの作成
-  rake ss:user:create data='{ name: "user", email: "user@example.jp", password: "pass" }' RAILS_ENV=production
+  rake ss:user:create data='{ name: "user", email: "user@example.jp", password: "pass" }'
 
   # サイトの作成
-  rake ss:site:create data='{ name: "Your Site", host: "www", domains: "localhost:3000" }' RAILS_ENV=production
+  rake ss:site:create data='{ name: "Your Site", host: "www", domains: "localhost:3000" }'
 
   # サンプルデータの投入
-  rake db:seed name=demo site=www RAILS_ENV=production
+  rake db:seed name=demo site=www
 
 ----------------------------------------------------------------------------------------------------
 # CMS管理
 
   ## 静的ページ書き出し
-  rake cms:page:generate site=www RAILS_ENV=production
+  rake cms:page:generate site=www
   
   ## 静的ページ削除
-  rake cms:page:generate site=www RAILS_ENV=production
+  rake cms:page:generate site=www
 
 ----------------------------------------------------------------------------------------------------
 # 開発ツール
