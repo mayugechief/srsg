@@ -148,8 +148,8 @@ html, body {
 }
 #ss-pc, #ss-mb {
   padding: 15px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
   background-color: #fff;
   text-align: center;
   a {
@@ -242,35 +242,40 @@ aside h2 {
   body {
     //background-color: red;
   }
+  #head {
+    padding: 0px;
+    h1 {
+      float: none;
+      padding: 10px 10px 5px;
+    }
+    nav {
+      float: none;
+      margin: 0px;
+      padding: 0px 10px 5px;
+      text-align: right;
+    }
+  }
   #navi {
+    .wrap {
+      padding: 0px 8px;
+    }
     a {
       min-width: initial;
       min-width: auto;
-      margin: 0px 5px 0px 0px;
-      padding: 0px 5px;
+      margin: 0px 0px 0px 0px;
+      padding: 5px 5px;
+      font-size: 90%;
     }
   }
-  #wrap, #menu, #side {
-    clear: both;
-    float: none;
+  #wrap {
+    display: block;
     width: auto;
-    margin: 0px 5px 10px;
+    margin: 0px 8px;
     padding: 0px;
-    nav {
-      margin: 0px 0px 10px;
-    }
-  }
-  #wrap #main { 
-    clear: both;
-    float: none;
-    margin: 0px 0px 10px;
-    padding: 0px;
-    .wrap {
-      margin: 0px 5px;
-      padding: 10px;
-      > header {
-        margin: -10px -10px 10px;
-      }
+    #main, #menu, #side {
+      display: block;
+      width: auto;
+      padding: 0px;
     }
   }
 }
