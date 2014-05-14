@@ -26,6 +26,11 @@ module Cms::Parts::Crumb
               node = parent
             end
           end
+          
+          if @request_url =~ /\/[\w\-]+\.[\w\-]+$/
+            page = Cms::Page.site(@cur_site).where(filename: @request_url.sub(/^\//, "")).first
+            @items << [page.name, nil] if page
+          end
         end
         
         @items.unshift [@cur_part.home_label, @root.url]

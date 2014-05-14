@@ -14,7 +14,7 @@ class Cms::Node::ConfsController < ApplicationController
     end
     
     def fix_params
-      { site_id: @cur_site._id, cur_node: @cur_node.parent }
+      { cur_user: @cur_user, cur_site: @cur_site, cur_node: @cur_node.parent }
     end
     
     def redirect_url

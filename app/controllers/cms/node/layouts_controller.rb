@@ -11,12 +11,12 @@ class Cms::Node::LayoutsController < ApplicationController
   
   private
     def fix_params
-      { site_id: @cur_site._id, cur_node: @cur_node }
+      { cur_user: @cur_user, cur_site: @cur_site, cur_node: @cur_node }
     end
   
   public
     def index
-      @items = @model.site(@cur_site).node(@cur_node).
+      @items = @model.site(@cur_site).node(@cur_node).allow(read: @cur_user).
         order_by(filename: 1).
         page(params[:page]).per(20)
     end

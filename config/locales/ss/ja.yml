@@ -67,3 +67,5 @@ ja:
         group_ids: グループ
       ss/group:
         name: グループ名
+      ss/reference/site:
+        site_id: サイト

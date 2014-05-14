@@ -3,9 +3,10 @@ module Cms::Node::Model
   extend ActiveSupport::Concern
   extend SS::Translation
   include SS::Document
-  include SS::References::Site
-  include Cms::References::Layout
-  include Acl::Addon::GroupOwner
+  include SS::Reference::User
+  include SS::Reference::Site
+  include Cms::Reference::Layout
+  include Cms::Permission::Resource
   include Cms::Addon::Meta
   
   attr_accessor :cur_node, :basename
@@ -58,6 +59,7 @@ module Cms::Node::Model
       return self unless klass
       
       item = klass.new
+      item.instance_variable_set(:@new_record, nil) unless new_record?
       instance_variables.each {|k| item.instance_variable_set k, instance_variable_get(k) }
       item
     end

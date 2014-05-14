@@ -6,8 +6,6 @@ module Cms::Addon
     
     set_order 210
     
-    attr_accessor :cur_user
-    
     included do
       embeds_ids :files, class_name: "SS::File"
       permit_params file_ids: []

@@ -10,16 +10,16 @@ class Cms::LayoutsController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:"cms.layout", action: :index]
+      #@crumbs << [:"cms.layout", action: :index]
     end
     
     def fix_params
-      { site_id: @cur_site._id, cur_node: false }
+      { cur_user: @cur_user, cur_site: @cur_site, cur_node: false }
     end
     
   public
     def index
-      @items = @model.site(@cur_site).
+      @items = @model.site(@cur_site).allow(read: @cur_user).
         where(depth: 1).
         order_by(filename: 1).
         page(params[:page]).per(100)

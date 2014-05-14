@@ -9,13 +9,12 @@ class Sns::User::TempFilesController < ApplicationController
   
   private
     def fix_params
-      { user_id: @cur_user.id }
+      { cur_user: @cur_user }
     end
   
   public
     def index
-      @items = @model.
-        where(user_id: @cur_user.id).
+      @items = @model.user(@cur_user).
         order_by(_id: -1).
         page(params[:page]).per(20)
     end

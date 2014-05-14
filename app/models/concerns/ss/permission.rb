@@ -1,13 +1,11 @@
 # coding: utf-8
 module SS::Permission
-  extend ActiveSupport::Concern
-  
-  def permitted?(targets = {})
-    return super if defined?(super)
+  module User
+    extend ActiveSupport::Concern
     
-    targets.each do |name, user|
-      return unless user
-    end
-    true
+    public
+      def allowed?(action_with_resource)
+        true
+      end
   end
 end

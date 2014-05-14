@@ -10,16 +10,16 @@ class Cms::PagesController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:"cms.page", action: :index]
+      #@crumbs << [:"cms.page", action: :index]
     end
     
     def fix_params
-      { cur_user: @cur_user, site_id: @cur_site._id, cur_node: false }
+      { cur_user: @cur_user, cur_site: @cur_site, cur_node: false }
     end
     
   public
     def index
-      @items = @model.site(@cur_site).
+      @items = @model.site(@cur_site).allow(read: @cur_user).
         where(depth: 1).
         where(route: "cms/page").
         order_by(updated: -1).

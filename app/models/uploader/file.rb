@@ -152,8 +152,10 @@ class Uploader::File
         begin
           opts = Rails.application.config.sass
           sass = Sass::Engine.new @binary.force_encoding("utf-8"), filename: @path,
-            syntax: :scss, cache: false, style: :expanded,
-            load_paths: opts.load_paths[1..-1]
+            syntax: :scss, cache: false,
+            load_paths: opts.load_paths[1..-1],
+            style: (opts.debug_info ? :expanded : :compressed),
+            debug_info: opts.debug_info
           @css = sass.render
         rescue Sass::SyntaxError => e
           msg = e.backtrace[0].sub(/.*?\/_\//, "")

@@ -1,16 +1,15 @@
 SHIRASAGI インストールマニュアル
 ================================
 
-# 想定環境
+CentOS 6.5/64bit
 
-  CentOS 6.5/64bit
-
-----------------------------------------------------------------------------------------------------
+--------------------
 # Packages
 
+  su -
   yum -y install ImageMagick ImageMagick-devel
 
-----------------------------------------------------------------------------------------------------
+--------------------
 # MongoDB
 
   vi /etc/yum.repos.d/CentOS-Base.repo
@@ -25,14 +24,14 @@ SHIRASAGI インストールマニュアル
   /sbin/service mongod start
   /sbin/chkconfig mongod on
 
-----------------------------------------------------------------------------------------------------
+--------------------
 # Ruby (RVM)
 
-  bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
-  su -
+  \curl -sSL https://get.rvm.io | sudo bash -s stable
+  source /etc/profile
   rvm install 2.1.1
 
-----------------------------------------------------------------------------------------------------
+--------------------
 # SHIRASAGI
 
   git clone --depth 1 https://github.com/shirasagi/shirasagi /var/www/shirasagi
@@ -40,11 +39,11 @@ SHIRASAGI インストールマニュアル
   cp config/samples/* config/
   bundle install
   bin/deploy
-  thin start -d -e production
+  thin start -d
   
   Access to http://localhost:3000/.mypage
 
-----------------------------------------------------------------------------------------------------
+--------------------
 # ふりがな機能
 
   cd /usr/local/src
@@ -68,6 +67,8 @@ SHIRASAGI インストールマニュアル
   ldconfig
 
 ----------------------------------------------------------------------------------------------------
+
+--------------------
 # データベース操作
 
   ## インデックスの作成
@@ -82,8 +83,11 @@ SHIRASAGI インストールマニュアル
   # サンプルデータの投入
   rake db:seed name=demo site=www
 
-----------------------------------------------------------------------------------------------------
+--------------------
 # CMS管理
+
+  ## 予約公開/非公開
+  rake cms:page:release
 
   ## 静的ページ書き出し
   rake cms:page:generate site=www
@@ -91,7 +95,7 @@ SHIRASAGI インストールマニュアル
   ## 静的ページ削除
   rake cms:page:generate site=www
 
-----------------------------------------------------------------------------------------------------
+--------------------
 # 開発ツール
 
   # Eggインストール

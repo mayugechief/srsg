@@ -6,7 +6,7 @@ class Cms::ContentsController < ApplicationController
   
   private
     def set_crumbs
-      @crumbs << [:"cms.content", action: :index]
+      #@crumbs << [:"cms.content", action: :index]
     end
     
   public
@@ -17,7 +17,7 @@ class Cms::ContentsController < ApplicationController
       cond = {}
       cond[:route] = /^#{@mod}\// if @mod.present?
       
-      @items = Cms::Node.site(@cur_site).
+      @items = Cms::Node.site(@cur_site).allow(read: @cur_user).
         where(cond).
         where(shortcut: :show).
         order_by(filename: 1).

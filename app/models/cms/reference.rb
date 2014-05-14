@@ -1,5 +1,5 @@
 # coding: utf-8
-module Cms::References
+module Cms::Reference
   module Layout
     extend ActiveSupport::Concern
     

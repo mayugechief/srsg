@@ -6,5 +6,6 @@ FactoryGirl.define do
     name   "テスト"
     filename "test/fukushi"
     route  "category/pages"
+    site_id 1
   end
 end

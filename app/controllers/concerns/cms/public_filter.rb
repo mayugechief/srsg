@@ -88,8 +88,8 @@ module Cms::PublicFilter
       begin
         opts = Rails.application.config.sass
         sass = Sass::Engine.new Fs.read(@scss), filename: @scss, syntax: :scss, cache: false,
-          style: (opts.debug_info ? :expanded : :compressed),
           load_paths: opts.load_paths[1..-1],
+          style: (opts.debug_info ? :expanded : :compressed),
           debug_info: opts.debug_info
         css = sass.render
       rescue Sass::SyntaxError => e
@@ -116,7 +116,7 @@ module Cms::PublicFilter
       names = path.sub(/\/[^\/]+$/, "").split('/')
       names.each {|name| dirs << (dirs.size == 0 ? name : "#{dirs.last}/#{name}") }
       
-      node = Cms::Node.where(site_id: @cur_site.id, :filename.in => dirs).sort(depth: -1).first
+      node = Cms::Node.site(@cur_site).where(:filename.in => dirs).sort(depth: -1).first
       return unless node
       @preview || node.public? ? node : nil
     end

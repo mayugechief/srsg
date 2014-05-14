@@ -61,8 +61,6 @@ module SS::CrudFilter
     end
     
     def show
-      #@cur_user.has_permit?(read: @item) #TODO:
-      
       render
     end
     

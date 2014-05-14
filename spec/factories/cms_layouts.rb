@@ -7,5 +7,6 @@ FactoryGirl.define do
     filename "test.layout.html"
     depth  1
     html   ""
+    site_id  1
   end
 end

@@ -47,7 +47,7 @@ module Cms::NodeFilter::EditCell
     end
     
     def fix_params
-      { site_id: @cur_site.id, cur_node: @cur_node }.merge(@fix_params)
+      { cur_user: @cur_user, cur_site: @cur_site, cur_node: @cur_node }.merge(@fix_params)
     end
     
     def pre_params
@@ -60,6 +60,7 @@ module Cms::NodeFilter::EditCell
     
   public
     def show
+      raise "403" unless @item.allowed?(read: @cur_user)
       render
     end
     
@@ -69,23 +70,28 @@ module Cms::NodeFilter::EditCell
     
     def create
       @item.attributes = get_params
+      raise "403" unless @item.allowed?(create: @cur_user)
       @item.save ? @item : render(file: :new)
     end
     
     def edit
+      raise "403" unless @item.allowed?(update: @cur_user)
       render
     end
     
     def update
       @item.attributes = get_params
+      raise "403" unless @item.allowed?(update: @cur_user)
       @item.update ? @item : render(file: :edit)
     end
     
     def delete
+      raise "403" unless @item.allowed?(delete: @cur_user)
       render
     end
     
     def destroy
+      raise "403" unless @item.allowed?(delete: @cur_user)
       @item.destroy ? @item : render(file: :delete)
     end
 end

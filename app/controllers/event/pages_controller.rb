@@ -11,14 +11,14 @@ class Event::PagesController < ApplicationController
 
   private
     def fix_params
-      { cur_user: @cur_user, site_id: @cur_site._id, cur_node: @cur_node }
+      { cur_user: @cur_user, cur_site: @cur_site, cur_node: @cur_node }
     end
 
   public
     def index
       render inline: "", layout: true
       
-      #@items = @model.site(@cur_site).node(@cur_node).
+      #@items = @model.site(@cur_site).node(@cur_node).allow(read: @cur_user).
       #  order_by(updated: -1).
       #  page(params[:page]).per(50)
     end

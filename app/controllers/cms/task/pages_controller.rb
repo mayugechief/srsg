@@ -8,6 +8,36 @@ class Cms::Task::PagesController < ApplicationController
     end
     
   public
+    def release
+      time = Time.now
+      
+      cond  = { state: "closed", release_date: { "$lte" => time } }
+      pages = Cms::Page.where(cond)
+      puts "release #{pages.size} pages." if pages.size > 0
+      
+      pages.each do |page|
+        page = page.becomes_with_route
+        page.state = "public"
+        page.release_date = nil
+        if !page.save
+          puts "  #{page.filename}: #{page.errors.full_messages.join(', ')}"
+        end
+      end
+      
+      cond  = { state: "public", close_date: { "$lte" => time } }
+      pages = Cms::Page.where(cond)
+      puts "close   #{pages.size} pages." if pages.size > 0
+      
+      pages.each do |page|
+        page = page.becomes_with_route
+        page.state = "closed"
+        page.close_date = nil
+        if !page.save
+          puts "  #{page.filename}: #{page.errors.full_messages.join(', ')}"
+        end
+      end
+    end
+    
     def generate
       set_site
       return puts "Site is unselected." unless @cur_site
@@ -16,7 +46,7 @@ class Cms::Task::PagesController < ApplicationController
       puts "Generate pages"
       
       Cms::Page.site(@cur_site).public.each do |page|
-        puts "  write  #{page.url}"
+        puts "write  #{page.url}"
         generate_page page
       end
     end
@@ -33,7 +63,7 @@ class Cms::Task::PagesController < ApplicationController
       puts "Remove pages"
       
       Cms::Page.site(@cur_site).each do |page|
-        puts "  remove  #{page.url}"
+        puts "remove  #{page.url}"
         Fs.rm_rf page.path
       end
     end

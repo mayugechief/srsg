@@ -14,7 +14,7 @@ class Cms::Node::NodesController < ApplicationController
     end
     
     def fix_params
-      { site_id: @cur_site._id, cur_node: @cur_node }
+      { cur_user: @cur_user, cur_site: @cur_site, cur_node: @cur_node }
     end
     
     def pre_params
@@ -23,7 +23,7 @@ class Cms::Node::NodesController < ApplicationController
     
   public
     def index
-      @items = @model.site(@cur_site).node(@cur_node).
+      @items = @model.site(@cur_site).node(@cur_node).allow(read: @cur_user).
         order_by(filename: 1).
         page(params[:page]).per(50)
     end

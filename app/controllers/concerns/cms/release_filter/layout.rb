@@ -5,7 +5,7 @@ module Cms::ReleaseFilter::Layout
   
   private
     def find_layout(path)
-      layout = Cms::Layout.find_by(site_id: @cur_site, filename: path) rescue nil
+      layout = Cms::Layout.site(@cur_site).find_by(filename: path) rescue nil
       return nil unless layout
       @preview || layout.public? ? layout : nil
     end
@@ -40,7 +40,7 @@ module Cms::ReleaseFilter::Layout
     end
     
     def find_part(path)
-      part = Cms::Part.find_by site_id: @cur_site, filename: path rescue nil
+      part = Cms::Part.site(@cur_site).find_by(filename: path) rescue nil
       return unless part
       @preview || part.public?  ? part : nil
     end
@@ -61,6 +61,7 @@ module Cms::ReleaseFilter::Layout
     end
     
     def embed_layout(body, layout, opts = {})
+      meta = body.match(/(.*?)<\/head>/m)[1]
       head = body.match(/<header.*?<\/header>/m).to_s
       site_name = head =~ /<[^>]+ id="ss-site-name".*?>(.*?)</m ? $1 : nil
       page_name = head =~ /<[^>]+ id="ss-page-name".*?>(.*?)</m ? $1 : nil
@@ -84,6 +85,7 @@ module Cms::ReleaseFilter::Layout
         
         body.sub!(/(<[^>]+ id="ss-site-name".*?>)[^<]+/, "\\1#{site_name}")
         body.sub!(/(<[^>]+ id="ss-page-name".*?>)[^<]+/, "\\1#{page_name}")
+        body.sub!(/.*?<head>/m, meta)
       end
       
       body

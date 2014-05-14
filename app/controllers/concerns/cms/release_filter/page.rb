@@ -6,7 +6,7 @@ module Cms::ReleaseFilter::Page
   
   private
     def find_page(path)
-      page = Cms::Page.find_by(site_id: @cur_site, filename: path) rescue nil
+      page = Cms::Page.site(@cur_site).find_by(filename: path) rescue nil
       return unless page
       @preview || page.public? ? page : nil
     end

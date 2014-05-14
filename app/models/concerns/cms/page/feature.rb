@@ -2,9 +2,9 @@
 module Cms::Page::Feature
   extend ActiveSupport::Concern
   include SS::Document
-  include SS::References::Site
-  include Acl::Addon::GroupOwner
-  include SS::Permission
+  include SS::Reference::User
+  include SS::Reference::Site
+  include Cms::Permission::Resource
   
   attr_accessor :cur_node, :basename
   
@@ -18,7 +18,7 @@ module Cms::Page::Feature
     field :name, type: String
     field :filename, type: String
     field :depth, type: Integer, metadata: { form: :none }
-    #field :released, type: DateTime
+    field :released, type: DateTime
     embeds_ids :categories, class_name: "Cms::Node"
     
     permit_params :state, :name, :filename, :basename, category_ids: []

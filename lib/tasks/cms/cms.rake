@@ -12,6 +12,10 @@ namespace :cms do
   end
   
   namespace :page do
+    task :release => :environment do
+      Cms::Task::PagesController.new.release
+    end
+    
     task :generate => :environment do
       Cms::Task::PagesController.new.generate
     end

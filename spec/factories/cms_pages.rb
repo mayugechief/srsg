@@ -7,5 +7,6 @@ FactoryGirl.define do
     sequence(:filename) {|i| "docs/test#{i}.html"}
     depth  2
     route  "cms/page"
+    site_id  1
   end
 end

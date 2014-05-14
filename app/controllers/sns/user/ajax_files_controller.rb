@@ -9,16 +9,15 @@ class Sns::User::AjaxFilesController < ApplicationController
     
   private
     def fix_params
-      { user_id: @cur_user.id }
+      { cur_user: @cur_user }
     end
     
   public
     def index
       cond = (@cur_user.id != @sns_user.id) ? { state: :public } : { }
       
-      @items = @model.
+      @items = @model.user(@cur_user).
         where(cond).
-        where(user_id: @cur_user.id).
         order_by(_id: -1).
         page(params[:page]).per(20)
     end

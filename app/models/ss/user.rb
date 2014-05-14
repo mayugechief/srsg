@@ -1,7 +1,7 @@
 # coding: utf-8
 class SS::User
   include SS::Document
-  include SS::Permission
+  include SS::Permission::User
   
   index({ email: 1 }, { unique: true })
   

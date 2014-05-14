@@ -3,6 +3,7 @@ module SS::File::Model
   extend ActiveSupport::Concern
   extend SS::Translation
   include SS::Document
+  include SS::Reference::User
   
   attr_accessor :in_file, :in_files
   
@@ -12,7 +13,6 @@ module SS::File::Model
     seqid :id
     field :model, type: String
     field :file_id, type: String
-    field :user_id, type: Integer
     field :state, type: String, default: "public"
     field :filename, type: String
     field :size, type: Integer
@@ -24,7 +24,6 @@ module SS::File::Model
     before_validation :set_filename, if: ->{ in_file.present? }
     
     validates :model, presence: true
-    validates :user_id, presence: true
     validates :state, presence: true
     validates :filename, presence: true, if: ->{ !in_file && !in_files }
     
