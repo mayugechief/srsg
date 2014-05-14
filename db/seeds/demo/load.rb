@@ -65,22 +65,22 @@ def save_part(data)
 end
 
 save_part route: "cms/free", filename: "about.part.html", name: "SHIRASAGI市について"
-save_part route: "cms/free", filename: "add.part.html", name: "広告"
+save_part route: "cms/free", filename: "add.part.html", name: "広告", mobile_view: "hide"
 save_part route: "cms/free", filename: "foot.part.html", name: "フッター"
 save_part route: "cms/free", filename: "guide.part.html", name: "くらしのガイド"
 save_part route: "cms/free", filename: "head.part.html", name: "ヘッダー"
-save_part route: "cms/free", filename: "keyvisual.part.html", name: "キービジュアル"
+save_part route: "cms/free", filename: "keyvisual.part.html", name: "キービジュアル", mobile_view: "hide"
 save_part route: "cms/free", filename: "links-life.part.html", name: "関連リンク：くらし・手続き"
 save_part route: "cms/free", filename: "navi.part.html", name: "グローバルナビ"
 save_part route: "cms/free", filename: "online.part.html", name: "オンラインサービス"
-save_part route: "cms/free", filename: "connect.part.html", name: "関連サイト"
+save_part route: "cms/free", filename: "connect.part.html", name: "関連サイト", mobile_view: "hide"
 save_part route: "cms/free", filename: "page-top.part.html", name: "ページトップ"
-save_part route: "cms/free", filename: "population.part.html", name: "人口・世帯数"
+save_part route: "cms/free", filename: "population.part.html", name: "人口・世帯数", mobile_view: "hide"
 save_part route: "cms/free", filename: "propose.part.html", name: "ご意見・ご提案"
-save_part route: "cms/free", filename: "ranking.part.html", name: "アクセスランキング"
+save_part route: "cms/free", filename: "ranking.part.html", name: "アクセスランキング", mobile_view: "hide"
 save_part route: "cms/free", filename: "relations.part.html", name: "広報"
 save_part route: "cms/free", filename: "safety.part.html", name: "安心安全情報"
-save_part route: "cms/free", filename: "tool.part.html", name: "アクセシビリティーツール"
+save_part route: "cms/free", filename: "tool.part.html", name: "アクセシビリティーツール", mobile_view: "hide"
 save_part route: "cms/free", filename: "topics.part.html", name: "街の話題"
 save_part route: "cms/free", filename: "useful.part.html", name: "お役立ち情報"
 save_part route: "article/page", filename: "attention/recent.part.html", name: "注目情報", limit: 5
@@ -92,7 +92,7 @@ save_part route: "article/page", filename: "oshirase/kurashi/recent.part.html", 
 save_part route: "article/page", filename: "oshirase/recent.part.html", name: "お知らせ", limit: 5
 save_part route: "article/page", filename: "oshirase/sangyo/recent.part.html", name: "お知らせ", limit: 5
 save_part route: "article/page", filename: "oshirase/shisei/recent.part.html", name: "お知らせ", limit: 5
-save_part route: "cms/crumb", filename: "breadcrumb.part.html", name: "パンくず"
+save_part route: "cms/crumb", filename: "breadcrumb.part.html", name: "パンくず", mobile_view: "hide"
 save_part route: "category/node", filename: "category-list.part.html", name: "カテゴリーリスト"
 save_part route: "cms/tabs", filename: "recent-tabs.part.html", name: "新着タブ",
   conditions: %w[oshirase oshirase/event shisei/jinji], limit: 6
