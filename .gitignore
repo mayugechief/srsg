@@ -8,3 +8,7 @@
 /tmp
 /public/sites
 /vendor/eggs
+
+.DS_Store
+Thumbs.db
+ehthumbs.db
