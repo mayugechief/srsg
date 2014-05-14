@@ -18,7 +18,6 @@ class Cms::Part
     default_scope ->{ where(route: "cms/free") }
     
     def render_html
-      dump SS.config.cms.ajax_free_part
       SS.config.cms.ajax_free_part ? super : html
     end
   end
