@@ -133,6 +133,7 @@ module Cms::PublicFilter
     
     def send_node(body)
       return unless body
+      return if response.body.present?
       respond_to do |format|
         format.html { render inline: body, layout: "cms/page" }
         format.json { render json: body }
