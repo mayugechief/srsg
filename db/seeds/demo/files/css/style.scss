@@ -1,1559 +1,2425 @@
-@import "init";
-@import "part";
+@charset "UTF-8";
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\000037}}
+header, footer, nav, section, article, figure, aside {
+  display: block;
+  margin: 0px;
+}
 
-// -----------------------------------------------------------------------------
-// element
+/*
+html5doctor.com Reset Stylesheet
+v1.6.1
+Last Updated: 2010-09-17
+Author: Richard Clark - http://richclarkdesign.com
+Twitter: @rich_clark
+*/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000332}}
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000342}}
+body {
+  line-height: 1.85;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000347}}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000351}}
+nav ul {
+  list-style: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000355}}
+blockquote, q {
+  quotes: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000360}}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000365}}
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* change colours to suit your needs */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000374}}
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+/* change colours to suit your needs */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000381}}
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000388}}
+del {
+  text-decoration: line-through;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000392}}
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\0000397}}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* change border colour to suit your needs */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003103}}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003112}}
+input, select {
+  vertical-align: middle;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000037}}
 html {
   height: 100%;
-  font-family: $font-base;
+  font-family: Meiryo, "メイリオ", Tahoma, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Verdana, "MS PGothic", "ＭＳ　Ｐゴシック", sans-serif;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000311}}
 body {
   margin: 0 auto;
-  font-family: $font-base;
+  font-family: Meiryo, "メイリオ", Tahoma, "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Verdana, "MS PGothic", "ＭＳ　Ｐゴシック", sans-serif;
   font-size: 100%;
-  color: $text;
+  color: #666666;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000317}}
 h1, h2, h3, h4, h5 {
   margin: 0px;
   font-size: 100%;
   font-weight: normal;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000322}}
 a {
-  color: $link;
-  &:hover {
-    color: $hover;
-    text-decoration: none;
-  }
-  &:visited {
-    color: $visited;
-  }
+  color: #0066cc;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000324}}
+a:hover {
+  color: #d00000;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000328}}
+a:visited {
+  color: #9000ff;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000332}}
 rp, rt {
   background: #fff;
-  color: $text;
-  font-size: $px12;
+  color: #666666;
+  font-size: 86%;
   font-weight: normal;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000338}}
 rp {
   margin: 0px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000341}}
 img {
   vertical-align: middle;
 }
 
-// -----------------------------------------------------------------------------
-// layout
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000347}}
 #page {
   margin: 0 auto;
   font-size: 87.5%;
 }
-// -----------------------------------------------------------------------------
-// tool
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000353}}
 #tool {
-  border-bottom: 3px solid $orange;
-  nav {
-    @include clear;
-    width: $page-width;
-    margin: 0 auto;
-    padding: 5px 10px;
-    #nocssread {
-      float: left;
-      padding-right: 10px;
-      border-right: $border-hgry;
-      @include u-arrow;
-    }
-    #size, #read, #ss-kana, #info {
-      float: right;
-      border-left: $border-hgry;
-    }
-    #size {
-      padding-left: 10px;
-      span a {
-        margin-left: 5px;
-        padding: 3px;
-        background: $hblue;
-        @include border-radius(3px);
-        color: $text;
-        text-decoration: none;
-        &:hover {
-          @include grd-blue;
-          color: $t-white;
-        }
-      }
-    }
-    #read {
-      padding: 0 10px 0 35px;
-      background: url(../img/voice.png) no-repeat 10px center;
-    }
-    #ss-kana {
-      padding: 0 10px;
-      background: url(../img/kana.png) no-repeat 10px center;
-      a {
-        padding-left: 23px;
-      }
-    }
-    #info {
-      padding: 0 10px;
-    }
-  }
+  border-bottom: 3px solid #f08300;
 }
-// -----------------------------------------------------------------------------
-// head
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000355}}
+#tool nav {
+  zoom: 1;
+  width: 1080px;
+  margin: 0 auto;
+  padding: 5px 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#tool nav:before, #tool nav:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#tool nav:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000360}}
+#tool nav #nocssread {
+  float: left;
+  padding-right: 10px;
+  border-right: 1px solid #cccccc;
+  display: inline-block;
+  padding-left: 17px;
+  background: url(../img/u-arrow.png) no-repeat left center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000366}}
+#tool nav #size, #tool nav #read, #tool nav #ss-kana, #tool nav #info {
+  float: right;
+  border-left: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000370}}
+#tool nav #size {
+  padding-left: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000372}}
+#tool nav #size span a {
+  margin-left: 5px;
+  padding: 3px;
+  background: #cceeee;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  color: #666666;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000379}}
+#tool nav #size span a:hover {
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000385}}
+#tool nav #read {
+  padding: 0 10px 0 35px;
+  background: url(../img/voice.png) no-repeat 10px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000389}}
+#tool nav #ss-kana {
+  padding: 0 10px;
+  background: url(../img/kana.png) no-repeat 10px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000392}}
+#tool nav #ss-kana a {
+  padding-left: 23px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\0000396}}
+#tool nav #info {
+  padding: 0 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003103}}
 #head {
-  width: $page-width;
+  width: 1080px;
   margin: 0 auto;
   padding: 0 10px;
-  @include clear;
-  .logo {
-    float: left;
-    padding: 17px 0;
-  }
-  .menu {
-    float: right;
-    .u-menu {
-      padding: 12px 0;
-      .smart {
-        padding-left: 15px;
-        background: url(../img/smart.png) no-repeat left center;
-      }
-      .inquiry {
-        margin-left: 12px;
-        padding-left: 20px;
-        background: url(../img/inquiry.png) no-repeat left center;
-      }
-      .sitemap {
-        margin-left: 12px;
-        padding-left: 20px;
-        background: url(../img/sitemap.png) no-repeat left center;
-      }
-    }
-    .l-menu {
-      text-align: right;
-      padding-bottom: 10px;
-      form {
-        float: right;
-        border: $border-hgry
-      }
-      #search-box {
-        margin-right: -10px;
-        padding: 5px;
-        border: none;
-        color: $text;
-      }
-      #search-button {
-        padding: 5px 10px;
-        border: none;
-        background: #333;
-        color: $t-white;
-      }
-    }
-  }
+  zoom: 1;
 }
-// -----------------------------------------------------------------------------
-// navi
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#head:before, #head:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#head:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003108}}
+#head .logo {
+  float: left;
+  padding: 17px 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003112}}
+#head .menu {
+  float: right;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003114}}
+#head .menu .u-menu {
+  padding: 12px 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003116}}
+#head .menu .u-menu .smart {
+  padding-left: 15px;
+  background: url(../img/smart.png) no-repeat left center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003120}}
+#head .menu .u-menu .inquiry {
+  margin-left: 12px;
+  padding-left: 20px;
+  background: url(../img/inquiry.png) no-repeat left center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003125}}
+#head .menu .u-menu .sitemap {
+  margin-left: 12px;
+  padding-left: 20px;
+  background: url(../img/sitemap.png) no-repeat left center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003131}}
+#head .menu .l-menu {
+  text-align: right;
+  padding-bottom: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003134}}
+#head .menu .l-menu form {
+  float: right;
+  border: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003138}}
+#head .menu .l-menu #search-box {
+  margin-right: -10px;
+  padding: 5px;
+  border: none;
+  color: #666666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003144}}
+#head .menu .l-menu #search-button {
+  padding: 5px 10px;
+  border: none;
+  background: #333;
+  color: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003155}}
 #navi {
-  @include grd-blue;
-  @include clear;
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  zoom: 1;
   min-width: 1100px;
-  border-bottom: 3px solid $orange;
-  .wrap {
-    @include clear;
-    width: 1078px;
-    margin: 0 auto;
-    border-left: $border-lblue;
-    border-right: $border-hblue;
-    li {
-      position: relative;
-      float: left;
-      color: #202020;
-    }
-    a {
-      display: inline-block;
-      width: 178px;
-      padding: 5px 0 4px;
-      border-left: $border-hblue;
-      border-right: $border-lblue;
-      color: $t-white;
-      font-size: $px16;
-      text-decoration: none;
-      text-align: center;
-      &:hover {
-        background: $hblue;
-        color: #202020;
-      }
-    }
-    .current {
-      background: $hblue;
-      color: #202020;
-    }
-    .sangyo a, .shsiei a {
-      width: 176px;
-    }
-    .current a {
-      background: $hblue;
-      color: #202020;
-    }
-  }
+  border-bottom: 3px solid #f08300;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#navi:before, #navi:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#navi:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003160}}
+#navi .wrap {
+  zoom: 1;
+  width: 1078px;
+  margin: 0 auto;
+  border-left: 1px solid #005797;
+  border-right: 1px solid #439bd5;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#navi .wrap:before, #navi .wrap:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#navi .wrap:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003166}}
+#navi .wrap li {
+  position: relative;
+  float: left;
+  color: #202020;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003171}}
+#navi .wrap a {
+  display: inline-block;
+  width: 178px;
+  padding: 5px 0 4px;
+  border-left: 1px solid #439bd5;
+  border-right: 1px solid #005797;
+  color: white;
+  font-size: 115%;
+  text-decoration: none;
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003181}}
+#navi .wrap a:hover {
+  background: #cceeee;
+  color: #202020;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003186}}
+#navi .wrap .current {
+  background: #cceeee;
+  color: #202020;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003190}}
+#navi .wrap .sangyo a, #navi .wrap .shsiei a {
+  width: 176px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003193}}
+#navi .wrap .current a {
+  background: #cceeee;
+  color: #202020;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003199}}
 #navi .wrap li ul, #navi .wrap .current ul {
   position: absolute;
   left: -1px;
   display: none;
   width: 180px;
-  border-left: $border-lblue;
-  border-right: $border-hblue;
-  border-bottom: 2px solid $orange;
-  background: $hblue;
+  border-left: 1px solid #005797;
+  border-right: 1px solid #439bd5;
+  border-bottom: 2px solid #f08300;
+  background: #cceeee;
   z-index: 100;
-  li {
-    float: none;
-    border: none;
-    border-left: $border-hblue;
-    border-right: $border-lblue;
-    padding: 0;
-    a {
-      display: block;
-      @include li;
-      width: auto;
-      padding: 5px 10px 3px 25px;
-      border: none;
-      background-position: 12px 14px;
-      color: $link;
-      font-size: $px14;
-      text-align: left;
-      &:hover {
-        @include li;
-        padding: 5px 10px 3px 25px;
-        color: $link;
-        text-decoration: none;
-        background-color: #fff;
-        background-position: 12px 14px;
-      }
-    }
-  }
 }
-#navi .wrap .sangyo ul, #navi .wrap .shsiei ul {
-  width: 178px;
-  li a {
-    width: auto;
-  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003209}}
+#navi .wrap li ul li, #navi .wrap .current ul li {
+  float: none;
+  border: none;
+  border-left: 1px solid #439bd5;
+  border-right: 1px solid #005797;
+  padding: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003215}}
+#navi .wrap li ul li a, #navi .wrap .current ul li a {
+  display: block;
+  padding-left: 15px;
+  background: url(../img/ic-li.png) no-repeat 2px 8px;
+  width: auto;
+  padding: 5px 10px 3px 25px;
+  border: none;
+  background-position: 12px 14px;
+  color: #0066cc;
+  font-size: 100%;
+  text-align: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003225}}
+#navi .wrap li ul li a:hover, #navi .wrap .current ul li a:hover {
+  padding-left: 15px;
+  background: url(../img/ic-li.png) no-repeat 2px 8px;
+  padding: 5px 10px 3px 25px;
+  color: #0066cc;
+  text-decoration: none;
+  background-color: #fff;
+  background-position: 12px 14px;
 }
 
-// -----------------------------------------------------------------------------
-// wrap
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003236}}
+#navi .wrap .sangyo ul, #navi .wrap .shsiei ul {
+  width: 178px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003238}}
+#navi .wrap .sangyo ul li a, #navi .wrap .shsiei ul li a {
+  width: auto;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003245}}
 #wrap {
-  @include clear;
-  width: $page-width;
+  zoom: 1;
+  width: 1080px;
   margin: 0 auto;
   padding: 0 10px;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#wrap:before, #wrap:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#wrap:after {
+  clear: both;
+}
 
-// -----------------------------------------------------------------------------
-// main addition
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003254}}
 #main {
   float: left;
   width: 712px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003258}}
 .one #main {
   width: 100%;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003262}}
 #main .left, #addition .left,
 #main .center, #addition .center {
   float: left;
   width: 344px;
-  margin-right: $box-margin;
+  margin-right: 24px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003267}}
 #main .center {
   margin: 0;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003270}}
 #addition {
-  @include clear;
-  width: $page-width;
+  zoom: 1;
+  width: 1080px;
   margin: 0 auto;
   padding: 24px 10px 0;
-  border-top: $border-hgry;
+  border-top: 1px solid #cccccc;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#addition:before, #addition:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#addition:after {
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003277}}
 #addition .right {
   float: right;
   width: 344px;
 }
-// -----------------------------------------------------------------------------
-// side
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003283}}
 #side {
   float: right;
   width: 344px;
 }
 
-// -----------------------------------------------------------------------------
-// foot
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003290}}
 #foot {
-  margin-top: $box-margin;
+  margin-top: 24px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003293}}
 #address {
-  @include clear;
+  zoom: 1;
   min-width: 1100px;
   padding: 6px 0;
-  border-top: 2px solid $orange;
+  border-top: 2px solid #f08300;
   background: #ededed;
-  dl {
-    @include clear;
-    width: $page-width;
-    margin: 0 auto;
-    padding: 0 10px;
-    dt {
-      float: left;
-      clear: both;
-      width: 148px;
-      margin-right: 12px;
-      font-weight: bold;
-    }
-    dd {
-      float: left;
-      width: 920px;
-      a {
-        display: inline-block;
-        margin-left: 12px;
-        padding: 3px 4px 0 13px;
-        border: 1px solid #999;
-        line-height: 1;
-        background: $hgry url(../img/r-arrow-w.png) no-repeat 4px 4px;
-        color: $text;
-        text-decoration: none;
-      }
-    }
-  }
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#address:before, #address:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#address:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003299}}
+#address dl {
+  zoom: 1;
+  width: 1080px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#address dl:before, #address dl:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#address dl:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003304}}
+#address dl dt {
+  float: left;
+  clear: both;
+  width: 148px;
+  margin-right: 12px;
+  font-weight: bold;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003311}}
+#address dl dd {
+  float: left;
+  width: 920px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003314}}
+#address dl dd a {
+  display: inline-block;
+  margin-left: 12px;
+  padding: 3px 4px 0 13px;
+  border: 1px solid #999;
+  line-height: 1;
+  background: #cccccc url(../img/r-arrow-w.png) no-repeat 4px 4px;
+  color: #666666;
+  text-decoration: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003327}}
 #footer-navi {
-  width: $page-width;
+  width: 1080px;
   margin: 0 auto;
   padding: 6px 10px;
-  a {
-    margin-right: 12px;
-    @include r-arrow;
-  }
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003331}}
+#footer-navi a {
+  margin-right: 12px;
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/r-arrow.png) no-repeat 2px 7px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003336}}
 #copyright {
   min-width: 1100px;
   padding: 6px 0;
-  @include grd-blue;
-  color: $t-white;
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  color: white;
   text-align: center;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003343}}
 #sp-view {
   padding: 10px;
-  a {
-    @include box-sizing(border-box);
-    display: block;
-    width: 100%;
-    min-width: $page-width;
-    padding: 8px 8px 5px;
-    border: 1px solid #999;
-    background: $hgry;
-    color: $text;
-    text-align: center;
-    text-decoration: none;
-  }
 }
-// -----------------------------------------------------------------------------
-// slideshow
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003345}}
+#sp-view a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 1080px;
+  padding: 8px 8px 5px;
+  border: 1px solid #999;
+  background: #cccccc;
+  color: #666666;
+  text-align: center;
+  text-decoration: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003360}}
 #slideshow {
-  margin: $box-margin 0;
+  margin: 24px 0;
   border-top: 5px solid #333;
-  #slide-photo {
-    position: relative;
-    height: 210px;
-    margin-bottom: 1px solid #fff;
-    div {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  }
-  #slide-controll {
-    @include clear;
-    padding: 6px;
-    border-bottom: 3px solid $orange;
-    background: #333;
-    #slide-list {
-      float: left;
-      a {
-        float: left;
-        margin-right: 6px;
-        line-height: 1;
-      }
-    }
-    #pause-play {
-      float: right;
-      line-height: 1;
-      .pause a {
-        padding-left: 15px;
-        background: url(../img/stop.png) no-repeat left center;
-      }
-      .play a {
-        margin-left: 12px;
-        padding-left: 15px;
-        background: url(../img/play.png) no-repeat left center;
-      }
-      a {
-        color: $t-white;
-        text-decoration: none;
-      }
-    }
-  }
 }
-// -----------------------------------------------------------------------------
-// guide about safety oline propose useful population relations ranking topics
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003363}}
+#slideshow #slide-photo {
+  position: relative;
+  height: 210px;
+  margin-bottom: 1px solid #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003367}}
+#slideshow #slide-photo div {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003373}}
+#slideshow #slide-controll {
+  zoom: 1;
+  padding: 6px;
+  border-bottom: 3px solid #f08300;
+  background: #333;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#slideshow #slide-controll:before, #slideshow #slide-controll:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#slideshow #slide-controll:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003378}}
+#slideshow #slide-controll #slide-list {
+  float: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003380}}
+#slideshow #slide-controll #slide-list a {
+  float: left;
+  margin-right: 6px;
+  line-height: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003386}}
+#slideshow #slide-controll #pause-play {
+  float: right;
+  line-height: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003389}}
+#slideshow #slide-controll #pause-play .pause a {
+  padding-left: 15px;
+  background: url(../img/stop.png) no-repeat left center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003393}}
+#slideshow #slide-controll #pause-play .play a {
+  margin-left: 12px;
+  padding-left: 15px;
+  background: url(../img/play.png) no-repeat left center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003398}}
+#slideshow #slide-controll #pause-play a {
+  color: white;
+  text-decoration: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003407}}
 #guide, #about, #safety, #online, #propose, #useful, #population, #relations, #ranking, #topics {
-  margin-bottom: $box-margin;
-  h1 {
-    margin-bottom: 6px;
-    padding: 3px 6px 0;
-    border-left: 5px solid $orange;
-    @include grd-blue;
-    color: $t-white;
-  }
+  margin-bottom: 24px;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003409}}
+#guide h1, #about h1, #safety h1, #online h1, #propose h1, #useful h1, #population h1, #relations h1, #ranking h1, #topics h1 {
+  margin-bottom: 6px;
+  padding: 3px 6px 0;
+  border-left: 5px solid #f08300;
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  color: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003417}}
 #safety h1 {
-  @include grd-red;
+  background: #e03300;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e03300), color-stop(100%, #c42c00));
+  background-image: -webkit-linear-gradient(top, #e03300, #c42c00);
+  background-image: -moz-linear-gradient(top, #e03300, #c42c00);
+  background-image: -o-linear-gradient(top, #e03300, #c42c00);
+  background-image: linear-gradient(top, #e03300, #c42c00);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFE03300', endColorstr='#FFC42C00');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3MDciIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiNFMDMzMDAiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNDNDJDMDAiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3MDcpIiAvPgo8L3N2Zz4=);
 }
-#guide {
-  h1 {
-    margin: 0;
-  }
-  ul {
-    @include clear;
-  }
-  li.kekkon a {
-    background: url(../img/ic-marriage.png) no-repeat 5px center;
-  }
-  li.ninshin a {
-    background: url(../img/ic-pregnancy.png) no-repeat 9px center;
-  }
-  li.kosodate a {
-    background: url(../img/ic-child.png) no-repeat 9px center;
-  }
-  li.kyoiku a {
-    background: url(../img/ic-education.png) no-repeat 5px center;
-  }
-  li.sumai a {
-    background: url(../img/ic-house.png) no-repeat 7px center;
-  }
-  li.shushoku a {
-    background: url(../img/ic-work.png) no-repeat 7px center;
-  }
-  li.fukushi a {
-    background: url(../img/ic-welfare.png) no-repeat 9px center;
-  }
-  li.okuyami a {
-    background: url(../img/ic-death.png) no-repeat 10px center;
-  }
-  li {
-    float: left;
-    width: 166px;
-    padding: 4px 0;
-    border-bottom: $border-hgry;
-    &:nth-child(2n+1) {
-      margin-right: $item-margin;
-    }
-    a {
-      display: block;
-      padding: 8px 0 5px 45px;
-      color: $text;
-      text-decoration: none;
-      &:hover {
-        background-color: $hblue;
-      }
-    }
-  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003421}}
+#guide h1 {
+  margin: 0;
 }
-#about {
-  h1 {
-    margin: 0;
-  }
-  ul {
-    @include clear;
-  }
-  li.about a {
-    background: url(../img/ic-about.png) no-repeat 5px center;
-  }
-  li.event a {
-    background: url(../img/ic-event.png) no-repeat 5px center;
-  }
-  li.mayor a {
-    background: url(../img/ic-mayor.png) no-repeat 5px center;
-  }
-  li.gikai a {
-    background: url(../img/ic-assembly.png) no-repeat 5px center;
-  }
-  li.shisetsu a {
-    background: url(../img/ic-institution.png) no-repeat 5px center;
-  }
-  li.kanko a {
-    background: url(../img/ic-sight.png) no-repeat 5px center;
-  }
-  li.sodan a {
-    background: url(../img/ic-consultation.png) no-repeat 5px center;
-  }
-  li.faq a {
-    background: url(../img/ic-qa.png) no-repeat 5px center;
-  }
-  li {
-    float: left;
-    width: 166px;
-    padding: 4px 0;
-    border-bottom: $border-hgry;
-    &:nth-child(2n+1) {
-      margin-right: $item-margin;
-    }
-    a {
-      display: block;
-      padding: 8px 0 5px 45px;
-      color: $text;
-      text-decoration: none;
-      &:hover {
-        background-color: $hblue;
-      }
-    }
-  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003424}}
+#guide ul {
+  zoom: 1;
 }
-#safety {
-  ul {
-    @include clear;
-  }
-  li {
-    float: left;
-    width: 166px;
-    &:nth-child(2n+1) {
-      margin-right: $item-margin;
-    }
-  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#guide ul:before, #guide ul:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#guide ul:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003427}}
+#guide li.kekkon a {
+  background: url(../img/ic-marriage.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003430}}
+#guide li.ninshin a {
+  background: url(../img/ic-pregnancy.png) no-repeat 9px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003433}}
+#guide li.kosodate a {
+  background: url(../img/ic-child.png) no-repeat 9px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003436}}
+#guide li.kyoiku a {
+  background: url(../img/ic-education.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003439}}
+#guide li.sumai a {
+  background: url(../img/ic-house.png) no-repeat 7px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003442}}
+#guide li.shushoku a {
+  background: url(../img/ic-work.png) no-repeat 7px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003445}}
+#guide li.fukushi a {
+  background: url(../img/ic-welfare.png) no-repeat 9px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003448}}
+#guide li.okuyami a {
+  background: url(../img/ic-death.png) no-repeat 10px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003451}}
+#guide li {
+  float: left;
+  width: 166px;
+  padding: 4px 0;
+  border-bottom: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003456}}
+#guide li:nth-child(2n+1) {
+  margin-right: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003459}}
+#guide li a {
+  display: block;
+  padding: 8px 0 5px 45px;
+  color: #666666;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003464}}
+#guide li a:hover {
+  background-color: #cceeee;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003471}}
+#about h1 {
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003474}}
+#about ul {
+  zoom: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#about ul:before, #about ul:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#about ul:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003477}}
+#about li.about a {
+  background: url(../img/ic-about.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003480}}
+#about li.event a {
+  background: url(../img/ic-event.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003483}}
+#about li.mayor a {
+  background: url(../img/ic-mayor.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003486}}
+#about li.gikai a {
+  background: url(../img/ic-assembly.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003489}}
+#about li.shisetsu a {
+  background: url(../img/ic-institution.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003492}}
+#about li.kanko a {
+  background: url(../img/ic-sight.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003495}}
+#about li.sodan a {
+  background: url(../img/ic-consultation.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003498}}
+#about li.faq a {
+  background: url(../img/ic-qa.png) no-repeat 5px center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003501}}
+#about li {
+  float: left;
+  width: 166px;
+  padding: 4px 0;
+  border-bottom: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003506}}
+#about li:nth-child(2n+1) {
+  margin-right: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003509}}
+#about li a {
+  display: block;
+  padding: 8px 0 5px 45px;
+  color: #666666;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003514}}
+#about li a:hover {
+  background-color: #cceeee;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003521}}
+#safety ul {
+  zoom: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#safety ul:before, #safety ul:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#safety ul:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003524}}
+#safety li {
+  float: left;
+  width: 166px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003527}}
+#safety li:nth-child(2n+1) {
+  margin-right: 12px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003532}}
 #safety li a, #online li a, #propose li a, #attention li a, #useful li a, #relations li a, #ranking li a {
-  @include r-arrow;
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/r-arrow.png) no-repeat 2px 7px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003535}}
 #ranking li a {
   padding-left: 22px;
   background: url(../img/ic-ranking.png) no-repeat left 5px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003539}}
 #online nav, #propose nav {
   padding-left: 132px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003542}}
 #online nav {
   background: url(../img/online.gif) no-repeat left top;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003545}}
 #propose nav {
   padding-bottom: 40px;
   background: url(../img/comment.gif) no-repeat left top;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003549}}
 #useful, #relations, #topics {
   min-height: 165px;
 }
-#population {
-  dt {
-    float: left;
-    width: 58px;
-    margin: 0 12px 3px 0;
-    padding: 0 3px;
-    background: #ffeacc;
-    &:nth-child(4) {
-      clear: both;
-    }
-  }
-  dd {
-    float: left;
-    width: 90px;
-    margin: 0 0 3px 0;
-    padding: 0 3px;
-    background: #fff;
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-  }
-  p {
-    float: right;
-  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003553}}
+#population dt {
+  float: left;
+  width: 58px;
+  margin: 0 12px 3px 0;
+  padding: 0 3px;
+  background: #ffeacc;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003559}}
+#population dt:nth-child(4) {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003563}}
+#population dd {
+  float: left;
+  width: 90px;
+  margin: 0 0 3px 0;
+  padding: 0 3px;
+  background: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003569}}
+#population dd:nth-child(2n) {
+  margin-right: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003573}}
+#population p {
+  float: right;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003577}}
 #topics {
-  @include clear;
-  .thumb {
-    float: left;
-    margin-right: $item-margin;
-  }
-  h2 {
-    margin-bottom: $item-margin;
-  }
-  .more {
-    float: right;
-    a {
-      @include r-arrow;
-    }
-  }
+  zoom: 1;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#topics:before, #topics:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#topics:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003579}}
+#topics .thumb {
+  float: left;
+  margin-right: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003583}}
+#topics h2 {
+  margin-bottom: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003586}}
+#topics .more {
+  float: right;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003588}}
+#topics .more a {
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/r-arrow.png) no-repeat 2px 7px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003593}}
 #connect a {
   float: left;
   display: block;
-  margin-bottom: $item-margin;
-  &:nth-child(2n+1) {
-    margin-right: $item-margin;
-  }
+  margin-bottom: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003597}}
+#connect a:nth-child(2n+1) {
+  margin-right: 12px;
 }
 
-// -----------------------------------------------------------------------------
-// attention
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003604}}
 #attention {
-  margin: $box-margin 0;
-  h1{
-    padding: 3px 6px 0;
-    border-left: 5px solid $orange;
-    @include grd-org;
-    color: #282828;
-  }
-  article {
-    padding: 6px 0 3px;
-    border-bottom: $border-hgry;
-    a {
-      @include r-arrow;
-    }
-  }
+  margin: 24px 0;
 }
-// -----------------------------------------------------------------------------
-// cms-tabs
-.cms-tabs {
-  margin-bottom: $box-margin;
-  border-bottom: 2px solid $orange;
-  .names {
-    padding: 0;
-    border-bottom: 2px solid $orange;
-    .name {
-      display: inline-block;
-      width: 109px;
-      padding: 3px 0 0;
-      border-left: 5px solid #ddd;
-      @include grd-gry;
-      color: $text;
-      text-align: center;
-      text-decoration: none;
-    }
-    .name:hover, .current {
-      border-left: 5px solid $orange;
-      @include grd-blue;
-      color: $t-white;
-    }
-    .name:last-child {
-      width: 111px;
-    }
-  }
-  h1 {
-    padding: 3px 6px 0;
-    border-left: 5px solid $orange;
-    border-bottom: 2px solid $orange;
-    @include grd-blue;
-    color: $t-white;
-  }
-  .pages header {
-    padding: 3px 0;
-    border-bottom: $border-hgry;
-  }
-  time {
-    display: block;
-  }
-  h2 {
-    display: inline;
-  }
-  .new h2:after {
-    content: "NEW";
-    margin-left: 5px;
-    color: #e03300;
-  }
-  nav {
-    @include clear;
-    padding: 3px 0;
-  }
-  .rss {
-    float: left;
-    display: inline-block;
-    padding-left: 20px;
-    background: url(../img/ic-rss.png) no-repeat left center;
-  }
-  .more {
-    float: right;
-    @include r-arrow;
-  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003606}}
+#attention h1 {
+  padding: 3px 6px 0;
+  border-left: 5px solid #f08300;
+  background: #f4d89a;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f4d89a), color-stop(100%, #f48b22));
+  background-image: -webkit-linear-gradient(top, #f4d89a, #f48b22);
+  background-image: -moz-linear-gradient(top, #f4d89a, #f48b22);
+  background-image: -o-linear-gradient(top, #f4d89a, #f48b22);
+  background-image: linear-gradient(top, #f4d89a, #f48b22);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF4D89A', endColorstr='#FFF48B22');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc4MDEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiNGNEQ4OUEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNGNDhCMjIiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c4MDEpIiAvPgo8L3N2Zz4=);
+  color: #282828;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003612}}
+#attention article {
+  padding: 6px 0 3px;
+  border-bottom: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003615}}
+#attention article a {
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/r-arrow.png) no-repeat 2px 7px;
 }
 
-// -----------------------------------------------------------------------------
-// add
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003622}}
+.cms-tabs {
+  margin-bottom: 24px;
+  border-bottom: 2px solid #f08300;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003625}}
+.cms-tabs .names {
+  padding: 0;
+  border-bottom: 2px solid #f08300;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003628}}
+.cms-tabs .names .name {
+  display: inline-block;
+  width: 109px;
+  padding: 3px 0 0;
+  border-left: 5px solid #ddd;
+  background: #cccccc;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #cccccc), color-stop(100%, #bbbbbb));
+  background-image: -webkit-linear-gradient(top, #cccccc, #bbbbbb);
+  background-image: -moz-linear-gradient(top, #cccccc, #bbbbbb);
+  background-image: -o-linear-gradient(top, #cccccc, #bbbbbb);
+  background-image: linear-gradient(top, #cccccc, #bbbbbb);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFCCCCCC', endColorstr='#FFBBBBBB');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc4MzIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiNDQ0NDQ0MiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNCQkJCQkIiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c4MzIpIiAvPgo8L3N2Zz4=);
+  color: #666666;
+  text-align: center;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003638}}
+.cms-tabs .names .name:hover, .cms-tabs .names .current {
+  border-left: 5px solid #f08300;
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003643}}
+.cms-tabs .names .name:last-child {
+  width: 111px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003647}}
+.cms-tabs h1 {
+  padding: 3px 6px 0;
+  border-left: 5px solid #f08300;
+  border-bottom: 2px solid #f08300;
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003654}}
+.cms-tabs .pages header {
+  padding: 3px 0;
+  border-bottom: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003658}}
+.cms-tabs time {
+  display: block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003661}}
+.cms-tabs h2 {
+  display: inline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003664}}
+.cms-tabs .new h2:after {
+  content: "NEW";
+  margin-left: 5px;
+  color: #e03300;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003669}}
+.cms-tabs nav {
+  zoom: 1;
+  padding: 3px 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+.cms-tabs nav:before, .cms-tabs nav:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+.cms-tabs nav:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003673}}
+.cms-tabs .rss {
+  float: left;
+  display: inline-block;
+  padding-left: 20px;
+  background: url(../img/ic-rss.png) no-repeat left center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003679}}
+.cms-tabs .more {
+  float: right;
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/r-arrow.png) no-repeat 2px 7px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003687}}
 #add {
   position: relative;
-  @include clear;
-  width: $page-width;
+  zoom: 1;
+  width: 1080px;
   margin: 20px auto 0;
   padding: 0 10px;
-  h1 {
-    margin-bottom: 10px;
-    padding: 3px 12px 0;
-    background: $hgry;
-    color: #444;
-  }
-  .info {
-    position: absolute;
-    top: 3px;
-    right: 22px;
-    a {
-      @include r-arrow;
-    }
-  }
-  nav {
-    @include clear;
-    a {
-      display: block;
-      float: left;
-      margin-right: 12px;
-      &:last-child {
-        margin: 0;
-      }
-    }
-  }
 }
-// -----------------------------------------------------------------------------
-// pageg-top
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#add:before, #add:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#add:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003693}}
+#add h1 {
+  margin-bottom: 10px;
+  padding: 3px 12px 0;
+  background: #cccccc;
+  color: #444;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003699}}
+#add .info {
+  position: absolute;
+  top: 3px;
+  right: 22px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003703}}
+#add .info a {
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/r-arrow.png) no-repeat 2px 7px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003707}}
+#add nav {
+  zoom: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#add nav:before, #add nav:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#add nav:after {
+  clear: both;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003709}}
+#add nav a {
+  display: block;
+  float: left;
+  margin-right: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003713}}
+#add nav a:last-child {
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003721}}
 .pagetop {
   display: none;
   position: fixed;
   bottom: 0;
   right: 0;
-  @include border-radius(5px 0 0 0);
-  background: rgba(0,0,0,0.6);
-  a {
-    display: block;
-    padding: 8px 15px 5px 30px;
-    background: url(../img/t-arrow-w.png) no-repeat 15px 18px;
-    color: #fff;
-    text-decoration: none;
-    span {
-      display: block;
-      font-size: $px11;
-    }
-  }
+  -webkit-border-radius: 5px 0 0 0;
+  -moz-border-radius: 5px 0 0 0;
+  -ms-border-radius: 5px 0 0 0;
+  -o-border-radius: 5px 0 0 0;
+  border-radius: 5px 0 0 0;
+  background: rgba(0, 0, 0, 0.6);
 }
-// -----------------------------------------------------------------------------
-// ss-page-name
-#ss-page-name {
-  margin-bottom: $item-margin;
-  padding: 3px 6px 0;
-  border-left: 5px solid $orange;
-  @include grd-blue;
-  font-size: $px18;
-  color: $t-white;
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003728}}
+.pagetop a {
+  display: block;
+  padding: 8px 15px 5px 30px;
+  background: url(../img/t-arrow-w.png) no-repeat 15px 18px;
+  color: #fff;
+  text-decoration: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003734}}
+.pagetop a span {
+  display: block;
+  font-size: 79%;
 }
 
-// -----------------------------------------------------------------------------
-// crumbs
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003742}}
+#ss-page-name {
+  margin-bottom: 12px;
+  padding: 3px 6px 0;
+  border-left: 5px solid #f08300;
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  font-size: 129%;
+  color: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003753}}
 .crumbs {
   padding: 12px 0 10px;
-  .separator {
-    padding: 0 3px;
-  }
 }
-// -----------------------------------------------------------------------------
-// recent-oshirase
-#recent-oshirase{
-  margin-bottom: $box-margin;
-  border-bottom: 2px solid $orange;
-  h1 {
-    padding: 0 0 0 40px;
-    border-bottom: 2px solid $orange;
-    background: url(../img/ic-info.png) no-repeat left 1px;
-    font-size: $px16;
-  }
-  article header {
-    padding: 6px 0 3px;
-    border-bottom: $border-hgry;
-  }
-  time {
-    display: inline-block;
-    width: 120px;
-  }
-  h2 {
-    display: inline;
-    margin-left: 10px;
-  }
-  .new h2:after {
-    content: "NEW";
-    margin-left: 5px;
-    color: #e03300;
-  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003755}}
+.crumbs .separator {
+  padding: 0 3px;
 }
-// -----------------------------------------------------------------------------
-// feed
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003761}}
+#recent-oshirase {
+  margin-bottom: 24px;
+  border-bottom: 2px solid #f08300;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003764}}
+#recent-oshirase h1 {
+  padding: 0 0 0 40px;
+  border-bottom: 2px solid #f08300;
+  background: url(../img/ic-info.png) no-repeat left 1px;
+  font-size: 115%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003770}}
+#recent-oshirase article header {
+  padding: 6px 0 3px;
+  border-bottom: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003774}}
+#recent-oshirase time {
+  display: inline-block;
+  width: 120px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003778}}
+#recent-oshirase h2 {
+  display: inline;
+  margin-left: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003782}}
+#recent-oshirase .new h2:after {
+  content: "NEW";
+  margin-left: 5px;
+  color: #e03300;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003790}}
 .feed {
   padding: 6px 0 3px;
-  .rss {
-    display: inline-block;
-    padding-left: 20px;
-    background: url(../img/ic-rss.png) no-repeat left center;
-  }
-  .more {
-    float: right;
-    @include r-arrow;
-  }
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003792}}
+.feed .rss {
+  display: inline-block;
+  padding-left: 20px;
+  background: url(../img/ic-rss.png) no-repeat left center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003797}}
+.feed .more {
+  float: right;
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/r-arrow.png) no-repeat 2px 7px;
 }
 
-// -----------------------------------------------------------------------------
-// links-life
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003805}}
 #links-life {
-  margin-bottom: $box-margin;
-  h1 {
-    padding: 3px 6px 0;
-    border-left: 5px solid $orange;
-    @include grd-blue;
-    color: $t-white;
-  }
-  li {
-    padding: 3px 0;
-    border-bottom: $border-hgry;
-    a {
-      display: block;
-      padding: 0 6px;
-      &:hover {
-        background: $hblue;
-      }
-    }
-  }
+  margin-bottom: 24px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003807}}
+#links-life h1 {
+  padding: 3px 6px 0;
+  border-left: 5px solid #f08300;
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003813}}
+#links-life li {
+  padding: 3px 0;
+  border-bottom: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003816}}
+#links-life li a {
+  display: block;
+  padding: 0 6px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003819}}
+#links-life li a:hover {
+  background: #cceeee;
 }
 
-// -----------------------------------------------------------------------------
-// category-nodes
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003828}}
 #main .category-nodes {
-  margin-bottom: $box-margin;
-  article {
-    float: left;
-    width: 325px;
-    margin: 0 24px 24px 0;
-    padding: 6px;
-    border: $border-hgry;
-    border-left: 5px solid $blue;
-    cursor: pointer;
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
-    &:hover {
-      background: $hblue;
-    }
-  }
+  margin-bottom: 24px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003830}}
+#main .category-nodes article {
+  float: left;
+  width: 325px;
+  margin: 0 24px 24px 0;
+  padding: 6px;
+  border: 1px solid #cccccc;
+  border-left: 5px solid #007acd;
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003838}}
+#main .category-nodes article:nth-child(2n) {
+  margin-right: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003841}}
+#main .category-nodes article:hover {
+  background: #cceeee;
 }
 
-// -----------------------------------------------------------------------------
-// category-pages .article-pages
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003849}}
 .category-pages, .article-pages {
-  margin-bottom: $box-margin;
-  a {
-    @include r-arrow;
-  }
-  .new h2:after {
-    content: "NEW";
-    margin-left: 5px;
-    color: #e03300;
-  }
+  margin-bottom: 24px;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003851}}
+.category-pages a, .article-pages a {
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/r-arrow.png) no-repeat 2px 7px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003854}}
+.category-pages .new h2:after, .article-pages .new h2:after {
+  content: "NEW";
+  margin-left: 5px;
+  color: #e03300;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003861}}
 .page .category-pages article,
-.page .article-pages article, {
+.page .article-pages article {
   padding: 12px 0 9px;
-  border-bottom: $border-hgry;
-  time {
-    display: inline-block;
-    width: 120px;
-  }
-  h2 {
-    display: inline;
-    margin: 0 0 0 10px;
-    border: none;
-    font-size: $px14;
-    font-weight: normal;
-    a {
-     padding: 0;
-     background: none;
-    }
-  }
+  border-bottom: 1px solid #cccccc;
 }
-// -----------------------------------------------------------------------------
-// category-list
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003864}}
+.page .category-pages article time,
+.page .article-pages article time {
+  display: inline-block;
+  width: 120px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003868}}
+.page .category-pages article h2,
+.page .article-pages article h2 {
+  display: inline;
+  margin: 0 0 0 10px;
+  border: none;
+  font-size: 100%;
+  font-weight: normal;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003874}}
+.page .category-pages article h2 a,
+.page .article-pages article h2 a {
+  padding: 0;
+  background: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003882}}
 #category-list {
-  margin-bottom: $box-margin;
-  h1 {
-    padding: 3px 6px 0;
-    border-left: 5px solid $orange;
-    @include grd-blue;
-    color: $t-white;
-  }
-  h2 {
-    padding: 3px 0;
-    border-bottom: $border-hgry;
-    a {
-      display: block;
-      padding: 0 6px;
-      background: none;
-      &:hover {
-        background: $hblue;
-      }
-    }
-  }
+  margin-bottom: 24px;
 }
-// -----------------------------------------------------------------------------
-// categories
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003884}}
+#category-list h1 {
+  padding: 3px 6px 0;
+  border-left: 5px solid #f08300;
+  background: #007acd;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #007acd), color-stop(100%, #0069cc));
+  background-image: -webkit-linear-gradient(top, #007acd, #0069cc);
+  background-image: -moz-linear-gradient(top, #007acd, #0069cc);
+  background-image: -o-linear-gradient(top, #007acd, #0069cc);
+  background-image: linear-gradient(top, #007acd, #0069cc);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF007ACD', endColorstr='#FF0069CC');
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc3NTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CjxzdG9wIHN0b3AtY29sb3I9IiMwMDdBQ0QiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiMwMDY5Q0MiIG9mZnNldD0iMSIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2c3NTIpIiAvPgo8L3N2Zz4=);
+  color: white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003890}}
+#category-list h2 {
+  padding: 3px 0;
+  border-bottom: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003893}}
+#category-list h2 a {
+  display: block;
+  padding: 0 6px;
+  background: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003897}}
+#category-list h2 a:hover {
+  background: #cceeee;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003905}}
 .categories {
-  border-top: $border-hgry;
+  border-top: 1px solid #cccccc;
   padding: 5px 0;
   text-align: right;
-  .separator {
-    color: $hgry;
-  }
 }
-// -----------------------------------------------------------------------------
-//  page sitemap
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003909}}
+.categories .separator {
+  color: #cccccc;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003915}}
+.page header.released, .one header.released {
+  margin-bottom: 12px;
+  text-align: right;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003919}}
 .page article h1, .one article.body h1 {
-  margin: $item-margin 0 6px;
+  margin: 12px 0 6px;
   padding: 3px 10px 0;
-  background: $hblue;
-  font-size: $px16;
+  background: #cceeee;
+  font-size: 115%;
   font-weight: bold;
-  &:first-child {
-    margin-top: 0;
-  }
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003925}}
+.page article h1:first-child, .one article.body h1:first-child {
+  margin-top: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003929}}
 .page article h2, .one article.body h2 {
   margin-bottom: 6px;
   padding: 0 10px;
-  border-bottom: 2px solid $blue;
-  color: $blue;
-  font-size: $px16;
+  border-bottom: 2px solid #007acd;
+  color: #007acd;
+  font-size: 115%;
   font-weight: bold;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003937}}
 .page article h3, .one article.body h3 {
   margin-bottom: 6px;
   padding: 0 10px;
-  border-left: 5px solid $blue;
-  color: $blue;
+  border-left: 5px solid #007acd;
+  color: #007acd;
   font-weight: bold;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003944}}
 .page article h4, .one article.body h4 {
-  color: $blue;
+  color: #007acd;
   font-weight: bold;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003948}}
 .page article h5, .pages article h6, .one article.body h5, .one article.body h6 {
   font-weight: bold;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003951}}
 .page article p, .one article.body p {
-  margin-bottom: $item-margin;
+  margin-bottom: 12px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003954}}
 .page article ul, .one article.body ul {
-  margin-bottom: $item-margin;
+  margin-bottom: 12px;
   list-style: none;
-  li {
-    @include li;
-  }
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003957}}
+.page article ul li, .one article.body ul li {
+  padding-left: 15px;
+  background: url(../img/ic-li.png) no-repeat 2px 8px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003961}}
 #sitemap ul {
-  @include clear;
+  zoom: 1;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+#sitemap ul:before, #sitemap ul:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+#sitemap ul:after {
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003964}}
 #sitemap li {
   float: left;
   margin-bottom: 10px;
-  padding:  0 10px;
-  border-right: $border-hgry;
+  padding: 0 10px;
+  border-right: 1px solid #cccccc;
   background: none;
   list-style: none;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003972}}
 .page article ol, .one article.body ol {
-  margin-bottom: $item-margin;
+  margin-bottom: 12px;
   padding-left: 23px;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003976}}
 .page article table, .one article.body table {
   width: 100%;
-  margin-bottom: $item-margin;
-  caption {
-    color: $blue;
-    text-align: left;
-  }
-  th {
-    padding: 3px 8px 0;
-    border: $border-hgry;
-    background: $hblue;
-  }
-  td {
-    padding: 3px 8px 0;
-    border: $border-hgry;
-  }
+  margin-bottom: 12px;
 }
-// -----------------------------------------------------------------------------
-// calendar
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003979}}
+.page article table caption, .one article.body table caption {
+  color: #007acd;
+  text-align: left;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003983}}
+.page article table th, .one article.body table th {
+  padding: 3px 8px 0;
+  border: 1px solid #cccccc;
+  background: #cceeee;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003988}}
+.page article table td, .one article.body table td {
+  padding: 3px 8px 0;
+  border: 1px solid #cccccc;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003995}}
 #wrap .one {
-  width:  100%;
+  width: 100%;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\00003998}}
 .event-date {
   position: relative;
-  h1 {
-    margin-bottom: $item-margin;
-    padding: 7px 0 4px 50px;
-    border-bottom: 2px solid $orange;
-    font-size: $px16;
-  }
-  h1.jan {
-    background: url(../img/ic-january.png) no-repeat 10px bottom;
-  }
-  h1.feb {
-    background: url(../img/ic-february.png) no-repeat left bottom;
-  }
-  h1.may {
-    background: url(../img/ic-may.png) no-repeat left bottom;
-  }
-  h1.apr {
-    background: url(../img/ic-april.png) no-repeat left bottom;
-  }
-  h1.mar {
-    background: url(../img/ic-march.png) no-repeat left bottom;
-  }
-  h1.jun {
-    background: url(../img/ic-june.png) no-repeat 10px bottom;
-  }
-  h1.jul {
-    background: url(../img/ic-july.png) no-repeat left bottom;
-  }
-  h1.aug {
-    background: url(../img/ic-august.png) no-repeat 5px bottom;
-  }
-  h1.sep {
-    background: url(../img/ic-september.png) no-repeat 9px bottom;
-  }
-  h1.oct {
-    background: url(../img/ic-october.png) no-repeat 10px bottom;
-  }
-  h1.nov {
-    background: url(../img/ic-november.png) no-repeat 8px bottom;
-  }
-  h1.dec {
-    background: url(../img/ic-december.png) no-repeat 10px bottom;
-  }
-  ul {
-    position: absolute;
-    top: 9px;
-    right: 0;
-    .prev {
-      @include l-arrow;
-      margin-right: 10px;
-      padding: 0 15px;
-      border-right: $border-hgry;
-    }
-    .next {
-      display: inline-block;
-      padding-right: 13px;
-      background: url(../img/r-arrow.png) no-repeat right 7px;
-    }
-  }
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031000}}
+.event-date h1 {
+  margin-bottom: 12px;
+  padding: 7px 0 4px 50px;
+  border-bottom: 2px solid #f08300;
+  font-size: 115%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031006}}
+.event-date h1.jan {
+  background: url(../img/ic-january.png) no-repeat 10px bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031009}}
+.event-date h1.feb {
+  background: url(../img/ic-february.png) no-repeat left bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031012}}
+.event-date h1.may {
+  background: url(../img/ic-may.png) no-repeat left bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031015}}
+.event-date h1.apr {
+  background: url(../img/ic-april.png) no-repeat left bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031018}}
+.event-date h1.mar {
+  background: url(../img/ic-march.png) no-repeat left bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031021}}
+.event-date h1.jun {
+  background: url(../img/ic-june.png) no-repeat 10px bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031024}}
+.event-date h1.jul {
+  background: url(../img/ic-july.png) no-repeat left bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031027}}
+.event-date h1.aug {
+  background: url(../img/ic-august.png) no-repeat 5px bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031030}}
+.event-date h1.sep {
+  background: url(../img/ic-september.png) no-repeat 9px bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031033}}
+.event-date h1.oct {
+  background: url(../img/ic-october.png) no-repeat 10px bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031036}}
+.event-date h1.nov {
+  background: url(../img/ic-november.png) no-repeat 8px bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031039}}
+.event-date h1.dec {
+  background: url(../img/ic-december.png) no-repeat 10px bottom;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031042}}
+.event-date ul {
+  position: absolute;
+  top: 9px;
+  right: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031046}}
+.event-date ul .prev {
+  display: inline-block;
+  padding-left: 15px;
+  background: url(../img/l-arrow.png) no-repeat 2px 7px;
+  margin-right: 10px;
+  padding: 0 15px;
+  border-right: 1px solid #cccccc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031052}}
+.event-date ul .next {
+  display: inline-block;
+  padding-right: 13px;
+  background: url(../img/r-arrow.png) no-repeat right 7px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031059}}
 #event-list {
   clear: both;
   margin-bottom: 2em;
   border-top: 1px solid #ccc;
-  dl {
-    margin: 0;
-    padding: 6px 10px 3px;
-    border-bottom: 1px solid #ccc;
-    zoom:1;
-    &:before {
-      content: "\0020";
-      display: block;
-      height: 0;
-      overflow: hidden;
-    }
-    &:after {
-      content: "\0020";
-      clear: both;
-      display: block;
-      height: 0;
-      overflow: hidden;
-    }
-  }
-  dl.sat {
-    background: #e1ebf1;
-    color: #039;
-  }
-  dl.sun, dl.holiday {
-    background: #ffeeee;
-    color: #d90000;
-  }
-  dt {
-    float: left;
-    width: 20%;
-  }
-  dt .wday {
-    display: none;
-  }
-  dd {
-    margin-left: 20%;
-    h2 {
-      margin: 0;
-      padding: 0;
-      border: none;
-      font-size: 100%;
-      font-weight: normal;
-    }
-  }
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031063}}
+#event-list dl {
+  margin: 0;
+  padding: 6px 10px 3px;
+  border-bottom: 1px solid #ccc;
+  zoom: 1;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031068}}
+#event-list dl:before {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031074}}
+#event-list dl:after {
+  content: "\0020";
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031082}}
+#event-list dl.sat {
+  background: #e1ebf1;
+  color: #039;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031086}}
+#event-list dl.sun, #event-list dl.holiday {
+  background: #ffeeee;
+  color: #d90000;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031090}}
+#event-list dt {
+  float: left;
+  width: 20%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031094}}
+#event-list dt .wday {
+  display: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031097}}
+#event-list dd {
+  margin-left: 20%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031099}}
+#event-list dd h2 {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-size: 100%;
+  font-weight: normal;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031108}}
 #ss-mb {
   padding: 10px;
-  a {
-    @include box-sizing(border-box);
-    display: block;
-    width: 100%;
-    min-width: $page-width;
-    padding: 8px 8px 5px;
-    border: 1px solid #999;
-    background: $hgry;
-    color: $text;
-    text-align: center;
-    text-decoration: none;
-  }
 }
-// -----------------------------------------------------------------------------
-// smart phone
-// -----------------------------------------------------------------------------
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031110}}
+#ss-mb a {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 1080px;
+  padding: 8px 8px 5px;
+  border: 1px solid #999;
+  background: #cccccc;
+  color: #666666;
+  text-align: center;
+  text-decoration: none;
+}
+
 @media only screen and (max-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031130}}
   #head, #navi .wrap, #wrap, #main, #side, #addition, #add,
   #main .left, #addition .left, #main .center, #addition .center, #addition .right,
   #address dl, #address dl dt, #address dl dd, #footer-navi,
-  #main .category-nodes article  {
+  #main .category-nodes article {
     float: none;
     width: 100%;
     padding: 0;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031135}}
   img {
     max-width: 100% !important;
     height: auto !important;
   }
-// -----------------------------------------------------------------------------
-// display:none
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031142}}
   #tool, #head .u-menu, #slideshow #slide-controll #pause-play,
   #population, #add .info, .crumbs {
     display: none;
   }
-// -----------------------------------------------------------------------------
-// head
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031147}}
   #head .logo {
     float: none;
     display: block;
     padding: 10px;
-    img {
-      width: 180px;
-      height: auto;
-    }
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031151}}
+  #head .logo img {
+    width: 180px;
+    height: auto;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031156}}
   #head .menu {
     float: none;
     padding: 0 10px;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031160}}
   #head .menu .l-menu {
     width: 100%;
     text-align: left;
-    form {
-      float: none;
-      position: relative;
-      @include border-radius(0px);
-      #search-box {
-        width: 80%;
-        @include border-radius(0px);
-      }
-      #search-button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        margin: 0;
-        padding: 6px 10px;
-        @include border-radius(0);
-        -webkit-appearance: none;
-      }
-    }
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031163}}
+  #head .menu .l-menu form {
+    float: none;
+    position: relative;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031167}}
+  #head .menu .l-menu form #search-box {
+    width: 80%;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031171}}
+  #head .menu .l-menu form #search-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 6px 10px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    -webkit-appearance: none;
   }
 
-// -----------------------------------------------------------------------------
-// navi
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031185}}
   #navi {
     min-width: 100%;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031188}}
   #navi .wrap {
-    border-top: $border-lblue;
-    border-bottom: $border-hblue;
-    @include box-sizing(border-box);
-    li {
-      width: 50%;
-      a {
-        width: auto;
-        display: block;
-        @include box-sizing(border-box);
-        border-top: $border-hblue;
-        border-bottom: $border-lblue;
-        font-size: 100%;
-      }
-    }
-    .sangyo a, .shsiei a {
-      width: auto;
-    }
+    border-top: 1px solid #005797;
+    border-bottom: 1px solid #439bd5;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
-// -----------------------------------------------------------------------------
-//  slideshow
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031192}}
+  #navi .wrap li {
+    width: 50%;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031194}}
+  #navi .wrap li a {
+    width: auto;
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top: 1px solid #439bd5;
+    border-bottom: 1px solid #005797;
+    font-size: 100%;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031203}}
+  #navi .wrap .sangyo a, #navi .wrap .shsiei a {
+    width: auto;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031209}}
   #slideshow {
-    margin: 0 0 $smart-margin;
-    #slide-photo {
-      height: auto;
-      div:first-child {
-        position: relative;
-      }
-      img {
-        width: 100%;
-      }
-    }
+    margin: 0 0 10px;
   }
-// -----------------------------------------------------------------------------
-//  guide about
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031211}}
+  #slideshow #slide-photo {
+    height: auto;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031213}}
+  #slideshow #slide-photo div:first-child {
+    position: relative;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031216}}
+  #slideshow #slide-photo img {
+    width: 100%;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031223}}
   #guide, #about {
     margin: 0;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031226}}
   #guide ul, #about ul {
     padding: 10px 10px 0;
-    li {
-      width: 50%;
-      margin-bottom: $smart-margin;
-      padding: 0;
-      border: none;
-      &:nth-child(2n+1) {
-        margin: 0;
-      }
-      &:nth-child(2n+1) a {
-        margin-right: 5px;
-      }
-      &:nth-child(2n) a {
-        margin-left: 5px;
-      }
-      a {
-        border: $border-hgry;
-        padding: 5px 0 2px 40px;
-      }
-    }
-    li.kekkon a, li.ninshin a, li.kosodate a, li.kyoiku a, li.sumai a,
-    li.shushoku a, li.fukushi a, li.okuyami a,
-    li.about a, li.event a, li.mayor a, li.gikai a, li.shisetsu a,
-    li.kanko a, li.sodan a, li.faq a {
-      background-size: auto 24px;
-    }
   }
-// -----------------------------------------------------------------------------
-//  safety online propose attention recent useful relations ranking topics connect add links-life
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031228}}
+  #guide ul li, #about ul li {
+    width: 50%;
+    margin-bottom: 10px;
+    padding: 0;
+    border: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031233}}
+  #guide ul li:nth-child(2n+1), #about ul li:nth-child(2n+1) {
+    margin: 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031236}}
+  #guide ul li:nth-child(2n+1) a, #about ul li:nth-child(2n+1) a {
+    margin-right: 5px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031239}}
+  #guide ul li:nth-child(2n) a, #about ul li:nth-child(2n) a {
+    margin-left: 5px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031242}}
+  #guide ul li a, #about ul li a {
+    border: 1px solid #cccccc;
+    padding: 5px 0 2px 40px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031250}}
+  #guide ul li.kekkon a, #guide ul li.ninshin a, #guide ul li.kosodate a, #guide ul li.kyoiku a, #guide ul li.sumai a,
+  #guide ul li.shushoku a, #guide ul li.fukushi a, #guide ul li.okuyami a,
+  #guide ul li.about a, #guide ul li.event a, #guide ul li.mayor a, #guide ul li.gikai a, #guide ul li.shisetsu a,
+  #guide ul li.kanko a, #guide ul li.sodan a, #guide ul li.faq a, #about ul li.kekkon a, #about ul li.ninshin a, #about ul li.kosodate a, #about ul li.kyoiku a, #about ul li.sumai a,
+  #about ul li.shushoku a, #about ul li.fukushi a, #about ul li.okuyami a,
+  #about ul li.about a, #about ul li.event a, #about ul li.mayor a, #about ul li.gikai a, #about ul li.shisetsu a,
+  #about ul li.kanko a, #about ul li.sodan a, #about ul li.faq a {
+    background-size: auto 24px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031257}}
   #safety, #online, #propose, #attention, #recent, #useful, #connect
   #relations, #ranking, #topics, #recent-oshirase, #links-life, #category-list {
-    margin-bottom: $smart-margin;
+    margin-bottom: 10px;
     margin-top: 0;
-    header h1 {
-      margin-bottom: 0;
-    }
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031260}}
+  #safety header h1, #online header h1, #propose header h1, #attention header h1, #recent header h1, #useful header h1, #connect
+  #relations header h1, #ranking header h1, #topics header h1, #recent-oshirase header h1, #links-life header h1, #category-list header h1 {
+    margin-bottom: 0;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031264}}
   #recent-oshirase {
     margin-top: 10px;
     margin-bottom: 0;
-    .new h2:after {
-      display: none;
-    }
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031267}}
+  #recent-oshirase .new h2:after {
+    display: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031271}}
   #safety li {
     width: 50%;
-    &:nth-child(2n+1) {
-      margin: 0;
-      a {
-        border-right: $border-hgry
-      }
-    }
-    a {
-      display: block;
-      @include r-arrow-s;
-      border-bottom: $border-hgry;
-    }
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031273}}
+  #safety li:nth-child(2n+1) {
+    margin: 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031275}}
+  #safety li:nth-child(2n+1) a {
+    border-right: 1px solid #cccccc;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031279}}
+  #safety li a {
+    display: block;
+    padding: 3px 0 3px 25px;
+    background: url(../img/r-arrow.png) no-repeat 12px 10px;
+    border-bottom: 1px solid #cccccc;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031285}}
   #online nav, #propose nav {
     background: none;
     padding: 0;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031290}}
   #online li a, #propose li a, #useful li a,
   #relations li a, #ranking li a {
     display: block;
-    @include r-arrow-s;
-    border-bottom: $border-hgry;
+    padding: 3px 0 3px 25px;
+    background: url(../img/r-arrow.png) no-repeat 12px 10px;
+    border-bottom: 1px solid #cccccc;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031295}}
   #ranking li a {
     padding-left: 32px;
     background: url(../img/ic-ranking.png) no-repeat 10px 8px;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031299}}
   #recent-oshirase article header {
     padding: 0;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031302}}
   #attention h2, #recent h2, #recent-oshirase h2 {
     display: block;
     margin: 0;
     padding: 0;
-    a {
-      display: block;
-      @include ic-doc;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031306}}
+  #attention h2 a, #recent h2 a, #recent-oshirase h2 a {
+    display: block;
+    padding: 3px 25px 3px 10px;
+    background: url(../img/ic-doc.png) no-repeat 97% center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031314}}
   #attention time, #recent time, #recent-oshirase time, .cms-tabs time {
     display: none;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031317}}
   #topics article {
     padding: 10px 10px 0;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031320}}
   #useful, #relations, #topics {
     min-height: 0;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031323}}
   #connect nav, #add nav {
     padding: 0 10px;
-    a {
-      @include box-sizing(border-box);
-      width: 50%;
-      margin: 0 0 10px;
-      &:nth-child(2n+1) {
-        margin-right: 0;
-        padding-right: 5px;
-      }
-      &:nth-child(2n) {
-        padding-left: 5px;
-      }
-    }
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031325}}
+  #connect nav a, #add nav a {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 50%;
+    margin: 0 0 10px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031329}}
+  #connect nav a:nth-child(2n+1), #add nav a:nth-child(2n+1) {
+    margin-right: 0;
+    padding-right: 5px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031333}}
+  #connect nav a:nth-child(2n), #add nav a:nth-child(2n) {
+    padding-left: 5px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031338}}
   #add nav {
     padding: 10px 10px 0;
     border: none;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031342}}
   #links-life li, #category-list h2 {
     padding: 0;
-    a {
-      padding: 3px 10px;
-    }
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031344}}
+  #links-life li a, #category-list h2 a {
+    padding: 3px 10px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031348}}
   .cms-tabs {
     padding: 0;
-    .names {
-      @include clear;
-      .name {
-        display: block;
-        float: left;
-        width: 33%;
-        @include box-sizing(border-box);
-      }
-      .name:last-child {
-        width: 34%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        @include box-sizing(border-box);
-      }
-    }
-    .pages header {
-      padding: 3px 10px;
-    }
-    nav {
-      padding: 3px 10px;
-    }
   }
-// -----------------------------------------------------------------------------
-//  feed
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031350}}
+  .cms-tabs .names {
+    zoom: 1;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+  .cms-tabs .names:before, .cms-tabs .names:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+  .cms-tabs .names:after {
+    clear: both;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031352}}
+  .cms-tabs .names .name {
+    display: block;
+    float: left;
+    width: 33%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031358}}
+  .cms-tabs .names .name:last-child {
+    width: 34%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031366}}
+  .cms-tabs .pages header {
+    padding: 3px 10px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031369}}
+  .cms-tabs nav {
+    padding: 3px 10px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031375}}
   .feed {
-    @include clear;
+    zoom: 1;
     padding: 0;
-    background: $hgry;
-    .rss {
+    background: #cccccc;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+  .feed:before, .feed:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+  .feed:after {
+    clear: both;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031379}}
+  .feed .rss {
     float: left;
     width: 30%;
     display: inline-block;
     padding: 3px 0 3px 30px;
-    background: $hblue url(../img/ic-rss.png) no-repeat 10px center;
-    }
-    .more {
-      float: left;
-      width: 70%;
-      padding: 3px 0 3px 15px;
-      @include r-arrow-s;
-    }
+    background: #cceeee url(../img/ic-rss.png) no-repeat 10px center;
   }
-  .cms-tabs {
-    nav {
-      padding: 0;
-      background: #ccc;
-    }
-    .rss {
-      width: 30%;
-      display: inline-block;
-      padding: 3px 0 3px 30px;
-      background: $hblue url(../img/ic-rss.png) no-repeat 10px center;
-      @include box-sizing(border-box);
-    }
-    .more {
-      width: 70%;
-      padding: 3px 0 3px 15px;
-      @include r-arrow-s;
-      @include box-sizing(border-box);
-    }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031386}}
+  .feed .more {
+    float: left;
+    width: 70%;
+    padding: 3px 0 3px 15px;
+    padding: 3px 0 3px 25px;
+    background: url(../img/r-arrow.png) no-repeat 12px 10px;
   }
-// -----------------------------------------------------------------------------
-//  footer
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031394}}
+  .cms-tabs nav {
+    padding: 0;
+    background: #ccc;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031398}}
+  .cms-tabs .rss {
+    width: 30%;
+    display: inline-block;
+    padding: 3px 0 3px 30px;
+    background: #cceeee url(../img/ic-rss.png) no-repeat 10px center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031405}}
+  .cms-tabs .more {
+    width: 70%;
+    padding: 3px 0 3px 15px;
+    padding: 3px 0 3px 25px;
+    background: url(../img/r-arrow.png) no-repeat 12px 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031414}}
   #foot {
     margin-top: 0;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031417}}
   #address {
     width: 100%;
     min-width: 50%;
     padding: 10px;
-    @include box-sizing(border-box);
-    dl dt {
-      font-weight: normal;
-      color: $blue;
-    }
-    dl dd a {
-      display: block;
-      margin: 0;
-      padding: 8px 8px 5px;
-      text-align: center;
-      background-position: 28% center;
-    }
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031422}}
+  #address dl dt {
+    font-weight: normal;
+    color: #007acd;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031426}}
+  #address dl dd a {
+    display: block;
+    margin: 0;
+    padding: 8px 8px 5px;
+    text-align: center;
+    background-position: 28% center;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031434}}
   #footer-navi nav {
-    @include clear;
+    zoom: 1;
     border-top: 1px solid #999;
-    a {
-      float: left;
-      display: block;
-      width: 50%;
-      @include box-sizing(border-box);
-      @include r-arrow-s;
-      margin: 0;
-      padding-left: 22px;
-      border: 1px solid #999;
-      border-top: none;
-      background-color: $hgry;
-      background-position: 9px 10px;
-      color: $text;
-      text-decoration: none;
-      &:nth-child(2n+1) {
-        border-right: none;
-      }
-      &:last-child {
-        border-right: 1px solid #999;
-      }
-      &:nth-child(4) {
-        display: none;
-      }
-    }
   }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003120}}
+  #footer-navi nav:before, #footer-navi nav:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/_init\.scss}line{font-family:\00003126}}
+  #footer-navi nav:after {
+    clear: both;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031437}}
+  #footer-navi nav a {
+    float: left;
+    display: block;
+    width: 50%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 3px 0 3px 25px;
+    background: url(../img/r-arrow.png) no-repeat 12px 10px;
+    margin: 0;
+    padding-left: 22px;
+    border: 1px solid #999;
+    border-top: none;
+    background-color: #cccccc;
+    background-position: 9px 10px;
+    color: #666666;
+    text-decoration: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031451}}
+  #footer-navi nav a:nth-child(2n+1) {
+    border-right: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031454}}
+  #footer-navi nav a:last-child {
+    border-right: 1px solid #999;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031457}}
+  #footer-navi nav a:nth-child(4) {
+    display: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031462}}
   #copyright {
     min-width: 100%;
-    font-size: $px12;
+    font-size: 86%;
   }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031466}}
   #ss-pc, #ss-mb {
     padding: 10px;
-    a {
-      @include box-sizing(border-box);
-      display: block;
-      width: 100%;
-      padding: 8px 8px 5px;
-      border: 1px solid #999;
-      background: $hgry;
-      color: $text;
-      text-align: center;
-      text-decoration: none;
-    }
   }
-// -----------------------------------------------------------------------------
-//  pagetop
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031468}}
+  #ss-pc a, #ss-mb a {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: 8px 8px 5px;
+    border: 1px solid #999;
+    background: #cccccc;
+    color: #666666;
+    text-align: center;
+    text-decoration: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031482}}
   .pagetop {
     right: 20px;
     bottom: 20px;
     width: 50px;
     height: 50px;
-    @include border-radius(10px);
-    a {
-      position: relative;
-      width: 50px;
-      height: 50px;
-      padding: 0;
-      overflow: hidden;
-      background-position: center center;
-      text-indent: -9999px;
-    }
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
   }
-// -----------------------------------------------------------------------------
-//  ss-page-name
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031488}}
+  .pagetop a {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    overflow: hidden;
+    background-position: center center;
+    text-indent: -9999px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031500}}
   #ss-page-name {
-    margin: $smart-margin 0 0 0;
+    margin: 10px 0 0 0;
   }
-// -----------------------------------------------------------------------------
-//  category-nodes
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031505}}
   #main .category-nodes {
-    margin: $smart-margin 0 0 0;
+    margin: 10px 0 0 0;
     padding: 0 10px;
-    article {
-      @include box-sizing(border-box);
-      margin: 0 0 10px 0;
-      padding: 5px;
-    }
   }
-// -----------------------------------------------------------------------------
-//  category-pages article-pages
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031508}}
+  #main .category-nodes article {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 0 10px 0;
+    padding: 5px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031516}}
   .category-pages, .article-pages {
-    margin-bottom: $smart-margin;
-    a {
-      display: block;
-      width: 100%;
-      @include box-sizing(border-box);
-      @include r-arrow-s;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-    .new h2:after {
-      display: none;
-    }
+    margin-bottom: 10px;
   }
-  .page .category-pages, .page .article-pages {
-    article {
-      padding: 3px 10px;
-      h2 {
-        display: block;
-        margin:0;
-        padding: 0;
-      }
-    }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031518}}
+  .category-pages a, .article-pages a {
+    display: block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 3px 0 3px 25px;
+    background: url(../img/r-arrow.png) no-repeat 12px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
-  .one .page .category-pages,
-  .one .page .article-pages {
-    article {
-      padding: 3px 10px;
-      border-bottom: $border-hgry;
-      time {
-        float: none;
-      }
-      h2 {
-        padding: 0;
-        border: none;
-        a {
-          border: none;
-        }
-      }
-    }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031527}}
+  .category-pages .new h2:after, .article-pages .new h2:after {
+    display: none;
   }
-// -----------------------------------------------------------------------------
-//  page sitemap
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031532}}
+  .page .category-pages article, .page .article-pages article {
+    padding: 3px 10px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031534}}
+  .page .category-pages article h2, .page .article-pages article h2 {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031543}}
+  .one .page .category-pages article,
+  .one .page .article-pages article {
+    padding: 3px 10px;
+    border-bottom: 1px solid #cccccc;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031546}}
+  .one .page .category-pages article time,
+  .one .page .article-pages article time {
+    float: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031549}}
+  .one .page .category-pages article h2,
+  .one .page .article-pages article h2 {
+    padding: 0;
+    border: none;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031552}}
+  .one .page .category-pages article h2 a,
+  .one .page .article-pages article h2 a {
+    border: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031560}}
   .page article, .one article.body {
     padding: 10px 10px 0;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/var\/www\/srsg\/public\/sites\/s\/a\/m\/p\/l\/e\/_\/css\/style\.scss}line{font-family:\000031563}}
+  .page header.released {
+    margin: 3px 0;
   }
 }

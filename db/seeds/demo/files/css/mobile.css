@@ -82,7 +82,10 @@ dd {
 #foot #address {
   margin: 20px 0 0;
   padding: 10px;
-  background-color: #cee;
+  background-color: #ededed;
+}
+#foot #address dl {
+  margin: 0;
 }
 #foot #footer-navi {
   padding: 10px;
@@ -213,6 +216,15 @@ dd {
 }
 .page .body th {
   background: #cee;
+}
+.page .released {
+  padding: 0 10px;
+  text-align: right;
+}
+.page .categories {
+  padding: 0 10px;
+  border-top: 1px solid #ddd;
+  text-align: right;
 }
 /* ---------------------------------- */
 .event-date h1 {
