@@ -49,7 +49,7 @@ module Cms::Page::Feature
     end
     
     def basename
-      @basename || filename.to_s.sub(/.*\//, "").presence
+      @basename.presence || filename.to_s.sub(/.*\//, "").presence
     end
     
     def path
