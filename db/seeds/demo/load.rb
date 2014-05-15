@@ -23,9 +23,6 @@ def save_layout(data)
   item.update data.merge html: html
 end
 
-array   = Cms::Layout.where(site_id: @site._id).map {|m| [m.filename.sub(/\..*$/, '\1'), m] }
-layouts = Hash[*array.flatten]
-
 save_layout filename: "category-kanko.layout.html", name: "カテゴリー：観光・文化・スポーツ"
 save_layout filename: "category-kenko.layout.html", name: "カテゴリー：健康・福祉"
 save_layout filename: "category-kosodate.layout.html", name: "カテゴリー：子育て・教育"
@@ -303,6 +300,7 @@ save_page route: "cms/page", filename: "index.html", name: "自治体サンプ�
 save_page route: "cms/page", filename: "mobile.html", name: "スマートフォン・携帯サイト", layout_id: layouts["pages"].id
 save_page route: "cms/page", filename: "sitemap/index.html", name: "サイトマップ", layout_id: layouts["one"].id
 save_page route: "cms/page", filename: "use/index.html", name: "ご利用案内", layout_id: layouts["one"].id
+save_page route: "cms/page", filename: "404.html", name: "お探しのページは見つかりません。 404 Not Found", layout_id: layouts["one"].id
 
 ## -------------------------------------
 puts "articles:"
@@ -369,9 +367,7 @@ save_page route: "article/page", filename: "oshirase/kurashi/28.html", name: "�
 dates = %w[
   2014/05/12, 2014/05/13, 2014/05/14, 2014/05/15, 2014/05/16,
   2014/05/17, 2014/05/18, 2014/05/19, 2014/05/20, 2014/05/21,
-  2014/05/22, 2014/05/23, 2014/05/24].map do |d|
-    Date.parse(d).mongoize
-  end
-save_page route: "article/page", filename: "docs/27.html", name: "ふれあいフェスティバル", layout_id: layouts["oshirase"].id,
+  2014/05/22, 2014/05/23, 2014/05/24].map { |d| Date.parse(d).mongoize }
+save_page route: "article/page", filename: "docs/29.html", name: "ふれあいフェスティバル", layout_id: layouts["oshirase"].id,
   category_ids: [categories["oshirase"].id, categories["oshirase/event"].id], event_dates: dates
 
