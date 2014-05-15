@@ -973,6 +973,16 @@ img {
   margin-bottom: $item-margin;
   padding-left: 23px;
 }
+.page article dl, .one article.body dl {
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: $border-hgry;
+  dt {
+    float: left;
+    min-width: 15%;
+    font-weight: bold;
+  }
+}
 .page article table, .one article.body table {
   width: 100%;
   margin-bottom: $item-margin;
@@ -1562,5 +1572,8 @@ img {
   }
   .page header.released {
     margin: 3px 0;
+  }
+  .page article dl dt, .one article.body dl dt {
+    float: none;
   }
 }

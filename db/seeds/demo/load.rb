@@ -364,10 +364,7 @@ save_page route: "article/page", filename: "oshirase/kurashi/27.html", name: "�
 save_page route: "article/page", filename: "oshirase/kurashi/28.html", name: "平成26年4月より国民健康保険税率が改正されます",
   layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id, categories["oshirase/kurashi"].id]
 
-dates = %w[
-  2014/05/12, 2014/05/13, 2014/05/14, 2014/05/15, 2014/05/16,
-  2014/05/17, 2014/05/18, 2014/05/19, 2014/05/20, 2014/05/21,
-  2014/05/22, 2014/05/23, 2014/05/24].map { |d| Date.parse(d).mongoize }
+dates = (Date.today..(Date.today + 12)).map { |d| d.mongoize }
 save_page route: "article/page", filename: "docs/29.html", name: "ふれあいフェスティバル", layout_id: layouts["oshirase"].id,
   category_ids: [categories["oshirase"].id, categories["oshirase/event"].id], event_dates: dates
 
