@@ -47,6 +47,10 @@ if (x <= w) {
     $(this).children('a').removeClass("current");
   });
 }
+var agent = navigator.userAgent;
+if(agent.match(/(iPhone|iPad|Android)/)){
+  $('#navi li').children('ul').remove();
+}
 
 // block link
 $(".category-nodes article").click(function(){
