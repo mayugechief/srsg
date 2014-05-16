@@ -10,7 +10,6 @@ class @SS
   @href = ""
   @siteName = null
   @pageName = null
-  @viewPort = 'width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=2.0'
   @loading  = '<img style="vertical-align:middle" src="/images/loading.gif" alt="loading.." border="0" widtth="16" height="11" />'
   
   @load: ->
@@ -52,8 +51,6 @@ class @SS
             head.children("link").remove()
             head.children("script").remove()
           head.append data.head.replace(/\$now/g, $.now())
-          if !head.children("meta[name=viewport]").length
-            head.append '<meta name="viewport" content="' + SS.viewPort + '" />'
         SS.href = data.href
         SS.renderTools()
         
