@@ -93,7 +93,7 @@ CentOS 6.5/64bit
   rake cms:page:generate site=www
   
   ## 静的ページ削除
-  rake cms:page:generate site=www
+  rake cms:page:remove site=www
 
 --------------------
 # 開発ツール
