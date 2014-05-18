@@ -38,7 +38,6 @@ CentOS 6.5/64bit
   cd /var/www/shirasagi
   cp config/samples/* config/
   bundle install
-  bin/deploy
   thin start -d
 
   Access to http://localhost:3000/.mypage
