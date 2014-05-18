@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes,minimum-scale=1.0,maximum-scale=2.0" />
 <title>SHIRASAGI</title>
 <%= stylesheet_link_tag "ss/style", media: "all" %>
-<%= stylesheet_link_tag "jquery-ui/pepper-grinder/custom.min.css", media: "all", "data-turbolinks-track" => true %>
-<%= stylesheet_link_tag "colorbox/colorbox.css", media: "all", "data-turbolinks-track" => true %>
-<%= stylesheet_link_tag "datetimepicker/jquery.datetimepicker.css", media: "all", "data-turbolinks-track" => true %>
+<link data-turbolinks-track="true" href="/assets/css/jquery-ui/pepper-grinder/custom.min.css" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/css/colorbox/colorbox.css" media="all" rel="stylesheet" />
+<link data-turbolinks-track="true" href="/assets/css/datetimepicker/jquery.datetimepicker.css" media="all" rel="stylesheet" />
 <% controller.stylesheets.each do |path| %>
 <%= stylesheet_link_tag path, media: "all", "data-turbolinks-track" => true %>
 <% end %>
 <%= javascript_include_tag "ss/ss", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "jquery.form.js", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "jquery.colorbox.js", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "jquery-ui-1.10.4.custom.min.js", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "jquery.datetimepicker.js", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "ckeditor/ckeditor.js", "data-turbolinks-track" => true %>
+<script data-turbolinks-track="true" src="/assets/js/jquery.form.js"></script>
+<script data-turbolinks-track="true" src="/assets/js/jquery.colorbox.js"></script>
+<script data-turbolinks-track="true" src="/assets/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script data-turbolinks-track="true" src="/assets/js/jquery.datetimepicker.js"></script>
+<script data-turbolinks-track="true" src="/assets/js/ckeditor/ckeditor.js"></script>
 <% if SS.config.cms.html_editor == "ckeditor" %>
-<%= javascript_include_tag "ckeditor/adapters/jquery.js", "data-turbolinks-track" => true %>
+<script data-turbolinks-track="true" src="/assets/js/ckeditor/adapters/jquery.js"></script>
 <% elsif SS.config.cms.html_editor == "tinymce" %>
-<%= javascript_include_tag "tinymce/tinymce.min.js", "data-turbolinks-track" => true %>
+<script data-turbolinks-track="true" src="/assets/js/tinymce/tinymce.min.js"></script>
 <% end %>
-<%= javascript_include_tag "ace/ace.js", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "ace/theme-chrome.js", "data-turbolinks-track" => true %>
-<%= javascript_include_tag "jquery-ace.min.js", "data-turbolinks-track" => true %>
+<script data-turbolinks-track="true" src="/assets/js/ace/ace.js"></script>
+<script data-turbolinks-track="true" src="/assets/js/ace/theme-chrome.js"></script>
+<script data-turbolinks-track="true" src="/assets/js/jquery-ace.min.js"></script>
 <% controller.javascripts.each do |path| %>
 <%= javascript_include_tag path %>
 <% end %>

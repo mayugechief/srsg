@@ -5,11 +5,11 @@ module EditorHelper
     if !mode && opts[:filename]
       extname = opts[:filename].sub(/.*\./, "")
       extname = "javascript" if extname == "js"
-      mode = extname if File.exists?("#{Rails.root}/public/javascripts/ace/mode-#{extname}.js")
+      mode = extname if File.exists?("#{Rails.public_path}/assets/js/ace/mode-#{extname}.js")
     end
     
     h  = []
-    h << javascript_include_tag("ace/mode-#{mode}.js", "data-turbolinks-track" => true) if mode
+    h << %Q[<script data-turbolinks-track="true" src="/assets/js/ace/mode-#{mode}.js"></script>] if mode
     h <<  coffee do
       j  = []
       j << %Q[$ ->]
