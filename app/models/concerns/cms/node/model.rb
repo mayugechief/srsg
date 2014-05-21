@@ -65,7 +65,7 @@ module Cms::Node::Model
     end
     
     def dirname
-      filename.index("/") ? filename.to_s.sub(/\/.*$/, "").presence : nil
+      filename.index("/") ? filename.to_s.sub(/\/[^\/]+$/, "").presence : nil
     end
     
     def basename

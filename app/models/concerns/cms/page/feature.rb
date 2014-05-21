@@ -44,7 +44,7 @@ module Cms::Page::Feature
   
   public
     def dirname(basename = nil)
-      dir = filename.index("/") ? filename.to_s.sub(/\/.*$/, "").presence : nil
+      dir = filename.index("/") ? filename.to_s.sub(/\/[^\/]+$/, "").presence : nil
       basename ? (dir ? "#{dir}/" : "") + basename : dir
     end
     
