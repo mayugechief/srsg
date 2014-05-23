@@ -315,21 +315,15 @@ save_page route: "article/page", filename: "docs/4.html", name: "放射性物質
   layout_id: layouts["oshirase"].id, category_ids: [categories["attention"].id]
 save_page route: "article/page", filename: "docs/5.html", name: "市内の微小粒子状物質（PM2.5）の測定データ（速報値）を公開しています。",
   layout_id: layouts["oshirase"].id, category_ids: [categories["attention"].id]
-save_page route: "article/page", filename: "docs/6.html", name: "身体障害者手帳の認定基準が変更",
-  layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id]
 save_page route: "article/page", filename: "docs/7.html", name: "還付金詐欺と思われる不審な電話にご注意ください",
   layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id]
 save_page route: "article/page", filename: "docs/8.html", name: "平成26年度　SHIRASAGI市システム構築に係るの公募型企画競争",
   layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id]
 save_page route: "article/page", filename: "docs/9.html", name: "冬の感染症に備えましょう",
   layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id]
-save_page route: "article/page", filename: "docs/10.html", name: "休日臨時窓口を開設します。",
-  layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id]
 save_page route: "article/page", filename: "docs/11.html", name: "広報SHIRASAGI3月号を掲載",
   layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id]
 save_page route: "article/page", filename: "docs/12.html", name: "インフルエンザ流行警報がでています",
-  layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id]
-save_page route: "article/page", filename: "docs/13.html", name: "平成26年4月より国民健康保険税率が改正されます",
   layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id]
 save_page route: "article/page", filename: "docs/14.html", name: "転出届",
   layout_id: layouts["category-middle"].id, category_ids: [categories["kurashi/koseki/jyumin"].id]
@@ -351,8 +345,6 @@ save_page route: "article/page", filename: "docs/22.html", name: "自動交付�
   layout_id: layouts["category-middle"].id, category_ids: [categories["kurashi/koseki/jyumin"].id]
 save_page route: "article/page", filename: "docs/tenkyo.html", name: "転居届",
   layout_id: layouts["category-middle"].id, category_ids: [categories["kurashi/koseki/jyumin"].id]
-save_page route: "article/page", filename: "oshirase/23.html", name: "平成26年4月より国民健康保険税率が改正されます",
-  layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id, categories["oshirase/kurashi"].id]
 save_page route: "article/page", filename: "oshirase/kurashi/24.html", name: "犬・猫を譲り受けたい方",
   layout_id: layouts["oshirase"].id, category_ids: [categories["oshirase"].id, categories["oshirase/kurashi"].id]
 save_page route: "article/page", filename: "oshirase/kurashi/25.html", name: "平成26年度住宅補助金の募集について掲載しました。",

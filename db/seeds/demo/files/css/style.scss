@@ -1101,9 +1101,6 @@ img {
     float: left;
     width: 20%;
   }
-  dt .wday {
-    display: none;
-  }
   dd {
     margin-left: 20%;
     h2 {
@@ -1575,5 +1572,16 @@ img {
   }
   .page article dl dt, .one article.body dl dt {
     float: none;
+  }
+// -----------------------------------------------------------------------------
+//  event
+  #event-list {
+    dt {
+      float: none;
+      width:100%;
+    }
+    dd {
+      margin: 0;
+    }
   }
 }
